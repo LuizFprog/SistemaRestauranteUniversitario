@@ -11,6 +11,6 @@
 
 1. Quem vai usar o programa?
 
-O sistema possui clientes e funcionarios, sendo esses divididos em cozinheiros e administradores.
+  O sistema possui clientes e funcionarios, sendo esses divididos em cozinheiros e administradores.
 
 ## Requisitos do Projeto
