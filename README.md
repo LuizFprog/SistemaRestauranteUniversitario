@@ -26,3 +26,10 @@
 ## Requisitos do Projeto
 * REQ1 - O sistema deve exibir o cardápio semanal do RU para usuário.
 * REQ2 - O sistema de gerenciamento (CRUD - Create, Recover, Update, Delete) de cardápio e as ações somente serão executadas por usuários funcionários. 
+* REQ3 - O sistema deve permitir a remocao e criacao de objetos do tipo Cliente.
+* REQ4 - O sistema deve controlar o acesso através de login e senha. Os usuários do sistema serão do tipo cliente e funcionário .
+* REQ5 - O sistema deve permitir que o Cliente compre fichas e veja o valor total a ser gasto.
+* REQ6 - O sistema deve permitir que o Cliente deposite dinheiro em sua conta.
+* REQ7 - O sistema deve registrar a entrada do Cliente no restaurante.
+* REQ8 - O sistema deve permitir que o Cliente tenha acesso ao cardápio.
+* REQ9 - O sistema deve permitir que o Administrador altere o preço das fichas.
