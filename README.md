@@ -24,3 +24,5 @@
   Os administradores podem gerenciar os funcionários, os clientes e modificar o cardápio.
   
 ## Requisitos do Projeto
+* REQ1 - O sistema deve exibir o cardápio semanal do RU para usuário.
+* REQ2 - O sistema de gerenciamento (CRUD - Create, Recover, Update, Delete) de cardápio e as ações somente serão executadas por usuários funcionários. 
