@@ -14,3 +14,5 @@
   O sistema possui clientes e funcionarios, sendo esses divididos em cozinheiros e administradores.
 
 ## Requisitos do Projeto
+* REQ1 - O sistema deve exibir o cardápio semanal do RU para usuário.
+* REQ2 - O sistema de gerenciamento (CRUD - Create, Recover, Update, Delete) de cardápio e as ações somente serão executadas por usuários funcionários. 
