@@ -29,5 +29,5 @@
 * REQ3 - O sistema deve permitir o gerenciamento (CRUD - Create, Recover, Update, Delete) do tipo Cliente.
 * REQ4 - O sistema deve controlar o acesso através de login e senha. Os usuários do sistema serão do tipo cliente e funcionário, sendo esse administrador ou cozinheiro.
 * REQ5 - O sistema deve permitir que o Cliente compre fichas, tenha acesso a seu saldo e veja o valor total a ser gasto.
-* REQ7 - O sistema deve permitir que o Administrador altere o preço das fichas
+* REQ6 - O sistema deve permitir que o Administrador altere o preço das fichas
 
