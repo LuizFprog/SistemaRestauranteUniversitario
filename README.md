@@ -21,7 +21,7 @@
 
   Os clientes podem comprar fichas e visualizar o cardápio
   Os cozinheiros podem modificar o cardápio. 
-  Os administradores podem gerenciar os funcionários, os clientes e modificar o cardápio.
+  Os administradores podem gerenciar os funcionários e os clientes.
   
 ## Requisitos do Projeto
 * REQ1 - O sistema deve exibir o cardápio semanal do RU para usuário.
