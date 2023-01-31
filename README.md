@@ -11,24 +11,26 @@
 
 1. Quem vai usar o programa?
 
-  O sistema possui clientes e funcionarios, sendo esses divididos em cozinheiros e administradores.
+      - O sistema possui clientes e funcionários, sendo esses divididos em cozinheiros e administradores.
 
 2. Que serviços são “necessários” (leia-se: importantes para os clientes e usuários)?
 
-  Sistema para efetuar o cadastro, Sistema de autenticação e Visualização de Cardápio
+      - Serviços para efetuar o cadastro, autenticação da conta e visualização de cardápio.
 
 3. Quais serviços cada usuário pode executar
 
-  Os clientes podem comprar fichas e visualizar o cardápio
-  Os cozinheiros podem modificar o cardápio. 
-  Os administradores podem gerenciar os funcionários e os clientes.
+      - Os clientes podem comprar fichas , visualizar o cardápio e depositar dinheiro no saldo da sua conta.<br />
+      - Os cozinheiros podem adicionar e remover pratos do cardápio, além de organizar os pratos baseados em seus atributos.<br />
+      - Os administradores podem visualizar e remover funcionários e clientes.
   
 ## Requisitos do Projeto
 
-* REQ1 - O Sistema deve permitir ao cozinheiro gerenciar os pratos que aparecem no cardapio e possibilitar ao cliente a visualização do cardapio.
-* REQ2 - O sistema de gerenciamento (CRUD - Create, Recover, Update, Delete) de cardápio e as ações somente serão executadas por usuários cozinheiros. 
-* REQ3 - O sistema deve permitir que o cliente gerencie (CRUD - Create, Recover, Update, Delete) o tipo cliente e o administrador terá acesso a todas as informações não sigilosas do cliente(nome, fichas).
-* REQ4 - O sistema deve controlar o acesso através de login e senha. Os usuários do sistema serão do tipo cliente e funcionário, sendo esse administrador ou cozinheiro.
-* REQ5 - O sistema deve permitir que o Cliente compre fichas, tenha acesso a seu saldo e veja o valor total a ser gasto.
-* REQ6 - O sistema deve permitir que o Administrador altere o preço das fichas
+* **REQ1** - O Sistema deve permitir ao cozinheiro, e apenas ele, gerenciar os pratos que aparecem no cardápio e possibilitar tanto ao cliente quanto aos funcionários a visualização do cardápio.
+* **REQ2** - O sistema deve permitir que o Administrador visualize as informações de clientes e funcionários e possa remove-los.
+* **REQ3** - O sistema deve permitir que o cliente gerencie (CRUD - Create, Recover, Update, Delete) a sua conta e o administrador deve ter acesso a todas as informações não sigilosas do cliente(nome, fichas, etc.).
+* **REQ4** - O sistema deve permitir o cadastramento e autenticação de contas de Clientes e Funcionários através de login e senha.
+* **REQ5** - O sistema deve permitir que o Cliente visualize seu saldo, deposite dinheiro na sua conta e compre fichas, em quantidade escolhida pelo cliente, onde ele verá o total a ser gasto na compra.
+* **REQ6** - O sistema deve permitir que o Administrador altere o preço das fichas.
+* **REQ7** - O sistema deve permitir ao Administrador a visualização das compras recentes de fichas, realizadas pelos clientes.
+<pre />
 
