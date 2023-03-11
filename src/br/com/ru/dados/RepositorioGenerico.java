@@ -5,18 +5,18 @@ import java.util.Collections;
 import java.util.List;
 
 public class RepositorioGenerico<T> implements IRepositorioGenerico<T>{
-	private List<T> elementos;
+	private List<T> qualquer;
 
-	public RepositorioGenerico(List<T> elementos) {
+	public RepositorioGenerico(List<T> qualquer) {
 		super();
-		this.elementos = new ArrayList<>();
+		this.qualquer = new ArrayList<>();
 	}
 
 	@Override
 	public void add(T novo){
-		if(!this.elementos.contains(novo))
+		if(!this.qualquer.contains(novo))
 		{
-			elementos.add(novo);
+			qualquer.add(novo);
 		}
 		else
 		{
@@ -26,14 +26,14 @@ public class RepositorioGenerico<T> implements IRepositorioGenerico<T>{
 
 	@Override
 	public List<T> read() {
-		return Collections.unmodifiableList(elementos);
+		return Collections.unmodifiableList(qualquer);
 	}
 
 	@Override
 	public void remove(T conteudo) throws ElementoNaoExisteException {
-		if(this.elementos.contains(conteudo))
+		if(this.qualquer.contains(conteudo))
 		{
-			this.elementos.remove(this.elementos.indexOf(conteudo));
+			this.qualquer.remove(this.qualquer.indexOf(conteudo));
 		}
 		else
 		{
@@ -43,10 +43,10 @@ public class RepositorioGenerico<T> implements IRepositorioGenerico<T>{
 
 	@Override
 	public void update(T novoConteudo) throws ElementoNaoExisteException {
-		if(this.elementos.contains(novoConteudo))
+		if(this.qualquer.contains(novoConteudo))
 		{
-			int indice = this.elementos.indexOf(novoConteudo);
-			this.elementos.set(indice, novoConteudo);
+			int indice = this.qualquer.indexOf(novoConteudo);
+			this.qualquer.set(indice, novoConteudo);
 		}
 		else
 		{
