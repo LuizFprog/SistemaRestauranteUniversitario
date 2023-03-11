@@ -1,5 +1,5 @@
 package br.com.ru.dados;
 
-public class RepositorioGenerico {
+public class RepositorioGenerico<T> {
 
 }
