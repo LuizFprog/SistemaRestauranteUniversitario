@@ -7,16 +7,16 @@ public class Prato {
 	private boolean gluten;
 	private boolean lactose;
 	private boolean suco;
+	private boolean visivel;
 	
-	
-	
-	public Prato(String nome, boolean vegano, boolean gluten, boolean lactose, boolean suco) {
-		super(); 				// não sei oque faz.
+	public Prato(String nome, boolean vegano, boolean gluten, boolean lactose, 
+			boolean suco, boolean visivel) {
 		this.nome = nome;
 		this.vegano = vegano;
 		this.gluten = gluten;
 		this.lactose = lactose;
 		this.suco = suco;
+		this.visivel = visivel;
 	}
 
 	public String getNome() {
@@ -57,6 +57,14 @@ public class Prato {
 	
 	public void setSuco(boolean suco) {
 		this.suco = suco;
+	}
+
+	public boolean isVisivel() {
+		return visivel;
+	}
+
+	public void setVisivel(boolean visivel) {
+		this.visivel = visivel;
 	}
 
 	@Override
