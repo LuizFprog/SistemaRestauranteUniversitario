@@ -12,11 +12,11 @@ public abstract class Usuario {
 	
 	public Usuario(String primeiroNome, String ultimoNome, String cpf, String login, String senha) {
 		
-		this.primeiroNome= primeiroNome;
-		this.ultimoNome= ultimoNome;
-		this.cpf= cpf;
-		this.login= login;
-		this.senha= senha;
+		this.setPrimeiroNome(primeiroNome);
+		this.setUltimoNome(ultimoNome);
+		this.setCpf(cpf);
+		this.setLogin(login);
+		this.setSenha(senha);
 		
 	}
 	

@@ -4,9 +4,8 @@ public class Funcionario extends Usuario{
 
 		private String id;
 		
-		public Funcionario(String primeiroNome, String ultimoNome, String cpf, String login, String senha, String id) {
+		public Funcionario(String primeiroNome, String ultimoNome, String cpf, String login, String senha) {
 			super(primeiroNome, ultimoNome, cpf, login, senha);
-			this.id = id;
 			
 		}
 		
