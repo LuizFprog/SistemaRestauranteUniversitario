@@ -9,10 +9,10 @@ public class Ficha {
 	
 	public Ficha(double pAlmoco, double pJanta, Cliente cliente, String cod) {
 		
-		this.setPrecoAlmoco(pAlmoco);
-		this.setPrecoJanta(pJanta);
-		this.setCliente(cliente);
-		this.setCodigo(cod);
+		this.precoAlmoco = pAlmoco;
+		this.precoJanta = pJanta;
+		this.cliente = cliente;
+		this.codigo = cod;
 		
 		
 	}
