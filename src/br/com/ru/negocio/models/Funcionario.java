@@ -1,5 +1,6 @@
 package br.com.ru.negocio.models;
 
+
 public class Funcionario extends Usuario{
 
 		private String id;
@@ -9,6 +10,7 @@ public class Funcionario extends Usuario{
 			this.id = id;
 			
 		}
+	
 		
 
 		public String getId() {

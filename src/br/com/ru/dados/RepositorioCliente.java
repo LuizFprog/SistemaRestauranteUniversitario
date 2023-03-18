@@ -1,13 +1,15 @@
 package br.com.ru.dados;
 
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 import br.com.ru.exceptions.ElementoJaExisteException;
 import br.com.ru.exceptions.ElementoNaoExisteException;
+import br.com.ru.negocio.models.Cliente;
 
-public class RepositorioCliente<Cliente> implements IRepositorioGenerico<Cliente>{
+public class RepositorioCliente implements IRepositorioGenerico<Cliente>{
 	private List<Cliente> clientes;
 
 	public RepositorioCliente(List<Cliente> clientes) {
@@ -45,9 +47,9 @@ public class RepositorioCliente<Cliente> implements IRepositorioGenerico<Cliente
 
 	@Override
 	public void update(Cliente atual, Cliente novoConteudo) throws ElementoNaoExisteException {
-		if(this.clientes.contains(novoConteudo))
+		if(this.clientes.contains(atual))
 		{
-			int indice = this.clientes.indexOf(novoConteudo);
+			int indice = this.clientes.indexOf(atual);
 			this.clientes.set(indice, novoConteudo);
 		}
 		else
