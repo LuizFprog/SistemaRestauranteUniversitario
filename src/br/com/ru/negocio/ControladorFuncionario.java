@@ -1,5 +1,54 @@
 package br.com.ru.negocio;
 
-public class ControladorFuncionario {
+import java.util.List;
 
+import br.com.ru.dados.IRepositorioGenerico;
+import br.com.ru.exceptions.ElementoJaExisteException;
+import br.com.ru.exceptions.ElementoNaoExisteException;
+import br.com.ru.negocio.models.Funcionario;
+import br.com.ru.dados.RepositorioGenerico;
+
+
+public class ControladorFuncionario {
+	private IRepositorioGenerico<Funcionario> repositorioFuncionario;
+	private static ControladorFuncionario instancia;
+	private List<Funcionario> listaFuncionario;
+	
+	public ControladorFuncionario() {
+		this.repositorioFuncionario = new RepositorioGenerico<Funcionario>(listaFuncionario);
+	}
+	
+	public static ControladorFuncionario getInstance() {
+		if (instancia == null) {
+            instancia = new ControladorFuncionario();
+        }
+        return instancia;
+	}
+	
+	public void adicionarFuncionario(String primeiroNome, String ultimoNome, String cpf, String login, String senha, String id) 
+		throws ElementoJaExisteException {
+		
+		Funcionario novo = new Funcionario(primeiroNome, ultimoNome, cpf, login, senha, id);
+		repositorioFuncionario.add(novo);
+		
+	}
+	
+	public List<Funcionario> listar() {
+        return repositorioFuncionario.read();
+    }
+	
+	public void removerFuncionario (Funcionario removeFuncionario) 
+			throws ElementoNaoExisteException
+	{
+		repositorioFuncionario.remove(removeFuncionario);
+	}
+	
+	public void atualizarFuncionario (Funcionario atual, String primeiroNome, String ultimoNome, String cpf, String login, String senha) 
+					throws ElementoNaoExisteException {
+		
+		Funcionario novo = new Funcionario(primeiroNome, ultimoNome, cpf, login, senha, id);
+		repositorioFuncionario.update(atual, novo);
+		
+	}
+	
 }

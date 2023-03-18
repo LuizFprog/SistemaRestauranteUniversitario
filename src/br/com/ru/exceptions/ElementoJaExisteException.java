@@ -1,7 +1,10 @@
 package br.com.ru.exceptions;
 
 public class ElementoJaExisteException extends Exception{
-    private Object elemento;
+    
+	private static final long serialVersionUID = 1L;
+	private Object elemento;
+	
     public ElementoJaExisteException(Object obj) {
         super("O Objeto mencionado já existe no repositório!");
         this.elemento = obj;
