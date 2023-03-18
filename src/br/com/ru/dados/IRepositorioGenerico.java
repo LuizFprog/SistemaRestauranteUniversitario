@@ -11,7 +11,7 @@ public interface IRepositorioGenerico<T> {
 	
 	public void remove(T conteudo) throws ElementoNaoExisteException;
 	
-	public void update(T novoConteudo) throws ElementoNaoExisteException;
+	public void update(T atual, T novoConteudo) throws ElementoNaoExisteException;
 
-	public void add(T novo) throws ElementoJaExisteException;
+	public void add(T atual) throws ElementoJaExisteException;
 }
