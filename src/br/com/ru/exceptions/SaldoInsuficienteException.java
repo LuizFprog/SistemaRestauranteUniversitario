@@ -1,6 +1,6 @@
 package br.com.ru.exceptions;
 
-public class SaldoInsuficienteException {
+public class SaldoInsuficienteException extends Exception{
     public int saldo;
 
     public SaldoInsuficienteException(int saldo) {
