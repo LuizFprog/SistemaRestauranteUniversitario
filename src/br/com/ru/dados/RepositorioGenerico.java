@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import br.com.ru.exceptions.ElementoJaExisteException;
+import br.com.ru.exceptions.ElementoNaoExisteException;
+
 public class RepositorioGenerico<T> implements IRepositorioGenerico<T>{
 	private List<T> elementos;
 
@@ -13,7 +16,7 @@ public class RepositorioGenerico<T> implements IRepositorioGenerico<T>{
 	}
 
 	@Override
-	public void add(T novo){
+	public void add(T novo)throws ElementoJaExisteException{
 		if(!this.elementos.contains(novo))
 		{
 			elementos.add(novo);
