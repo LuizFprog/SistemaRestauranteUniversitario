@@ -20,6 +20,15 @@ public abstract class Usuario {
 		
 	}
 	
+public Usuario(String primeiroNome, String ultimoNome, String login, String senha) {
+		
+		this.primeiroNome= primeiroNome;
+		this.ultimoNome= ultimoNome;
+		this.login= login;
+		this.senha= senha;
+		
+	}
+	
 	
 	public String getPrimeiroNome() {
 		return primeiroNome;
