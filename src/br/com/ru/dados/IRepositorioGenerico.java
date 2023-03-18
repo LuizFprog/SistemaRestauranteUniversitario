@@ -7,11 +7,11 @@ import br.com.ru.exceptions.ElementoNaoExisteException;
 
 public interface IRepositorioGenerico<T> {
 	
-	public List<T> read();
+	public List<T> ler();
 	
-	public void remove(T conteudo) throws ElementoNaoExisteException;
+	public void remover(T conteudo) throws ElementoNaoExisteException;
 	
-	public void update(T atual, T novoConteudo) throws ElementoNaoExisteException;
+	public void atualizar(T atual, T novoConteudo) throws ElementoNaoExisteException;
 
-	public void add(T atual) throws ElementoJaExisteException;
+	public void inserir(T atual) throws ElementoJaExisteException;
 }

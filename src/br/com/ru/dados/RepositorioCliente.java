@@ -6,8 +6,9 @@ import java.util.List;
 
 import br.com.ru.exceptions.ElementoJaExisteException;
 import br.com.ru.exceptions.ElementoNaoExisteException;
+import br.com.ru.negocio.models.Cliente;
 
-public class RepositorioCliente<Cliente> implements IRepositorioGenerico<Cliente>{
+public class RepositorioCliente implements IRepositorioGenerico<Cliente>{
 	private List<Cliente> clientes;
 
 	public RepositorioCliente(List<Cliente> clientes) {
@@ -15,7 +16,7 @@ public class RepositorioCliente<Cliente> implements IRepositorioGenerico<Cliente
 	}
 
 	@Override
-	public void add(Cliente novo)throws ElementoJaExisteException{
+	public void inserir(Cliente novo)throws ElementoJaExisteException{
 		if(!this.clientes.contains(novo))
 		{
 			clientes.add(novo);
@@ -27,12 +28,12 @@ public class RepositorioCliente<Cliente> implements IRepositorioGenerico<Cliente
 	}
 
 	@Override
-	public List<Cliente> read() {
+	public List<Cliente> ler() {
 		return Collections.unmodifiableList(clientes);
 	}
 
 	@Override
-	public void remove(Cliente cliente) throws ElementoNaoExisteException {
+	public void remover(Cliente cliente) throws ElementoNaoExisteException {
 		if(this.clientes.contains(cliente))
 		{
 			this.clientes.remove(this.clientes.indexOf(cliente));
@@ -44,7 +45,7 @@ public class RepositorioCliente<Cliente> implements IRepositorioGenerico<Cliente
 	}
 
 	@Override
-	public void update(Cliente atual, Cliente novoConteudo) throws ElementoNaoExisteException {
+	public void atualizar(Cliente atual, Cliente novoConteudo) throws ElementoNaoExisteException {
 		if(this.clientes.contains(novoConteudo))
 		{
 			int indice = this.clientes.indexOf(novoConteudo);
