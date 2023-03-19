@@ -40,7 +40,7 @@ public class Main {
 						 + "|||||||||||||||||||||");
 //		
 //		//Criação de Funcionario
-		Cfunc.adicionarFuncionario("Diogo", "Filipe", "123", "b", "b", "d");
+		Cfunc.adicionarFuncionario("Diogo", "Filipe", "123456", "b", "b", "d");
 		Cfunc.adicionarFuncionario("Diogo", "Filipe", "312", "c", "b", "d");
 //		
 //		//Listar Funcionarios
@@ -49,8 +49,10 @@ public class Main {
 //		
 //			
 //		//Remover funcionario
-		Cfunc.excluirFuncionario("123");
+		Cfunc.excluirFuncionario("123456");
+		Ccliente.criarCliente("Diogo", "Fontes", "123456", "a", "2222222");
 		System.out.println(Cfunc.listar());
+		Ccliente.listarClienteEspecifico("123456");
 		
 	
 		

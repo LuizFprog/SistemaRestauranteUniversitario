@@ -9,15 +9,17 @@ public class Prato {
 	private boolean gluten;
 	private boolean lactose;
 	private boolean suco;
-	private boolean visivel;
+	private boolean sobremesa;
+	private boolean visivel;	
 	
 	public Prato(String nome, boolean vegano, boolean gluten, boolean lactose, 
-			boolean suco, boolean visivel) {
+			boolean suco, boolean sobremesa, boolean visivel) {
 		this.nome = nome;
 		this.vegano = vegano;
 		this.gluten = gluten;
 		this.lactose = lactose;
 		this.suco = suco;
+		this.sobremesa = sobremesa;
 		this.visivel = visivel;
 	}
 
@@ -59,6 +61,14 @@ public class Prato {
 	
 	public void setSuco(boolean suco) {
 		this.suco = suco;
+	}
+	
+	public boolean isSobremesa() {
+		return sobremesa;
+	}
+
+	public void setSobremesa(boolean sobremesa) {
+		this.sobremesa = sobremesa;
 	}
 
 	public boolean isVisivel() {

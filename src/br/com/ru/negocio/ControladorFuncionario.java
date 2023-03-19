@@ -5,7 +5,6 @@ import java.util.List;
 import br.com.ru.dados.IRepositorioGenerico;
 import br.com.ru.exceptions.ElementoJaExisteException;
 import br.com.ru.exceptions.ElementoNaoExisteException;
-import br.com.ru.negocio.models.Cliente;
 import br.com.ru.negocio.models.Funcionario;
 import br.com.ru.negocio.models.Usuario;
 import br.com.ru.dados.RepositorioGenerico;
@@ -27,8 +26,7 @@ public class ControladorFuncionario extends ControladorUsuario{
         return instancia;
 	}
 	
-	public void adicionarFuncionario(String primeiroNome, String ultimoNome, String cpf, String login, String senha, String id) 
-		throws ElementoJaExisteException {
+	public void adicionarFuncionario(String primeiroNome, String ultimoNome, String cpf, String login, String senha, String id) throws ElementoJaExisteException {
 		
 		
 		
@@ -40,9 +38,11 @@ public class ControladorFuncionario extends ControladorUsuario{
 			}
 		}
 		
-		Funcionario novo = new Funcionario(primeiroNome, ultimoNome, cpf, login, senha, id);
-		repositorioUsuario.inserir(novo);
-		repositorioFuncionario.inserir(novo);
+		if (primeiroNome != null && ultimoNome != null && cpf != null && login != null && senha != null && id != null) {
+			Funcionario novo = new Funcionario(primeiroNome, ultimoNome, cpf, login, senha, id);
+			repositorioFuncionario.inserir(novo);
+			repositorioUsuario.inserir(novo);
+		}
 		
 	}
 	

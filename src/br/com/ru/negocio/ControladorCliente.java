@@ -30,11 +30,16 @@ public class ControladorCliente extends ControladorUsuario{
 				throw new ElementoJaExisteException("Já existe um cliente com o mesmo CPF ou login!");
 			}
 		}
-		Cliente novo_cliente = new Cliente(primeiroNome, ultimoNome, cpf, login, senha);
 		
-		repositorioUsuario.inserir(novo_cliente);
+		if (primeiroNome != null && ultimoNome != null && cpf != null && login != null && senha != null) {
+			
+			
+			Cliente novo_cliente = new Cliente(primeiroNome, ultimoNome, cpf, login, senha);
+			repositorioClientes.inserir(novo_cliente);
+			repositorioUsuario.inserir(novo_cliente);
+		}	
+		
 	
-		repositorioClientes.inserir(novo_cliente);
 	}
 	
 	public String listarClienteEspecifico(String cpf) throws ElementoNaoExisteException {
