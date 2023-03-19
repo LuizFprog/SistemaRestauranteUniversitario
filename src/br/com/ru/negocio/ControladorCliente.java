@@ -4,11 +4,13 @@ import java.util.List;
 
 import br.com.ru.dados.IRepositorioGenerico;
 import br.com.ru.dados.RepositorioCliente;
+import br.com.ru.dados.RepositorioUsuario;
 import br.com.ru.exceptions.ElementoJaExisteException;
 import br.com.ru.exceptions.ElementoNaoExisteException;
 import br.com.ru.negocio.models.Cliente;
+import br.com.ru.negocio.models.Usuario;
 
-public class ControladorCliente {
+public class ControladorCliente extends ControladorUsuario{
 
 	private IRepositorioGenerico<Cliente> repositorioClientes;
 	private List<Cliente> listaClientes;
@@ -21,25 +23,31 @@ public class ControladorCliente {
 	// Método para criar um novo cliente
 	public void criarCliente(String primeiroNome, String ultimoNome, String cpf, String login, String senha) throws ElementoJaExisteException {
 		
-		List<Cliente> clientes = repositorioClientes.ler();
-		for (Cliente c : clientes) {
+		List<Usuario> usuarios = repositorioUsuario.ler();
+		
+		for (Usuario c : usuarios) {
 			if (c.getCpf().equals(cpf) || c.getLogin().equals(login)) {
 				throw new ElementoJaExisteException("Já existe um cliente com o mesmo CPF ou login!");
 			}
 		}
-		Cliente novo_cliente = new Cliente(primeiroNome, ultimoNome, cpf, login, senha);
 		
 		if (primeiroNome != null && ultimoNome != null && cpf != null && login != null && senha != null) {
+			
+			
+			Cliente novo_cliente = new Cliente(primeiroNome, ultimoNome, cpf, login, senha);
 			repositorioClientes.inserir(novo_cliente);
-		}		
+			repositorioUsuario.inserir(novo_cliente);
+		}	
+		
+	
 	}
 	
 	public String listarClienteEspecifico(String cpf) throws ElementoNaoExisteException {
 		
-		Cliente c = recuperarCliente(cpf);
+		Usuario c = recuperarCliente(cpf);
 		
 		String clienteListado = c.toString();
-		
+		System.out.println(clienteListado);
 		return clienteListado;
 		}
 
@@ -62,10 +70,10 @@ public class ControladorCliente {
 	public void atualizarCliente(String cpfAtual ,String primeiroNome, String ultimoNome,String cpf,String login, String senha) throws ElementoNaoExisteException
 								{
 		
-		Cliente clienteAtual = recuperarCliente(cpfAtual);
+		Usuario clienteAtual = recuperarCliente(cpfAtual);
 		
 		Cliente novo = new Cliente(primeiroNome, ultimoNome, cpf, login, senha);
-		repositorioClientes.atualizar(clienteAtual, novo);
+		repositorioUsuario.atualizar(clienteAtual, novo);
 	}
 	
 
@@ -74,6 +82,7 @@ public class ControladorCliente {
 		// Busca o cliente pelo CPF
 		Cliente cliente = recuperarCliente(cpf);
 		// Remove o cliente do repositório
+		repositorioUsuario.remover(cliente);
 		repositorioClientes.remover(cliente);
 	}
 }
