@@ -2,22 +2,25 @@ package br.com.ru.negocio;
 
 import java.util.List;
 
+
 import br.com.ru.dados.IRepositorioGenerico;
-import br.com.ru.dados.RepositorioGenerico;
+import br.com.ru.dados.RepositorioPrato;
 import br.com.ru.exceptions.ElementoJaExisteException;
 import br.com.ru.exceptions.ElementoNaoExisteException;
 import br.com.ru.negocio.models.Prato;
 
 public class ControladorPrato {
-	private IRepositorioGenerico<Prato> repositorioPrato;
+	private IRepositorioGenerico<Prato> cardapio;
 	private static ControladorPrato instancia;
 	private List<Prato> listaPrato;
 	
 	public ControladorPrato() {
-		this.repositorioPrato = new RepositorioGenerico<Prato>(listaPrato);
+		this.cardapio = new RepositorioPrato(listaPrato);
 	}
 	
-	public static ControladorPrato getInstance()
+	
+	// Garantir unica instancia da classe
+	public static ControladorPrato getInstancia()
 	{
 		if(instancia == null)
 		{
@@ -26,6 +29,8 @@ public class ControladorPrato {
 		return instancia;
 	}
 	
+	
+	// Metodo para adicionar pratos
 	public void adicionarPrato (String nome, boolean vegano, boolean gluten, 
 			boolean lactose, boolean suco, boolean visivel) 
 			throws ElementoJaExisteException
@@ -33,21 +38,27 @@ public class ControladorPrato {
 		if(nome != null)
 		{
 			Prato novoPrato = new Prato(nome, vegano, gluten, lactose, suco, visivel);
-			repositorioPrato.add(novoPrato);
+			cardapio.inserir(novoPrato);
 		}
 	}
 	
-	public List<Prato> listarPratos()
+	// Metodo para Mostrar Cardapio
+	public List<Prato> mostrarCardapio()
 	{
-		return repositorioPrato.read();
+		return cardapio.ler();
 	}
 	
+	// Metodo para remover prato
 	public void removerPrato (Prato pratoRemover) 
 			throws ElementoNaoExisteException
 	{
-		repositorioPrato.remove(pratoRemover);
+		if(pratoRemover != null)
+		{
+			cardapio.remover(pratoRemover);
+		}
 	}
 	
+	// Metodo para atualizar prato
 	public void atualizarPrato (Prato prato, String nome, boolean vegano, 
 			boolean gluten, boolean lactose, boolean suco, boolean visivel) 
 					throws ElementoNaoExisteException
@@ -55,7 +66,10 @@ public class ControladorPrato {
 		if(nome != null)
 		{
 			Prato novoPrato = new Prato(nome, vegano, gluten, lactose, suco, visivel);
-			repositorioPrato.update(prato, novoPrato);
+			if(!prato.equals(novoPrato) && novoPrato != null)
+			{
+				cardapio.atualizar(prato, novoPrato);
+			}
 		}
 	}
 }

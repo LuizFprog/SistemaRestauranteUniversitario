@@ -16,7 +16,7 @@ public class RepositorioPrato implements IRepositorioGenerico<Prato> {
     }
 
     @Override
-    public void add(Prato novoPrato) throws ElementoJaExisteException {
+    public void inserir(Prato novoPrato) throws ElementoJaExisteException {
         if (!this.pratos.contains(novoPrato)) {
             pratos.add(novoPrato);
         } else {
@@ -25,7 +25,7 @@ public class RepositorioPrato implements IRepositorioGenerico<Prato> {
     }
 
     @Override
-    public List<Prato> read() {
+    public List<Prato> ler() {
         return listarVisiveis();
     }
 
@@ -40,7 +40,7 @@ public class RepositorioPrato implements IRepositorioGenerico<Prato> {
     }
 
     @Override
-    public void remove(Prato conteudo) throws ElementoNaoExisteException {
+    public void remover(Prato conteudo) throws ElementoNaoExisteException {
         if (this.pratos.contains(conteudo)) {
             this.pratos.remove(conteudo);
         } else {
@@ -49,7 +49,7 @@ public class RepositorioPrato implements IRepositorioGenerico<Prato> {
     }
 
     @Override
-    public void update(Prato prato, Prato novoPrato) throws ElementoNaoExisteException {
+    public void atualizar(Prato prato, Prato novoPrato) throws ElementoNaoExisteException {
         if (this.pratos.contains(prato)) {
             int indice = this.pratos.indexOf(prato);
             this.pratos.set(indice, novoPrato);

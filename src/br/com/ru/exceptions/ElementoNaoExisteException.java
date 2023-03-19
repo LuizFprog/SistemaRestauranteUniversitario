@@ -1,7 +1,9 @@
 package br.com.ru.exceptions;
 
 public class ElementoNaoExisteException extends Exception{
-    private Object elemento;
+    
+	private static final long serialVersionUID = 1L;
+	private Object elemento;
 
     public ElementoNaoExisteException(Object obj) {
         super("O Objeto mencionado não existe no repositório!");

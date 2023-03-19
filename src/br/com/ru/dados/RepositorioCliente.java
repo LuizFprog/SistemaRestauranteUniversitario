@@ -17,7 +17,7 @@ public class RepositorioCliente implements IRepositorioGenerico<Cliente>{
 	}
 
 	@Override
-	public void add(Cliente novo)throws ElementoJaExisteException{
+	public void inserir(Cliente novo)throws ElementoJaExisteException{
 		if(!this.clientes.contains(novo))
 		{
 			clientes.add(novo);
@@ -29,12 +29,12 @@ public class RepositorioCliente implements IRepositorioGenerico<Cliente>{
 	}
 
 	@Override
-	public List<Cliente> read() {
+	public List<Cliente> ler() {
 		return Collections.unmodifiableList(clientes);
 	}
 
 	@Override
-	public void remove(Cliente cliente) throws ElementoNaoExisteException {
+	public void remover(Cliente cliente) throws ElementoNaoExisteException {
 		if(this.clientes.contains(cliente))
 		{
 			this.clientes.remove(this.clientes.indexOf(cliente));
@@ -46,8 +46,10 @@ public class RepositorioCliente implements IRepositorioGenerico<Cliente>{
 	}
 
 	@Override
-	public void update(Cliente atual, Cliente novoConteudo) throws ElementoNaoExisteException {
-		if(this.clientes.contains(atual))
+
+	public void atualizar(Cliente atual, Cliente novoConteudo) throws ElementoNaoExisteException {
+		if(this.clientes.contains(novoConteudo))
+
 		{
 			int indice = this.clientes.indexOf(atual);
 			this.clientes.set(indice, novoConteudo);
