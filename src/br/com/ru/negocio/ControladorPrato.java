@@ -28,17 +28,16 @@ public class ControladorPrato {
 			instancia = new ControladorPrato();
 		}
 		return instancia;
-	}
-	
+	}	
 	
 	// Metodo para adicionar pratos
 	public void adicionarPrato (String nome, boolean vegano, boolean gluten, 
-			boolean lactose, boolean suco, boolean visivel) 
+			boolean lactose, boolean suco, boolean sobremesa, boolean visivel) 
 			throws ElementoJaExisteException
 	{
 		if(nome != null)
 		{
-			Prato novoPrato = new Prato(nome, vegano, gluten, lactose, suco, visivel);
+			Prato novoPrato = new Prato(nome, vegano, gluten, lactose, suco, sobremesa, visivel);
 			cardapio.inserir(novoPrato);
 		}
 	}
@@ -75,7 +74,7 @@ public class ControladorPrato {
 	
 	// Metodo para atualizar prato
 	public void atualizarPrato (String nomeAtual, String nome, boolean vegano, 
-			boolean gluten, boolean lactose, boolean suco, boolean visivel) 
+			boolean gluten, boolean lactose, boolean suco, boolean sobremesa, boolean visivel) 
 					throws ElementoNaoExisteException
 	{
 		
@@ -83,7 +82,7 @@ public class ControladorPrato {
 		
 		if(pratoAtual != null)
 		{
-			Prato novoPrato = new Prato(nome, vegano, gluten, lactose, suco, visivel);
+			Prato novoPrato = new Prato(nome, vegano, gluten, lactose, suco, sobremesa, visivel);
 			if(!pratoAtual.equals(novoPrato) && novoPrato != null)
 			{
 				cardapio.atualizar(pratoAtual, novoPrato);
