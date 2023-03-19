@@ -2,35 +2,23 @@ package br.com.ru.negocio.models;
 
 public class Ficha {
 	
-	private double precoAlmoco;
-	private double precoJanta;
+	private double preco;
 	private Cliente cliente;
 	private String codigo;
 	
-	public Ficha(double pAlmoco, double pJanta, Cliente cliente, String cod) {
+	public Ficha(double preco, Cliente cliente, String cod) {
 		
-		this.precoAlmoco = pAlmoco;
-		this.precoJanta = pJanta;
+		this.preco = preco;
 		this.cliente = cliente;
 		this.codigo = cod;
-		
-		
 	}
 	
-	public double getPrecoAlmoco() {
-		return precoAlmoco;
+	public double getPreco() {
+		return preco;
 	}
 	
-	public void setPrecoAlmoco(double precoAlmoco) {
-		this.precoAlmoco = precoAlmoco;
-	}
-	
-	public double getPrecoJanta() {
-		return precoJanta;
-	}
-	
-	public void setPrecoJanta(double precoJanta) {
-		this.precoJanta = precoJanta;
+	public void setPreco(double preco) {
+		this.preco = preco;
 	}
 	
 	public Cliente getCliente() {
@@ -51,11 +39,6 @@ public class Ficha {
 
 	@Override
 	public String toString() {
-		return "Ficha [precoAlmoco=" + precoAlmoco + ", precoJanta=" + precoJanta + ", cliente=" + cliente + ", codigo="
-				+ codigo + "]";
+		return "Ficha [Preço" + preco + ", cliente=" + cliente + ", codigo=" + codigo + "]";
 	}
-	
-	
-	
-	
 }

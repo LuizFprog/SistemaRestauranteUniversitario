@@ -43,7 +43,7 @@ public class ControladorFuncionario {
 		repositorioFuncionario.remove(removeFuncionario);
 	}
 	
-	public void atualizarFuncionario (Funcionario atual, String primeiroNome, String ultimoNome, String cpf, String login, String senha) 
+	public void atualizarFuncionario (Funcionario atual, String primeiroNome, String ultimoNome, String cpf, String login, String senha, String id) 
 					throws ElementoNaoExisteException {
 		
 		Funcionario novo = new Funcionario(primeiroNome, ultimoNome, cpf, login, senha, id);
