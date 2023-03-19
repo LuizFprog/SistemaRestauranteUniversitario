@@ -44,6 +44,9 @@ public class ControladorFuncionario {
 		repositorioFuncionario.remover(removeFuncionario);
 	}
 	
+<<<<<<< HEAD
+	public void atualizarFuncionario (Funcionario atual, String primeiroNome, String ultimoNome, String cpf, String login, String senha, String id) 
+=======
 	public Funcionario recuperarFuncionario(String cpf) throws ElementoNaoExisteException {
 		// Busca o cliente pelo CPF
 		List<Funcionario> funcionarios = repositorioFuncionario.ler();
@@ -64,6 +67,7 @@ public class ControladorFuncionario {
 	}
 	
 	public void atualizarFuncionario (String cpfAtual, String primeiroNome, String ultimoNome, String cpf, String login, String senha, String id) 
+>>>>>>> fe78b34302658df81c0e0f09ab41df93a2d0ff40
 					throws ElementoNaoExisteException {
 		
 		Funcionario funcionarioAtual = recuperarFuncionario(cpfAtual);
