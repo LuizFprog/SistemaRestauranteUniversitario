@@ -2,22 +2,26 @@ package br.com.ru.negocio;
 
 import java.util.List;
 
+
 import br.com.ru.dados.IRepositorioGenerico;
-import br.com.ru.dados.RepositorioGenerico;
+import br.com.ru.dados.RepositorioPrato;
 import br.com.ru.exceptions.ElementoJaExisteException;
 import br.com.ru.exceptions.ElementoNaoExisteException;
+import br.com.ru.negocio.models.Cliente;
 import br.com.ru.negocio.models.Prato;
 
 public class ControladorPrato {
-	private IRepositorioGenerico<Prato> repositorioPrato;
+	private IRepositorioGenerico<Prato> cardapio;
 	private static ControladorPrato instancia;
 	private List<Prato> listaPrato;
 	
 	public ControladorPrato() {
-		this.repositorioPrato = new RepositorioGenerico<Prato>(listaPrato);
+		this.cardapio = new RepositorioPrato(listaPrato);
 	}
 	
-	public static ControladorPrato getInstance()
+	
+	// Garantir unica instancia da classe
+	public static ControladorPrato getInstancia()
 	{
 		if(instancia == null)
 		{
@@ -26,6 +30,8 @@ public class ControladorPrato {
 		return instancia;
 	}
 	
+	
+	// Metodo para adicionar pratos
 	public void adicionarPrato (String nome, boolean vegano, boolean gluten, 
 			boolean lactose, boolean suco, boolean visivel) 
 			throws ElementoJaExisteException
@@ -33,29 +39,55 @@ public class ControladorPrato {
 		if(nome != null)
 		{
 			Prato novoPrato = new Prato(nome, vegano, gluten, lactose, suco, visivel);
-			repositorioPrato.add(novoPrato);
+			cardapio.inserir(novoPrato);
 		}
 	}
 	
-	public List<Prato> listarPratos()
+	// Metodo para Mostrar Cardapio
+	public List<Prato> mostrarCardapio()
 	{
-		return repositorioPrato.read();
+		return cardapio.ler();
 	}
 	
-	public void removerPrato (Prato pratoRemover) 
+	// Metodo para remover prato
+	public void removerPrato (String nome) 
 			throws ElementoNaoExisteException
 	{
-		repositorioPrato.remove(pratoRemover);
+		Prato pratoAtual = recuperarPrato(nome);
+		
+		if(pratoAtual != null)
+		{
+			cardapio.remover(pratoAtual);
+		}
 	}
 	
-	public void atualizarPrato (Prato prato, String nome, boolean vegano, 
+	public Prato recuperarPrato(String nome) throws ElementoNaoExisteException {
+		// Busca o cliente pelo CPF
+		List<Prato> pratos = cardapio.ler();
+		for (Prato p : pratos) {
+			if (p.getNome().equals(nome)) {
+				return p;
+			}
+		}
+		// Caso não encontre, lança exceção
+		throw new ElementoNaoExisteException("Não existe um cliente com esse CPF!");
+	}
+	
+	// Metodo para atualizar prato
+	public void atualizarPrato (String nomeAtual, String nome, boolean vegano, 
 			boolean gluten, boolean lactose, boolean suco, boolean visivel) 
 					throws ElementoNaoExisteException
 	{
-		if(nome != null)
+		
+		Prato pratoAtual = recuperarPrato(nomeAtual);
+		
+		if(pratoAtual != null)
 		{
 			Prato novoPrato = new Prato(nome, vegano, gluten, lactose, suco, visivel);
-			repositorioPrato.update(prato, novoPrato);
+			if(!pratoAtual.equals(novoPrato) && novoPrato != null)
+			{
+				cardapio.atualizar(pratoAtual, novoPrato);
+			}
 		}
 	}
 }

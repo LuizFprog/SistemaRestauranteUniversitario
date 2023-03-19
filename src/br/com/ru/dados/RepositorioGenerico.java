@@ -16,7 +16,7 @@ public class RepositorioGenerico<T> implements IRepositorioGenerico<T>{
 	}
 
 	@Override
-	public void add(T novo)throws ElementoJaExisteException{
+	public void inserir(T novo)throws ElementoJaExisteException{
 		if(!this.elementos.contains(novo))
 		{
 			elementos.add(novo);
@@ -28,12 +28,12 @@ public class RepositorioGenerico<T> implements IRepositorioGenerico<T>{
 	}
 
 	@Override
-	public List<T> read() {
+	public List<T> ler() {
 		return Collections.unmodifiableList(elementos);
 	}
 
 	@Override
-	public void remove(T conteudo) throws ElementoNaoExisteException {
+	public void remover(T conteudo) throws ElementoNaoExisteException {
 		if(this.elementos.contains(conteudo))
 		{
 			this.elementos.remove(this.elementos.indexOf(conteudo));
@@ -45,10 +45,11 @@ public class RepositorioGenerico<T> implements IRepositorioGenerico<T>{
 	}
 
 	@Override
-	public void update(T atual, T novoConteudo) throws ElementoNaoExisteException {
-		if(this.elementos.contains(novoConteudo))
+
+	public void atualizar(T atual, T novoConteudo) throws ElementoNaoExisteException {
+		if(this.elementos.contains(atual))
 		{
-			int indice = this.elementos.indexOf(novoConteudo);
+			int indice = this.elementos.indexOf(atual);
 			this.elementos.set(indice, novoConteudo);
 		}
 		else

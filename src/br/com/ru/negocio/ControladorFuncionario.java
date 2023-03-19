@@ -5,6 +5,7 @@ import java.util.List;
 import br.com.ru.dados.IRepositorioGenerico;
 import br.com.ru.exceptions.ElementoJaExisteException;
 import br.com.ru.exceptions.ElementoNaoExisteException;
+import br.com.ru.negocio.models.Cliente;
 import br.com.ru.negocio.models.Funcionario;
 import br.com.ru.dados.RepositorioGenerico;
 
@@ -29,25 +30,50 @@ public class ControladorFuncionario {
 		throws ElementoJaExisteException {
 		
 		Funcionario novo = new Funcionario(primeiroNome, ultimoNome, cpf, login, senha, id);
-		repositorioFuncionario.add(novo);
+		repositorioFuncionario.inserir(novo);
 		
 	}
 	
 	public List<Funcionario> listar() {
-        return repositorioFuncionario.read();
+        return repositorioFuncionario.ler();
     }
 	
 	public void removerFuncionario (Funcionario removeFuncionario) 
 			throws ElementoNaoExisteException
 	{
-		repositorioFuncionario.remove(removeFuncionario);
+		repositorioFuncionario.remover(removeFuncionario);
 	}
 	
+<<<<<<< HEAD
 	public void atualizarFuncionario (Funcionario atual, String primeiroNome, String ultimoNome, String cpf, String login, String senha, String id) 
+=======
+	public Funcionario recuperarFuncionario(String cpf) throws ElementoNaoExisteException {
+		// Busca o cliente pelo CPF
+		List<Funcionario> funcionarios = repositorioFuncionario.ler();
+		for (Funcionario f : funcionarios) {
+			if (f.getCpf().equals(cpf)) {
+				return f;
+			}
+		}
+		// Caso não encontre, lança exceção
+		throw new ElementoNaoExisteException("Não existe um cliente com esse CPF!");
+	}
+	
+	public void excluirFuncionario(String cpf) throws ElementoNaoExisteException {
+		// Busca o cliente pelo CPF
+		Funcionario funcionario = recuperarFuncionario(cpf);
+		// Remove o cliente do repositório
+		repositorioFuncionario.remover(funcionario);
+	}
+	
+	public void atualizarFuncionario (String cpfAtual, String primeiroNome, String ultimoNome, String cpf, String login, String senha, String id) 
+>>>>>>> fe78b34302658df81c0e0f09ab41df93a2d0ff40
 					throws ElementoNaoExisteException {
 		
+		Funcionario funcionarioAtual = recuperarFuncionario(cpfAtual);
+		
 		Funcionario novo = new Funcionario(primeiroNome, ultimoNome, cpf, login, senha, id);
-		repositorioFuncionario.update(atual, novo);
+		repositorioFuncionario.atualizar(funcionarioAtual, novo);
 		
 	}
 	

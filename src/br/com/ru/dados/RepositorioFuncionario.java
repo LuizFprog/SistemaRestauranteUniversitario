@@ -6,8 +6,9 @@ import java.util.List;
 
 import br.com.ru.exceptions.ElementoJaExisteException;
 import br.com.ru.exceptions.ElementoNaoExisteException;
+import br.com.ru.negocio.models.Funcionario;
 
-public class RepositorioFuncionario<Funcionario> implements IRepositorioGenerico<Funcionario>{
+public class RepositorioFuncionario implements IRepositorioGenerico<Funcionario>{
 	private List<Funcionario> funcionarios;
 
 	public RepositorioFuncionario(List<Funcionario> funcionarios) {
@@ -16,7 +17,7 @@ public class RepositorioFuncionario<Funcionario> implements IRepositorioGenerico
 	}
 
 	@Override
-	public void add(Funcionario novo)throws ElementoJaExisteException{
+	public void inserir(Funcionario novo)throws ElementoJaExisteException{
 		if(!this.funcionarios.contains(novo))
 		{
 			funcionarios.add(novo);
@@ -28,12 +29,12 @@ public class RepositorioFuncionario<Funcionario> implements IRepositorioGenerico
 	}
 
 	@Override
-	public List<Funcionario> read() {
+	public List<Funcionario> ler() {
 		return Collections.unmodifiableList(funcionarios);
 	}
 
 	@Override
-	public void remove(Funcionario funcionario) throws ElementoNaoExisteException {
+	public void remover(Funcionario funcionario) throws ElementoNaoExisteException {
 		if(this.funcionarios.contains(funcionario))
 		{
 			this.funcionarios.remove(this.funcionarios.indexOf(funcionario));
@@ -45,7 +46,7 @@ public class RepositorioFuncionario<Funcionario> implements IRepositorioGenerico
 	}
 
 	@Override
-	public void update(Funcionario atual, Funcionario novoConteudo) throws ElementoNaoExisteException {
+	public void atualizar(Funcionario atual, Funcionario novoConteudo) throws ElementoNaoExisteException {
 		if(this.funcionarios.contains(novoConteudo))
 		{
 			int indice = this.funcionarios.indexOf(novoConteudo);
