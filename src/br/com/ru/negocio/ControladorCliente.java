@@ -3,7 +3,7 @@ package br.com.ru.negocio;
 import java.util.List;
 
 import br.com.ru.dados.IRepositorioGenerico;
-import br.com.ru.dados.RepositorioGenerico;
+import br.com.ru.dados.RepositorioCliente;
 import br.com.ru.exceptions.ElementoJaExisteException;
 import br.com.ru.exceptions.ElementoNaoExisteException;
 import br.com.ru.negocio.models.Cliente;
@@ -14,9 +14,10 @@ public class ControladorCliente {
 	private List<Cliente> listaClientes;
 
 	public ControladorCliente() {
-		this.repositorioClientes = new RepositorioGenerico<>(listaClientes);
+		this.repositorioClientes = new RepositorioCliente(listaClientes);
 	}
-
+	
+	
 	// Método para criar um novo cliente
 	public void criarCliente(String primeiroNome, String ultimoNome, String cpf, String login, String senha) throws ElementoJaExisteException {
 		
@@ -31,6 +32,14 @@ public class ControladorCliente {
 		repositorioClientes.add(novo_cliente);
 	}
 	
+	public String listarClienteEspecifico(String cpf) throws ElementoNaoExisteException {
+		
+		Cliente c = recuperarCliente(cpf);
+		
+		String clienteListado = c.toString();
+		
+		return clienteListado;
+		}
 
 
 	// Método para recuperar um cliente
@@ -48,12 +57,15 @@ public class ControladorCliente {
 
 	
 	// Método para atualizar um cliente
-	public void atualizarCliente(Cliente clienteAtual,String primeiroNome, String ultimoNome,String cpf,
-									String login, String senha) throws ElementoNaoExisteException, ElementoJaExisteException {
+	public void atualizarCliente(String cpfAtual ,String primeiroNome, String ultimoNome,String cpf,String login, String senha) throws ElementoNaoExisteException
+								{
+		
+		Cliente clienteAtual = recuperarCliente(cpfAtual);
 		
 		Cliente novo = new Cliente(primeiroNome, ultimoNome, cpf, login, senha);
 		repositorioClientes.update(clienteAtual, novo);
 	}
+	
 
 	// Método para excluir um cliente
 	public void excluirCliente(String cpf) throws ElementoNaoExisteException {

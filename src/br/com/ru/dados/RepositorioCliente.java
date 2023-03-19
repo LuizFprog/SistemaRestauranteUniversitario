@@ -1,5 +1,6 @@
 package br.com.ru.dados;
 
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -45,10 +46,12 @@ public class RepositorioCliente implements IRepositorioGenerico<Cliente>{
 	}
 
 	@Override
+
 	public void atualizar(Cliente atual, Cliente novoConteudo) throws ElementoNaoExisteException {
 		if(this.clientes.contains(novoConteudo))
+
 		{
-			int indice = this.clientes.indexOf(novoConteudo);
+			int indice = this.clientes.indexOf(atual);
 			this.clientes.set(indice, novoConteudo);
 		}
 		else
