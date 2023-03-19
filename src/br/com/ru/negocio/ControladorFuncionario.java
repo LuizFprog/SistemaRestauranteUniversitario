@@ -7,10 +7,11 @@ import br.com.ru.exceptions.ElementoJaExisteException;
 import br.com.ru.exceptions.ElementoNaoExisteException;
 import br.com.ru.negocio.models.Cliente;
 import br.com.ru.negocio.models.Funcionario;
+import br.com.ru.negocio.models.Usuario;
 import br.com.ru.dados.RepositorioGenerico;
 
 
-public class ControladorFuncionario {
+public class ControladorFuncionario extends ControladorUsuario{
 	private IRepositorioGenerico<Funcionario> repositorioFuncionario;
 	private static ControladorFuncionario instancia;
 	private List<Funcionario> listaFuncionario;
@@ -29,12 +30,24 @@ public class ControladorFuncionario {
 	public void adicionarFuncionario(String primeiroNome, String ultimoNome, String cpf, String login, String senha, String id) 
 		throws ElementoJaExisteException {
 		
+		
+		
+		List<Usuario> usuarios = repositorioUsuario.ler();
+		
+		for (Usuario c : usuarios) {
+			if (c.getCpf().equals(cpf) || c.getLogin().equals(login)) {
+				throw new ElementoJaExisteException("Já existe um cliente com o mesmo CPF ou login!");
+			}
+		}
+		
 		Funcionario novo = new Funcionario(primeiroNome, ultimoNome, cpf, login, senha, id);
+		repositorioUsuario.inserir(novo);
 		repositorioFuncionario.inserir(novo);
 		
 	}
 	
 	public List<Funcionario> listar() {
+	
         return repositorioFuncionario.ler();
     }
 	
@@ -42,6 +55,7 @@ public class ControladorFuncionario {
 			throws ElementoNaoExisteException
 	{
 		repositorioFuncionario.remover(removeFuncionario);
+		repositorioUsuario.remover(removeFuncionario);
 	}
 	
 	public Funcionario recuperarFuncionario(String cpf) throws ElementoNaoExisteException {
@@ -60,7 +74,12 @@ public class ControladorFuncionario {
 		// Busca o cliente pelo CPF
 		Funcionario funcionario = recuperarFuncionario(cpf);
 		// Remove o cliente do repositório
+		
+	
+		
+		repositorioUsuario.remover(funcionario);
 		repositorioFuncionario.remover(funcionario);
+		
 	}
 	
 	public void atualizarFuncionario (String cpfAtual, String primeiroNome, String ultimoNome, String cpf, String login, String senha, String id) 

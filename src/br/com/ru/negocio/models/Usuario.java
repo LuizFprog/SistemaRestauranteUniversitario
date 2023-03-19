@@ -2,7 +2,7 @@ package br.com.ru.negocio.models;
 
 import java.util.Objects;
 
-public abstract class Usuario {
+public class Usuario {
 	
 	private String primeiroNome;
 	private String ultimoNome;
