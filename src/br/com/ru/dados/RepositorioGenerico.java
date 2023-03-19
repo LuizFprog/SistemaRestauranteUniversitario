@@ -48,7 +48,6 @@ public class RepositorioGenerico<T> implements IRepositorioGenerico<T>{
 
 	public void atualizar(T atual, T novoConteudo) throws ElementoNaoExisteException {
 		if(this.elementos.contains(novoConteudo))
-s
 		{
 			int indice = this.elementos.indexOf(atual);
 			this.elementos.set(indice, novoConteudo);

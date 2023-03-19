@@ -29,25 +29,25 @@ public class ControladorFuncionario {
 		throws ElementoJaExisteException {
 		
 		Funcionario novo = new Funcionario(primeiroNome, ultimoNome, cpf, login, senha, id);
-		repositorioFuncionario.add(novo);
+		repositorioFuncionario.inserir(novo);
 		
 	}
 	
 	public List<Funcionario> listar() {
-        return repositorioFuncionario.read();
+        return repositorioFuncionario.ler();
     }
 	
 	public void removerFuncionario (Funcionario removeFuncionario) 
 			throws ElementoNaoExisteException
 	{
-		repositorioFuncionario.remove(removeFuncionario);
+		repositorioFuncionario.remover(removeFuncionario);
 	}
 	
-	public void atualizarFuncionario (Funcionario atual, String primeiroNome, String ultimoNome, String cpf, String login, String senha) 
+	public void atualizarFuncionario (Funcionario atual, String primeiroNome, String ultimoNome, String cpf, String login, String senha, String id) 
 					throws ElementoNaoExisteException {
 		
 		Funcionario novo = new Funcionario(primeiroNome, ultimoNome, cpf, login, senha, id);
-		repositorioFuncionario.update(atual, novo);
+		repositorioFuncionario.atualizar(atual, novo);
 		
 	}
 	
