@@ -25,7 +25,7 @@ public class Funcionario extends Usuario{
 
 		@Override
 		public String toString() {
-			return "Funcionario [id=" + id + "]";
+			return super.toString() + " Funcionario [id=" + id + "]";
 		}
 		
 		

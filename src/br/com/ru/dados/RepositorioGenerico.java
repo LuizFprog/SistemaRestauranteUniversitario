@@ -47,7 +47,7 @@ public class RepositorioGenerico<T> implements IRepositorioGenerico<T>{
 	@Override
 
 	public void atualizar(T atual, T novoConteudo) throws ElementoNaoExisteException {
-		if(this.elementos.contains(novoConteudo))
+		if(this.elementos.contains(atual))
 		{
 			int indice = this.elementos.indexOf(atual);
 			this.elementos.set(indice, novoConteudo);
