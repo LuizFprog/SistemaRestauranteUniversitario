@@ -12,7 +12,7 @@ public class RepositorioPrato implements IRepositorioGenerico<Prato> {
     private List<Prato> pratos;
 
     public RepositorioPrato(List<Prato> pratos) {
-        this.pratos = pratos;
+        this.pratos = new ArrayList<>();
     }
 
     @Override
