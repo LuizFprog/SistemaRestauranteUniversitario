@@ -46,7 +46,7 @@ public class ControladorFuncionario extends ControladorUsuario{
 		
 	}
 	
-	public List<Funcionario> listar() {
+	public List<Funcionario> listarFuncionarios() {
 	
         return repositorioFuncionario.ler();
     }
@@ -89,6 +89,7 @@ public class ControladorFuncionario extends ControladorUsuario{
 		
 		Funcionario novo = new Funcionario(primeiroNome, ultimoNome, cpf, login, senha, id);
 		repositorioFuncionario.atualizar(funcionarioAtual, novo);
+		repositorioUsuario.atualizar(funcionarioAtual, novo);
 		
 	}
 	

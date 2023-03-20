@@ -48,7 +48,7 @@ public class RepositorioCliente implements IRepositorioGenerico<Cliente>{
 	@Override
 
 	public void atualizar(Cliente atual, Cliente novoConteudo) throws ElementoNaoExisteException {
-		if(this.clientes.contains(novoConteudo))
+		if(this.clientes.contains(atual))
 
 		{
 			int indice = this.clientes.indexOf(atual);

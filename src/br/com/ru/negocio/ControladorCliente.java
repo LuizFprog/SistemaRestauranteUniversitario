@@ -14,10 +14,21 @@ public class ControladorCliente extends ControladorUsuario{
 
 	private IRepositorioGenerico<Cliente> repositorioClientes;
 	private List<Cliente> listaClientes;
+	private static ControladorCliente instancia;
 
 	public ControladorCliente() {
 		this.repositorioClientes = new RepositorioCliente(listaClientes);
 	}
+	
+	// Garantir unica instancia da classe
+	public static ControladorCliente getInstancia()
+	{
+		if(instancia == null)
+		{
+			instancia = new ControladorCliente();
+		}
+		return instancia;
+	}	
 	
 	
 	// Método para criar um novo cliente
@@ -70,10 +81,12 @@ public class ControladorCliente extends ControladorUsuario{
 	public void atualizarCliente(String cpfAtual ,String primeiroNome, String ultimoNome,String cpf,String login, String senha) throws ElementoNaoExisteException
 								{
 		
-		Usuario clienteAtual = recuperarCliente(cpfAtual);
+		Cliente clienteAtual = recuperarCliente(cpfAtual);
 		
 		Cliente novo = new Cliente(primeiroNome, ultimoNome, cpf, login, senha);
 		repositorioUsuario.atualizar(clienteAtual, novo);
+		repositorioClientes.atualizar(clienteAtual, novo);
+		
 	}
 	
 
