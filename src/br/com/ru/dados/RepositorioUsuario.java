@@ -48,7 +48,7 @@ public class RepositorioUsuario implements IRepositorioGenerico<Usuario>{
 	@Override
 
 	public void atualizar(Usuario atual, Usuario novoConteudo) throws ElementoNaoExisteException {
-		if(this.usuarios.contains(novoConteudo))
+		if(this.usuarios.contains(atual))
 
 		{
 			int indice = this.usuarios.indexOf(atual);
