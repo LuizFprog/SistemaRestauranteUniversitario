@@ -1,5 +1,6 @@
 package br.com.ru.negocio;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import br.com.ru.dados.IRepositorioGenerico;
@@ -47,6 +48,49 @@ public class ControladorUsuario {
 		}	
 		
 	
+	}
+	
+	public String listarEscravoEspecifico(String cpf) throws ElementoNaoExisteException {
+		
+		Usuario c = recuperarUsuario(cpf);
+		
+		if(c instanceof Funcionario) {
+			String funcionarioListado = c.toString();
+			System.out.println(funcionarioListado);
+			return funcionarioListado;
+		}
+		
+		return null;
+	}
+	
+	public List<Cliente> listarTodosClientes(){
+		
+		List<Usuario> atual = repositorioUsuario.ler();
+		List<Cliente> nova = new ArrayList<>();
+		
+		for(Usuario c : atual) {
+			
+			if(c instanceof Cliente) {
+				nova.add((Cliente) c);
+			}
+		}
+	
+		return nova;
+	}
+	
+public List<Funcionario> listarTodosFuncionarios(){
+		
+		List<Usuario> atual = repositorioUsuario.ler();
+		List<Funcionario> nova = new ArrayList<>();
+		
+		for(Usuario f : atual) {
+			
+			if(f instanceof Funcionario) {
+				nova.add((Funcionario) f);
+			}
+		}
+	
+		return nova;
 	}
 	
 	public String listarClienteEspecifico(String cpf) throws ElementoNaoExisteException {
