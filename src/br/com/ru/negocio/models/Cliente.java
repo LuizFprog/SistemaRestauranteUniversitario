@@ -17,13 +17,28 @@ public class Cliente extends Usuario{
 	}
 
 
-	public void setNumeroFichas(int numeroFichas) {
-		this.numeroFichas = numeroFichas;
+	public void aumentarNumeroFichas() {
+		this.numeroFichas++;
+	}
+	
+	public void diminuirNumeroFichas() {
+		this.numeroFichas++;
 	}
 
 
-	public double depositar(double valor) {
-		return this.saldo = this.saldo + valor;
+	public void depositar(double valor) {
+		if(valor >= 0)
+		{
+			this.saldo = this.saldo + valor;
+		}
+	}
+	
+	public void debitar (double valor)
+	{
+		if(valor >= 0)
+		{
+			this.saldo = this.saldo - valor;
+		}
 	}
 	
 	public double getSaldo() {

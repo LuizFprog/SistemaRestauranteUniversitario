@@ -4,6 +4,9 @@ import java.util.List;
 
 import br.com.ru.exceptions.ElementoJaExisteException;
 import br.com.ru.exceptions.ElementoNaoExisteException;
+import br.com.ru.exceptions.SaldoInsuficienteException;
+import br.com.ru.negocio.models.Cliente;
+import br.com.ru.negocio.models.Ficha;
 import br.com.ru.negocio.models.Funcionario;
 import br.com.ru.negocio.models.Prato;
 import br.com.ru.negocio.models.Usuario;
@@ -14,6 +17,7 @@ public class Sistema {
 	//private ControladorCliente controladorCliente;
 	//private ControladorFuncionario controladorFuncionario;
 	private ControladorPrato controladorPrato;
+	private ControladorFicha controladorFicha;
 	private static Sistema instancia;
 	
 	public Sistema()
@@ -22,6 +26,7 @@ public class Sistema {
 		//this.controladorCliente = ControladorCliente.getInstancia();
 		//this.controladorFuncionario = ControladorFuncionario.getInstance();
 		this.controladorPrato = ControladorPrato.getInstancia();
+		this.controladorFicha = ControladorFicha.getInstancia();
 	}
 	
 	// Garantir unica instancia da classe
@@ -46,6 +51,11 @@ public class Sistema {
 		return controladorUsuario.listarClienteEspecifico(cpf);
 	}
 	
+	public Usuario recuperarClienteExpecifico(String cpf) throws ElementoNaoExisteException
+	{
+		return controladorUsuario.recuperarUsuario(cpf);
+	}
+	
 	public void atualizarCliente(String cpfAtual ,String primeiroNome, 
 			String ultimoNome,String cpf,String login, String senha) throws ElementoNaoExisteException
 	{
@@ -55,6 +65,16 @@ public class Sistema {
 	public void removerCliente(String cpf) throws ElementoNaoExisteException
 	{
 		controladorUsuario.excluirCliente(cpf);
+	}
+	
+	public void depositar(double valor, String cpf) throws ElementoNaoExisteException
+	{
+		controladorUsuario.depositarDinheiro(valor, cpf);
+	}
+	
+	public void debitar(double valor, String cpf) throws ElementoNaoExisteException
+	{
+		controladorUsuario.debitarDinheiro(valor, cpf);
 	}
 	
 	// Metodos Funcionario
@@ -105,5 +125,48 @@ public class Sistema {
 	public void removerPrato(String nome) throws ElementoNaoExisteException
 	{
 		controladorPrato.removerPrato(nome);
+	}
+	
+	// Metodos Ficha
+	public void adicionarFicha(double preco, double dinheiroCliente, Usuario cliente) 
+			throws ElementoJaExisteException, SaldoInsuficienteException
+	{
+		if(cliente instanceof Cliente)
+		{
+			controladorFicha.comprarFicha(preco, dinheiroCliente, (Cliente)cliente);
+		}
+	}
+	
+	public List<Ficha> listarFicha()
+	{
+		return controladorFicha.listarFichas();
+	}
+	
+	public List<Ficha> listarFichaPorCliente(Usuario cliente) throws ElementoNaoExisteException
+	{
+		if(cliente instanceof Cliente)
+		{
+			return controladorFicha.listarFichaPorCliente((Cliente) cliente);
+		}
+		return null;
+	}
+	
+	public List<Ficha> listarFichaRecente()
+	{
+		return controladorFicha.listarFichasRecentes();
+	}
+	
+	public void gastarFicha(Ficha ficha) throws ElementoNaoExisteException
+	{
+		controladorFicha.gastarFicha(ficha);
+	}
+	
+	public Ficha recuperarFichaDoCliente(Usuario cliente) throws ElementoNaoExisteException
+	{
+		if(cliente instanceof Cliente)
+		{
+			return controladorFicha.recuperarFichaDoCliente((Cliente) cliente);
+		}
+		return null;
 	}
 }

@@ -8,7 +8,7 @@ public class Ficha {
 	
 	public Ficha(double preco, Cliente cliente, String cod) {
 		
-		this.preco = preco;
+		this.preco = 3.0;
 		this.cliente = cliente;
 		this.codigo = cod;
 	}
