@@ -2,12 +2,14 @@ package br.com.ru;
 
 import br.com.ru.exceptions.ElementoJaExisteException;
 import br.com.ru.exceptions.ElementoNaoExisteException;
+import br.com.ru.exceptions.SaldoInsuficienteException;
 import br.com.ru.negocio.*;
+import br.com.ru.negocio.models.Cliente;
 
 
 public class Main {
 
-	public static void main(String[] args) throws ElementoJaExisteException, ElementoNaoExisteException {
+	public static void main(String[] args) throws ElementoJaExisteException, ElementoNaoExisteException, SaldoInsuficienteException {
 	
 		Sistema meuSistema = new Sistema();
 		Sistema meuSistema2 = new Sistema();
@@ -15,29 +17,39 @@ public class Main {
 		
 		
 		meuSistema.adicionarCliente("Luiz", "Filipe", "123", "a", "22");
-		meuSistema2.procurarClienteExpecifico("123");
+		//meuSistema2.procurarClienteExpecifico("123");
 		meuSistema.adicionarCliente("Diogo", "Fontes", "321", "b", "22");
 		
-		meuSistema.procurarClienteExpecifico("321");
-		meuSistema.atualizarCliente("321", "Fontes", "França", "321", "v", "33");
-		meuSistema.procurarClienteExpecifico("321");
+		meuSistema.depositar(100, "123");
+		System.out.println(meuSistema.procurarClienteExpecifico("123"));
+		meuSistema.debitar(10, "321");
+		meuSistema.adicionarFicha(3.0 ,10.0, meuSistema.recuperarClienteExpecifico("123"));
+		System.out.println(meuSistema.procurarClienteExpecifico("123"));
+		System.out.println(meuSistema.listarFichaPorCliente(meuSistema.recuperarClienteExpecifico("123")));
+		System.out.println(meuSistema.listarFicha());
+		meuSistema.gastarFicha(meuSistema.recuperarFichaDoCliente(meuSistema.recuperarClienteExpecifico("123")));
+		System.out.println(meuSistema.listarFichaPorCliente(meuSistema.recuperarClienteExpecifico("123")));
 		
-		meuSistema.removerCliente("123");
-		
-		meuSistema.adicionarFuncionario("Raphael", "Barbosa", "456", "c", "22", "d");
-		System.out.println(meuSistema.listarFuncionarios());
-		meuSistema.atualizarFuncionario("456", "Beatriz", "Santos", "456", "c", "22", "d");
-		System.out.println(meuSistema.listarFuncionarios());
-		
-		
-		
-		meuSistema.adicionarPrato("Beringela", true, false, false, false, false, true);
-		meuSistema.adicionarPrato("Bolo", false, true, true, false, true, true);
-		System.out.println(meuSistema.cardapio());
-		meuSistema.removerPrato("Beringela");
-		System.out.println(meuSistema.cardapio());
-		meuSistema.atualizarPrato("Bolo", "Suco de Bolo", false, true, true, true, true, true);
-		System.out.println(meuSistema.cardapio());
+//		meuSistema.procurarClienteExpecifico("321");
+//		meuSistema.atualizarCliente("321", "Fontes", "França", "321", "v", "33");
+//		meuSistema.procurarClienteExpecifico("321");
+//		
+//		meuSistema.removerCliente("123");
+//		
+//		meuSistema.adicionarFuncionario("Raphael", "Barbosa", "456", "c", "22", "d");
+//		System.out.println(meuSistema.listarFuncionarios());
+//		meuSistema.atualizarFuncionario("456", "Beatriz", "Santos", "456", "c", "22", "d");
+//		System.out.println(meuSistema.listarFuncionarios());
+//		
+//		
+//		
+//		meuSistema.adicionarPrato("Beringela", true, false, false, false, false, true);
+//		meuSistema.adicionarPrato("Bolo", false, true, true, false, true, true);
+//		System.out.println(meuSistema.cardapio());
+//		meuSistema.removerPrato("Beringela");
+//		System.out.println(meuSistema.cardapio());
+//		meuSistema.atualizarPrato("Bolo", "Suco de Bolo", false, true, true, true, true, true);
+//		System.out.println(meuSistema.cardapio());
 		
 		
 //		ControladorCliente Ccliente = new ControladorCliente();

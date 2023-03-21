@@ -54,7 +54,6 @@ public class ControladorUsuario {
 		Usuario c = recuperarUsuario(cpf);
 		
 		String clienteListado = c.toString();
-		System.out.println(clienteListado);
 		return clienteListado;
 		}
 
@@ -81,6 +80,18 @@ public class ControladorUsuario {
 		
 		Cliente novo = new Cliente(primeiroNome, ultimoNome, cpf, login, senha);
 		repositorioUsuario.atualizar(clienteAtual, novo);	
+	}
+	
+	public void depositarDinheiro(double valor, String cpf) throws ElementoNaoExisteException
+	{
+		Cliente clienteAtual = (Cliente) recuperarUsuario(cpf);
+		clienteAtual.depositar(valor);
+	}
+	
+	public void debitarDinheiro(double valor, String cpf) throws ElementoNaoExisteException
+	{
+		Cliente clienteAtual = (Cliente) recuperarUsuario(cpf);
+		clienteAtual.debitar(valor);
 	}
 	
 
