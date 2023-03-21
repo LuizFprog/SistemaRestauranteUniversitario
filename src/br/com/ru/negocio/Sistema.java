@@ -6,18 +6,21 @@ import br.com.ru.exceptions.ElementoJaExisteException;
 import br.com.ru.exceptions.ElementoNaoExisteException;
 import br.com.ru.negocio.models.Funcionario;
 import br.com.ru.negocio.models.Prato;
+import br.com.ru.negocio.models.Usuario;
 
 public class Sistema {
 	
-	private ControladorCliente controladorCliente;
-	private ControladorFuncionario controladorFuncionario;
+	private ControladorUsuario controladorUsuario;
+	//private ControladorCliente controladorCliente;
+	//private ControladorFuncionario controladorFuncionario;
 	private ControladorPrato controladorPrato;
 	private static Sistema instancia;
 	
 	public Sistema()
 	{
-		this.controladorCliente = ControladorCliente.getInstancia();
-		this.controladorFuncionario = ControladorFuncionario.getInstance();
+		this.controladorUsuario = ControladorUsuario.getInstance();
+		//this.controladorCliente = ControladorCliente.getInstancia();
+		//this.controladorFuncionario = ControladorFuncionario.getInstance();
 		this.controladorPrato = ControladorPrato.getInstancia();
 	}
 	
@@ -35,23 +38,23 @@ public class Sistema {
 	public void adicionarCliente(String primeiroNome, String ultimoNome,
 			String cpf, String login, String senha) throws ElementoJaExisteException
 	{
-		controladorCliente.criarCliente(primeiroNome, ultimoNome, cpf, login, senha);
+		controladorUsuario.criarCliente(primeiroNome, ultimoNome, cpf, login, senha);
 	}
 	
 	public String procurarClienteExpecifico(String cpf) throws ElementoNaoExisteException
 	{
-		return controladorCliente.listarClienteEspecifico(cpf);
+		return controladorUsuario.listarClienteEspecifico(cpf);
 	}
 	
 	public void atualizarCliente(String cpfAtual ,String primeiroNome, 
 			String ultimoNome,String cpf,String login, String senha) throws ElementoNaoExisteException
 	{
-		controladorCliente.atualizarCliente(cpfAtual, primeiroNome, ultimoNome, cpf, login, senha);
+		controladorUsuario.atualizarCliente(cpfAtual, primeiroNome, ultimoNome, cpf, login, senha);
 	}
 	
 	public void removerCliente(String cpf) throws ElementoNaoExisteException
 	{
-		controladorCliente.excluirCliente(cpf);
+		controladorUsuario.excluirCliente(cpf);
 	}
 	
 	// Metodos Funcionario
@@ -59,23 +62,23 @@ public class Sistema {
 	public void adicionarFuncionario(String primeiroNome, String ultimoNome,
 			String cpf, String login, String senha, String id) throws ElementoJaExisteException
 	{
-		controladorFuncionario.adicionarFuncionario(primeiroNome, ultimoNome, cpf, login, senha, id);
+		controladorUsuario.adicionarFuncionario(primeiroNome, ultimoNome, cpf, login, senha, id);
 	}
 	
-	public List<Funcionario> listarFuncionarios()
+	public List<Usuario> listarFuncionarios()
 	{
-		return controladorFuncionario.listarFuncionarios();
+		return controladorUsuario.listarUsuarios();
 	}
 	
 	public void atualizarFuncionario(String cpfAtual, String primeiroNome, String ultimoNome, String cpf, String login, String senha, String id) 
 			throws ElementoNaoExisteException
 	{
-		controladorFuncionario.atualizarFuncionario(cpfAtual, primeiroNome, ultimoNome, cpf, login, senha, id);
+		controladorUsuario.atualizarFuncionario(cpfAtual, primeiroNome, ultimoNome, cpf, login, senha, id);
 	}
 	
 	public void excluirFuncionario(String cpf) throws ElementoNaoExisteException
 	{
-		controladorFuncionario.excluirFuncionario(cpf);
+		controladorUsuario.excluirFuncionario(cpf);
 	}
 	
 	// Metodos Prato
