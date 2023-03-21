@@ -153,7 +153,7 @@ public List<Funcionario> listarTodosFuncionarios(){
 		List<Usuario> usuarios = repositorioUsuario.ler();
 		
 		for (Usuario c : usuarios) {
-			if (c.getCpf().equals(cpf) || c.getLogin().equals(login)) {
+			if (c.getCpf().equals(cpf) || c.getLogin().equals(login) || ((Funcionario)c).getId().equals(id)){
 				throw new ElementoJaExisteException("Já existe um cliente com o mesmo CPF ou login!");
 			}
 		}
