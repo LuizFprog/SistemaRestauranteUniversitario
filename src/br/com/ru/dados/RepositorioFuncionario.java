@@ -47,9 +47,9 @@ public class RepositorioFuncionario implements IRepositorioGenerico<Funcionario>
 
 	@Override
 	public void atualizar(Funcionario atual, Funcionario novoConteudo) throws ElementoNaoExisteException {
-		if(this.funcionarios.contains(novoConteudo))
+		if(this.funcionarios.contains(atual))
 		{
-			int indice = this.funcionarios.indexOf(novoConteudo);
+			int indice = this.funcionarios.indexOf(atual);
 			this.funcionarios.set(indice, novoConteudo);
 		}
 		else
