@@ -6,7 +6,7 @@ public class Ficha {
 	private Cliente cliente;
 	private String codigo;
 	
-	public Ficha(double preco, Cliente cliente, String cod) {
+	public Ficha(Cliente cliente, String cod) {
 		
 		this.preco = 3.0;
 		this.cliente = cliente;

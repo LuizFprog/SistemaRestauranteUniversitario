@@ -79,6 +79,24 @@ public class Sistema {
 	
 	// Metodos Funcionario
 	
+	public String listarFuncionarioEspecifico(String cpf) throws ElementoNaoExisteException {
+		
+		
+		return controladorUsuario.listarEscravoEspecifico(cpf);
+	}
+	
+	public List<Cliente> listarTodosClientes(){
+		 return controladorUsuario.listarTodosClientes();
+	}
+	
+	public List<Funcionario> listarTodosFuncionarios(){
+		 return controladorUsuario.listarTodosFuncionarios();
+	}
+	
+	public List<Usuario> listarTodosUsuarios(){
+		return controladorUsuario.listarUsuarios();
+	}
+	
 	public void adicionarFuncionario(String primeiroNome, String ultimoNome,
 			String cpf, String login, String senha, String id) throws ElementoJaExisteException
 	{

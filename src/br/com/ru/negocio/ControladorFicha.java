@@ -48,7 +48,7 @@ public class ControladorFicha {
 				{
 					String codigo = "";
 					codigo += (100000000 + randomico.nextLong(900000000));
-					Ficha novoFicha = new Ficha(preco, cliente, codigo);
+					Ficha novoFicha = new Ficha( cliente, codigo);
 					repositorioFicha.inserir(novoFicha);
 					cliente.debitar(preco);
 					cliente.aumentarNumeroFichas();
@@ -111,7 +111,7 @@ public class ControladorFicha {
 		
 		if(pratoAtual != null)
 		{
-			Ficha novoFicha = new Ficha(preco, cliente, codigo);
+			Ficha novoFicha = new Ficha(cliente, codigo);
 			if(!pratoAtual.equals(novoFicha) && novoFicha != null)
 			{
 				repositorioFicha.atualizar(pratoAtual, novoFicha);
