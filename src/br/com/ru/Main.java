@@ -58,7 +58,7 @@ public class Main {
 										
 						
 						System.out.println("Digite 1 para comprar Ficha || Digite 2 para adiconar saldo|| Digite 3 para acessar o cardapio || Digite 4 acessar seu perfil "
-											+ "|| Digite 4 para sair");
+											+ "|| Digite 5 para sair");
 						
 						sent = scan.nextInt();
 						
@@ -83,8 +83,14 @@ public class Main {
 							meuSistema.depositar(valor, cpf);
 							System.out.println(meuSistema.procurarClienteExpecifico(cpf));
 							break;
+						case 3:
+							System.out.println("Cardapio:");
+							System.out.println(meuSistema.cardapio());
 						case 4:
 							System.out.println(meuSistema.recuperarClienteExpecifico(cpf));
+							break;
+						case 5:
+							saida = true;
 						}
 						
 					}while(!saida);
