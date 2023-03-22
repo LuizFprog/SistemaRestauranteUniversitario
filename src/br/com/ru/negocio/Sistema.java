@@ -133,6 +133,11 @@ public class Sistema {
 		return controladorPrato.mostrarCardapio();
 	}
 	
+	public List<Prato> verTodosPratos()
+	{
+		return controladorPrato.listarTodosPratos();
+	}
+	
 	public void atualizarPrato(String nomeAtual, String nome, boolean vegano, 
 			boolean gluten, boolean lactose, boolean suco, boolean sobremesa, boolean visivel) 
 					throws ElementoNaoExisteException
@@ -143,6 +148,21 @@ public class Sistema {
 	public void removerPrato(String nome) throws ElementoNaoExisteException
 	{
 		controladorPrato.removerPrato(nome);
+	}
+	
+	public Prato recuperarPrato(String nome) throws ElementoNaoExisteException
+	{
+		return controladorPrato.recuperarPrato(nome);
+	}
+	
+	public void colocarNoCardapio(Prato prato) throws ElementoNaoExisteException
+	{
+		controladorPrato.pratoVisivel(prato);
+	}
+	
+	public void removerDoCardapio(Prato prato) throws ElementoNaoExisteException
+	{
+		controladorPrato.pratoNaoVisivel(prato);
 	}
 	
 	// Metodos Ficha
