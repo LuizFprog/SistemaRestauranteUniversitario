@@ -89,11 +89,12 @@ public Usuario(String primeiroNome, String ultimoNome, String login, String senh
 				&& Objects.equals(ultimoNome, other.ultimoNome);
 	}
 
+	
 
 	@Override
 	public String toString() {
-		return "Usuario [primeiroNome=" + primeiroNome + ", ultimoNome=" + ultimoNome + ", cpf=" + cpf + ", login="
-				+ login + ", senha=" + senha + "]";
+		return  String.format("%n") + "Usuario [primeiroNome=" + primeiroNome + ", ultimoNome=" + ultimoNome + ", cpf=" + cpf + ", login="
+				+ login + ", senha=" + senha + "] ";
 	}
 	
 	

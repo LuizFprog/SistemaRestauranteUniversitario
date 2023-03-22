@@ -50,13 +50,12 @@ public class ControladorUsuario {
 	
 	}
 	
-	public String listarEscravoEspecifico(String cpf) throws ElementoNaoExisteException {
+	public String listarTrabalhadorEspecifico(String cpf) throws ElementoNaoExisteException {
 		
 		Usuario c = recuperarUsuario(cpf);
 		
 		if(c instanceof Funcionario) {
 			String funcionarioListado = c.toString();
-			System.out.println(funcionarioListado);
 			return funcionarioListado;
 		}
 		
@@ -117,12 +116,12 @@ public List<Funcionario> listarTodosFuncionarios(){
 
 	
 	// Método para atualizar um cliente
-	public void atualizarCliente(String cpfAtual ,String primeiroNome, String ultimoNome,String cpf,String login, String senha) throws ElementoNaoExisteException
+	public void atualizarCliente(String cpfAtual ,String primeiroNome, String ultimoNome,String login, String senha) throws ElementoNaoExisteException
 								{
 		
 		Cliente clienteAtual = (Cliente) recuperarUsuario(cpfAtual);
 		
-		Cliente novo = new Cliente(primeiroNome, ultimoNome, cpf, login, senha);
+		Cliente novo = new Cliente(primeiroNome, ultimoNome, clienteAtual.getCpf(), login, senha);
 		repositorioUsuario.atualizar(clienteAtual, novo);	
 	}
 	
@@ -207,12 +206,12 @@ public List<Funcionario> listarTodosFuncionarios(){
 		
 	}
 	
-	public void atualizarFuncionario (String cpfAtual, String primeiroNome, String ultimoNome, String cpf, String login, String senha, String id) 
+	public void atualizarFuncionario (String cpfAtual, String primeiroNome, String ultimoNome, String login, String senha, String id) 
 					throws ElementoNaoExisteException {
 		
 		Funcionario funcionarioAtual = (Funcionario) recuperarUsuario(cpfAtual);
 		
-		Funcionario novo = new Funcionario(primeiroNome, ultimoNome, cpf, login, senha, id);
+		Funcionario novo = new Funcionario(primeiroNome, ultimoNome, funcionarioAtual.getCpf(), login, senha, id);
 		repositorioUsuario.atualizar(funcionarioAtual, novo);
 		
 	}
