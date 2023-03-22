@@ -22,7 +22,7 @@ public class Funcionario extends Usuario{
 			this.id = id;
 		}
 
-
+		
 		@Override
 		public String toString() {
 			return super.toString() + "Funcionario [id=" + id + "]";
