@@ -1,6 +1,5 @@
 package br.com.ru.negocio;
 
-import java.util.Collections;
 import java.util.List;
 
 
@@ -8,7 +7,6 @@ import br.com.ru.dados.IRepositorioGenerico;
 import br.com.ru.dados.RepositorioPrato;
 import br.com.ru.exceptions.ElementoJaExisteException;
 import br.com.ru.exceptions.ElementoNaoExisteException;
-import br.com.ru.negocio.models.Cliente;
 import br.com.ru.negocio.models.Prato;
 
 public class ControladorPrato {
