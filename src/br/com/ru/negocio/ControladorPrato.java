@@ -1,5 +1,6 @@
 package br.com.ru.negocio;
 
+import java.util.Collections;
 import java.util.List;
 
 
@@ -48,6 +49,11 @@ public class ControladorPrato {
 		return cardapio.ler();
 	}
 	
+	public List<Prato> listarTodosPratos()
+	{
+		return ((RepositorioPrato) cardapio).lerTodos();
+	}
+	
 	// Metodo para remover prato
 	public void removerPrato (String nome) 
 			throws ElementoNaoExisteException
@@ -62,7 +68,7 @@ public class ControladorPrato {
 	
 	public Prato recuperarPrato(String nome) throws ElementoNaoExisteException {
 		// Busca o cliente pelo CPF
-		List<Prato> pratos = cardapio.ler();
+		List<Prato> pratos = ((RepositorioPrato) cardapio).lerTodos();
 		for (Prato p : pratos) {
 			if (p.getNome().equals(nome)) {
 				return p;
@@ -88,5 +94,16 @@ public class ControladorPrato {
 				cardapio.atualizar(pratoAtual, novoPrato);
 			}
 		}
+	}
+	
+	// Metodo para colocar prato como visivel
+	public void pratoVisivel(Prato prato) throws ElementoNaoExisteException
+	{
+		prato.setVisivel(true);
+	}
+	
+	public void pratoNaoVisivel(Prato prato) throws ElementoNaoExisteException
+	{
+		prato.setVisivel(false);
 	}
 }

@@ -28,6 +28,11 @@ public class RepositorioPrato implements IRepositorioGenerico<Prato> {
     public List<Prato> ler() {
         return listarVisiveis();
     }
+    
+    public List<Prato> lerTodos()
+    {
+    	return Collections.unmodifiableList(pratos);
+    }
 
     public List<Prato> listarVisiveis() {
         List<Prato> visiveis = new ArrayList<>();
