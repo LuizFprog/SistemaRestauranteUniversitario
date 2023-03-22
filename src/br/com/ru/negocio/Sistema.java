@@ -14,8 +14,6 @@ import br.com.ru.negocio.models.Usuario;
 public class Sistema {
 	
 	private ControladorUsuario controladorUsuario;
-	//private ControladorCliente controladorCliente;
-	//private ControladorFuncionario controladorFuncionario;
 	private ControladorPrato controladorPrato;
 	private ControladorFicha controladorFicha;
 	private static Sistema instancia;
@@ -23,8 +21,6 @@ public class Sistema {
 	public Sistema()
 	{
 		this.controladorUsuario = ControladorUsuario.getInstance();
-		//this.controladorCliente = ControladorCliente.getInstancia();
-		//this.controladorFuncionario = ControladorFuncionario.getInstance();
 		this.controladorPrato = ControladorPrato.getInstancia();
 		this.controladorFicha = ControladorFicha.getInstancia();
 	}
