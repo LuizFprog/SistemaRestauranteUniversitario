@@ -16,8 +16,7 @@ public class Main {
 	
 		Sistema meuSistema = new Sistema();
 		Scanner scan = new Scanner(System.in);
-		Ficha fichaPadrao = new Ficha(null,null);
-		
+		Ficha fichaPadrao = new Ficha(null,null);		
 		
 		int sent;
 		boolean cadastradoF = false;
@@ -28,21 +27,324 @@ public class Main {
 		do {
 			
 			System.out.printf("Aperte 1 para entrar como Funcionário || Aperte 2 para entrar como Cliente || Aperte 3 para registrar%n");
-			sent = scan.nextInt();
-			
+			//ToDo
+			sent = scan.nextInt();			
 			
 			switch(sent) {
 			
 			case 1:
 				
 				if(cadastradoF) {
+					boolean saida = false;
 					
+					System.out.println("Digite seu cpf");
+					//ToDo
+					cpf = scan.next();
 					
-					
+					do { 
+						
+						System.out.println("Digite 1 para editar o Cardápio || Digite 2 para editar os Pratos || Digite 3 para acessar as informações dos alunos || Digite 4 para sair ");
+			
+						sent = scan.nextInt();
+						
+						switch(sent) {
+												
+						case 1:
+							
+							//ToDo
+							 
+						case 2:
+							
+							System.out.println("Digite 1 para criar um prato || Digite 2 para editar um prato || Digite 3 para remover um prato || Digite 4 para listar os pratos ");
+							//ToDo
+							sent = scan.nextInt();
+							
+							switch(sent) {
+							
+							case 1:
+								
+								System.out.println("Digite o nome do prato: ");
+								String nome = scan.next();
+								boolean vegano = false;
+								boolean gluten = false;
+								boolean lactose = false;
+								boolean suco = false;
+								boolean sobremesa = false;
+								boolean visivel = false;
+								
+								System.out.println("O prato é vegano? (1 = sim | 2 = não) ");
+								sent = scan.nextInt();
+								//ToDo
+								switch(sent) {
+								
+								case 1:
+									
+									vegano = true;
+									break;
+									
+								case 2: 
+									
+									vegano = false;
+									break;
+									
+								}
+								
+								System.out.println("O prato tem glúten? (1 = sim | 2 = não) ");
+								//ToDo
+								sent = scan.nextInt();
+								
+								switch(sent) {
+								
+								case 1:
+									
+									gluten = true;
+									break;
+									
+								case 2:
+									
+									gluten = false;
+									break;
+									
+								}
+								
+								System.out.println("O prato tem lactose? (1 = sim | 2 = não) ");
+								//ToDo
+								sent = scan.nextInt();
+								
+								switch(sent) {
+								
+								case 1:
+									
+									lactose = true;
+									break;
+									
+								case 2: 
+									
+									lactose = false;
+									break;
+									
+								}
+								
+								System.out.println("O prato é um suco? (1 = sim | 2 = não) ");
+								//ToDo
+								sent = scan.nextInt();
+								
+								switch(sent) {
+								
+								case 1:
+									
+									suco = true;
+									break;
+									
+								case 2: 
+									
+									suco = false;
+									break;
+									
+								}
+								
+								System.out.println("O prato é uma sobremesa? (1 = sim | 2 = não) ");
+								//ToDo
+								sent = scan.nextInt();
+								
+								switch(sent) {
+								
+								case 1:
+									
+									sobremesa = true;
+									break;
+									
+								case 2:
+									
+									sobremesa = false;
+									break;
+									
+								}
+								
+								System.out.println("O prato deve aparecer no cardápio? (1 = sim | 2 = não) ");
+								//ToDo
+								sent = scan.nextInt();
+								
+								switch(sent) {
+								
+								case 1:
+									
+									visivel = true;
+									break;
+									
+								case 2:
+									
+									visivel = false;
+									break;
+									
+								}
+								meuSistema.adicionarPrato(nome, vegano, gluten, lactose, suco, sobremesa, visivel);
+								break;
+								
+							case 2: 
+								
+								vegano = false;
+								gluten = false;
+								lactose = false;
+								suco = false;
+								sobremesa = false;
+								visivel = false;
+								
+								System.out.println("Digite o nome do prato atual: ");
+								//ToDo
+								String nomeAtual = scan.next();
+								System.out.println("Digite o novo nome do prato: ");
+								//ToDo
+								String novoNome = scan.next();
+								
+								System.out.println("O prato é vegano? (1 = sim | 2 = não) ");
+								//ToDo
+								sent = scan.nextInt();
+								
+								switch(sent) {
+								
+								case 1:
+									
+									vegano = true;
+									break;
+									
+								case 2: 
+									
+									vegano = false;
+									break;
+									
+								}
+								
+								System.out.println("O prato tem glúten? (1 = sim | 2 = não) ");
+								//ToDo
+								sent = scan.nextInt();
+								
+								switch(sent) {
+								
+								case 1:
+									
+									gluten = true;
+									break;
+									
+								case 2: 
+									
+									gluten = false;
+									break;
+									
+								}
+								
+								System.out.println("O prato tem lactose? (1 = sim | 2 = não) ");
+								//ToDo
+								sent = scan.nextInt();
+								
+								switch(sent) {
+								
+								case 1:
+									
+									lactose = true;
+									break;
+									
+								case 2: 
+									
+									lactose = false;
+									break;
+									
+								}
+								
+								System.out.println("O prato é um suco? (1 = sim | 2 = não) ");
+								//ToDo
+								sent = scan.nextInt();
+								
+								switch(sent) {
+								
+								case 1:
+									
+									suco = true;
+									break;
+									
+								case 2: 
+									
+									suco = false;
+									break;
+									
+								}
+								
+								System.out.println("O prato é uma sobremesa? (1 = sim | 2 = não) ");
+								//ToDo
+								sent = scan.nextInt();
+								
+								switch(sent) {
+								
+								case 1:
+									
+									sobremesa = true;
+									break;
+									
+								case 2: 
+									
+									sobremesa = false;
+									break;
+									
+								}
+								
+								System.out.println("O prato deve aparecer no cardápio? (1 = sim | 2 = não) ");
+								//ToDo
+								sent = scan.nextInt();
+								
+								switch(sent) {
+								
+								case 1:
+									
+									visivel = true;
+									break;
+									
+								case 2: 
+									
+									visivel = false;
+									break;
+									
+								}
+								
+								meuSistema.atualizarPrato(nomeAtual, novoNome, vegano, gluten, lactose, suco, sobremesa, visivel);
+								break;
+								
+							case 3: 
+								
+								System.out.println("Digite o nome do prato para ser removido: ");
+								//ToDo
+								nome = scan.next();
+								
+								meuSistema.removerPrato(nome);
+								break;
+								
+							case 4:
+								
+								System.out.println(meuSistema.cardapio());
+								break;
+															
+							}
+							break;
+							
+						case 3:
+							
+							System.out.println("Alunos:");
+							System.out.println(meuSistema.listarTodosClientes());
+							break;
+							
+						case 4:
+							
+							saida = true;
+							break;
+							
+						}
+				
+					} while(!saida);				
+				
+				//ToDo
 				}else {
 					
 				}
-				break;
+				break;			
 				
 			case 2:
 				
@@ -51,23 +353,23 @@ public class Main {
 					boolean saida = false;
 					
 					System.out.println("Digite seu cpf");
+					//ToDo
 					cpf = scan.next();	
 					
-					do {
-						
-										
+					do {				
 						
 						System.out.println("Digite 1 para comprar Ficha || Digite 2 para adiconar saldo|| Digite 3 para acessar o cardapio || Digite 4 acessar seu perfil "
 											+ "|| Digite 5 para sair");
-						
+						//ToDo
 						sent = scan.nextInt();
 						
 						switch(sent) {
 						
 						case 1:
-							System.out.println("Digite o numero de fichas que deseja comprar");
-							int numeroFichas = scan.nextInt();
 							
+							System.out.println("Digite o numero de fichas que deseja comprar");
+							//ToDo
+							int numeroFichas = scan.nextInt();							
 							
 							 if(meuSistema.recuperarClienteExpecifico(cpf) != null) {
 								 meuSistema.adicionarFicha(fichaPadrao.getPreco(), numeroFichas*fichaPadrao.getPreco() ,meuSistema.recuperarClienteExpecifico(cpf));
@@ -75,18 +377,24 @@ public class Main {
 							
 							 System.out.println(meuSistema.listarFichaPorCliente(meuSistema.recuperarClienteExpecifico(cpf)));
 							 break;
+							 
 						case 2:
+							
 							System.out.println("Digite o valor do PIX (obs: sem casa decimal!)");
-							int valor  = scan.nextInt();
-					
+							//ToDo
+							int valor  = scan.nextInt();					
 							
 							meuSistema.depositar(valor, cpf);
 							System.out.println(meuSistema.procurarClienteExpecifico(cpf));
 							break;
+							
 						case 3:
+							
 							System.out.println("Cardapio:");
 							System.out.println(meuSistema.cardapio());
+							
 						case 4:
+							
 							System.out.println(meuSistema.recuperarClienteExpecifico(cpf));
 							break;
 						case 5:
@@ -94,20 +402,24 @@ public class Main {
 						}
 						
 					}while(!saida);
-					
+				
+				//ToDo
 				}else {
 					
 				}
 				break;
 				
 			case 3:
+				
 				System.out.println("Digite 1 para Funcionário || Digite 2 para Cliente");
+				//ToDo
 				sent = scan.nextInt();
 				switch(sent) {
 				
 				case 1:
 					
 					System.out.println("Digite da seguinte forma: primeiroNome ultimoNome cpf login senha id");
+					//ToDo
 					primeiroNome = scan.next();
 					ultimoNome = scan.next();
 					cpf = scan.next();
@@ -124,6 +436,7 @@ public class Main {
 				case 2:
 					
 					System.out.println("Digite da seguinte forma: primeiroNome ultimoNome cpf login senha");
+					//ToDo
 					primeiroNome = scan.next();
 					ultimoNome = scan.next();
 					cpf = scan.next();
@@ -140,58 +453,6 @@ public class Main {
 			
 			
 		}while(true);
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
 		
 		
 		
