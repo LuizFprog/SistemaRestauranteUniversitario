@@ -53,9 +53,9 @@ public class Sistema {
 	}
 	
 	public void atualizarCliente(String cpfAtual ,String primeiroNome, 
-			String ultimoNome,String cpf,String login, String senha) throws ElementoNaoExisteException
+			String ultimoNome, String login, String senha) throws ElementoNaoExisteException
 	{
-		controladorUsuario.atualizarCliente(cpfAtual, primeiroNome, ultimoNome, cpf, login, senha);
+		controladorUsuario.atualizarCliente(cpfAtual, primeiroNome, ultimoNome, login, senha);
 	}
 	
 	public void removerCliente(String cpf) throws ElementoNaoExisteException
@@ -78,7 +78,7 @@ public class Sistema {
 	public String listarFuncionarioEspecifico(String cpf) throws ElementoNaoExisteException {
 		
 		
-		return controladorUsuario.listarEscravoEspecifico(cpf);
+		return controladorUsuario.listarTrabalhadorEspecifico(cpf);
 	}
 	
 	public List<Cliente> listarTodosClientes(){
@@ -104,10 +104,15 @@ public class Sistema {
 		return controladorUsuario.listarUsuarios();
 	}
 	
-	public void atualizarFuncionario(String cpfAtual, String primeiroNome, String ultimoNome, String cpf, String login, String senha, String id) 
+	public Usuario recuperarFuncionarioEspecifico(String cpf) throws ElementoNaoExisteException {
+		
+		return controladorUsuario.recuperarFuncionario(cpf);
+	}
+	
+	public void atualizarFuncionario(String cpfAtual, String primeiroNome, String ultimoNome, String login, String senha, String id) 
 			throws ElementoNaoExisteException
 	{
-		controladorUsuario.atualizarFuncionario(cpfAtual, primeiroNome, ultimoNome, cpf, login, senha, id);
+		controladorUsuario.atualizarFuncionario(cpfAtual, primeiroNome, ultimoNome, login, senha, id);
 	}
 	
 	public void excluirFuncionario(String cpf) throws ElementoNaoExisteException

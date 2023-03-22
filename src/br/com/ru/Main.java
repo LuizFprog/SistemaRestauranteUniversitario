@@ -6,7 +6,9 @@ import br.com.ru.exceptions.ElementoJaExisteException;
 import br.com.ru.exceptions.ElementoNaoExisteException;
 import br.com.ru.exceptions.SaldoInsuficienteException;
 import br.com.ru.negocio.*;
+import br.com.ru.negocio.models.Cliente;
 import br.com.ru.negocio.models.Ficha;
+import br.com.ru.negocio.models.Funcionario;
 
 
 public class Main {
@@ -21,7 +23,7 @@ public class Main {
 		boolean cadastradoF = false;
 		boolean cadastradoC = false;
 		
-		String primeiroNome, ultimoNome, cpf, login, senha, id;
+		String primeiroNome, ultimoNome, cpfCliente, cpfFuncionario, cpf, login, senha, id;
 		String nomePrato;
 		String nomeAtual, novoNome;
 		int numeroFichas;
@@ -48,15 +50,20 @@ public class Main {
 					if(cadastradoF) {
 						boolean saida = false;
 						
+						
+						
 						System.out.println("Digite seu cpf");
 						do
 						{
 							cpf = scan.next();
 						}while(cpf == null);
+							
+						
+						meuSistema.recuperarFuncionarioEspecifico(cpf);
 						
 						do { 
 							
-							System.out.println("Digite 1 para editar o Cardápio || Digite 2 para editar os Pratos || Digite 3 para acessar as informações dos clientes || Digite 4 para sair ");
+							System.out.println("Digite 1 para editar o Cardápio || Digite 2 para editar os Pratos || Digite 3 para acessar as informações dos usuários || Digite 4 para sair ");
 				
 							sent = scan.nextInt();
 							
@@ -467,8 +474,49 @@ public class Main {
 								
 							case 3:
 								
-								System.out.println("Clientes:");
-								System.out.println(meuSistema.listarTodosClientes());
+								System.out.println(meuSistema.listarTodosUsuarios());
+								
+				
+								
+								System.out.println();
+								System.out.println();
+								
+								System.out.println("Digite 1 para remover cliente || Digite 2 para remover Funcionário");
+								
+								do
+								{
+									sent = scan.nextInt();
+									if(sent != 1 && sent != 2)
+									{
+										System.out.println("Operação invalida! Digite novamente");
+									}
+								}while(sent != 1 && sent != 2);
+								
+								switch(sent) {
+								
+								case 1: 
+									System.out.println("Digite o cpf do cliente que deseja remover: ");
+									cpfCliente = scan.next();
+									Cliente cliente = (Cliente) meuSistema.recuperarClienteExpecifico(cpfCliente);
+									meuSistema.removerCliente(cpfCliente);
+									System.out.println("Cliente: " + cliente + " foi removido");
+									break;
+									
+								case 2: 
+									System.out.println("Digite o cpf do funcionário que deseja remover: ");
+									cpfFuncionario = scan.next();
+									Funcionario funcionario = (Funcionario) meuSistema.recuperarFuncionarioEspecifico(cpfFuncionario);
+									meuSistema.excluirFuncionario(cpfFuncionario);
+									System.out.println("Funcionario: " + funcionario + " foi demitido!");
+								
+									if(cpfFuncionario.equals(cpf)) {
+										saida = true;
+									}
+									break;
+								
+									
+								}
+
 								break;
 								
 							case 4:
@@ -496,6 +544,8 @@ public class Main {
 						{
 							cpf = scan.next();
 						}while(cpf == null);	
+						
+						meuSistema.recuperarClienteExpecifico(cpf);
 						
 						do {				
 							
@@ -547,6 +597,56 @@ public class Main {
 							case 4:
 								
 								System.out.println(meuSistema.recuperarClienteExpecifico(cpf));
+								
+								System.out.println("Digite 1 para atualizar seu perfil || Digite 2 para remover sua conta");
+								
+								do
+								{
+									sent = scan.nextInt();
+									if(sent != 1 && sent != 2)
+									{
+										System.out.println("Operação invalida! Digite novamente");
+									}
+								}while(sent != 1 && sent != 2);
+								
+								switch(sent) {
+								
+								case 1: 
+									System.out.println("Digite seu CPF");
+									cpf = scan.next();
+									
+									System.out.println("Digite da seguinte forma: primeiroNome ultimoNome login senha");
+									do
+									{
+										primeiroNome = scan.next();
+									}while(primeiroNome == null);	
+									do
+									{
+										ultimoNome = scan.next();
+									}while(ultimoNome == null);		
+									do
+									{
+										login = scan.next();
+									}while(login == null);	
+									do
+									{
+										senha = scan.next();
+									}while(senha == null);	
+									
+									meuSistema.atualizarCliente(cpf, primeiroNome, ultimoNome, login, senha);
+									System.out.println("Conta atualizada: "+meuSistema.procurarClienteExpecifico(cpf));
+									break;
+								
+								case 2:
+									System.out.println("Digite seu CPF");
+									cpf = scan.next();
+									
+									
+									meuSistema.removerCliente(cpf);
+									System.out.println("É uma pena que você está indo embora ;-; ");
+									saida = true;
+								}
+							
 								break;
 							case 5:
 								saida = true;
@@ -603,7 +703,7 @@ public class Main {
 						meuSistema.adicionarFuncionario(primeiroNome, ultimoNome, cpf, login, senha, id);
 						cadastradoF = true;
 		
-						System.out.println(meuSistema.listarTodosFuncionarios());
+						System.out.println(meuSistema.listarFuncionarioEspecifico(cpf));
 						break;
 						
 					case 2:
@@ -632,7 +732,7 @@ public class Main {
 					
 						meuSistema.adicionarCliente(primeiroNome, ultimoNome, cpf, login, senha);
 						cadastradoC = true;
-						System.out.println(meuSistema.listarTodosClientes());
+						System.out.println(meuSistema.recuperarClienteExpecifico(cpf));
 						break;
 					}
 					
