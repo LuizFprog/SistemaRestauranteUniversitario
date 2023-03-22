@@ -153,8 +153,15 @@ public List<Funcionario> listarTodosFuncionarios(){
 		List<Usuario> usuarios = repositorioUsuario.ler();
 		
 		for (Usuario c : usuarios) {
-			if (c.getCpf().equals(cpf) || c.getLogin().equals(login) || ((Funcionario)c).getId().equals(id)){
-				throw new ElementoJaExisteException("Já existe um cliente com o mesmo CPF ou login!");
+			if (c.getCpf().equals(cpf) || c.getLogin().equals(login)){
+				throw new ElementoJaExisteException("Já existe um usuario com o mesmo CPF ou login!");
+			}
+			if(c instanceof Funcionario)
+			{
+				if(((Funcionario)c).getId().equals(id))
+				{
+					throw new ElementoJaExisteException("Já existe um funcionario com o mesmo id");
+				}
 			}
 		}
 		
