@@ -6,9 +6,10 @@ public class Cliente extends Usuario{
 	private int numeroFichas;
 	private double saldo;
 	
-	public Cliente(String primeiroNome, String ultimoNome, String cpf, String login, String senha) {
+	public Cliente(String primeiroNome, String ultimoNome, String cpf, String login, String senha, int numeroFichas, double saldo) {
 		super(primeiroNome, ultimoNome, cpf, login, senha);
-		
+		this.numeroFichas = numeroFichas;
+		this.saldo = saldo;
 	}
 	
 	
@@ -22,7 +23,7 @@ public class Cliente extends Usuario{
 	}
 	
 	public void diminuirNumeroFichas() {
-		this.numeroFichas++;
+		this.numeroFichas--;
 	}
 
 
