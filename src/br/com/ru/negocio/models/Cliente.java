@@ -16,16 +16,11 @@ public class Cliente extends Usuario{
 	public int getNumeroFichas() {
 		return numeroFichas;
 	}
-
-
-	public void aumentarNumeroFichas() {
-		this.numeroFichas++;
-	}
 	
-	public void diminuirNumeroFichas() {
-		this.numeroFichas--;
+	public void setNumeroFichas(int numeroFichas)
+	{
+		this.numeroFichas = numeroFichas;
 	}
-
 
 	public void depositar(double valor) {
 		if(valor >= 0)

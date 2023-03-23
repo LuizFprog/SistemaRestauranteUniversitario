@@ -19,7 +19,7 @@ public class ControladorFicha {
 	private static ControladorFicha instancia;
 	private List<Ficha> listaFicha;
 	
-	public ControladorFicha() {
+	private ControladorFicha() {
 		this.repositorioFicha = new RepositorioFicha(listaFicha);
 	}
 	
@@ -51,7 +51,6 @@ public class ControladorFicha {
 					Ficha novoFicha = new Ficha( cliente, codigo);
 					repositorioFicha.inserir(novoFicha);
 					cliente.debitar(preco);
-					cliente.aumentarNumeroFichas();
 				}
 			}
 			else
@@ -86,7 +85,6 @@ public class ControladorFicha {
 		if(ficha != null)
 		{
 			repositorioFicha.remover(ficha);
-			ficha.getCliente().diminuirNumeroFichas();
 		}
 	}
 	

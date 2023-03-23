@@ -14,7 +14,7 @@ public class ControladorPrato {
 	private static ControladorPrato instancia;
 	private List<Prato> listaPrato;
 	
-	public ControladorPrato() {
+	private ControladorPrato() {
 		this.cardapio = new RepositorioPrato(listaPrato);
 	}
 	
