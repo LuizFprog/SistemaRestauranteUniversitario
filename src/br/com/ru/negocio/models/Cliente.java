@@ -48,6 +48,6 @@ public class Cliente extends Usuario{
 
 	@Override
 	public String toString() {
-		return super.toString() + "Cliente [numeroFichas=" + numeroFichas + ", saldo=" + saldo + "] ";
+		return super.toString() + "Cliente [numeroFichas = " + numeroFichas + ", saldo = " + saldo + "] ";
 	}
 }
