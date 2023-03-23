@@ -493,16 +493,16 @@ public class Main {
 								System.out.println();
 								System.out.println();
 								
-								System.out.println("Digite 1 para remover cliente || Digite 2 para remover Funcionário");
+								System.out.println("Digite 1 para remover cliente || Digite 2 para remover Funcionário || Digite 3 para sair");
 								
 								do
 								{
 									sent = scan.nextInt();
-									if(sent != 1 && sent != 2)
+									if(sent != 1 && sent != 2 && sent != 3)
 									{
 										System.out.println("Operação invalida! Digite novamente");
 									}
-								}while(sent != 1 && sent != 2);
+								}while(sent != 1 && sent != 2 && sent != 3);
 								
 								switch(sent) {
 								
@@ -526,7 +526,9 @@ public class Main {
 									}
 									break;
 								
+								case 3:
 									
+									break;
 								}
 
 								break;
