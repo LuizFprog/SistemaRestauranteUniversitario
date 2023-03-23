@@ -39,6 +39,6 @@ public class Ficha {
 
 	@Override
 	public String toString() {
-		return "Ficha [Preço" + preco + ", cliente=" + cliente + ", codigo=" + codigo + "]";
+		return String.format("%n") + "Ficha [Preço" + preco + ", cliente=" + cliente + ", codigo=" + codigo + "]";
 	}
 }

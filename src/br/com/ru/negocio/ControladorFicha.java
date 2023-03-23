@@ -72,7 +72,7 @@ public class ControladorFicha {
 	{
 		List<Ficha> atual = repositorioFicha.ler();
 		List<Ficha> nova = new ArrayList<>();
-		for(int i = atual.size(); i >= 0; i--)
+		for(int i = atual.size(); i > 0; i--)
 		{
 			nova.add(atual.get(i));
 		}

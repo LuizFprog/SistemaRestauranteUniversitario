@@ -81,7 +81,7 @@ public class Prato {
 
 	@Override
 	public String toString() {
-		return "Prato [nome=" + nome + ", vegano=" + vegano + ", gluten=" + gluten + ", lactose=" + lactose + ", suco="
+		return String.format("%n") + "Prato [nome=" + nome + ", vegano=" + vegano + ", gluten=" + gluten + ", lactose=" + lactose + ", suco="
 				+ suco + "]";
 	}
 

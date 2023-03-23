@@ -65,29 +65,36 @@ public class Main {
 							
 							System.out.println("Digite 1 para editar o Cardápio || Digite 2 para editar os Pratos || Digite 3 para acessar as informações dos usuários || Digite 4 para sair ");
 				
-							sent = scan.nextInt();
+							do
+							{
+								sent = scan.nextInt();
+								if(sent != 1 && sent != 2 && sent != 3 && sent != 4)
+								{
+									System.out.println("Operação invalida! Digite novamente");
+								}
+							}while(sent != 1 && sent != 2 && sent != 3 && sent != 4);
 							
 							switch(sent) {
 													
 							case 1:
 								
-								//ToDo
 								System.out.println(meuSistema.cardapio());
 								System.out.println("Digite 1 para adicionar um prato no cardapio || Digite 2 para remover um prato do cardapio");
 								do
 								{
 									sent = scan.nextInt();
-									if(sent != 1 && sent != 2 && sent != 3)
+									if(sent != 1 && sent != 2)
 									{
 										System.out.println("Operação invalida! Digite novamente");
 									}
-								}while(sent != 1 && sent != 2 && sent != 3);
+								}while(sent != 1 && sent != 2);
 								switch(sent)
 								{
 								case 1:
 									System.out.println(meuSistema.verTodosPratos());
 									System.out.println("Digite o nome do prato para adicão no cardapio:");
-									nomePrato = scan.next();
+									scan.nextLine();
+									nomePrato = scan.nextLine();
 									if(meuSistema.recuperarPrato(nomePrato).isVisivel() == false)
 									{
 										meuSistema.colocarNoCardapio(meuSistema.recuperarPrato(nomePrato));
@@ -101,7 +108,8 @@ public class Main {
 								case 2:
 									System.out.println(meuSistema.cardapio());
 									System.out.println("Digite o nome do prato para remoção do cardapio");
-									nomePrato = scan.next();
+									scan.nextLine();
+									nomePrato = scan.nextLine();
 									if(meuSistema.recuperarPrato(nomePrato).isVisivel() == true)
 									{
 										meuSistema.removerDoCardapio(meuSistema.recuperarPrato(nomePrato));
@@ -130,7 +138,8 @@ public class Main {
 								case 1:
 									
 									System.out.println("Digite o nome do prato: ");
-									String nome = scan.next();
+									scan.nextLine();
+									String nome = scan.nextLine();
 									boolean vegano = false;
 									boolean gluten = false;
 									boolean lactose = false;
@@ -300,13 +309,15 @@ public class Main {
 									System.out.println("Digite o nome do prato atual: ");
 									do
 									{
-										nomeAtual = scan.next();
+										scan.nextLine();
+										nomeAtual = scan.nextLine();
 									}while(nomeAtual == null);
 									
 									System.out.println("Digite o novo nome do prato: ");
 									do
 									{
-										novoNome = scan.next();
+										scan.nextLine();
+										novoNome = scan.nextLine();
 									}while(novoNome == null);
 									
 									System.out.println("O prato é vegano? (1 = sim | 2 = não) ");
@@ -459,7 +470,8 @@ public class Main {
 								case 3: 
 									
 									System.out.println("Digite o nome do prato para ser removido: ");
-									nome = scan.next();
+									scan.nextLine();
+									nome = scan.nextLine();
 									
 									meuSistema.removerPrato(nome);
 									break;
@@ -518,7 +530,6 @@ public class Main {
 								}
 
 								break;
-								
 							case 4:
 								
 								saida = true;
@@ -593,21 +604,22 @@ public class Main {
 								
 								System.out.println("Cardapio:");
 								System.out.println(meuSistema.cardapio());
+								break;
 								
 							case 4:
 								
 								System.out.println(meuSistema.recuperarClienteExpecifico(cpf));
 								
-								System.out.println("Digite 1 para atualizar seu perfil || Digite 2 para remover sua conta");
+								System.out.println("Digite 1 para atualizar seu perfil || Digite 2 para remover sua conta || Digite 3 para visualizar suas fichas");
 								
 								do
 								{
 									sent = scan.nextInt();
-									if(sent != 1 && sent != 2)
+									if(sent != 1 && sent != 2 && sent != 3)
 									{
 										System.out.println("Operação invalida! Digite novamente");
 									}
-								}while(sent != 1 && sent != 2);
+								}while(sent != 1 && sent != 2 && sent != 3);
 								
 								switch(sent) {
 								
@@ -645,6 +657,10 @@ public class Main {
 									meuSistema.removerCliente(cpf);
 									System.out.println("É uma pena que você está indo embora ;-; ");
 									saida = true;
+									break;
+									
+								case 3:
+									System.out.println(meuSistema.listarFichaPorCliente(meuSistema.recuperarClienteExpecifico(cpf)));
 								}
 							
 								break;
