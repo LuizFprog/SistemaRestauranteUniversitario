@@ -560,16 +560,16 @@ public class Main {
 						
 						do {				
 							
-							System.out.println("Digite 1 para comprar Ficha || Digite 2 para adiconar saldo|| Digite 3 para acessar o cardapio || Digite 4 acessar seu perfil "
-												+ "|| Digite 5 para sair");
+							System.out.println("Digite 1 para comprar Ficha || Digite 2 para gastar ficha || Digite 3 para adiconar saldo|| Digite 4 para acessar o cardapio || Digite 5 acessar seu perfil "
+												+ "|| Digite 6 para sair");
 							do
 							{
 								sent = scan.nextInt();
-								if(sent != 1 && sent != 2 && sent != 3 && sent != 4 && sent != 5)
+								if(sent != 1 && sent != 2 && sent != 3 && sent != 4 && sent != 5 && sent != 6)
 								{
 									System.out.println("Operação invalida! Digite novamente");
 								}
-							}while(sent != 1 && sent != 2 && sent != 3 && sent != 4 && sent != 5);
+							}while(sent != 1 && sent != 2 && sent != 3 && sent != 4 && sent != 5 && sent != 6);
 							
 							switch(sent) {
 							
@@ -590,6 +590,12 @@ public class Main {
 								 
 							case 2:
 								
+								meuSistema.gastarFicha(meuSistema.recuperarFichaDoCliente(meuSistema.recuperarClienteExpecifico(cpf)));
+								System.out.println("Entrada no RU liberada");
+								break;
+								 
+							case 3:
+								
 								System.out.println("Digite o valor do PIX (obs: sem casa decimal!)");
 								do
 								{
@@ -600,13 +606,13 @@ public class Main {
 								System.out.println(meuSistema.procurarClienteExpecifico(cpf));
 								break;
 								
-							case 3:
+							case 4:
 								
 								System.out.println("Cardapio:");
 								System.out.println(meuSistema.cardapio());
 								break;
 								
-							case 4:
+							case 5:
 								
 								System.out.println(meuSistema.recuperarClienteExpecifico(cpf));
 								
@@ -664,7 +670,7 @@ public class Main {
 								}
 							
 								break;
-							case 5:
+							case 6:
 								saida = true;
 							}
 							
