@@ -18,7 +18,7 @@ public class ControladorUsuario {
 	private List<Usuario> listaUsuario;
 	
 
-	public ControladorUsuario() {
+	private ControladorUsuario() {
 		this.repositorioUsuario = new RepositorioUsuario(listaUsuario);
 	}
 	
