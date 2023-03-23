@@ -316,7 +316,6 @@ public class Main {
 									System.out.println("Digite o novo nome do prato: ");
 									do
 									{
-										scan.nextLine();
 										novoNome = scan.nextLine();
 									}while(novoNome == null);
 									
@@ -478,7 +477,7 @@ public class Main {
 									
 								case 4:
 									
-									System.out.println(meuSistema.cardapio());
+									System.out.println(meuSistema.verTodosPratos());
 									break;
 																
 								}
