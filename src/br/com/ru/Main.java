@@ -508,7 +508,7 @@ public class Main {
 								case 1: 
 									System.out.println("Digite o cpf do cliente que deseja remover: ");
 									cpfCliente = scan.next();
-									Cliente cliente = (Cliente) meuSistema.recuperarClienteExpecifico(cpfCliente);
+									Cliente cliente = (Cliente) meuSistema.recuperarClienteEspecifico(cpfCliente);
 									meuSistema.removerCliente(cpfCliente);
 									System.out.println("Cliente: " + cliente + " foi removido");
 									break;
@@ -557,7 +557,7 @@ public class Main {
 							cpf = scan.next();
 						}while(cpf == null);	
 						
-						meuSistema.recuperarClienteExpecifico(cpf);
+						meuSistema.recuperarClienteEspecifico(cpf);
 						
 						do {				
 							
@@ -582,16 +582,16 @@ public class Main {
 									numeroFichas = scan.nextInt();
 								}while(numeroFichas <= 0);				
 								
-								 if(meuSistema.recuperarClienteExpecifico(cpf) != null) {
-									 meuSistema.adicionarFicha(fichaPadrao.getPreco(), numeroFichas*fichaPadrao.getPreco() ,meuSistema.recuperarClienteExpecifico(cpf));
+								 if(meuSistema.recuperarClienteEspecifico(cpf) != null) {
+									 meuSistema.adicionarFicha(fichaPadrao.getPreco(), numeroFichas*fichaPadrao.getPreco() ,meuSistema.recuperarClienteEspecifico(cpf));
 								 }
 								
-								 System.out.println(meuSistema.listarFichaPorCliente(meuSistema.recuperarClienteExpecifico(cpf)));
+								 System.out.println(meuSistema.listarFichaPorCliente(meuSistema.recuperarClienteEspecifico(cpf)));
 								 break;
 								 
 							case 2:
 								
-								meuSistema.gastarFicha(meuSistema.recuperarFichaDoCliente(meuSistema.recuperarClienteExpecifico(cpf)));
+								meuSistema.gastarFicha(meuSistema.recuperarFichaDoCliente(meuSistema.recuperarClienteEspecifico(cpf)));
 								System.out.println("Entrada no RU liberada");
 								break;
 								 
@@ -604,7 +604,7 @@ public class Main {
 								}while(valor <= 0);					
 								
 								meuSistema.depositar(valor, cpf);
-								System.out.println(meuSistema.procurarClienteExpecifico(cpf));
+								System.out.println(meuSistema.procurarClienteEspecifico(cpf));
 								break;
 								
 							case 4:
@@ -615,7 +615,7 @@ public class Main {
 								
 							case 5:
 								
-								System.out.println(meuSistema.recuperarClienteExpecifico(cpf));
+								System.out.println(meuSistema.recuperarClienteEspecifico(cpf));
 								
 								System.out.println("Digite 1 para atualizar seu perfil || Digite 2 para remover sua conta || Digite 3 para visualizar suas fichas");
 								
@@ -653,7 +653,7 @@ public class Main {
 									}while(senha == null);	
 									
 									meuSistema.atualizarCliente(cpf, primeiroNome, ultimoNome, login, senha);
-									System.out.println("Conta atualizada: "+meuSistema.procurarClienteExpecifico(cpf));
+									System.out.println("Conta atualizada: "+meuSistema.procurarClienteEspecifico(cpf));
 									break;
 								
 								case 2:
@@ -667,7 +667,7 @@ public class Main {
 									break;
 									
 								case 3:
-									System.out.println(meuSistema.listarFichaPorCliente(meuSistema.recuperarClienteExpecifico(cpf)));
+									System.out.println(meuSistema.listarFichaPorCliente(meuSistema.recuperarClienteEspecifico(cpf)));
 								}
 							
 								break;
@@ -755,7 +755,7 @@ public class Main {
 					
 						meuSistema.adicionarCliente(primeiroNome, ultimoNome, cpf, login, senha);
 						cadastradoC = true;
-						System.out.println(meuSistema.recuperarClienteExpecifico(cpf));
+						System.out.println(meuSistema.recuperarClienteEspecifico(cpf));
 						break;
 					}
 					
@@ -777,5 +777,4 @@ public class Main {
 		}
 		
 	}
-
 }
