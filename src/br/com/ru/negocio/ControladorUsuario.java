@@ -22,7 +22,7 @@ public class ControladorUsuario {
 		this.repositorioUsuario = new RepositorioUsuario(listaUsuario);
 	}
 	
-	public static ControladorUsuario getInstance() {
+	public static ControladorUsuario getInstancia() {
 		if (instancia == null) {
             instancia = new ControladorUsuario();
         }
