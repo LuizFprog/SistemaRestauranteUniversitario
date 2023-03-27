@@ -8,7 +8,8 @@ import br.com.ru.exceptions.SaldoInsuficienteException;
 import br.com.ru.negocio.models.Cliente;
 import br.com.ru.negocio.models.Ficha;
 import br.com.ru.negocio.models.Funcionario;
-import br.com.ru.negocio.models.Prato;
+import br.com.ru.negocio.models.ItemConsumivel;
+import br.com.ru.negocio.models.ItemConsumivel.TipoCardapio;
 import br.com.ru.negocio.models.Usuario;
 
 public class Sistema {
@@ -20,7 +21,7 @@ public class Sistema {
 	
 	public Sistema()
 	{
-		this.controladorUsuario = ControladorUsuario.getInstance();
+		this.controladorUsuario = ControladorUsuario.getInstancia();
 		this.controladorPrato = ControladorPrato.getInstancia();
 		this.controladorFicha = ControladorFicha.getInstancia();
 	}
@@ -138,32 +139,32 @@ public class Sistema {
 	
 	
 	// Adiciona um prato com as informações passadas como parametro
-	public void adicionarPrato(String nome, boolean vegano, boolean gluten, 
-			boolean lactose, boolean suco, boolean sobremesa, boolean visivel) 
+	public void adicionarPrato(String nome, 
+			boolean gluten, boolean lactose, TipoCardapio tipoPrato, boolean visivel) 
 			throws ElementoJaExisteException
 	{
-		controladorPrato.adicionarPrato(nome, vegano, gluten, lactose, suco, sobremesa, visivel);
+		controladorPrato.adicionarPrato(nome, gluten, lactose, tipoPrato, visivel);
 	}
 	
 	
 	// Retorna os pratos que aparecem no cardapio
-	public List<Prato> cardapio()
+	public List<ItemConsumivel> cardapio()
 	{
 		return controladorPrato.mostrarCardapio();
 	}
 	
 	// Retorna todos os pratos
-	public List<Prato> verTodosPratos()
+	public List<ItemConsumivel> verTodosPratos()
 	{
 		return controladorPrato.listarTodosPratos();
 	}
 	
 	// Atualiza prato que possua o nomeAtual passado como parametro com as informações, também passadas como parametro
-	public void atualizarPrato(String nomeAtual, String nome, boolean vegano, 
-			boolean gluten, boolean lactose, boolean suco, boolean sobremesa, boolean visivel) 
+	public void atualizarPrato(String nomeAtual, String nome, 
+			boolean gluten, boolean lactose, TipoCardapio tipoPrato, boolean visivel) 
 					throws ElementoNaoExisteException
 	{
-		controladorPrato.atualizarPrato(nomeAtual, nome, vegano, gluten, lactose, suco, sobremesa, visivel);
+		controladorPrato.atualizarPrato(nomeAtual, nome, gluten, lactose, tipoPrato, visivel);
 	}
 	
 	// Remove um prato com o nome passado como parametro do repositorio
@@ -173,19 +174,19 @@ public class Sistema {
 	}
 	
 	// Retorna um prato que possui o nome passado como parametro
-	public Prato recuperarPrato(String nome) throws ElementoNaoExisteException
+	public ItemConsumivel recuperarPrato(String nome) throws ElementoNaoExisteException
 	{
 		return controladorPrato.recuperarPrato(nome);
 	}
 	
 	// Adiciona um prato passado como parametro ao cardapio
-	public void colocarNoCardapio(Prato prato) throws ElementoNaoExisteException
+	public void colocarNoCardapio(ItemConsumivel prato) throws ElementoNaoExisteException
 	{
 		controladorPrato.pratoVisivel(prato);
 	}
 	
 	// Remove um prato passado como parametro do cardapio
-	public void removerDoCardapio(Prato prato) throws ElementoNaoExisteException
+	public void removerDoCardapio(ItemConsumivel prato) throws ElementoNaoExisteException
 	{
 		controladorPrato.pratoNaoVisivel(prato);
 	}

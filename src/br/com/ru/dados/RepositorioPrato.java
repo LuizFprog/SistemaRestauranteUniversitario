@@ -6,17 +6,17 @@ import java.util.List;
 
 import br.com.ru.exceptions.ElementoJaExisteException;
 import br.com.ru.exceptions.ElementoNaoExisteException;
-import br.com.ru.negocio.models.Prato;
+import br.com.ru.negocio.models.ItemConsumivel;
 
-public class RepositorioPrato implements IRepositorioGenerico<Prato> {
-    private List<Prato> pratos;
+public class RepositorioPrato implements IRepositorioGenerico<ItemConsumivel> {
+    private List<ItemConsumivel> pratos;
 
-    public RepositorioPrato(List<Prato> pratos) {
+    public RepositorioPrato(List<ItemConsumivel> pratos) {
         this.pratos = new ArrayList<>();
     }
 
     @Override
-    public void inserir(Prato novoPrato) throws ElementoJaExisteException {
+    public void inserir(ItemConsumivel novoPrato) throws ElementoJaExisteException {
         if (!this.pratos.contains(novoPrato)) {
             pratos.add(novoPrato);
         } else {
@@ -25,18 +25,18 @@ public class RepositorioPrato implements IRepositorioGenerico<Prato> {
     }
 
     @Override
-    public List<Prato> ler() {
+    public List<ItemConsumivel> ler() {
         return listarVisiveis();
     }
     
-    public List<Prato> lerTodos()
+    public List<ItemConsumivel> lerTodos()
     {
     	return Collections.unmodifiableList(pratos);
     }
 
-    public List<Prato> listarVisiveis() {
-        List<Prato> visiveis = new ArrayList<>();
-        for (Prato prato : pratos) {
+    public List<ItemConsumivel> listarVisiveis() {
+        List<ItemConsumivel> visiveis = new ArrayList<>();
+        for (ItemConsumivel prato : pratos) {
             if (prato.isVisivel()) {
                 visiveis.add(prato);
             }
@@ -45,7 +45,7 @@ public class RepositorioPrato implements IRepositorioGenerico<Prato> {
     }
 
     @Override
-    public void remover(Prato conteudo) throws ElementoNaoExisteException {
+    public void remover(ItemConsumivel conteudo) throws ElementoNaoExisteException {
         if (this.pratos.contains(conteudo)) {
             this.pratos.remove(conteudo);
         } else {
@@ -54,7 +54,7 @@ public class RepositorioPrato implements IRepositorioGenerico<Prato> {
     }
 
     @Override
-    public void atualizar(Prato prato, Prato novoPrato) throws ElementoNaoExisteException {
+    public void atualizar(ItemConsumivel prato, ItemConsumivel novoPrato) throws ElementoNaoExisteException {
         if (this.pratos.contains(prato)) {
             int indice = this.pratos.indexOf(prato);
             this.pratos.set(indice, novoPrato);

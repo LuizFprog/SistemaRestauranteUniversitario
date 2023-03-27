@@ -7,12 +7,13 @@ import br.com.ru.dados.IRepositorioGenerico;
 import br.com.ru.dados.RepositorioPrato;
 import br.com.ru.exceptions.ElementoJaExisteException;
 import br.com.ru.exceptions.ElementoNaoExisteException;
-import br.com.ru.negocio.models.Prato;
+import br.com.ru.negocio.models.ItemConsumivel;
+import br.com.ru.negocio.models.ItemConsumivel.TipoCardapio;
 
 public class ControladorPrato {
-	private IRepositorioGenerico<Prato> cardapio;
+	private IRepositorioGenerico<ItemConsumivel> cardapio;
 	private static ControladorPrato instancia;
-	private List<Prato> listaPrato;
+	private List<ItemConsumivel> listaPrato;
 	
 	private ControladorPrato() {
 		this.cardapio = new RepositorioPrato(listaPrato);
@@ -30,24 +31,24 @@ public class ControladorPrato {
 	}	
 	
 	// Metodo para adicionar pratos
-	public void adicionarPrato (String nome, boolean vegano, boolean gluten, 
-			boolean lactose, boolean suco, boolean sobremesa, boolean visivel) 
+	public void adicionarPrato (String nome, boolean gluten, 
+			boolean lactose, TipoCardapio tipoPrato, boolean visivel) 
 			throws ElementoJaExisteException
 	{
 		if(nome != null)
 		{
-			Prato novoPrato = new Prato(nome, vegano, gluten, lactose, suco, sobremesa, visivel);
+			ItemConsumivel novoPrato = new ItemConsumivel(nome, gluten, lactose, tipoPrato, visivel);
 			cardapio.inserir(novoPrato);
 		}
 	}
 	
 	// Metodo para Mostrar Cardapio
-	public List<Prato> mostrarCardapio()
+	public List<ItemConsumivel> mostrarCardapio()
 	{
 		return cardapio.ler();
 	}
 	
-	public List<Prato> listarTodosPratos()
+	public List<ItemConsumivel> listarTodosPratos()
 	{
 		return ((RepositorioPrato) cardapio).lerTodos();
 	}
@@ -56,7 +57,7 @@ public class ControladorPrato {
 	public void removerPrato (String nome) 
 			throws ElementoNaoExisteException
 	{
-		Prato pratoAtual = recuperarPrato(nome);
+		ItemConsumivel pratoAtual = recuperarPrato(nome);
 		
 		if(pratoAtual != null)
 		{
@@ -64,10 +65,10 @@ public class ControladorPrato {
 		}
 	}
 	
-	public Prato recuperarPrato(String nome) throws ElementoNaoExisteException {
+	public ItemConsumivel recuperarPrato(String nome) throws ElementoNaoExisteException {
 		// Busca o cliente pelo CPF
-		List<Prato> pratos = ((RepositorioPrato) cardapio).lerTodos();
-		for (Prato p : pratos) {
+		List<ItemConsumivel> pratos = ((RepositorioPrato) cardapio).lerTodos();
+		for (ItemConsumivel p : pratos) {
 			if (p.getNome().equals(nome)) {
 				return p;
 			}
@@ -77,16 +78,16 @@ public class ControladorPrato {
 	}
 	
 	// Metodo para atualizar prato
-	public void atualizarPrato (String nomeAtual, String nome, boolean vegano, 
-			boolean gluten, boolean lactose, boolean suco, boolean sobremesa, boolean visivel) 
+	public void atualizarPrato (String nomeAtual, String nome, boolean gluten, boolean lactose, TipoCardapio tipoPrato, 
+			boolean visivel) 
 					throws ElementoNaoExisteException
 	{
 		
-		Prato pratoAtual = recuperarPrato(nomeAtual);
+		ItemConsumivel pratoAtual = recuperarPrato(nomeAtual);
 		
 		if(pratoAtual != null)
 		{
-			Prato novoPrato = new Prato(nome, vegano, gluten, lactose, suco, sobremesa, visivel);
+			ItemConsumivel novoPrato = new ItemConsumivel(nome, gluten, lactose, tipoPrato, visivel);
 			if(!pratoAtual.equals(novoPrato) && novoPrato != null)
 			{
 				cardapio.atualizar(pratoAtual, novoPrato);
@@ -95,12 +96,12 @@ public class ControladorPrato {
 	}
 	
 	// Metodo para colocar prato como visivel
-	public void pratoVisivel(Prato prato) throws ElementoNaoExisteException
+	public void pratoVisivel(ItemConsumivel prato) throws ElementoNaoExisteException
 	{
 		prato.setVisivel(true);
 	}
 	
-	public void pratoNaoVisivel(Prato prato) throws ElementoNaoExisteException
+	public void pratoNaoVisivel(ItemConsumivel prato) throws ElementoNaoExisteException
 	{
 		prato.setVisivel(false);
 	}

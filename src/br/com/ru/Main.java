@@ -9,6 +9,7 @@ import br.com.ru.negocio.*;
 import br.com.ru.negocio.models.Cliente;
 import br.com.ru.negocio.models.Ficha;
 import br.com.ru.negocio.models.Funcionario;
+import br.com.ru.negocio.models.ItemConsumivel.TipoCardapio;
 
 
 public class Main {
@@ -140,36 +141,10 @@ public class Main {
 									System.out.println("Digite o nome do prato: ");
 									scan.nextLine();
 									String nome = scan.nextLine();
-									boolean vegano = false;
 									boolean gluten = false;
 									boolean lactose = false;
-									boolean suco = false;
-									boolean sobremesa = false;
+									TipoCardapio tipoPrato = null;
 									boolean visivel = false;
-									
-									System.out.println("O prato é vegano? (1 = sim | 2 = não) ");
-									do
-									{
-										sent = scan.nextInt();
-										if(sent != 1 && sent != 2)
-										{
-											System.out.println("Operação invalida! Digite novamente");
-										}
-									}while(sent != 1 && sent != 2);
-
-									switch(sent) {
-									
-									case 1:
-										
-										vegano = true;
-										break;
-										
-									case 2: 
-										
-										vegano = false;
-										break;
-										
-									}
 									
 									System.out.println("O prato tem glúten? (1 = sim | 2 = não) ");
 
@@ -221,54 +196,41 @@ public class Main {
 										
 									}
 									
-									System.out.println("O prato é um suco? (1 = sim | 2 = não) ");
+									System.out.println("Qual o tipo do prato? (1 = TRIVIAL | 2 = VEGANO | 3 = SUCO | 4 = SOBREMESA) ");
 
 									do
 									{
 										sent = scan.nextInt();
-										if(sent != 1 && sent != 2)
+										if(sent != 1 && sent != 2 && sent != 3 && sent != 4)
 										{
 											System.out.println("Operação invalida! Digite novamente");
 										}
-									}while(sent != 1 && sent != 2);
+									}while(sent != 1 && sent != 2 && sent != 3 && sent != 4);
 									
 									switch(sent) {
 									
 									case 1:
 										
-										suco = true;
-										break;
-										
-									case 2: 
-										
-										suco = false;
-										break;
-										
-									}
-									
-									System.out.println("O prato é uma sobremesa? (1 = sim | 2 = não) ");
-
-									do
-									{
-										sent = scan.nextInt();
-										if(sent != 1 && sent != 2)
-										{
-											System.out.println("Operação invalida! Digite novamente");
-										}
-									}while(sent != 1 && sent != 2);
-									switch(sent) {
-									
-									case 1:
-										
-										sobremesa = true;
+										tipoPrato = TipoCardapio.TRIVIAL;
 										break;
 										
 									case 2:
 										
-										sobremesa = false;
+										tipoPrato = TipoCardapio.VEGANO;
+										break;
+										
+									case 3:
+										
+										tipoPrato = TipoCardapio.SUCO;
+										break;
+										
+									case 4:
+										
+										tipoPrato = TipoCardapio.SOBREMESA;
 										break;
 										
 									}
+									
 									
 									System.out.println("O prato deve aparecer no cardápio? (1 = sim | 2 = não) ");
 
@@ -294,16 +256,14 @@ public class Main {
 										break;
 										
 									}
-									meuSistema.adicionarPrato(nome, vegano, gluten, lactose, suco, sobremesa, visivel);
+									meuSistema.adicionarPrato(nome, gluten, lactose, tipoPrato, visivel);
 									break;
 									
 								case 2: 
 									
-									vegano = false;
 									gluten = false;
 									lactose = false;
-									suco = false;
-									sobremesa = false;
+									tipoPrato = null;
 									visivel = false;
 									
 									System.out.println("Digite o nome do prato atual: ");
@@ -319,30 +279,6 @@ public class Main {
 										novoNome = scan.nextLine();
 									}while(novoNome == null);
 									
-									System.out.println("O prato é vegano? (1 = sim | 2 = não) ");
-									do
-									{
-										sent = scan.nextInt();
-										if(sent != 1 && sent != 2)
-										{
-											System.out.println("Operação invalida! Digite novamente");
-										}
-									}while(sent != 1 && sent != 2);
-									
-									switch(sent) {
-									
-									case 1:
-										
-										vegano = true;
-										break;
-										
-									case 2: 
-										
-										vegano = false;
-										break;
-										
-									}
-									
 									System.out.println("O prato tem glúten? (1 = sim | 2 = não) ");
 									do
 									{
@@ -391,50 +327,37 @@ public class Main {
 										
 									}
 									
-									System.out.println("O prato é um suco? (1 = sim | 2 = não) ");
+									System.out.println("Qual o tipo do prato? (1 = TRIVIAL | 2 = VEGANO | 3 = SUCO | 4 = SOBREMESA) ");
+
 									do
 									{
 										sent = scan.nextInt();
-										if(sent != 1 && sent != 2)
+										if(sent != 1 && sent != 2 && sent != 3 && sent != 4)
 										{
 											System.out.println("Operação invalida! Digite novamente");
 										}
-									}while(sent != 1 && sent != 2);
+									}while(sent != 1 && sent != 2 && sent != 3 && sent != 4);
 									
 									switch(sent) {
 									
 									case 1:
 										
-										suco = true;
+										tipoPrato = TipoCardapio.TRIVIAL;
 										break;
 										
-									case 2: 
+									case 2:
 										
-										suco = false;
+										tipoPrato = TipoCardapio.VEGANO;
 										break;
 										
-									}
-									
-									System.out.println("O prato é uma sobremesa? (1 = sim | 2 = não) ");
-									do
-									{
-										sent = scan.nextInt();
-										if(sent != 1 && sent != 2)
-										{
-											System.out.println("Operação invalida! Digite novamente");
-										}
-									}while(sent != 1 && sent != 2);
-									
-									switch(sent) {
-									
-									case 1:
+									case 3:
 										
-										sobremesa = true;
+										tipoPrato = TipoCardapio.SUCO;
 										break;
 										
-									case 2: 
+									case 4:
 										
-										sobremesa = false;
+										tipoPrato = TipoCardapio.SOBREMESA;
 										break;
 										
 									}
@@ -463,7 +386,7 @@ public class Main {
 										
 									}
 									
-									meuSistema.atualizarPrato(nomeAtual, novoNome, vegano, gluten, lactose, suco, sobremesa, visivel);
+									meuSistema.atualizarPrato(nomeAtual, novoNome, gluten, lactose, tipoPrato, visivel);
 									break;
 									
 								case 3: 
