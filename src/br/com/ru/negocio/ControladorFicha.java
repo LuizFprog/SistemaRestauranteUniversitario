@@ -176,7 +176,10 @@ public class ControladorFicha {
 		{
 			ficha.setDataConsumo(LocalDateTime.now());
 			ficha.setStatusFicha(StatusFicha.CONSUMIDA);
-			ficha.setRefeicao((Refeicao) refeicao);
+			if(refeicao  instanceof Refeicao) {
+				ficha.setRefeicao((Refeicao) refeicao);
+			}
+			
 		}
 	}
 	
@@ -273,9 +276,11 @@ public class ControladorFicha {
 		List<Ficha> fichaMes = new ArrayList<>();
 		for(Ficha f : repositorioFicha.ler())
 		{
-			if(f.getDataConsumo().getMonthValue() == mes)
-			{
-				fichaMes.add(f);
+			if(f.getDataConsumo() != null) {
+				if(f.getDataConsumo().getMonthValue() == mes)
+				{
+					fichaMes.add(f);
+				}
 			}
 		}
 		return fichaMes;

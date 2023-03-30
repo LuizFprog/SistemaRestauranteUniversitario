@@ -1,5 +1,6 @@
 package br.com.ru.negocio.models;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -10,9 +11,11 @@ import br.com.ru.exceptions.ElementoNaoExisteException;
 public class Refeicao implements IRepositorioGenerico<ItemConsumivel>{
 	private List<ItemConsumivel> refeicao;
 	
+	
 	public Refeicao(List<ItemConsumivel> refeicao)
 	{
-		this.refeicao = refeicao;
+		this.refeicao = new ArrayList<>();
+		
 	}
 	
 	@Override

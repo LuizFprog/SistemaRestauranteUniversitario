@@ -10,6 +10,7 @@ import br.com.ru.exceptions.ElementoJaExisteException;
 import br.com.ru.exceptions.ElementoNaoExisteException;
 import br.com.ru.negocio.models.ItemConsumivel;
 import br.com.ru.negocio.models.ItemConsumivel.TipoCardapio;
+import br.com.ru.negocio.models.Refeicao;
 
 public class ControladorItemConsumivel {
 	private IRepositorioGenerico<ItemConsumivel> cardapio;
@@ -19,6 +20,7 @@ public class ControladorItemConsumivel {
 	
 	private ControladorItemConsumivel() {
 		this.cardapio = new RepositorioItemConsumivel(listaPrato);
+		this.refeicao = new Refeicao(listaPrato);
 	}
 	
 	
@@ -47,9 +49,10 @@ public class ControladorItemConsumivel {
 	public void adicionarPratoRefeicao(String prato) throws ElementoJaExisteException, ElementoNaoExisteException
 	{
 		ItemConsumivel novoPrato = recuperarPrato(prato);
+		System.out.println("ABUDABA"+recuperarPrato(prato));
 		if(prato != null && novoPrato != null && novoPrato.isVisivel())
 		{
-			refeicao.inserir(novoPrato);
+			this.refeicao.inserir(novoPrato);
 		}
 	}
 	
@@ -161,7 +164,7 @@ public class ControladorItemConsumivel {
 			}
 		}
 		// Caso não encontre, lança exceção
-		throw new ElementoNaoExisteException("Não existe um cliente com esse CPF!");
+		throw new ElementoNaoExisteException("Não existe esse prato no sistema");
 	}
 	
 	// Metodo para atualizar prato
