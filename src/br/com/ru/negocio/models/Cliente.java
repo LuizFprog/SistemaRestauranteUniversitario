@@ -3,24 +3,24 @@ package br.com.ru.negocio.models;
 public class Cliente extends Usuario{
 	
 	
-	private int numeroFichas;
+	//private int numeroFichas;
 	private double saldo;
 	
-	public Cliente(String primeiroNome, String ultimoNome, String cpf, String login, String senha, int numeroFichas, double saldo) {
+	public Cliente(String primeiroNome, String ultimoNome, String cpf, String login, String senha, double saldo) {
 		super(primeiroNome, ultimoNome, cpf, login, senha);
-		this.numeroFichas = numeroFichas;
+		//this.numeroFichas = numeroFichas;
 		this.saldo = saldo;
 	}
 	
 	
-	public int getNumeroFichas() {
-		return numeroFichas;
-	}
+//	public int getNumeroFichas() {
+//		return numeroFichas;
+//	}
 	
-	public void setNumeroFichas(int numeroFichas)
-	{
-		this.numeroFichas = numeroFichas;
-	}
+//	public void setNumeroFichas(int numeroFichas)
+//	{
+//		this.numeroFichas = numeroFichas;
+//	}
 
 	public void depositar(double valor) {
 		if(valor >= 0)
@@ -43,6 +43,6 @@ public class Cliente extends Usuario{
 
 	@Override
 	public String toString() {
-		return super.toString() + "Cliente [numeroFichas = " + numeroFichas + ", saldo = " + saldo + "] ";
+		return super.toString() + "Cliente [saldo = " + saldo + "] ";
 	}
 }

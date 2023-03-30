@@ -1,31 +1,32 @@
 package br.com.ru.negocio;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
 import br.com.ru.dados.IRepositorioGenerico;
-import br.com.ru.dados.RepositorioPrato;
+import br.com.ru.dados.RepositorioItemConsumivel;
 import br.com.ru.exceptions.ElementoJaExisteException;
 import br.com.ru.exceptions.ElementoNaoExisteException;
 import br.com.ru.negocio.models.ItemConsumivel;
 import br.com.ru.negocio.models.ItemConsumivel.TipoCardapio;
 
-public class ControladorPrato {
+public class ControladorItemConsumivel {
 	private IRepositorioGenerico<ItemConsumivel> cardapio;
-	private static ControladorPrato instancia;
+	private static ControladorItemConsumivel instancia;
 	private List<ItemConsumivel> listaPrato;
 	
-	private ControladorPrato() {
-		this.cardapio = new RepositorioPrato(listaPrato);
+	private ControladorItemConsumivel() {
+		this.cardapio = new RepositorioItemConsumivel(listaPrato);
 	}
 	
 	
 	// Garantir unica instancia da classe
-	public static ControladorPrato getInstancia()
+	public static ControladorItemConsumivel getInstancia()
 	{
 		if(instancia == null)
 		{
-			instancia = new ControladorPrato();
+			instancia = new ControladorItemConsumivel();
 		}
 		return instancia;
 	}	
@@ -48,9 +49,65 @@ public class ControladorPrato {
 		return cardapio.ler();
 	}
 	
+	public List<ItemConsumivel> cardapioTrivial()
+	{
+		List<ItemConsumivel> atual = ((RepositorioItemConsumivel) cardapio).lerTodos();
+		List<ItemConsumivel> trivial = new ArrayList<>();
+		for(ItemConsumivel i : atual)
+		{
+			if(i.getTipoPrato() == TipoCardapio.TRIVIAL)
+			{
+				trivial.add(i);
+			}
+		}
+		return trivial;
+	}
+	
+	public List<ItemConsumivel> cardapioVegano()
+	{
+		List<ItemConsumivel> atual = ((RepositorioItemConsumivel) cardapio).lerTodos();
+		List<ItemConsumivel> vegano = new ArrayList<>();
+		for(ItemConsumivel i : atual)
+		{
+			if(i.getTipoPrato() == TipoCardapio.VEGANO)
+			{
+				vegano.add(i);
+			}
+		}
+		return vegano;
+	}
+	
+	public List<ItemConsumivel> cardapioSuco()
+	{
+		List<ItemConsumivel> atual = ((RepositorioItemConsumivel) cardapio).lerTodos();
+		List<ItemConsumivel> suco = new ArrayList<>();
+		for(ItemConsumivel i : atual)
+		{
+			if(i.getTipoPrato() == TipoCardapio.SUCO)
+			{
+				suco.add(i);
+			}
+		}
+		return suco;
+	}
+	
+	public List<ItemConsumivel> cardapioSobremesa()
+	{
+		List<ItemConsumivel> atual = ((RepositorioItemConsumivel) cardapio).lerTodos();
+		List<ItemConsumivel> sobremesa = new ArrayList<>();
+		for(ItemConsumivel i : atual)
+		{
+			if(i.getTipoPrato() == TipoCardapio.SOBREMESA)
+			{
+				sobremesa.add(i);
+			}
+		}
+		return sobremesa;
+	}
+	
 	public List<ItemConsumivel> listarTodosPratos()
 	{
-		return ((RepositorioPrato) cardapio).lerTodos();
+		return ((RepositorioItemConsumivel) cardapio).lerTodos();
 	}
 	
 	// Metodo para remover prato
@@ -67,7 +124,7 @@ public class ControladorPrato {
 	
 	public ItemConsumivel recuperarPrato(String nome) throws ElementoNaoExisteException {
 		// Busca o cliente pelo CPF
-		List<ItemConsumivel> pratos = ((RepositorioPrato) cardapio).lerTodos();
+		List<ItemConsumivel> pratos = ((RepositorioItemConsumivel) cardapio).lerTodos();
 		for (ItemConsumivel p : pratos) {
 			if (p.getNome().equals(nome)) {
 				return p;

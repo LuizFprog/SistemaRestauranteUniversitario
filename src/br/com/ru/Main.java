@@ -17,8 +17,7 @@ public class Main {
 	public static void main(String[] args) throws ElementoJaExisteException, ElementoNaoExisteException, SaldoInsuficienteException {
 	
 		Sistema meuSistema = new Sistema();
-		Scanner scan = new Scanner(System.in);
-		Ficha fichaPadrao = new Ficha(null,null);		
+		Scanner scan = new Scanner(System.in);		
 		
 		int sent;
 		boolean cadastradoF = false;
@@ -78,8 +77,14 @@ public class Main {
 							switch(sent) {
 													
 							case 1:
-								
-								System.out.println(meuSistema.cardapio());
+								System.out.println("TRIVIAL:");
+								System.out.println(meuSistema.cardapioTrivial());
+								System.out.println("VEGANO:");
+								System.out.println(meuSistema.cardapioVegano());
+								System.out.println("SUCO:");
+								System.out.println(meuSistema.cardapioSuco());
+								System.out.println("SOBREMESA:");
+								System.out.println(meuSistema.cardapioSobremesa());
 								System.out.println("Digite 1 para adicionar um prato no cardapio || Digite 2 para remover um prato do cardapio");
 								do
 								{
@@ -506,7 +511,7 @@ public class Main {
 								}while(numeroFichas <= 0);				
 								
 								 if(meuSistema.recuperarClienteEspecifico(cpf) != null) {
-									 meuSistema.adicionarFicha(fichaPadrao.getPreco(), numeroFichas*fichaPadrao.getPreco() ,meuSistema.recuperarClienteEspecifico(cpf));
+									 meuSistema.adicionarFicha(Ficha.getPreco(), numeroFichas*Ficha.getPreco() ,meuSistema.recuperarClienteEspecifico(cpf));
 								 }
 								
 								 System.out.println(meuSistema.listarFichaPorCliente(meuSistema.recuperarClienteEspecifico(cpf)));
@@ -590,6 +595,7 @@ public class Main {
 									break;
 									
 								case 3:
+									System.out.println(meuSistema.numeroDeFichaPorCliente(meuSistema.recuperarClienteEspecifico(cpf)));
 									System.out.println(meuSistema.listarFichaPorCliente(meuSistema.recuperarClienteEspecifico(cpf)));
 								}
 							

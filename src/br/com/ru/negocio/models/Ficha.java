@@ -1,24 +1,35 @@
 package br.com.ru.negocio.models;
 
+import java.time.LocalDateTime;
+
 public class Ficha {
-	
-	private double preco;
-	private Cliente cliente;
-	private String codigo;
-	
-	public Ficha(Cliente cliente, String cod) {
-		
-		this.preco = 3.0;
-		this.cliente = cliente;
-		this.codigo = cod;
+	public enum StatusFicha
+	{
+		EFETIVADA, CONSUMIDA, NAO_OPERANTE;
 	}
 	
-	public double getPreco() {
+	private StatusFicha statusFicha;
+	private static double preco;
+	private Cliente cliente;
+	private String codigo;
+	private LocalDateTime dataEfetivacao = null;
+	private LocalDateTime dataConsumo = null;
+	
+	
+	public Ficha(String cod) {
+		
+		Ficha.preco = 3.0;
+		this.cliente = null;
+		this.codigo = cod;
+		this.statusFicha = StatusFicha.NAO_OPERANTE;
+	}
+	
+	public static double getPreco() {
 		return preco;
 	}
 	
-	public void setPreco(double preco) {
-		this.preco = preco;
+	public static void setPreco(double preco) {
+		Ficha.preco = preco;
 	}
 	
 	public Cliente getCliente() {
@@ -37,8 +48,38 @@ public class Ficha {
 		this.codigo = codigo;
 	}
 
+	public LocalDateTime getDataEfetivacao() {
+		return dataEfetivacao;
+	}
+
+	public void setDataEfetivacao(LocalDateTime dataEfetivacao) {
+		this.dataEfetivacao = dataEfetivacao;
+	}
+
+	public LocalDateTime getDataConsumo() {
+		return dataConsumo;
+	}
+
+	public void setDataConsumo(LocalDateTime dataConsumo) {
+		this.dataConsumo = dataConsumo;
+	}
+
+	public StatusFicha getStatusFicha() {
+		return statusFicha;
+	}
+
+	public void setStatusFicha(StatusFicha statusFicha) {
+		this.statusFicha = statusFicha;
+	}
+
 	@Override
 	public String toString() {
-		return String.format("%n") + "Ficha [Preço" + preco + ", cliente = " + cliente + ", codigo = " + codigo + "]";
+		return "Ficha [statusFicha=" + statusFicha + ", preco=" + preco + ", cliente=" + cliente + ", codigo=" + codigo
+				+ ", dataEfetivacao=" + dataEfetivacao + ", dataConsumo=" + dataConsumo + "]";
 	}
+
+	
+
+
+	
 }
