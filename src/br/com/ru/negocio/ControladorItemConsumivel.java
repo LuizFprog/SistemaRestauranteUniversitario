@@ -13,6 +13,7 @@ import br.com.ru.negocio.models.ItemConsumivel.TipoCardapio;
 
 public class ControladorItemConsumivel {
 	private IRepositorioGenerico<ItemConsumivel> cardapio;
+	private IRepositorioGenerico<ItemConsumivel> refeicao;
 	private static ControladorItemConsumivel instancia;
 	private List<ItemConsumivel> listaPrato;
 	
@@ -41,6 +42,35 @@ public class ControladorItemConsumivel {
 			ItemConsumivel novoPrato = new ItemConsumivel(nome, gluten, lactose, tipoPrato, visivel);
 			cardapio.inserir(novoPrato);
 		}
+	}
+	
+	public void adicionarPratoRefeicao(String prato) throws ElementoJaExisteException, ElementoNaoExisteException
+	{
+		ItemConsumivel novoPrato = recuperarPrato(prato);
+		if(prato != null && novoPrato != null && novoPrato.isVisivel())
+		{
+			refeicao.inserir(novoPrato);
+		}
+	}
+	
+	public void removerPratoRefeicao(String prato) throws ElementoNaoExisteException
+	{
+		ItemConsumivel pratoRemover = recuperarPrato(prato);
+		List<ItemConsumivel> pratos = refeicao.ler();
+		if(pratos.contains(pratoRemover))
+		{
+			refeicao.remover(pratoRemover);
+		}
+	}
+	
+	public List<ItemConsumivel> listarRefeicao()
+	{
+		return refeicao.ler();
+	}
+	
+	public void resetarRefeicao()
+	{
+		refeicao = null;
 	}
 	
 	// Metodo para Mostrar Cardapio

@@ -179,6 +179,30 @@ public class Sistema {
 		return controladorPrato.cardapioSobremesa();
 	}
 	
+	// Adiciona prato a refeição
+	public void adicionarPratoRefeicao(String nomePrato) throws ElementoJaExisteException, ElementoNaoExisteException
+	{
+		controladorPrato.adicionarPratoRefeicao(nomePrato);
+	}
+	
+	// Remover prato da refeição
+	public void removerPratoRefeicao(String nomePrato) throws ElementoNaoExisteException
+	{
+		controladorPrato.removerPratoRefeicao(nomePrato);
+	}
+	
+	// Listar pratos da refeição
+	public List<ItemConsumivel> listarRefeicao()
+	{
+		return controladorPrato.listarRefeicao();
+	}
+	
+	// Retorna a refeição para o valor padrão
+	public void resetarRefeicao()
+	{
+		controladorPrato.resetarRefeicao();
+	}
+	
 	// Atualiza prato que possua o nomeAtual passado como parametro com as informações, também passadas como parametro
 	public void atualizarPrato(String nomeAtual, String nome, 
 			boolean gluten, boolean lactose, TipoCardapio tipoPrato, boolean visivel) 
@@ -246,9 +270,9 @@ public class Sistema {
 	}
 	
 	// Gasta ficha para liberar o acesso ao RU
-	public void gastarFicha(Ficha ficha) throws ElementoNaoExisteException
+	public void gastarFicha(Ficha ficha, List<ItemConsumivel> refeicao) throws ElementoNaoExisteException
 	{
-		controladorFicha.gastarFicha(ficha);
+		controladorFicha.gastarFicha(ficha, refeicao);
 	}
 	
 	// Recupera ficha especifica do cliente

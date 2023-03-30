@@ -15,6 +15,8 @@ import br.com.ru.exceptions.SaldoInsuficienteException;
 import br.com.ru.negocio.models.Cliente;
 import br.com.ru.negocio.models.Ficha;
 import br.com.ru.negocio.models.Ficha.StatusFicha;
+import br.com.ru.negocio.models.ItemConsumivel;
+import br.com.ru.negocio.models.Refeicao;
 
 public class ControladorFicha {
 	private IRepositorioGenerico<Ficha> repositorioFicha;
@@ -161,13 +163,14 @@ public class ControladorFicha {
 	}
 	
 	// Metodo para remover ficha
-	public void gastarFicha (Ficha ficha) 
+	public void gastarFicha (Ficha ficha, List<ItemConsumivel> refeicao)
 			throws ElementoNaoExisteException
 	{
 		if(ficha != null && ficha.getCliente() != null && ficha.getStatusFicha() == StatusFicha.EFETIVADA)
 		{
 			ficha.setDataConsumo(LocalDateTime.now());
 			ficha.setStatusFicha(StatusFicha.CONSUMIDA);
+			ficha.setRefeicao((Refeicao) refeicao);
 		}
 	}
 	
@@ -251,5 +254,18 @@ public class ControladorFicha {
 			}
 		}
 		return null;
+	}
+	
+	public List<Ficha> listarFichaPorPeriodo(int mes)
+	{
+		List<Ficha> fichaMes = new ArrayList<>();
+		for(Ficha f : repositorioFicha.ler())
+		{
+			if(f.getDataConsumo().getMonthValue() == mes)
+			{
+				fichaMes.add(f);
+			}
+		}
+		return fichaMes;
 	}
 }

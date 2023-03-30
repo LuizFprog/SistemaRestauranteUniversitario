@@ -14,7 +14,7 @@ public class Ficha {
 	private String codigo;
 	private LocalDateTime dataEfetivacao = null;
 	private LocalDateTime dataConsumo = null;
-	
+	private Refeicao refeicao = null;
 	
 	public Ficha(String cod) {
 		
@@ -70,6 +70,14 @@ public class Ficha {
 
 	public void setStatusFicha(StatusFicha statusFicha) {
 		this.statusFicha = statusFicha;
+	}
+
+	public Refeicao getRefeicao() {
+		return refeicao;
+	}
+
+	public void setRefeicao(Refeicao refeicao) {
+		this.refeicao = refeicao;
 	}
 
 	@Override
