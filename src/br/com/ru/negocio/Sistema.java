@@ -253,6 +253,12 @@ public class Sistema {
 		return controladorFicha.listarFichas();
 	}
 	
+	//Listar por periodo
+	public List<Ficha> fichaPorPeriodo(int mes){
+		return controladorFicha.listarFichaPorPeriodo(mes);
+	}
+	
+	
 	// Retorna uma lista de todas as fichas do cliente passado como parametro
 	public List<Ficha> listarFichaPorCliente(Usuario cliente) throws ElementoNaoExisteException
 	{

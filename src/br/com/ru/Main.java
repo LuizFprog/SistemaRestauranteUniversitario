@@ -413,6 +413,7 @@ public class Main {
 								
 							case 3:
 								
+								
 								System.out.println(meuSistema.listarTodosUsuarios());
 								
 				
@@ -420,7 +421,7 @@ public class Main {
 								System.out.println();
 								System.out.println();
 								
-								System.out.println("Digite 1 para remover cliente || Digite 2 para remover Funcionário || Digite 3 para sair");
+								System.out.println("Digite 1 para remover cliente || Digite 2 para remover Funcionário || Digite 3 para ver fichas || Digite 4 para sair");
 								
 								do
 								{
@@ -452,8 +453,13 @@ public class Main {
 										saida = true;
 									}
 									break;
-								
 								case 3:
+									System.out.println("Digite o mes(em Inteiro)");
+									int mes = scan.nextInt();
+									
+									System.out.println(meuSistema.fichaPorPeriodo(mes));
+									break;
+								case 4:
 									
 									break;
 								}
@@ -527,7 +533,7 @@ public class Main {
 								do {
 									System.out.println("Digite 1 inserir prato na refeicao || Digite 2 para finalizar preenchimento");
 									int luizbobao = scan.nextInt();
-									
+									scan.nextLine();
 									switch(luizbobao) {
 									case 1:
 										System.out.println("Digite o nome do prato: ");
