@@ -504,6 +504,8 @@ public class Main {
 							
 							case 1:
 								
+								
+								
 								System.out.println("Digite o numero de fichas que deseja comprar");
 								do
 								{
@@ -511,15 +513,34 @@ public class Main {
 								}while(numeroFichas <= 0);				
 								
 								 if(meuSistema.recuperarClienteEspecifico(cpf) != null) {
+									 System.out.println(meuSistema.recuperarClienteEspecifico(cpf));
+									 System.out.println(Ficha.getPreco());
 									 meuSistema.adicionarFicha(Ficha.getPreco(), numeroFichas*Ficha.getPreco() ,meuSistema.recuperarClienteEspecifico(cpf));
 								 }
 								
-								 System.out.println(meuSistema.listarFichaPorCliente(meuSistema.recuperarClienteEspecifico(cpf)));
+								 //System.out.println(meuSistema.listarFichaPorCliente(meuSistema.recuperarClienteEspecifico(cpf)));
 								 break;
 								 
 							case 2:
+								boolean out = false;
 								
-								meuSistema.gastarFicha(meuSistema.recuperarFichaDoCliente(meuSistema.recuperarClienteEspecifico(cpf)));
+								do {
+									System.out.println("Digite 1 inserir prato na refeicao || Digite 2 para finalizar preenchimento");
+									int luizbobao = scan.nextInt();
+									
+									switch(luizbobao) {
+									case 1:
+										System.out.println("Digite o nome do prato: ");
+										String AdicionarPrato = scan.nextLine();
+										meuSistema.adicionarPratoRefeicao(AdicionarPrato);
+										break;
+									case 2:
+										out = true;
+									}
+									
+									
+								}while(!out);
+								meuSistema.gastarFicha(meuSistema.recuperarFichaDoCliente(meuSistema.recuperarClienteEspecifico(cpf)),meuSistema.listarRefeicao());
 								System.out.println("Entrada no RU liberada");
 								break;
 								 
