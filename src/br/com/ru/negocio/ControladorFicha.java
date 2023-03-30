@@ -1,6 +1,7 @@
 package br.com.ru.negocio;
 
 import java.security.SecureRandom;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -13,6 +14,7 @@ import br.com.ru.exceptions.ElementoNaoExisteException;
 import br.com.ru.exceptions.SaldoInsuficienteException;
 import br.com.ru.negocio.models.Cliente;
 import br.com.ru.negocio.models.Ficha;
+import br.com.ru.negocio.models.Ficha.StatusFicha;
 
 public class ControladorFicha {
 	private IRepositorioGenerico<Ficha> repositorioFicha;
@@ -34,31 +36,111 @@ public class ControladorFicha {
 		return instancia;
 	}	
 	
-	// Metodo para adicionar fichas
-	public void comprarFicha (double preco, double dinheiroCliente, Cliente cliente) 
-			throws ElementoJaExisteException, SaldoInsuficienteException
+	// Metodo para cadastrar fichas
+	private void cadastrarFicha () throws ElementoJaExisteException 
 	{
 		
 		SecureRandom randomico = new SecureRandom();
+		for(int i = 0; i < 100; i++)
+		{
+			boolean liberado = true;
+			String codigo = "";
+			String possivel = "";
+			do
+			{
+				possivel = codigo + (100000000 + randomico.nextLong(900000000));
+				for(Ficha f : repositorioFicha.ler())
+				{
+					if(possivel.equals(f.getCodigo()))
+					{
+						liberado = false;
+					}
+				}
+			}while(!liberado);
+			codigo += possivel;
+			Ficha novoFicha = new Ficha(codigo);
+			repositorioFicha.inserir(novoFicha);
+		}
+	}
+	
+	
+	// Metodo para comprar fichas
+	public void comprarFicha (double preco, double dinheiroCliente, Cliente cliente) 
+			throws ElementoJaExisteException, SaldoInsuficienteException
+	{
+		int sent = 0;
 		if(preco != 0.0 && cliente != null)
 		{
 			if(dinheiroCliente <= cliente.getSaldo())
 			{
-				for(int i = 0; i < Math.floor(dinheiroCliente / preco); i++)
+				double total = Math.floor(dinheiroCliente / preco) * preco;
+				do
 				{
-					String codigo = "";
-					codigo += (100000000 + randomico.nextLong(900000000));
-					Ficha novoFicha = new Ficha( cliente, codigo);
-					repositorioFicha.inserir(novoFicha);
-					cliente.debitar(preco);
-				}
-			}
-			else
-			{
-				throw new SaldoInsuficienteException(dinheiroCliente);
+					for(Ficha f : repositorioFicha.ler())
+					{
+						if(f.getCliente() == null)
+						{
+							sent++;
+							if(sent <= Math.floor(dinheiroCliente / preco))
+							{
+								f.setCliente(cliente);
+								f.setStatusFicha(StatusFicha.EFETIVADA);
+								f.setDataEfetivacao(LocalDateTime.now());
+							}
+						}
+					}
+					if(sent != Math.floor(dinheiroCliente / preco))
+					{
+						cadastrarFicha();
+					}
+				}while(sent != Math.floor(dinheiroCliente / preco));
+				cliente.debitar(total);
 			}
 		}
+		else
+		{
+			throw new SaldoInsuficienteException(dinheiroCliente);
+		}
 	}
+	
+//	// Metodo para adicionar fichas
+//	public void comprarFicha (double preco, double dinheiroCliente, Cliente cliente) 
+//			throws ElementoJaExisteException, SaldoInsuficienteException
+//	{
+//		
+//		SecureRandom randomico = new SecureRandom();
+//		if(preco != 0.0 && cliente != null)
+//		{
+//			if(dinheiroCliente <= cliente.getSaldo())
+//			{
+//				for(int i = 0; i < Math.floor(dinheiroCliente / preco); i++)
+//				{
+//					boolean liberado = true;
+//					String codigo = "";
+//					String possivel = "";
+//					do
+//					{
+//						possivel = codigo + (100000000 + randomico.nextLong(900000000));
+//						for(Ficha f : repositorioFicha.ler())
+//						{
+//							if(possivel.equals(f.getCodigo()))
+//							{
+//								liberado = false;
+//							}
+//						}
+//					}while(!liberado);
+//					codigo += possivel;
+//					Ficha novoFicha = new Ficha( cliente, codigo);
+//					repositorioFicha.inserir(novoFicha);
+//					cliente.debitar(preco);
+//				}
+//			}
+//			else
+//			{
+//				throw new SaldoInsuficienteException(dinheiroCliente);
+//			}
+//		}
+//	}
 	
 	// Metodo para mostrar fichas
 	public List<Ficha> listarFichas()
@@ -82,9 +164,10 @@ public class ControladorFicha {
 	public void gastarFicha (Ficha ficha) 
 			throws ElementoNaoExisteException
 	{
-		if(ficha != null)
+		if(ficha != null && ficha.getCliente() != null && ficha.getStatusFicha() == StatusFicha.EFETIVADA)
 		{
-			repositorioFicha.remover(ficha);
+			ficha.setDataConsumo(LocalDateTime.now());
+			ficha.setStatusFicha(StatusFicha.CONSUMIDA);
 		}
 	}
 	
@@ -100,20 +183,29 @@ public class ControladorFicha {
 		throw new ElementoNaoExisteException("Não existe um cliente com esse CPF!");
 	}
 	
+//	// Metodo para atualizar ficha
+//	public void atualizarFicha (double preco, Cliente cliente, String codigo) 
+//					throws ElementoNaoExisteException
+//	{
+//		
+//		Ficha fichaAtual = recuperarFicha(codigo);
+//		
+//		if(fichaAtual != null)
+//		{
+//			Ficha novoFicha = new Ficha(cliente, codigo);
+//			if(!fichaAtual.equals(novoFicha) && novoFicha != null)
+//			{
+//				repositorioFicha.atualizar(fichaAtual, novoFicha);
+//			}
+//		}
+//	}
+	
 	// Metodo para atualizar ficha
-	public void atualizarFicha (double preco, Cliente cliente, String codigo) 
-					throws ElementoNaoExisteException
+	public void atualizarPrecoFicha (double preco)
 	{
-		
-		Ficha pratoAtual = recuperarFicha(codigo);
-		
-		if(pratoAtual != null)
+		if(preco > 0.0)
 		{
-			Ficha novoFicha = new Ficha(cliente, codigo);
-			if(!pratoAtual.equals(novoFicha) && novoFicha != null)
-			{
-				repositorioFicha.atualizar(pratoAtual, novoFicha);
-			}
+			Ficha.setPreco(preco);
 		}
 	}
 	
@@ -122,18 +214,39 @@ public class ControladorFicha {
 		List<Ficha> fichas = repositorioFicha.ler();
 		List<Ficha> fichasDoCliente = new ArrayList<>();
 		for (Ficha f : fichas) {
-			if (f.getCliente().equals(cliente)) {
+			if (f.getCliente().equals(cliente) && f.getStatusFicha() == StatusFicha.EFETIVADA) {
 				fichasDoCliente.add(f);
 			}
 		}
 		return Collections.unmodifiableList(fichasDoCliente);
 	}
 	
+	public int numeroDeFichaPorCliente(Cliente cliente) throws ElementoNaoExisteException
+	{
+		if(cliente != null)
+		{
+			int numeroFichas = 0;
+			List<Ficha> fichas = repositorioFicha.ler();
+			for(Ficha f : fichas)
+			{
+				if(f.getCliente().equals(cliente) && f.getStatusFicha() == StatusFicha.EFETIVADA)
+				{
+					numeroFichas++;
+				}
+			}
+			return numeroFichas;
+		}
+		else
+		{
+			throw new ElementoNaoExisteException(cliente);
+		}
+	}
+	
 	public Ficha recuperarFichaDoCliente(Cliente cliente) throws ElementoNaoExisteException {
 		// Busca a ficha pelo codigo
 		List<Ficha> fichas = repositorioFicha.ler();
 		for (Ficha f : fichas) {
-			if (f.getCliente().equals(cliente)) {
+			if (f.getCliente().equals(cliente) && f.getStatusFicha() == StatusFicha.EFETIVADA) {
 				return f;
 			}
 		}

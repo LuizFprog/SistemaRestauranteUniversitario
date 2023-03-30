@@ -8,10 +8,10 @@ import br.com.ru.exceptions.ElementoJaExisteException;
 import br.com.ru.exceptions.ElementoNaoExisteException;
 import br.com.ru.negocio.models.ItemConsumivel;
 
-public class RepositorioPrato implements IRepositorioGenerico<ItemConsumivel> {
+public class RepositorioItemConsumivel implements IRepositorioGenerico<ItemConsumivel> {
     private List<ItemConsumivel> pratos;
 
-    public RepositorioPrato(List<ItemConsumivel> pratos) {
+    public RepositorioItemConsumivel(List<ItemConsumivel> pratos) {
         this.pratos = new ArrayList<>();
     }
 

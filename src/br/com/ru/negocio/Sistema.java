@@ -15,14 +15,14 @@ import br.com.ru.negocio.models.Usuario;
 public class Sistema {
 	
 	private ControladorUsuario controladorUsuario;
-	private ControladorPrato controladorPrato;
+	private ControladorItemConsumivel controladorPrato;
 	private ControladorFicha controladorFicha;
 	private static Sistema instancia;
 	
 	public Sistema()
 	{
 		this.controladorUsuario = ControladorUsuario.getInstancia();
-		this.controladorPrato = ControladorPrato.getInstancia();
+		this.controladorPrato = ControladorItemConsumivel.getInstancia();
 		this.controladorFicha = ControladorFicha.getInstancia();
 	}
 	
@@ -159,6 +159,26 @@ public class Sistema {
 		return controladorPrato.listarTodosPratos();
 	}
 	
+	public List<ItemConsumivel> cardapioTrivial()
+	{
+		return controladorPrato.cardapioTrivial();
+	}
+	
+	public List<ItemConsumivel> cardapioVegano()
+	{
+		return controladorPrato.cardapioVegano();
+	}
+	
+	public List<ItemConsumivel> cardapioSuco()
+	{
+		return controladorPrato.cardapioSuco();
+	}
+	
+	public List<ItemConsumivel> cardapioSobremesa()
+	{
+		return controladorPrato.cardapioSobremesa();
+	}
+	
 	// Atualiza prato que possua o nomeAtual passado como parametro com as informações, também passadas como parametro
 	public void atualizarPrato(String nomeAtual, String nome, 
 			boolean gluten, boolean lactose, TipoCardapio tipoPrato, boolean visivel) 
@@ -239,5 +259,21 @@ public class Sistema {
 			return controladorFicha.recuperarFichaDoCliente((Cliente) cliente);
 		}
 		return null;
+	}
+	
+	// Retorna o número de fichas do cliente
+	public int numeroDeFichaPorCliente(Usuario cliente) throws ElementoNaoExisteException
+	{
+		if(cliente instanceof Cliente)
+		{
+			return controladorFicha.numeroDeFichaPorCliente((Cliente)cliente);
+		}
+		return 0;
+	}
+	
+	// Atualiza o preço da ficha
+	public void atualizarPrecoFicha(double preco)
+	{
+		controladorFicha.atualizarPrecoFicha(preco);
 	}
 }

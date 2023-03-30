@@ -43,7 +43,7 @@ public class ControladorUsuario {
 		if (primeiroNome != null && ultimoNome != null && cpf != null && login != null && senha != null) {
 			
 			
-			Cliente novo_cliente = new Cliente(primeiroNome, ultimoNome, cpf, login, senha, 0, 0);
+			Cliente novo_cliente = new Cliente(primeiroNome, ultimoNome, cpf, login, senha, 0);
 			repositorioUsuario.inserir(novo_cliente);
 		}	
 		
@@ -121,7 +121,7 @@ public List<Funcionario> listarTodosFuncionarios(){
 		
 		Cliente clienteAtual = (Cliente) recuperarUsuario(cpfAtual);
 		
-		Cliente novo = new Cliente(primeiroNome, ultimoNome, clienteAtual.getCpf(), login, senha, clienteAtual.getNumeroFichas(), clienteAtual.getSaldo());
+		Cliente novo = new Cliente(primeiroNome, ultimoNome, clienteAtual.getCpf(), login, senha, clienteAtual.getSaldo());
 		repositorioUsuario.atualizar(clienteAtual, novo);	
 	}
 	
