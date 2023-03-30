@@ -70,11 +70,14 @@ public class ControladorFicha {
 	public void comprarFicha (double preco, double dinheiroCliente, Cliente cliente) 
 			throws ElementoJaExisteException, SaldoInsuficienteException
 	{
-		int sent = 0;
+		double sent = 0.0;
+		
 		if(preco != 0.0 && cliente != null)
 		{
+			
 			if(dinheiroCliente <= cliente.getSaldo())
 			{
+				
 				double total = Math.floor(dinheiroCliente / preco) * preco;
 				do
 				{
@@ -82,9 +85,10 @@ public class ControladorFicha {
 					{
 						if(f.getCliente() == null)
 						{
-							sent++;
-							if(sent <= Math.floor(dinheiroCliente / preco))
+							
+							if(sent < Math.floor(dinheiroCliente / preco))
 							{
+								sent++;
 								f.setCliente(cliente);
 								f.setStatusFicha(StatusFicha.EFETIVADA);
 								f.setDataEfetivacao(LocalDateTime.now());
@@ -95,7 +99,9 @@ public class ControladorFicha {
 					{
 						cadastrarFicha();
 					}
+					
 				}while(sent != Math.floor(dinheiroCliente / preco));
+				
 				cliente.debitar(total);
 			}
 		}
@@ -217,8 +223,10 @@ public class ControladorFicha {
 		List<Ficha> fichas = repositorioFicha.ler();
 		List<Ficha> fichasDoCliente = new ArrayList<>();
 		for (Ficha f : fichas) {
-			if (f.getCliente().equals(cliente) && f.getStatusFicha() == StatusFicha.EFETIVADA) {
-				fichasDoCliente.add(f);
+			if(f.getCliente() != null) {
+				if (f.getCliente().equals(cliente) && f.getStatusFicha() == StatusFicha.EFETIVADA) {
+					fichasDoCliente.add(f);
+				}
 			}
 		}
 		return Collections.unmodifiableList(fichasDoCliente);
@@ -232,9 +240,13 @@ public class ControladorFicha {
 			List<Ficha> fichas = repositorioFicha.ler();
 			for(Ficha f : fichas)
 			{
-				if(f.getCliente().equals(cliente) && f.getStatusFicha() == StatusFicha.EFETIVADA)
+				if(f.getCliente() != null)
 				{
-					numeroFichas++;
+					System.out.println(f.getCliente());
+					if(f.getCliente().equals(cliente) && f.getStatusFicha() == StatusFicha.EFETIVADA)
+					{
+						numeroFichas++;
+					}
 				}
 			}
 			return numeroFichas;

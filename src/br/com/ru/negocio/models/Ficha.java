@@ -9,7 +9,7 @@ public class Ficha {
 	}
 	
 	private StatusFicha statusFicha;
-	private static double preco;
+	private static double preco =  3.0;
 	private Cliente cliente;
 	private String codigo;
 	private LocalDateTime dataEfetivacao = null;
@@ -18,8 +18,7 @@ public class Ficha {
 	
 	public Ficha(String cod) {
 		
-		Ficha.preco = 3.0;
-		this.cliente = null;
+		//Ficha.preco = 3.0;
 		this.codigo = cod;
 		this.statusFicha = StatusFicha.NAO_OPERANTE;
 	}
