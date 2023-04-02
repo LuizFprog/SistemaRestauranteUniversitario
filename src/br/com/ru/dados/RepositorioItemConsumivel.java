@@ -9,16 +9,16 @@ import br.com.ru.exceptions.ElementoNaoExisteException;
 import br.com.ru.negocio.models.ItemConsumivel;
 
 public class RepositorioItemConsumivel implements IRepositorioGenerico<ItemConsumivel> {
-    private List<ItemConsumivel> itemConsumivels;
+    private List<ItemConsumivel> itensConsumiveis;
 
-    public RepositorioItemConsumivel(List<ItemConsumivel> itemConsumivels) {
-        this.itemConsumivels = new ArrayList<>();
+    public RepositorioItemConsumivel(List<ItemConsumivel> itensConsumiveis) {
+        this.itensConsumiveis = new ArrayList<>();
     }
 
     @Override
     public void inserir(ItemConsumivel novoItemConsumivel) throws ElementoJaExisteException {
-        if (!this.itemConsumivels.contains(novoItemConsumivel)) {
-            itemConsumivels.add(novoItemConsumivel);
+        if (!this.itensConsumiveis.contains(novoItemConsumivel)) {
+            itensConsumiveis.add(novoItemConsumivel);
         } else {
             throw new ElementoJaExisteException(novoItemConsumivel);
         }
@@ -31,12 +31,12 @@ public class RepositorioItemConsumivel implements IRepositorioGenerico<ItemConsu
     
     public List<ItemConsumivel> lerTodos()
     {
-    	return Collections.unmodifiableList(itemConsumivels);
+    	return Collections.unmodifiableList(itensConsumiveis);
     }
 
     public List<ItemConsumivel> listarVisiveis() {
         List<ItemConsumivel> visiveis = new ArrayList<>();
-        for (ItemConsumivel itemConsumivel : itemConsumivels) {
+        for (ItemConsumivel itemConsumivel : itensConsumiveis) {
             if (itemConsumivel.isVisivel()) {
                 visiveis.add(itemConsumivel);
             }
@@ -46,8 +46,8 @@ public class RepositorioItemConsumivel implements IRepositorioGenerico<ItemConsu
 
     @Override
     public void remover(ItemConsumivel conteudo) throws ElementoNaoExisteException {
-        if (this.itemConsumivels.contains(conteudo)) {
-            this.itemConsumivels.remove(conteudo);
+        if (this.itensConsumiveis.contains(conteudo)) {
+            this.itensConsumiveis.remove(conteudo);
         } else {
             throw new ElementoNaoExisteException(conteudo);
         }
@@ -55,9 +55,9 @@ public class RepositorioItemConsumivel implements IRepositorioGenerico<ItemConsu
 
     @Override
     public void atualizar(ItemConsumivel itemConsumivel, ItemConsumivel novoItemConsumivel) throws ElementoNaoExisteException {
-        if (this.itemConsumivels.contains(itemConsumivel)) {
-            int indice = this.itemConsumivels.indexOf(itemConsumivel);
-            this.itemConsumivels.set(indice, novoItemConsumivel);
+        if (this.itensConsumiveis.contains(itemConsumivel)) {
+            int indice = this.itensConsumiveis.indexOf(itemConsumivel);
+            this.itensConsumiveis.set(indice, novoItemConsumivel);
         } else {
             throw new ElementoNaoExisteException(itemConsumivel);
         }
