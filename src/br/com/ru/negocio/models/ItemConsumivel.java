@@ -8,7 +8,7 @@ public class ItemConsumivel {
 	}
 	
 	private String nome;
-	private TipoCardapio tipoPrato;
+	private TipoCardapio tipoItemConsumivel;
 	//private boolean vegano;
 	private boolean gluten;
 	private boolean lactose;
@@ -17,9 +17,9 @@ public class ItemConsumivel {
 	private boolean visivel;	
 	
 	public ItemConsumivel(String nome, boolean gluten, boolean lactose, 
-			TipoCardapio tipoPrato, boolean visivel) {
+			TipoCardapio tipoItemConsumivel, boolean visivel) {
 		this.nome = nome;
-		this.tipoPrato = tipoPrato;
+		this.tipoItemConsumivel = tipoItemConsumivel;
 		//this.vegano = vegano;
 		this.gluten = gluten;
 		this.lactose = lactose;
@@ -46,12 +46,12 @@ public class ItemConsumivel {
 //		this.vegano = vegano;
 //	}
 	
-	public TipoCardapio getTipoPrato() {
-		return tipoPrato;
+	public TipoCardapio getTipoItemConsumivel() {
+		return tipoItemConsumivel;
 	}
 
-	public void setTipoPrato(TipoCardapio tipoPrato) {
-		this.tipoPrato = tipoPrato;
+	public void setTipoItemConsumivel(TipoCardapio tipoItemConsumivel) {
+		this.tipoItemConsumivel = tipoItemConsumivel;
 	}
 
 	public boolean isGluten() {
@@ -96,7 +96,7 @@ public class ItemConsumivel {
 
 	@Override
 	public String toString() {
-		return "Prato [nome=" + nome + ", tipoPrato=" + tipoPrato + ", gluten=" + gluten + ", lactose=" + lactose
+		return "ItemConsumivel [nome=" + nome + ", tipoItemConsumivel=" + tipoItemConsumivel + ", gluten=" + gluten + ", lactose=" + lactose
 				+ ", visivel=" + visivel + "]";
 	}
 
@@ -115,7 +115,7 @@ public class ItemConsumivel {
 //			return false;
 //		if (getClass() != obj.getClass())
 //			return false;
-//		Prato other = (Prato) obj;
+//		ItemConsumivel other = (ItemConsumivel) obj;
 //		return gluten == other.gluten && lactose == other.lactose && Objects.equals(nome, other.nome) && suco == other.suco
 //				&& vegano == other.vegano && visivel == other.visivel;
 //	}
