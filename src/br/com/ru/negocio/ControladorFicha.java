@@ -145,18 +145,6 @@ public class ControladorFicha {
 		return repositorioFicha.ler();
 	}
 	
-//	// Metodo para mostrar fichas mais novas
-//	public List<Ficha> listarFichasRecentes()
-//	{
-//		List<Ficha> atual = repositorioFicha.ler();
-//		List<Ficha> nova = new ArrayList<>();
-//		for(int i = atual.size(); i > 0; i--)
-//		{
-//			nova.add(atual.get(i));
-//		}
-//		return ((RepositorioFicha) nova).ler();
-//	}
-	
 	// Metodo para remover ficha
 	public void gastarFicha (Ficha ficha, List<ItemConsumivel> refeicao)
 			throws ElementoNaoExisteException

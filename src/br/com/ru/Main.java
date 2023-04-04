@@ -97,13 +97,13 @@ public class Main {
 								switch(sent)
 								{
 								case 1:
-									System.out.println(meuSistema.verTodosPratos());
+									System.out.println(meuSistema.verTodosItemConsumiveis());
 									System.out.println("Digite o nome do prato para adicão no cardapio:");
 									scan.nextLine();
 									nomePrato = scan.nextLine();
-									if(meuSistema.recuperarPrato(nomePrato).isVisivel() == false)
+									if(meuSistema.recuperarItemConsumivel(nomePrato).isVisivel() == false)
 									{
-										meuSistema.colocarNoCardapio(meuSistema.recuperarPrato(nomePrato));
+										meuSistema.colocarNoCardapio(meuSistema.recuperarItemConsumivel(nomePrato));
 									}
 									else
 									{
@@ -116,9 +116,9 @@ public class Main {
 									System.out.println("Digite o nome do prato para remoção do cardapio");
 									scan.nextLine();
 									nomePrato = scan.nextLine();
-									if(meuSistema.recuperarPrato(nomePrato).isVisivel() == true)
+									if(meuSistema.recuperarItemConsumivel(nomePrato).isVisivel() == true)
 									{
-										meuSistema.removerDoCardapio(meuSistema.recuperarPrato(nomePrato));
+										meuSistema.removerDoCardapio(meuSistema.recuperarItemConsumivel(nomePrato));
 									}
 									else
 									{
@@ -261,7 +261,7 @@ public class Main {
 										break;
 										
 									}
-									meuSistema.adicionarPrato(nome, gluten, lactose, tipoPrato, visivel);
+									meuSistema.adicionarItemConsumivel(nome, gluten, lactose, tipoPrato, visivel);
 									break;
 									
 								case 2: 
@@ -391,7 +391,7 @@ public class Main {
 										
 									}
 									
-									meuSistema.atualizarPrato(nomeAtual, novoNome, gluten, lactose, tipoPrato, visivel);
+									meuSistema.atualizarItemConsumivel(nomeAtual, novoNome, gluten, lactose, tipoPrato, visivel);
 									break;
 									
 								case 3: 
@@ -400,12 +400,12 @@ public class Main {
 									scan.nextLine();
 									nome = scan.nextLine();
 									
-									meuSistema.removerPrato(nome);
+									meuSistema.removerItemConsumivel(nome);
 									break;
 									
 								case 4:
 									
-									System.out.println(meuSistema.verTodosPratos());
+									System.out.println(meuSistema.verTodosItemConsumiveis());
 									break;
 																
 								}
@@ -538,7 +538,7 @@ public class Main {
 									case 1:
 										System.out.println("Digite o nome do prato: ");
 										String AdicionarPrato = scan.nextLine();
-										meuSistema.adicionarPratoRefeicao(AdicionarPrato);
+										meuSistema.adicionarItemConsumivelRefeicao(AdicionarPrato);
 										break;
 									case 2:
 										out = true;

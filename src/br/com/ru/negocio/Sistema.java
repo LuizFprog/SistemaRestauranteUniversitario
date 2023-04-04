@@ -154,7 +154,7 @@ public class Sistema {
 	}
 	
 	// Retorna todos os itemConsumivels
-	public List<ItemConsumivel> verTodosItemConsumivels()
+	public List<ItemConsumivel> verTodosItemConsumiveis()
 	{
 		return controladorItemConsumivel.listarTodosItemConsumiveis();
 	}
