@@ -18,7 +18,6 @@ public class Ficha {
 	
 	public Ficha(String cod) {
 		
-		//Ficha.preco = 3.0;
 		this.codigo = cod;
 		this.statusFicha = StatusFicha.NAO_OPERANTE;
 	}
@@ -84,9 +83,5 @@ public class Ficha {
 		return "Ficha [statusFicha=" + statusFicha + ", preco=" + preco + ", cliente=" + cliente + ", codigo=" + codigo
 				+ ", dataEfetivacao=" + dataEfetivacao + ", dataConsumo=" + dataConsumo + "]";
 	}
-
-	
-
-
 	
 }

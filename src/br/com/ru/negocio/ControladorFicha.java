@@ -100,45 +100,6 @@ public class ControladorFicha {
 		}
 	}
 	
-//	// Metodo para adicionar fichas
-//	public void comprarFicha (double preco, double dinheiroCliente, Cliente cliente) 
-//			throws ElementoJaExisteException, SaldoInsuficienteException
-//	{
-//		
-//		SecureRandom randomico = new SecureRandom();
-//		if(preco != 0.0 && cliente != null)
-//		{
-//			if(dinheiroCliente <= cliente.getSaldo())
-//			{
-//				for(int i = 0; i < Math.floor(dinheiroCliente / preco); i++)
-//				{
-//					boolean liberado = true;
-//					String codigo = "";
-//					String possivel = "";
-//					do
-//					{
-//						possivel = codigo + (100000000 + randomico.nextLong(900000000));
-//						for(Ficha f : repositorioFicha.ler())
-//						{
-//							if(possivel.equals(f.getCodigo()))
-//							{
-//								liberado = false;
-//							}
-//						}
-//					}while(!liberado);
-//					codigo += possivel;
-//					Ficha novoFicha = new Ficha( cliente, codigo);
-//					repositorioFicha.inserir(novoFicha);
-//					cliente.debitar(preco);
-//				}
-//			}
-//			else
-//			{
-//				throw new SaldoInsuficienteException(dinheiroCliente);
-//			}
-//		}
-//	}
-	
 	// Metodo para mostrar fichas
 	public List<Ficha> listarFichas()
 	{
@@ -168,23 +129,6 @@ public class ControladorFicha {
 		// Caso não encontre, lança exceção
 		throw new ElementoNaoExisteException("Não existe um cliente com esse CPF!");
 	}
-	
-//	// Metodo para atualizar ficha
-//	public void atualizarFicha (double preco, Cliente cliente, String codigo) 
-//					throws ElementoNaoExisteException
-//	{
-//		
-//		Ficha fichaAtual = recuperarFicha(codigo);
-//		
-//		if(fichaAtual != null)
-//		{
-//			Ficha novoFicha = new Ficha(cliente, codigo);
-//			if(!fichaAtual.equals(novoFicha) && novoFicha != null)
-//			{
-//				repositorioFicha.atualizar(fichaAtual, novoFicha);
-//			}
-//		}
-//	}
 	
 	// Metodo para atualizar ficha
 	public void atualizarPrecoFicha (double preco)
