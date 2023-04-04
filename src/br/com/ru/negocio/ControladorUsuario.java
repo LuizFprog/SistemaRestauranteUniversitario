@@ -29,7 +29,7 @@ public class ControladorUsuario {
         return instancia;
 	}
 	
-//Método para criar um novo cliente
+	//Método para criar um novo cliente
 	public void criarCliente(String primeiroNome, String ultimoNome, String cpf, String login, String senha) throws ElementoJaExisteException {
 		
 		List<Usuario> usuarios = repositorioUsuario.ler();
@@ -77,7 +77,7 @@ public class ControladorUsuario {
 		return nova;
 	}
 	
-public List<Funcionario> listarTodosFuncionarios(){
+	public List<Funcionario> listarTodosFuncionarios(){
 		
 		List<Usuario> atual = repositorioUsuario.ler();
 		List<Funcionario> nova = new ArrayList<>();
@@ -198,10 +198,7 @@ public List<Funcionario> listarTodosFuncionarios(){
 	public void excluirFuncionario(String cpf) throws ElementoNaoExisteException {
 		// Busca o cliente pelo CPF
 		Funcionario funcionario = (Funcionario) recuperarUsuario(cpf);
-		// Remove o cliente do repositório
-		
-	
-		
+		// Remove o cliente do repositório	
 		repositorioUsuario.remover(funcionario);
 		
 	}
