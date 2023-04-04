@@ -9,18 +9,18 @@ import br.com.ru.exceptions.ElementoNaoExisteException;
 import br.com.ru.negocio.models.ItemConsumivel;
 
 public class RepositorioItemConsumivel implements IRepositorioGenerico<ItemConsumivel> {
-    private List<ItemConsumivel> pratos;
+    private List<ItemConsumivel> itensConsumiveis;
 
-    public RepositorioItemConsumivel(List<ItemConsumivel> pratos) {
-        this.pratos = new ArrayList<>();
+    public RepositorioItemConsumivel(List<ItemConsumivel> itensConsumiveis) {
+        this.itensConsumiveis = new ArrayList<>();
     }
 
     @Override
-    public void inserir(ItemConsumivel novoPrato) throws ElementoJaExisteException {
-        if (!this.pratos.contains(novoPrato)) {
-            pratos.add(novoPrato);
+    public void inserir(ItemConsumivel novoItemConsumivel) throws ElementoJaExisteException {
+        if (!this.itensConsumiveis.contains(novoItemConsumivel)) {
+            itensConsumiveis.add(novoItemConsumivel);
         } else {
-            throw new ElementoJaExisteException(novoPrato);
+            throw new ElementoJaExisteException(novoItemConsumivel);
         }
     }
 
@@ -31,14 +31,14 @@ public class RepositorioItemConsumivel implements IRepositorioGenerico<ItemConsu
     
     public List<ItemConsumivel> lerTodos()
     {
-    	return Collections.unmodifiableList(pratos);
+    	return Collections.unmodifiableList(itensConsumiveis);
     }
 
     public List<ItemConsumivel> listarVisiveis() {
         List<ItemConsumivel> visiveis = new ArrayList<>();
-        for (ItemConsumivel prato : pratos) {
-            if (prato.isVisivel()) {
-                visiveis.add(prato);
+        for (ItemConsumivel itemConsumivel : itensConsumiveis) {
+            if (itemConsumivel.isVisivel()) {
+                visiveis.add(itemConsumivel);
             }
         }
         return Collections.unmodifiableList(visiveis);
@@ -46,20 +46,20 @@ public class RepositorioItemConsumivel implements IRepositorioGenerico<ItemConsu
 
     @Override
     public void remover(ItemConsumivel conteudo) throws ElementoNaoExisteException {
-        if (this.pratos.contains(conteudo)) {
-            this.pratos.remove(conteudo);
+        if (this.itensConsumiveis.contains(conteudo)) {
+            this.itensConsumiveis.remove(conteudo);
         } else {
             throw new ElementoNaoExisteException(conteudo);
         }
     }
 
     @Override
-    public void atualizar(ItemConsumivel prato, ItemConsumivel novoPrato) throws ElementoNaoExisteException {
-        if (this.pratos.contains(prato)) {
-            int indice = this.pratos.indexOf(prato);
-            this.pratos.set(indice, novoPrato);
+    public void atualizar(ItemConsumivel itemConsumivel, ItemConsumivel novoItemConsumivel) throws ElementoNaoExisteException {
+        if (this.itensConsumiveis.contains(itemConsumivel)) {
+            int indice = this.itensConsumiveis.indexOf(itemConsumivel);
+            this.itensConsumiveis.set(indice, novoItemConsumivel);
         } else {
-            throw new ElementoNaoExisteException(prato);
+            throw new ElementoNaoExisteException(itemConsumivel);
         }
     }
 }

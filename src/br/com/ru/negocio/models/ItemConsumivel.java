@@ -8,15 +8,15 @@ public class ItemConsumivel {
 	}
 	
 	private String nome;
-	private TipoCardapio tipoPrato;
+	private TipoCardapio tipoItemConsumivel;
 	private boolean gluten;
 	private boolean lactose;
 	private boolean visivel;	
 	
 	public ItemConsumivel(String nome, boolean gluten, boolean lactose, 
-			TipoCardapio tipoPrato, boolean visivel) {
+			TipoCardapio tipoItemConsumivel, boolean visivel) {
 		this.nome = nome;
-		this.tipoPrato = tipoPrato;
+		this.tipoItemConsumivel = tipoItemConsumivel;
 		this.gluten = gluten;
 		this.lactose = lactose;
 		this.visivel = visivel;
@@ -30,12 +30,12 @@ public class ItemConsumivel {
 		this.nome = nome;
 	}		
 	
-	public TipoCardapio getTipoPrato() {
-		return tipoPrato;
+	public TipoCardapio getTipoItemConsumivel() {
+		return tipoItemConsumivel;
 	}
 
-	public void setTipoPrato(TipoCardapio tipoPrato) {
-		this.tipoPrato = tipoPrato;
+	public void setTipoItemConsumivel(TipoCardapio tipoItemConsumivel) {
+		this.tipoItemConsumivel = tipoItemConsumivel;
 	}
 
 	public boolean isGluten() {
@@ -64,8 +64,7 @@ public class ItemConsumivel {
 
 	@Override
 	public String toString() {
-		return "Prato [nome=" + nome + ", tipoPrato=" + tipoPrato + ", gluten=" + gluten + ", lactose=" + lactose
+		return "ItemConsumivel [nome=" + nome + ", tipoItemConsumivel=" + tipoItemConsumivel + ", gluten=" + gluten + ", lactose=" + lactose
 				+ ", visivel=" + visivel + "]";
-	}
-	
+	}	
 }

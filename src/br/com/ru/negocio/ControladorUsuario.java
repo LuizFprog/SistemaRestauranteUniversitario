@@ -155,12 +155,9 @@ public class ControladorUsuario {
 			if (c.getCpf().equals(cpf) || c.getLogin().equals(login)){
 				throw new ElementoJaExisteException("Já existe um usuario com o mesmo CPF ou login!");
 			}
-			if(c instanceof Funcionario)
+			if(c instanceof Funcionario && ((Funcionario)c).getId().equals(id))
 			{
-				if(((Funcionario)c).getId().equals(id))
-				{
-					throw new ElementoJaExisteException("Já existe um funcionario com o mesmo id");
-				}
+				throw new ElementoJaExisteException("Já existe um funcionario com o mesmo id");
 			}
 		}
 		
@@ -176,11 +173,11 @@ public class ControladorUsuario {
         return repositorioUsuario.ler();
     }
 	
-	public void removerFuncionario (Funcionario removeFuncionario) 
-			throws ElementoNaoExisteException
-	{
-		repositorioUsuario.remover(removeFuncionario);
-	}
+//	public void removerFuncionario (Funcionario removeFuncionario) 
+//			throws ElementoNaoExisteException
+//	{
+//		repositorioUsuario.remover(removeFuncionario);
+//	}
 	
 	// Recuperar funcionario
 	public Usuario recuperarFuncionario(String cpf) throws ElementoNaoExisteException {
