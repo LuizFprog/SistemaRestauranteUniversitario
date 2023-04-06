@@ -31,6 +31,45 @@ public class RepositorioFicha implements IRepositorioGenerico<Ficha>{
 	public List<Ficha> ler() {
 		return Collections.unmodifiableList(fichas);
 	}
+	
+	public List<Ficha> lerMes(int mes)
+	{
+		List<Ficha> fichaMes = new ArrayList<>();
+		for(Ficha f : fichas)
+		{
+			if(f.getDataConsumo().getMonthValue() == mes)
+			{
+				fichaMes.add(f);
+			}
+		}
+		return fichaMes;
+	}
+	
+	public List<Ficha> lerDia(int dia)
+	{
+		List<Ficha> fichaMes = new ArrayList<>();
+		for(Ficha f : fichas)
+		{
+			if(f.getDataConsumo().getDayOfMonth() == dia)
+			{
+				fichaMes.add(f);
+			}
+		}
+		return fichaMes;
+	}
+	
+	public List<Ficha> lerAno(int ano)
+	{
+		List<Ficha> fichaMes = new ArrayList<>();
+		for(Ficha f : fichas)
+		{
+			if(f.getDataConsumo().getYear() == ano)
+			{
+				fichaMes.add(f);
+			}
+		}
+		return fichaMes;
+	}
 
 	@Override
 	public void remover(Ficha ficha) throws ElementoNaoExisteException {

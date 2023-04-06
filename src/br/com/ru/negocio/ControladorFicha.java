@@ -118,17 +118,17 @@ public class ControladorFicha {
 		}
 	}
 	
-	public Ficha recuperarFicha(String codigo) throws ElementoNaoExisteException {
-		// Busca a ficha pelo codigo
-		List<Ficha> listaFicha = repositorioFicha.ler();
-		for (Ficha f : listaFicha) {
-			if (f.getCodigo().equals(codigo)) {
-				return f;
-			}
-		}
-		// Caso não encontre, lança exceção
-		throw new ElementoNaoExisteException("Não existe um cliente com esse CPF!");
-	}
+//	public Ficha recuperarFicha(String codigo) throws ElementoNaoExisteException {
+//		// Busca a ficha pelo codigo
+//		List<Ficha> listaFicha = repositorioFicha.ler();
+//		for (Ficha f : listaFicha) {
+//			if (f.getCodigo().equals(codigo)) {
+//				return f;
+//			}
+//		}
+//		// Caso não encontre, lança exceção
+//		throw new ElementoNaoExisteException("Não existe um cliente com esse CPF!");
+//	}
 	
 	// Metodo para atualizar ficha
 	public void atualizarPrecoFicha (double preco)
@@ -183,17 +183,18 @@ public class ControladorFicha {
 		return null;
 	}
 	
-	public List<Ficha> listarFichaPorPeriodo(int mes)
+	public List<Ficha> listarFichaPorDia(int dia)
 	{
-		List<Ficha> listaFicha = repositorioFicha.ler();
-		List<Ficha> fichaMes = new ArrayList<>();
-		for(Ficha f : listaFicha)
-		{
-			if(f.getDataConsumo().getMonthValue() == mes)
-			{
-				fichaMes.add(f);
-			}
-		}
-		return fichaMes;
+		return ((RepositorioFicha)repositorioFicha).lerDia(dia);
+	}
+	
+	public List<Ficha> listarFichaPorMes(int mes)
+	{
+		return ((RepositorioFicha)repositorioFicha).lerMes(mes);
+	}
+	
+	public List<Ficha> listarFichaPorAno(int ano)
+	{
+		return ((RepositorioFicha)repositorioFicha).lerAno(ano);
 	}
 }

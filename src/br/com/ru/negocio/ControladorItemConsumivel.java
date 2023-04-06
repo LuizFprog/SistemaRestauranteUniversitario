@@ -79,12 +79,12 @@ public class ControladorItemConsumivel {
 	// Metodo para Mostrar Cardapio
 	public List<ItemConsumivel> mostrarCardapio()
 	{
-		return cardapio.ler();
+		return cardapio.ler(); // Modificação necessaria
 	}
 	
 	private List<ItemConsumivel> tipoCardapio (TipoCardapio tipo)
 	{
-		List<ItemConsumivel> atual = ((RepositorioItemConsumivel) cardapio).lerTodos();
+		List<ItemConsumivel> atual = ((RepositorioItemConsumivel) cardapio).ler(); // Modificação necessaria
 		List<ItemConsumivel> cardapioDoTipoEspecificado = new ArrayList<>();
 		for(ItemConsumivel i : atual)
 		{
