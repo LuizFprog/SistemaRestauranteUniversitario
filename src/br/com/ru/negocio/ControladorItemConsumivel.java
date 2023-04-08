@@ -14,13 +14,11 @@ import br.com.ru.negocio.models.Refeicao;
 
 public class ControladorItemConsumivel {
 	private IRepositorioGenerico<ItemConsumivel> cardapio;
-	private IRepositorioGenerico<ItemConsumivel> refeicao;
 	private static ControladorItemConsumivel instancia;
 	private List<ItemConsumivel> listaItemConsumivel;
 	
 	private ControladorItemConsumivel() {
 		this.cardapio = new RepositorioItemConsumivel(listaItemConsumivel);
-		this.refeicao = new Refeicao(listaItemConsumivel);
 	}
 	
 	
@@ -46,34 +44,6 @@ public class ControladorItemConsumivel {
 		}
 	}
 	
-	public void adicionarItemConsumivelNaRefeicao(String itemConsumivel) throws ElementoJaExisteException, ElementoNaoExisteException
-	{
-		ItemConsumivel novoItemConsumivel = recuperarItemConsumivel(itemConsumivel);
-		if(itemConsumivel != null && novoItemConsumivel != null && novoItemConsumivel.isVisivel())
-		{
-			this.refeicao.inserir(novoItemConsumivel);
-		}
-	}
-	
-	public void removerItemConsumivelDaRefeicao(String itemConsumivel) throws ElementoNaoExisteException
-	{
-		ItemConsumivel itemConsumivelRemover = recuperarItemConsumivel(itemConsumivel);
-		List<ItemConsumivel> pratos = refeicao.ler();
-		if(pratos.contains(itemConsumivelRemover))
-		{
-			refeicao.remover(itemConsumivelRemover);
-		}
-	}
-	
-	public List<ItemConsumivel> listarRefeicao()
-	{
-		return refeicao.ler();
-	}
-	
-	public void resetarRefeicao()
-	{
-		refeicao = null;
-	}
 	
 	// Metodo para Mostrar Cardapio
 	public List<ItemConsumivel> mostrarCardapio()

@@ -1,62 +1,59 @@
 package br.com.ru.negocio.models;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 
-import br.com.ru.dados.IRepositorioGenerico;
-import br.com.ru.exceptions.ElementoJaExisteException;
-import br.com.ru.exceptions.ElementoNaoExisteException;
 
-public class Refeicao implements IRepositorioGenerico<ItemConsumivel>{
-	private List<ItemConsumivel> refeicao;
+
+public class Refeicao{
+	
+	private List<ItemConsumivel> itensConsumiveis;
+	private Ficha fichas;
 	
 	
-	public Refeicao(List<ItemConsumivel> refeicao)
-	{
-		this.refeicao = new ArrayList<>();
-		
+	
+	public Refeicao(List<ItemConsumivel> itensConsumiveis, Ficha fichas) {
+		super();
+		this.itensConsumiveis = new ArrayList<>();
+		this.fichas = fichas;
 	}
 	
+	public List<ItemConsumivel> getItensConsumiveis() {
+		return itensConsumiveis;
+	}
+	public void setItensConsumiveis(List<ItemConsumivel> itens) {
+		itensConsumiveis = itens;
+	}
+	public Ficha getFichas() {
+		return fichas;
+	}
+	public void setFichas(Ficha fichas) {
+		this.fichas = fichas;
+	}
+
+	
+	
 	@Override
-	public void inserir(ItemConsumivel novo)throws ElementoJaExisteException{
-		if(!this.refeicao.contains(novo))
-		{
-			refeicao.add(novo);
-		}
-		else
-		{
-			throw new ElementoJaExisteException(novo);
-		}
+	public int hashCode() {
+		return Objects.hash(itensConsumiveis, fichas);
 	}
 
 	@Override
-	public List<ItemConsumivel> ler() {
-		return Collections.unmodifiableList(refeicao);
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Refeicao other = (Refeicao) obj;
+		return Objects.equals(itensConsumiveis, other.itensConsumiveis) && Objects.equals(fichas, other.fichas);
 	}
 
 	@Override
-	public void remover(ItemConsumivel ficha) throws ElementoNaoExisteException {
-		if(this.refeicao.contains(ficha))
-		{
-			this.refeicao.remove(this.refeicao.indexOf(ficha));
-		}
-		else
-		{
-			throw new ElementoNaoExisteException(ficha);
-		}
+	public String toString() {
+		return "Refeicao [ItensConsumiveis=" + itensConsumiveis + ", fichas=" + fichas + "]";
 	}
-
-	@Override
-	public void atualizar(ItemConsumivel atual, ItemConsumivel novoConteudo) throws ElementoNaoExisteException {
-		if(this.refeicao.contains(atual))
-		{
-			int indice = this.refeicao.indexOf(atual);
-			this.refeicao.set(indice, novoConteudo);
-		}
-		else
-		{
-			throw new ElementoNaoExisteException(novoConteudo);
-		}
-	}
+	
 }

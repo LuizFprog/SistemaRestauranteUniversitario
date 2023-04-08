@@ -180,28 +180,28 @@ public class Sistema {
 	}
 	
 	// Adiciona itemConsumivel a refeição
-	public void adicionarItemConsumivelRefeicao(String nomeItemConsumivel) throws ElementoJaExisteException, ElementoNaoExisteException
-	{
-		controladorItemConsumivel.adicionarItemConsumivelNaRefeicao(nomeItemConsumivel);
-	}
+//	public void adicionarItemConsumivelRefeicao(String nomeItemConsumivel) throws ElementoJaExisteException, ElementoNaoExisteException
+//	{
+//		controladorItemConsumivel.adicionarItemConsumivelNaRefeicao(nomeItemConsumivel);
+//	}
 	
-	// Remover itemConsumivel da refeição
-	public void removerItemConsumivelRefeicao(String nomeItemConsumivel) throws ElementoNaoExisteException
-	{
-		controladorItemConsumivel.removerItemConsumivelDaRefeicao(nomeItemConsumivel);
-	}
+//	// Remover itemConsumivel da refeição
+//	public void removerItemConsumivelRefeicao(String nomeItemConsumivel) throws ElementoNaoExisteException
+//	{
+//		controladorItemConsumivel.removerItemConsumivelDaRefeicao(nomeItemConsumivel);
+//	}
 	
-	// Listar itemConsumivels da refeição
-	public List<ItemConsumivel> listarRefeicao()
-	{
-		return controladorItemConsumivel.listarRefeicao();
-	}
-	
-	// Retorna a refeição para o valor padrão
-	public void resetarRefeicao()
-	{
-		controladorItemConsumivel.resetarRefeicao();
-	}
+//	// Listar itemConsumivels da refeição
+//	public List<ItemConsumivel> listarRefeicao()
+//	{
+//		return controladorItemConsumivel.listarRefeicao();
+//	}
+//	
+//	// Retorna a refeição para o valor padrão
+//	public void resetarRefeicao()
+//	{
+//		controladorItemConsumivel.resetarRefeicao();
+//	}
 	
 	// Atualiza itemConsumivel que possua o nomeAtual passado como parametro com as informações, também passadas como parametro
 	public void atualizarItemConsumivel(String nomeAtual, String nome, 
