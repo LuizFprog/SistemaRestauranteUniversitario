@@ -173,12 +173,6 @@ public class ControladorUsuario {
         return repositorioUsuario.ler();
     }
 	
-//	public void removerFuncionario (Funcionario removeFuncionario) 
-//			throws ElementoNaoExisteException
-//	{
-//		repositorioUsuario.remover(removeFuncionario);
-//	}
-	
 	// Recuperar funcionario
 	public Usuario recuperarFuncionario(String cpf) throws ElementoNaoExisteException {
 		// Busca o cliente pelo CPF

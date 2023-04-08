@@ -253,11 +253,20 @@ public class Sistema {
 		return controladorFicha.listarFichas();
 	}
 	
-	//Listar por periodo
-	public List<Ficha> fichaPorPeriodo(int mes){
-		return controladorFicha.listarFichaPorPeriodo(mes);
+	//Listar por dia
+	public List<Ficha> fichaPorDia(int dia){
+		return controladorFicha.listarFichaPorDia(dia);
 	}
 	
+	//Listar por mes
+	public List<Ficha> fichaPorMes(int mes){
+		return controladorFicha.listarFichaPorMes(mes);
+	}
+	
+	//Listar por mes
+	public List<Ficha> fichaPorAno(int ano){
+		return controladorFicha.listarFichaPorAno(ano);
+	}
 	
 	// Retorna uma lista de todas as fichas do cliente passado como parametro
 	public List<Ficha> listarFichaPorCliente(Usuario cliente) throws ElementoNaoExisteException

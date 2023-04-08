@@ -457,7 +457,7 @@ public class Main {
 									System.out.println("Digite o mes(em Inteiro)");
 									int mes = scan.nextInt();
 									
-									System.out.println(meuSistema.fichaPorPeriodo(mes));
+									System.out.println(meuSistema.fichaPorMes(mes));
 									break;
 								case 4:
 									
