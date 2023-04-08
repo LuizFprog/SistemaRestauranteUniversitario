@@ -49,7 +49,6 @@ public class ControladorItemConsumivel {
 	public void adicionarItemConsumivelNaRefeicao(String itemConsumivel) throws ElementoJaExisteException, ElementoNaoExisteException
 	{
 		ItemConsumivel novoItemConsumivel = recuperarItemConsumivel(itemConsumivel);
-		System.out.println("ABUDABA"+recuperarItemConsumivel(itemConsumivel));
 		if(itemConsumivel != null && novoItemConsumivel != null && novoItemConsumivel.isVisivel())
 		{
 			this.refeicao.inserir(novoItemConsumivel);
