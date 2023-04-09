@@ -1,6 +1,11 @@
 package br.com.ru.gui;
 
 import java.awt.TextField;
+
+import br.com.ru.negocio.Sistema;
+import br.com.ru.negocio.models.Cliente;
+import br.com.ru.negocio.models.Funcionario;
+import br.com.ru.negocio.models.Usuario;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -22,7 +27,7 @@ public class TelaLoginController {
 	@FXML
     private TextField textLogin;
 	
-	//private Sistema meuSistema = new Sistema();
+	private Sistema meuSistema = Sistema.getInstancia();
 	
 	@FXML
     public void entrarTelaFuncionario(ActionEvent event) throws Exception {
@@ -54,27 +59,28 @@ public class TelaLoginController {
         janela.show();
     }
 	
-//	public void acaoEntrar(ActionEvent event) throws Exception {
-//		
-//		String login = textLogin.getText(); //assumindo cpf
-//		
-//		if(login != null) {
-//			
-//			Usuario usuario = meuSistema.recuperarUsuarioEspecifico(login);  //
-//			
-//			if(usuario != null) {
-//				
-//				if(usuario instanceof Funcionario) {
-//					
-//					entrarTelaFuncionario(event);
-//					
-//				} else if(usuario instanceof Cliente) {
-//					
-//					entrarTelaCliente(event);
-//				}
-//			}
-//		}
-//	}
+	@FXML
+	public void acaoEntrar(ActionEvent event) throws Exception {
+		
+		String login = textLogin.getText(); //assumindo cpf
+		
+		if(login != null) {
+			
+			Usuario usuario = meuSistema.recuperarUsuarioEspecifico(login);  //
+			
+			if(usuario != null) {
+				
+				if(usuario instanceof Funcionario) {
+					
+					entrarTelaFuncionario(event);
+					
+				} else if(usuario instanceof Cliente) {
+					
+					entrarTelaCliente(event);
+				}
+			}
+		}
+	}
 	
 	
 	
