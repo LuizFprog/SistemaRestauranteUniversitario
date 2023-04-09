@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.BorderPane?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="800.0" style="-fx-background-color: #333344; -fx-background-image: url(&quot;https://th.bing.com/th/id/OIP.8sRzy4KV0OlfPAnYBGRPZAHaE7?pid=ImgDet&amp;rs=1www.paiquere.com.br/wp-content/uploads/2019/08/Restaurante-Universitario-Foto-Divulgacao-1024x682.jpgwww.paiquere.com.br/wp-content/uploads/2018/05/restaurante-universitario.jpgwww.paiquere.com.br/wp-content/uploads/2018/05/restaurante-universitario.jpg&quot;); -fx-background-repeat: no-repeat; -fx-background-position: center center; -fx-background-size: cover;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <center>
+      <VBox alignment="CENTER" layoutX="24.0" layoutY="14.0" maxHeight="400.0" maxWidth="400.0" spacing="10.0" style="-fx-background-color: #9999bb; -fx-background-radius: 15; -fx-border-color: #666666; -fx-border-width: 2; -fx-border-radius: 15;">
+         <children>
+            <Label alignment="CENTER" contentDisplay="CENTER" text="Cadastro Funcionario" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+               <font>
+                  <Font name="Arial Bold" size="23.0" />
+               </font>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </Label>
+            <Label text="Primeiro nome:" textFill="WHITE">
+               <font>
+                  <Font name="Arial Bold" size="14.0" />
+               </font>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </Label>
+            <TextField maxWidth="240.0" style="-fx-background-radius: 5;">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </TextField>
+            <Label text="Ultimo nome:" textFill="WHITE">
+               <font>
+                  <Font name="Arial Bold" size="14.0" />
+               </font>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </Label>
+            <TextField maxWidth="240.0" style="-fx-background-radius: 5;">
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </TextField>
+            <Label layoutX="169.0" layoutY="252.0" text="Cpf:" textFill="WHITE">
+               <font>
+                  <Font name="Arial Bold" size="14.0" />
+               </font>
+            </Label>
+            <TextField layoutX="70.0" layoutY="217.0" maxWidth="240.0" style="-fx-background-radius: 5;">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </TextField>
+            <Label layoutX="169.0" layoutY="275.0" text="Login:" textFill="WHITE">
+               <font>
+                  <Font name="Arial Bold" size="14.0" />
+               </font>
+            </Label>
+            <TextField layoutX="70.0" layoutY="301.0" maxWidth="240.0" style="-fx-background-radius: 5;">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </TextField>
+            <Label layoutX="169.0" layoutY="336.0" text="Senha:" textFill="WHITE">
+               <font>
+                  <Font name="Arial Bold" size="14.0" />
+               </font>
+            </Label>
+            <TextField layoutX="70.0" layoutY="362.0" maxWidth="240.0" style="-fx-background-radius: 5;">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </TextField>
+            <Label layoutX="189.0" layoutY="303.0" text="Id:" textFill="WHITE">
+               <font>
+                  <Font name="Arial Bold" size="14.0" />
+               </font>
+            </Label>
+            <TextField layoutX="90.0" layoutY="329.0" maxWidth="240.0" style="-fx-background-radius: 5;">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </TextField>
+            <HBox spacing="40.0" style="-fx-alignment: center;">
+               <children>
+                  <Button mnemonicParsing="false" prefWidth="80.0" style="-fx-background-color: #ffffff;" text="Cadastrar" textFill="#666666">
+                     <font>
+                        <Font name="Arial Bold" size="12.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </Button>
+                  <Button mnemonicParsing="false" prefWidth="80.0" style="-fx-background-color: #ffffff;" text="Cancelar" textFill="#666666">
+                     <font>
+                        <Font name="Arial Bold" size="12.0" />
+                     </font>
+                  </Button>
+               </children>
+               <VBox.margin>
+                  <Insets top="20.0" />
+               </VBox.margin>
+            </HBox>
+         </children>
+         <BorderPane.margin>
+            <Insets />
+         </BorderPane.margin>
+         <padding>
+            <Insets bottom="10.0" top="10.0" />
+         </padding>
+      </VBox>
+   </center>
+   <padding>
+      <Insets bottom="70.0" left="120.0" right="120.0" top="70.0" />
+   </padding>
+</BorderPane>

@@ -15,14 +15,14 @@ import br.com.ru.negocio.models.Usuario;
 public class Sistema {
 	
 	private ControladorUsuario controladorUsuario;
-	private ControladorItemConsumivel controladorPrato;
+	private ControladorItemConsumivel controladorItemConsumivel;
 	private ControladorFicha controladorFicha;
 	private static Sistema instancia;
 	
 	public Sistema()
 	{
 		this.controladorUsuario = ControladorUsuario.getInstancia();
-		this.controladorPrato = ControladorItemConsumivel.getInstancia();
+		this.controladorItemConsumivel = ControladorItemConsumivel.getInstancia();
 		this.controladorFicha = ControladorFicha.getInstancia();
 	}
 	
@@ -135,104 +135,104 @@ public class Sistema {
 		controladorUsuario.excluirFuncionario(cpf);
 	}
 	
-	// Metodos Prato
+	// Metodos ItemConsumivel
 	
 	
-	// Adiciona um prato com as informações passadas como parametro
-	public void adicionarPrato(String nome, 
-			boolean gluten, boolean lactose, TipoCardapio tipoPrato, boolean visivel) 
+	// Adiciona um itemConsumivel com as informações passadas como parametro
+	public void adicionarItemConsumivel(String nome, 
+			boolean gluten, boolean lactose, TipoCardapio tipoItemConsumivel, boolean visivel) 
 			throws ElementoJaExisteException
 	{
-		controladorPrato.adicionarPrato(nome, gluten, lactose, tipoPrato, visivel);
+		controladorItemConsumivel.adicionarItemConsumivel(nome, gluten, lactose, tipoItemConsumivel, visivel);
 	}
 	
 	
-	// Retorna os pratos que aparecem no cardapio
+	// Retorna os itemConsumivels que aparecem no cardapio
 	public List<ItemConsumivel> cardapio()
 	{
-		return controladorPrato.mostrarCardapio();
+		return controladorItemConsumivel.mostrarCardapio();
 	}
 	
-	// Retorna todos os pratos
-	public List<ItemConsumivel> verTodosPratos()
+	// Retorna todos os itemConsumivels
+	public List<ItemConsumivel> verTodosItemConsumiveis()
 	{
-		return controladorPrato.listarTodosPratos();
+		return controladorItemConsumivel.listarTodosItemConsumiveis();
 	}
 	
 	public List<ItemConsumivel> cardapioTrivial()
 	{
-		return controladorPrato.cardapioTrivial();
+		return controladorItemConsumivel.cardapioTrivial();
 	}
 	
 	public List<ItemConsumivel> cardapioVegano()
 	{
-		return controladorPrato.cardapioVegano();
+		return controladorItemConsumivel.cardapioVegano();
 	}
 	
 	public List<ItemConsumivel> cardapioSuco()
 	{
-		return controladorPrato.cardapioSuco();
+		return controladorItemConsumivel.cardapioSuco();
 	}
 	
 	public List<ItemConsumivel> cardapioSobremesa()
 	{
-		return controladorPrato.cardapioSobremesa();
+		return controladorItemConsumivel.cardapioSobremesa();
 	}
 	
-	// Adiciona prato a refeição
-	public void adicionarPratoRefeicao(String nomePrato) throws ElementoJaExisteException, ElementoNaoExisteException
-	{
-		controladorPrato.adicionarPratoRefeicao(nomePrato);
-	}
+	// Adiciona itemConsumivel a refeição
+//	public void adicionarItemConsumivelRefeicao(String nomeItemConsumivel) throws ElementoJaExisteException, ElementoNaoExisteException
+//	{
+//		controladorItemConsumivel.adicionarItemConsumivelNaRefeicao(nomeItemConsumivel);
+//	}
 	
-	// Remover prato da refeição
-	public void removerPratoRefeicao(String nomePrato) throws ElementoNaoExisteException
-	{
-		controladorPrato.removerPratoRefeicao(nomePrato);
-	}
+//	// Remover itemConsumivel da refeição
+//	public void removerItemConsumivelRefeicao(String nomeItemConsumivel) throws ElementoNaoExisteException
+//	{
+//		controladorItemConsumivel.removerItemConsumivelDaRefeicao(nomeItemConsumivel);
+//	}
 	
-	// Listar pratos da refeição
-	public List<ItemConsumivel> listarRefeicao()
-	{
-		return controladorPrato.listarRefeicao();
-	}
+//	// Listar itemConsumivels da refeição
+//	public List<ItemConsumivel> listarRefeicao()
+//	{
+//		return controladorItemConsumivel.listarRefeicao();
+//	}
+//	
+//	// Retorna a refeição para o valor padrão
+//	public void resetarRefeicao()
+//	{
+//		controladorItemConsumivel.resetarRefeicao();
+//	}
 	
-	// Retorna a refeição para o valor padrão
-	public void resetarRefeicao()
-	{
-		controladorPrato.resetarRefeicao();
-	}
-	
-	// Atualiza prato que possua o nomeAtual passado como parametro com as informações, também passadas como parametro
-	public void atualizarPrato(String nomeAtual, String nome, 
-			boolean gluten, boolean lactose, TipoCardapio tipoPrato, boolean visivel) 
+	// Atualiza itemConsumivel que possua o nomeAtual passado como parametro com as informações, também passadas como parametro
+	public void atualizarItemConsumivel(String nomeAtual, String nome, 
+			boolean gluten, boolean lactose, TipoCardapio tipoItemConsumivel, boolean visivel) 
 					throws ElementoNaoExisteException
 	{
-		controladorPrato.atualizarPrato(nomeAtual, nome, gluten, lactose, tipoPrato, visivel);
+		controladorItemConsumivel.atualizarItemConsumivel(nomeAtual, nome, gluten, lactose, tipoItemConsumivel, visivel);
 	}
 	
-	// Remove um prato com o nome passado como parametro do repositorio
-	public void removerPrato(String nome) throws ElementoNaoExisteException
+	// Remove um itemConsumivel com o nome passado como parametro do repositorio
+	public void removerItemConsumivel(String nome) throws ElementoNaoExisteException
 	{
-		controladorPrato.removerPrato(nome);
+		controladorItemConsumivel.removerItemConsumivel(nome);
 	}
 	
-	// Retorna um prato que possui o nome passado como parametro
-	public ItemConsumivel recuperarPrato(String nome) throws ElementoNaoExisteException
+	// Retorna um itemConsumivel que possui o nome passado como parametro
+	public ItemConsumivel recuperarItemConsumivel(String nome) throws ElementoNaoExisteException
 	{
-		return controladorPrato.recuperarPrato(nome);
+		return controladorItemConsumivel.recuperarItemConsumivel(nome);
 	}
 	
-	// Adiciona um prato passado como parametro ao cardapio
-	public void colocarNoCardapio(ItemConsumivel prato) throws ElementoNaoExisteException
+	// Adiciona um itemConsumivel passado como parametro ao cardapio
+	public void colocarNoCardapio(ItemConsumivel itemConsumivel) throws ElementoNaoExisteException
 	{
-		controladorPrato.pratoVisivel(prato);
+		controladorItemConsumivel.itemConsumivelVisivel(itemConsumivel);
 	}
 	
-	// Remove um prato passado como parametro do cardapio
-	public void removerDoCardapio(ItemConsumivel prato) throws ElementoNaoExisteException
+	// Remove um itemConsumivel passado como parametro do cardapio
+	public void removerDoCardapio(ItemConsumivel itemConsumivel) throws ElementoNaoExisteException
 	{
-		controladorPrato.pratoNaoVisivel(prato);
+		controladorItemConsumivel.itemConsumivelNaoVisivel(itemConsumivel);
 	}
 	
 	// Metodos Ficha
@@ -253,11 +253,20 @@ public class Sistema {
 		return controladorFicha.listarFichas();
 	}
 	
-	//Listar por periodo
-	public List<Ficha> fichaPorPeriodo(int mes){
-		return controladorFicha.listarFichaPorPeriodo(mes);
+	//Listar por dia
+	public List<Ficha> fichaPorDia(int dia){
+		return controladorFicha.listarFichaPorDia(dia);
 	}
 	
+	//Listar por mes
+	public List<Ficha> fichaPorMes(int mes){
+		return controladorFicha.listarFichaPorMes(mes);
+	}
+	
+	//Listar por mes
+	public List<Ficha> fichaPorAno(int ano){
+		return controladorFicha.listarFichaPorAno(ano);
+	}
 	
 	// Retorna uma lista de todas as fichas do cliente passado como parametro
 	public List<Ficha> listarFichaPorCliente(Usuario cliente) throws ElementoNaoExisteException
@@ -269,11 +278,11 @@ public class Sistema {
 		return null;
 	}
 	
-	// Retorna a lista com todas as fichas da mais nova a mais antiga
-	public List<Ficha> listarFichaRecente()
-	{
-		return controladorFicha.listarFichasRecentes();
-	}
+//	// Retorna a lista com todas as fichas da mais nova a mais antiga
+//	public List<Ficha> listarFichaRecente()
+//	{
+//		return controladorFicha.listarFichasRecentes();
+//	}
 	
 	// Gasta ficha para liberar o acesso ao RU
 	public void gastarFicha(Ficha ficha, List<ItemConsumivel> refeicao) throws ElementoNaoExisteException

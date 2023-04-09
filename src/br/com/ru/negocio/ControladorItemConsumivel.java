@@ -14,13 +14,11 @@ import br.com.ru.negocio.models.Refeicao;
 
 public class ControladorItemConsumivel {
 	private IRepositorioGenerico<ItemConsumivel> cardapio;
-	private IRepositorioGenerico<ItemConsumivel> refeicao;
 	private static ControladorItemConsumivel instancia;
-	private List<ItemConsumivel> listaPrato;
+	private List<ItemConsumivel> listaItemConsumivel;
 	
 	private ControladorItemConsumivel() {
-		this.cardapio = new RepositorioItemConsumivel(listaPrato);
-		this.refeicao = new Refeicao(listaPrato);
+		this.cardapio = new RepositorioItemConsumivel(listaItemConsumivel);
 	}
 	
 	
@@ -35,130 +33,79 @@ public class ControladorItemConsumivel {
 	}	
 	
 	// Metodo para adicionar pratos
-	public void adicionarPrato (String nome, boolean gluten, 
+	public void adicionarItemConsumivel (String nome, boolean gluten, 
 			boolean lactose, TipoCardapio tipoPrato, boolean visivel) 
 			throws ElementoJaExisteException
 	{
 		if(nome != null)
 		{
-			ItemConsumivel novoPrato = new ItemConsumivel(nome, gluten, lactose, tipoPrato, visivel);
-			cardapio.inserir(novoPrato);
+			ItemConsumivel novoItemConsumivel = new ItemConsumivel(nome, gluten, lactose, tipoPrato, visivel);
+			cardapio.inserir(novoItemConsumivel);
 		}
 	}
 	
-	public void adicionarPratoRefeicao(String prato) throws ElementoJaExisteException, ElementoNaoExisteException
-	{
-		ItemConsumivel novoPrato = recuperarPrato(prato);
-		System.out.println("ABUDABA"+recuperarPrato(prato));
-		if(prato != null && novoPrato != null && novoPrato.isVisivel())
-		{
-			this.refeicao.inserir(novoPrato);
-		}
-	}
-	
-	public void removerPratoRefeicao(String prato) throws ElementoNaoExisteException
-	{
-		ItemConsumivel pratoRemover = recuperarPrato(prato);
-		List<ItemConsumivel> pratos = refeicao.ler();
-		if(pratos.contains(pratoRemover))
-		{
-			refeicao.remover(pratoRemover);
-		}
-	}
-	
-	public List<ItemConsumivel> listarRefeicao()
-	{
-		return refeicao.ler();
-	}
-	
-	public void resetarRefeicao()
-	{
-		refeicao = null;
-	}
 	
 	// Metodo para Mostrar Cardapio
 	public List<ItemConsumivel> mostrarCardapio()
 	{
-		return cardapio.ler();
+		return cardapio.ler(); // Modificação necessaria
+	}
+	
+	private List<ItemConsumivel> tipoCardapio (TipoCardapio tipo)
+	{
+		List<ItemConsumivel> atual = ((RepositorioItemConsumivel) cardapio).ler(); // Modificação necessaria
+		List<ItemConsumivel> cardapioDoTipoEspecificado = new ArrayList<>();
+		for(ItemConsumivel i : atual)
+		{
+			if(i.getTipoItemConsumivel() == tipo)
+			{
+				cardapioDoTipoEspecificado.add(i);
+			}
+		}
+		return cardapioDoTipoEspecificado;
 	}
 	
 	public List<ItemConsumivel> cardapioTrivial()
 	{
-		List<ItemConsumivel> atual = ((RepositorioItemConsumivel) cardapio).lerTodos();
-		List<ItemConsumivel> trivial = new ArrayList<>();
-		for(ItemConsumivel i : atual)
-		{
-			if(i.getTipoPrato() == TipoCardapio.TRIVIAL)
-			{
-				trivial.add(i);
-			}
-		}
-		return trivial;
+		return tipoCardapio(TipoCardapio.TRIVIAL);
 	}
 	
 	public List<ItemConsumivel> cardapioVegano()
 	{
-		List<ItemConsumivel> atual = ((RepositorioItemConsumivel) cardapio).lerTodos();
-		List<ItemConsumivel> vegano = new ArrayList<>();
-		for(ItemConsumivel i : atual)
-		{
-			if(i.getTipoPrato() == TipoCardapio.VEGANO)
-			{
-				vegano.add(i);
-			}
-		}
-		return vegano;
+		return tipoCardapio(TipoCardapio.VEGANO);
 	}
 	
 	public List<ItemConsumivel> cardapioSuco()
 	{
-		List<ItemConsumivel> atual = ((RepositorioItemConsumivel) cardapio).lerTodos();
-		List<ItemConsumivel> suco = new ArrayList<>();
-		for(ItemConsumivel i : atual)
-		{
-			if(i.getTipoPrato() == TipoCardapio.SUCO)
-			{
-				suco.add(i);
-			}
-		}
-		return suco;
+		return tipoCardapio(TipoCardapio.SUCO);
 	}
 	
 	public List<ItemConsumivel> cardapioSobremesa()
 	{
-		List<ItemConsumivel> atual = ((RepositorioItemConsumivel) cardapio).lerTodos();
-		List<ItemConsumivel> sobremesa = new ArrayList<>();
-		for(ItemConsumivel i : atual)
-		{
-			if(i.getTipoPrato() == TipoCardapio.SOBREMESA)
-			{
-				sobremesa.add(i);
-			}
-		}
-		return sobremesa;
+		return tipoCardapio(TipoCardapio.SOBREMESA);
 	}
 	
-	public List<ItemConsumivel> listarTodosPratos()
+	public List<ItemConsumivel> listarTodosItemConsumiveis()
 	{
 		return ((RepositorioItemConsumivel) cardapio).lerTodos();
 	}
 	
 	// Metodo para remover prato
-	public void removerPrato (String nome) 
+	public void removerItemConsumivel (String nome) 
 			throws ElementoNaoExisteException
 	{
-		ItemConsumivel pratoAtual = recuperarPrato(nome);
+		ItemConsumivel itemConsumivelAtual = recuperarItemConsumivel(nome);
 		
-		if(pratoAtual != null)
+		if(itemConsumivelAtual != null)
 		{
-			cardapio.remover(pratoAtual);
+			cardapio.remover(itemConsumivelAtual);
 		}
 	}
 	
-	public ItemConsumivel recuperarPrato(String nome) throws ElementoNaoExisteException {
+	public ItemConsumivel recuperarItemConsumivel(String nome) throws ElementoNaoExisteException {
 		// Busca o cliente pelo CPF
-		List<ItemConsumivel> pratos = ((RepositorioItemConsumivel) cardapio).lerTodos();
-		for (ItemConsumivel p : pratos) {
+		List<ItemConsumivel> itemConsumivel = ((RepositorioItemConsumivel) cardapio).lerTodos();
+		for (ItemConsumivel p : itemConsumivel) {
 			if (p.getNome().equals(nome)) {
 				return p;
 			}
@@ -168,31 +115,31 @@ public class ControladorItemConsumivel {
 	}
 	
 	// Metodo para atualizar prato
-	public void atualizarPrato (String nomeAtual, String nome, boolean gluten, boolean lactose, TipoCardapio tipoPrato, 
+	public void atualizarItemConsumivel (String nomeAtual, String nome, boolean gluten, boolean lactose, TipoCardapio tipoPrato, 
 			boolean visivel) 
 					throws ElementoNaoExisteException
 	{
 		
-		ItemConsumivel pratoAtual = recuperarPrato(nomeAtual);
+		ItemConsumivel itemConsumivelAtual = recuperarItemConsumivel(nomeAtual);
 		
-		if(pratoAtual != null)
+		if(itemConsumivelAtual != null)
 		{
-			ItemConsumivel novoPrato = new ItemConsumivel(nome, gluten, lactose, tipoPrato, visivel);
-			if(!pratoAtual.equals(novoPrato) && novoPrato != null)
+			ItemConsumivel novoItemConsumivel = new ItemConsumivel(nome, gluten, lactose, tipoPrato, visivel);
+			if(!itemConsumivelAtual.equals(novoItemConsumivel) && novoItemConsumivel != null)
 			{
-				cardapio.atualizar(pratoAtual, novoPrato);
+				cardapio.atualizar(itemConsumivelAtual, novoItemConsumivel);
 			}
 		}
 	}
 	
 	// Metodo para colocar prato como visivel
-	public void pratoVisivel(ItemConsumivel prato) throws ElementoNaoExisteException
+	public void itemConsumivelVisivel(ItemConsumivel itemConsumivel) throws ElementoNaoExisteException
 	{
-		prato.setVisivel(true);
+		itemConsumivel.setVisivel(true);
 	}
 	
-	public void pratoNaoVisivel(ItemConsumivel prato) throws ElementoNaoExisteException
+	public void itemConsumivelNaoVisivel(ItemConsumivel itemConsumivel) throws ElementoNaoExisteException
 	{
-		prato.setVisivel(false);
+		itemConsumivel.setVisivel(false);
 	}
 }

@@ -41,25 +41,25 @@ public class ControladorFicha {
 	// Metodo para cadastrar fichas
 	private void cadastrarFicha () throws ElementoJaExisteException 
 	{
-		
+		List<Ficha> listaFicha = repositorioFicha.ler();
 		SecureRandom randomico = new SecureRandom();
 		for(int i = 0; i < 100; i++)
 		{
 			boolean liberado = true;
 			String codigo = "";
-			String possivel = "";
+			String codigoPossivel = "";
 			do
 			{
-				possivel = codigo + (100000000 + randomico.nextLong(900000000));
-				for(Ficha f : repositorioFicha.ler())
+				codigoPossivel = codigo + (100000000 + randomico.nextLong(900000000));
+				for(Ficha f : listaFicha)
 				{
-					if(possivel.equals(f.getCodigo()))
+					if(codigoPossivel.equals(f.getCodigo()))
 					{
 						liberado = false;
 					}
 				}
 			}while(!liberado);
-			codigo += possivel;
+			codigo += codigoPossivel;
 			Ficha novoFicha = new Ficha(codigo);
 			repositorioFicha.inserir(novoFicha);
 		}
@@ -70,40 +70,29 @@ public class ControladorFicha {
 	public void comprarFicha (double preco, double dinheiroCliente, Cliente cliente) 
 			throws ElementoJaExisteException, SaldoInsuficienteException
 	{
-		double sent = 0.0;
-		
-		if(preco != 0.0 && cliente != null)
+		int sent = 0;
+		List<Ficha> listaFicha = repositorioFicha.ler();
+		if(preco != 0.0 && cliente != null && dinheiroCliente <= cliente.getSaldo())
 		{
-			
-			if(dinheiroCliente <= cliente.getSaldo())
+			double precoTotalParaPagar = Math.floor(dinheiroCliente / preco) * preco;
+			do
 			{
-				
-				double total = Math.floor(dinheiroCliente / preco) * preco;
-				do
+				for(Ficha f : listaFicha)
 				{
-					for(Ficha f : repositorioFicha.ler())
+					if(f.getCliente() == null && sent < Math.floor(dinheiroCliente / preco))
 					{
-						if(f.getCliente() == null)
-						{
-							
-							if(sent < Math.floor(dinheiroCliente / preco))
-							{
-								sent++;
-								f.setCliente(cliente);
-								f.setStatusFicha(StatusFicha.EFETIVADA);
-								f.setDataEfetivacao(LocalDateTime.now());
-							}
-						}
+							sent++;
+							f.setCliente(cliente);
+							f.setStatusFicha(StatusFicha.EFETIVADA);
+							f.setDataEfetivacao(LocalDateTime.now());
 					}
-					if(sent != Math.floor(dinheiroCliente / preco))
-					{
-						cadastrarFicha();
-					}
-					
-				}while(sent != Math.floor(dinheiroCliente / preco));
-				
-				cliente.debitar(total);
-			}
+				}
+				if(sent != Math.floor(dinheiroCliente / preco))
+				{
+					cadastrarFicha();
+				}
+			}while(sent != Math.floor(dinheiroCliente / preco));
+			cliente.debitar(precoTotalParaPagar);
 		}
 		else
 		{
@@ -117,18 +106,6 @@ public class ControladorFicha {
 		return repositorioFicha.ler();
 	}
 	
-	// Metodo para mostrar fichas mais novas
-	public List<Ficha> listarFichasRecentes()
-	{
-		List<Ficha> atual = repositorioFicha.ler();
-		List<Ficha> nova = new ArrayList<>();
-		for(int i = atual.size(); i > 0; i--)
-		{
-			nova.add(atual.get(i));
-		}
-		return ((RepositorioFicha) nova).ler();
-	}
-	
 	// Metodo para remover ficha
 	public void gastarFicha (Ficha ficha, List<ItemConsumivel> refeicao)
 			throws ElementoNaoExisteException
@@ -137,24 +114,21 @@ public class ControladorFicha {
 		{
 			ficha.setDataConsumo(LocalDateTime.now());
 			ficha.setStatusFicha(StatusFicha.CONSUMIDA);
-			if(refeicao  instanceof Refeicao) {
-				ficha.setRefeicao((Refeicao) refeicao);
-			}
-			
+			ficha.setRefeicao((Refeicao) refeicao);
 		}
 	}
 	
-	public Ficha recuperarFicha(String codigo) throws ElementoNaoExisteException {
-		// Busca a ficha pelo codigo
-		List<Ficha> fichas = repositorioFicha.ler();
-		for (Ficha f : fichas) {
-			if (f.getCodigo().equals(codigo)) {
-				return f;
-			}
-		}
-		// Caso não encontre, lança exceção
-		throw new ElementoNaoExisteException("Não existe um cliente com esse CPF!");
-	}
+//	public Ficha recuperarFicha(String codigo) throws ElementoNaoExisteException {
+//		// Busca a ficha pelo codigo
+//		List<Ficha> listaFicha = repositorioFicha.ler();
+//		for (Ficha f : listaFicha) {
+//			if (f.getCodigo().equals(codigo)) {
+//				return f;
+//			}
+//		}
+//		// Caso não encontre, lança exceção
+//		throw new ElementoNaoExisteException("Não existe um cliente com esse CPF!");
+//	}
 	
 	// Metodo para atualizar ficha
 	public void atualizarPrecoFicha (double preco)
@@ -167,13 +141,11 @@ public class ControladorFicha {
 	
 	public List<Ficha> listarFichaPorCliente(Cliente cliente) throws ElementoNaoExisteException {
 		// Busca a ficha pelo codigo
-		List<Ficha> fichas = repositorioFicha.ler();
+		List<Ficha> listaFicha = repositorioFicha.ler();
 		List<Ficha> fichasDoCliente = new ArrayList<>();
-		for (Ficha f : fichas) {
-			if(f.getCliente() != null) {
-				if (f.getCliente().equals(cliente) && f.getStatusFicha() == StatusFicha.EFETIVADA) {
-					fichasDoCliente.add(f);
-				}
+		for (Ficha f : listaFicha) {
+			if (f.getCliente().equals(cliente) && f.getStatusFicha() == StatusFicha.EFETIVADA) {
+				fichasDoCliente.add(f);
 			}
 		}
 		return Collections.unmodifiableList(fichasDoCliente);
@@ -184,16 +156,12 @@ public class ControladorFicha {
 		if(cliente != null)
 		{
 			int numeroFichas = 0;
-			List<Ficha> fichas = repositorioFicha.ler();
-			for(Ficha f : fichas)
+			List<Ficha> listaFicha = repositorioFicha.ler();
+			for(Ficha f : listaFicha)
 			{
-				if(f.getCliente() != null)
+				if(f.getCliente().equals(cliente) && f.getStatusFicha() == StatusFicha.EFETIVADA)
 				{
-					System.out.println(f.getCliente());
-					if(f.getCliente().equals(cliente) && f.getStatusFicha() == StatusFicha.EFETIVADA)
-					{
-						numeroFichas++;
-					}
+					numeroFichas++;
 				}
 			}
 			return numeroFichas;
@@ -206,8 +174,8 @@ public class ControladorFicha {
 	
 	public Ficha recuperarFichaDoCliente(Cliente cliente) throws ElementoNaoExisteException {
 		// Busca a ficha pelo codigo
-		List<Ficha> fichas = repositorioFicha.ler();
-		for (Ficha f : fichas) {
+		List<Ficha> listaFicha = repositorioFicha.ler();
+		for (Ficha f : listaFicha) {
 			if (f.getCliente().equals(cliente) && f.getStatusFicha() == StatusFicha.EFETIVADA) {
 				return f;
 			}
@@ -215,18 +183,18 @@ public class ControladorFicha {
 		return null;
 	}
 	
-	public List<Ficha> listarFichaPorPeriodo(int mes)
+	public List<Ficha> listarFichaPorDia(int dia)
 	{
-		List<Ficha> fichaMes = new ArrayList<>();
-		for(Ficha f : repositorioFicha.ler())
-		{
-			if(f.getDataConsumo() != null) {
-				if(f.getDataConsumo().getMonthValue() == mes)
-				{
-					fichaMes.add(f);
-				}
-			}
-		}
-		return fichaMes;
+		return ((RepositorioFicha)repositorioFicha).lerDia(dia);
+	}
+	
+	public List<Ficha> listarFichaPorMes(int mes)
+	{
+		return ((RepositorioFicha)repositorioFicha).lerMes(mes);
+	}
+	
+	public List<Ficha> listarFichaPorAno(int ano)
+	{
+		return ((RepositorioFicha)repositorioFicha).lerAno(ano);
 	}
 }
