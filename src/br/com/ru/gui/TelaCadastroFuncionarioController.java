@@ -19,7 +19,7 @@ public class TelaCadastroFuncionarioController {
 	private Sistema meuSistema = Sistema.getInstancia();
 	
 	@FXML
-	private Button buttonCadastrarCliente;
+	private Button buttonCadastrarFuncionario;
 
 	@FXML
 	private Button buttonCancelar;
@@ -40,9 +40,12 @@ public class TelaCadastroFuncionarioController {
     private TextField textFieldUltimoNome;
     
     @FXML
+    private TextField textFieldId;
+    
+    @FXML
     public void cadastrar(ActionEvent event) throws IOException, ElementoJaExisteException {
     	
-    	FXMLLoader loader = new FXMLLoader(getClass().getResource("TelaCadastroCliente.fxml"));
+    	FXMLLoader loader = new FXMLLoader(getClass().getResource("TelaCadastroFuncionario.fxml"));
         Parent root = loader.load();
         
         TextField primeiroNomeTextField = (TextField) root.lookup("textFieldPrimeiroNome");

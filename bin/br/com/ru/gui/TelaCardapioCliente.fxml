@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.text.*?>
-<?import javafx.scene.control.*?>
-<?import java.lang.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<BorderPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.ru.gui.TelaCardapioClienteController">
    <center>
       <VBox alignment="TOP_CENTER" spacing="10.0" style="-fx-background-color: #666699;" BorderPane.alignment="CENTER">
          <children>
@@ -45,10 +46,10 @@
             </HBox>
             <HBox alignment="CENTER">
                <children>
-                  <ListView maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" />
-                  <ListView maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" />
-                  <ListView maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" />
-                  <ListView maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" />
+                  <ListView fx:id="listTrivial" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onEditStart="#listarItensTrivial" />
+                  <ListView fx:id="listVegano" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onEditStart="#listarItensVegano" />
+                  <ListView fx:id="listSobremesa" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onEditStart="#listarItensSobremesa" />
+                  <ListView fx:id="listSuco" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onEditStart="#listarItensSuco" />
                </children>
             </HBox>
          </children>
