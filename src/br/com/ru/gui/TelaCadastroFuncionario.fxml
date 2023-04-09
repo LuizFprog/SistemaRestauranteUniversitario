@@ -92,7 +92,7 @@
             </TextField>
             <HBox spacing="40.0" style="-fx-alignment: center;">
                <children>
-                  <Button fx:id="buttonCadastrarFuncionario" mnemonicParsing="false" prefWidth="80.0" style="-fx-background-color: #ffffff;" text="Cadastrar" textFill="#666666">
+                  <Button fx:id="buttonCadastrarFuncionario" mnemonicParsing="false" onAction="#cadastrar" prefWidth="80.0" style="-fx-background-color: #ffffff;" text="Cadastrar" textFill="#666666">
                      <font>
                         <Font name="Arial Bold" size="12.0" />
                      </font>
@@ -100,7 +100,7 @@
                         <Insets />
                      </HBox.margin>
                   </Button>
-                  <Button fx:id="buttonCancelar" mnemonicParsing="false" prefWidth="80.0" style="-fx-background-color: #ffffff;" text="Cancelar" textFill="#666666">
+                  <Button fx:id="buttonCancelar" mnemonicParsing="false" onAction="#voltarLogin" prefWidth="80.0" style="-fx-background-color: #ffffff;" text="Cancelar" textFill="#666666">
                      <font>
                         <Font name="Arial Bold" size="12.0" />
                      </font>
