@@ -538,7 +538,7 @@ public class Main {
 									case 1:
 										System.out.println("Digite o nome do prato: ");
 										String AdicionarPrato = scan.nextLine();
-										meuSistema.adicionarItemConsumivelRefeicao(AdicionarPrato);
+										//meuSistema.adicionarItemConsumivelRefeicao(AdicionarPrato);
 										break;
 									case 2:
 										out = true;
@@ -546,7 +546,7 @@ public class Main {
 									
 									
 								}while(!out);
-								meuSistema.gastarFicha(meuSistema.recuperarFichaDoCliente(meuSistema.recuperarClienteEspecifico(cpf)),meuSistema.listarRefeicao());
+								//meuSistema.gastarFicha(meuSistema.recuperarFichaDoCliente(meuSistema.recuperarClienteEspecifico(cpf)),meuSistema.listarRefeicao());
 								System.out.println("Entrada no RU liberada");
 								break;
 								 
