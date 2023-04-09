@@ -19,7 +19,7 @@ public class Sistema {
 	private ControladorFicha controladorFicha;
 	private static Sistema instancia;
 	
-	public Sistema()
+	private Sistema()
 	{
 		this.controladorUsuario = ControladorUsuario.getInstancia();
 		this.controladorItemConsumivel = ControladorItemConsumivel.getInstancia();
@@ -119,6 +119,11 @@ public class Sistema {
 	public Usuario recuperarFuncionarioEspecifico(String cpf) throws ElementoNaoExisteException {
 		
 		return controladorUsuario.recuperarFuncionario(cpf);
+	}
+	
+public Usuario recuperarUsuarioEspecifico(String cpf) throws ElementoNaoExisteException {
+		
+		return controladorUsuario.recuperarUsuario(cpf);
 	}
 	
 	// Atualiza um funcionario que possua o cpf passado como parametro com as informações, também passadas como parametro

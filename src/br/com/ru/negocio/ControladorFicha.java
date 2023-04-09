@@ -122,7 +122,7 @@ public class ControladorFicha {
 //		// Busca a ficha pelo codigo
 //		List<Ficha> listaFicha = repositorioFicha.ler();
 //		for (Ficha f : listaFicha) {
-//			if (f.getCodigo().equals(codigo)) {
+//			if (f.getCodigo().equals(codigo)) 
 //				return f;
 //			}
 //		}
