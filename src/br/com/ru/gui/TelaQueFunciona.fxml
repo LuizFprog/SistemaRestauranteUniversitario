@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="800.0" style="-fx-background-color: #333344; -fx-background-image: url(&quot;https://th.bing.com/th/id/OIP.8sRzy4KV0OlfPAnYBGRPZAHaE7?pid=ImgDet&amp;rs=1www.paiquere.com.br/wp-content/uploads/2019/08/Restaurante-Universitario-Foto-Divulgacao-1024x682.jpgwww.paiquere.com.br/wp-content/uploads/2018/05/restaurante-universitario.jpgwww.paiquere.com.br/wp-content/uploads/2018/05/restaurante-universitario.jpg&quot;); -fx-background-repeat: no-repeat; -fx-background-position: center center; -fx-background-size: cover;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="800.0" style="-fx-background-color: #333344; -fx-background-image: url(&quot;https://th.bing.com/th/id/OIP.8sRzy4KV0OlfPAnYBGRPZAHaE7?pid=ImgDet&amp;rs=1www.paiquere.com.br/wp-content/uploads/2019/08/Restaurante-Universitario-Foto-Divulgacao-1024x682.jpgwww.paiquere.com.br/wp-content/uploads/2018/05/restaurante-universitario.jpgwww.paiquere.com.br/wp-content/uploads/2018/05/restaurante-universitario.jpg&quot;); -fx-background-repeat: no-repeat; -fx-background-position: center center; -fx-background-size: cover;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.ru.gui.TelaLoginController">
    <center>
       <VBox alignment="CENTER" layoutX="24.0" layoutY="14.0" maxHeight="350.0" maxWidth="500.0" spacing="10.0" style="-fx-background-color: #9999bb; -fx-background-radius: 15; -fx-border-color: #666666; -fx-border-width: 2; -fx-border-radius: 15;">
          <children>
@@ -60,7 +60,7 @@
                         <Font name="Arial Bold" size="12.0" />
                      </font>
                   </Button>
-                  <Button fx:id="botaoCadastrar" mnemonicParsing="false" onAction="#entrarTelaCadastro" prefWidth="80.0" style="-fx-background-color: #ffffff;" text="Cadastrar" textFill="#666666">
+                  <Button fx:id="botaoCadastrar" mnemonicParsing="false" prefWidth="80.0" style="-fx-background-color: #ffffff;" text="Cadastrar" textFill="#666666">
                      <font>
                         <Font name="Arial Bold" size="12.0" />
                      </font>
