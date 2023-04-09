@@ -4,14 +4,22 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import br.com.ru.exceptions.ElementoJaExisteException;
+import br.com.ru.exceptions.ElementoNaoExisteException;
+
 
 
 public class Refeicao{
 	
 	private List<ItemConsumivel> itensConsumiveis;
 	private Ficha fichas;
+	//public Object getFicha;
 	
 	
+	
+	public Refeicao() {
+		
+	}
 	
 	public Refeicao(List<ItemConsumivel> itensConsumiveis, Ficha fichas) {
 		super();
@@ -22,9 +30,33 @@ public class Refeicao{
 	public List<ItemConsumivel> getItensConsumiveis() {
 		return itensConsumiveis;
 	}
-	public void setItensConsumiveis(List<ItemConsumivel> itens) {
-		itensConsumiveis = itens;
+	
+	
+	public void inserir(ItemConsumivel item) throws ElementoJaExisteException {
+		
+		if(!this.itensConsumiveis.contains(item))
+		{
+			itensConsumiveis.add(item);
+		}
+		else
+		{
+			throw new ElementoJaExisteException(item);
+		}
 	}
+	
+	public void remover(ItemConsumivel item) throws ElementoNaoExisteException {
+		
+		if(this.itensConsumiveis.contains(item))
+		{
+			this.itensConsumiveis.remove(this.itensConsumiveis.indexOf(item));
+		}
+		else
+		{
+			throw new ElementoNaoExisteException(item);
+		}
+		
+	}
+
 	public Ficha getFichas() {
 		return fichas;
 	}
