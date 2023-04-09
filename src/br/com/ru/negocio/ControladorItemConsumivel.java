@@ -10,7 +10,6 @@ import br.com.ru.exceptions.ElementoJaExisteException;
 import br.com.ru.exceptions.ElementoNaoExisteException;
 import br.com.ru.negocio.models.ItemConsumivel;
 import br.com.ru.negocio.models.ItemConsumivel.TipoCardapio;
-import br.com.ru.negocio.models.Refeicao;
 
 public class ControladorItemConsumivel {
 	private IRepositorioGenerico<ItemConsumivel> cardapio;

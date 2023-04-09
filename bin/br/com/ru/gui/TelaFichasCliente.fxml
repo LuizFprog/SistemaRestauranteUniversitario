@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.BorderPane?>
+
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+  <tabs>
+    <Tab text="Comprar Fichas">
+         <content>
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <Label text="Digite o número de fichas:" />
+                  <TextField maxWidth="200.0">
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                  </TextField>
+                  <Button mnemonicParsing="false" text="Comprar">
+                     <VBox.margin>
+                        <Insets top="30.0" />
+                     </VBox.margin>
+                  </Button>
+               </children>
+            </VBox>
+         </content></Tab>
+      <Tab text="Gastar Ficha">
+         <content>
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="30.0">
+               <children>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="110.0">
+                     <children>
+                        <VBox alignment="CENTER" spacing="10.0">
+                           <children>
+                              <Label text="Item do cardapio">
+                                 <VBox.margin>
+                                    <Insets top="10.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <ChoiceBox prefWidth="150.0" />
+                              <Button mnemonicParsing="false" text="Adicionar na refeição" />
+                           </children>
+                        </VBox>
+                        <Button mnemonicParsing="false" text="Remover da refeição">
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                        </Button>
+                     </children>
+                  </HBox>
+                  <ListView maxHeight="600.0" maxWidth="800.0" />
+                  <Button mnemonicParsing="false" text="Finalizar compra" />
+               </children>
+               <padding>
+                  <Insets bottom="30.0" />
+               </padding>
+            </VBox>
+         </content>
+      </Tab>
+  </tabs>
+</TabPane>
