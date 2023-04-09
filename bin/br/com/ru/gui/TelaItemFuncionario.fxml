@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.BorderPane?>
+
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8">
+  <tabs>
+    <Tab style="-fx-background-radius: 0;" text="Adicionar item">
+         <content>
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0">
+               <children>
+                  <Label text="Nome do item" />
+                  <TextField maxWidth="200.0" />
+                  <CheckBox mnemonicParsing="false" text="Gluten">
+                     <VBox.margin>
+                        <Insets top="20.0" />
+                     </VBox.margin>
+                  </CheckBox>
+                  <CheckBox mnemonicParsing="false" text="Lactose" />
+                  <Label text="Tipo do item">
+                     <VBox.margin>
+                        <Insets top="20.0" />
+                     </VBox.margin>
+                  </Label>
+                  <ChoiceBox prefWidth="150.0" />
+                  <Button mnemonicParsing="false" text="Adicionar">
+                     <VBox.margin>
+                        <Insets top="20.0" />
+                     </VBox.margin>
+                  </Button>
+               </children>
+            </VBox>
+         </content>
+    </Tab>
+      <Tab style="-fx-background-radius: 0;" text="Atualizar item">
+         <content>
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0">
+               <children>
+                  <Label layoutX="272.0" layoutY="64.0" text="Nome atual" />
+                  <TextField layoutX="210.0" layoutY="91.0" maxWidth="200.0" />
+                  <Label text="Novo nome" />
+                  <TextField maxWidth="200.0" />
+                  <CheckBox mnemonicParsing="false" text="Lactose">
+                     <VBox.margin>
+                        <Insets top="20.0" />
+                     </VBox.margin>
+                  </CheckBox>
+                  <CheckBox mnemonicParsing="false" text="Gluten" />
+                  <Label text="Tipo do item">
+                     <VBox.margin>
+                        <Insets top="20.0" />
+                     </VBox.margin>
+                  </Label>
+                  <ChoiceBox prefWidth="150.0" />
+                  <Button mnemonicParsing="false" text="Atualizar">
+                     <VBox.margin>
+                        <Insets top="20.0" />
+                     </VBox.margin>
+                  </Button>
+               </children>
+            </VBox>
+         </content>
+      </Tab>
+      <Tab style="-fx-background-radius: 0;" text="Lista de Itens">
+         <content>
+            <VBox prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <ListView />
+               </children>
+            </VBox>
+         </content>
+      </Tab>
+    <Tab style="-fx-background-radius: 0;" text="Remover item">
+         <content>
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <Label text="Nome atual:">
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin>
+                  </Label>
+                  <TextField maxWidth="200.0" />
+                  <Button mnemonicParsing="false" text="Remover">
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                  </Button>
+               </children>
+            </VBox>
+         </content>
+    </Tab>
+  </tabs>
+</TabPane>
