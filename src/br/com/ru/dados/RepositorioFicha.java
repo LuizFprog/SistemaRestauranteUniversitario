@@ -11,12 +11,14 @@ import br.com.ru.negocio.models.Ficha;
 public class RepositorioFicha implements IRepositorioGenerico<Ficha>{
 	private List<Ficha> fichas;
 
-	public RepositorioFicha(List<Ficha> fichas) {
+	public RepositorioFicha(List<Ficha> fichas) 
+	{
 		this.fichas = new ArrayList<>();
 	}
 
 	@Override
-	public void inserir(Ficha novo)throws ElementoJaExisteException{
+	public void inserir(Ficha novo)throws ElementoJaExisteException
+	{
 		if(!this.fichas.contains(novo))
 		{
 			fichas.add(novo);
@@ -28,7 +30,8 @@ public class RepositorioFicha implements IRepositorioGenerico<Ficha>{
 	}
 
 	@Override
-	public List<Ficha> ler() {
+	public List<Ficha> ler() 
+	{
 		return Collections.unmodifiableList(fichas);
 	}
 	
@@ -72,7 +75,8 @@ public class RepositorioFicha implements IRepositorioGenerico<Ficha>{
 	}
 
 	@Override
-	public void remover(Ficha ficha) throws ElementoNaoExisteException {
+	public void remover(Ficha ficha) throws ElementoNaoExisteException 
+	{
 		if(this.fichas.contains(ficha))
 		{
 			this.fichas.remove(this.fichas.indexOf(ficha));
@@ -84,7 +88,8 @@ public class RepositorioFicha implements IRepositorioGenerico<Ficha>{
 	}
 
 	@Override
-	public void atualizar(Ficha atual, Ficha novoConteudo) throws ElementoNaoExisteException {
+	public void atualizar(Ficha atual, Ficha novoConteudo) throws ElementoNaoExisteException 
+	{
 		if(this.fichas.contains(atual))
 		{
 			int indice = this.fichas.indexOf(atual);
@@ -95,4 +100,5 @@ public class RepositorioFicha implements IRepositorioGenerico<Ficha>{
 			throw new ElementoNaoExisteException(novoConteudo);
 		}
 	}
+	
 }
