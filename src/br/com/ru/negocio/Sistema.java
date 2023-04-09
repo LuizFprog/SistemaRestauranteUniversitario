@@ -19,7 +19,7 @@ public class Sistema {
 	private ControladorFicha controladorFicha;
 	private static Sistema instancia;
 	
-	public Sistema()
+	private Sistema()
 	{
 		this.controladorUsuario = ControladorUsuario.getInstancia();
 		this.controladorItemConsumivel = ControladorItemConsumivel.getInstancia();

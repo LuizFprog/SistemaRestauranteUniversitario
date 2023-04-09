@@ -16,7 +16,7 @@ import javafx.stage.Stage;
 
 public class TelaCadastroFuncionarioController {
 	
-	private Sistema meuSistema = new Sistema();
+	private Sistema meuSistema = Sistema.getInstancia();
 	
 	@FXML
 	private Button buttonCadastrarCliente;
