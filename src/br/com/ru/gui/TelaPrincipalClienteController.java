@@ -6,8 +6,6 @@ import java.util.ResourceBundle;
 
 import br.com.ru.negocio.Sistema;
 import br.com.ru.negocio.models.Cliente;
-import br.com.ru.negocio.models.Funcionario;
-import br.com.ru.negocio.models.Usuario;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
