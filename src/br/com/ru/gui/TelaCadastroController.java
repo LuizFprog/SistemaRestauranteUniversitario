@@ -22,7 +22,7 @@ public class TelaCadastroController {
     
     @FXML
     public void voltarLogin(ActionEvent event) throws Exception {
-    	FXMLLoader loader = new FXMLLoader(getClass().getResource("TelaLogin.fxml"));
+    	FXMLLoader loader = new FXMLLoader(getClass().getResource("TelaLoginPrincipal.fxml"));
         Parent telaLoginParent = loader.load();
         Scene telaLoginScene = new Scene(telaLoginParent);
         Stage janela = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -36,6 +36,8 @@ public class TelaCadastroController {
         Scene telaClienteScene = new Scene(telaClienteParent);
         Stage janela = (Stage) ((Node) event.getSource()).getScene().getWindow();
         janela.setScene(telaClienteScene);
+        janela.setHeight(telaClienteParent.computeAreaInScreen());
+        janela.setWidth(telaClienteParent.computeAreaInScreen());
         janela.show();
     }
     
@@ -45,6 +47,8 @@ public class TelaCadastroController {
         Scene telaFuncionarioScene = new Scene(telaFuncionarioParent);
         Stage janela = (Stage) ((Node) event.getSource()).getScene().getWindow();
         janela.setScene(telaFuncionarioScene);
+        janela.setHeight(telaFuncionarioParent.computeAreaInScreen());
+        janela.setWidth(telaFuncionarioParent.computeAreaInScreen());
         janela.show();
     }
 
