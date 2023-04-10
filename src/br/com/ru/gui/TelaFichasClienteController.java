@@ -85,6 +85,17 @@ public class TelaFichasClienteController implements Initializable{
   	}
     
     @FXML
+  	public void sairLogin(ActionEvent event) throws IOException
+  	{
+  		FXMLLoader loader = new FXMLLoader(getClass().getResource("TelaLoginPrincipal.fxml"));
+      Parent telaParent = loader.load();
+      Scene telaLoginParent = new Scene(telaParent);
+      Stage janela = (Stage) ((Node) event.getSource()).getScene().getWindow();
+      janela.setScene(telaLoginParent);
+      janela.show();
+  	}
+    
+    @FXML
     public void acaoComprarFichas(ActionEvent event) throws ElementoJaExisteException, SaldoInsuficienteException, ElementoNaoExisteException
     {
     	Integer valor = choiceFichas.getValue();
