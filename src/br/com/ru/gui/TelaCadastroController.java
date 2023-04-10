@@ -30,25 +30,23 @@ public class TelaCadastroController {
         janela.show();
     }
     
+    @FXML
     public void irParaCliente(ActionEvent event) throws Exception {
     	FXMLLoader loader = new FXMLLoader(getClass().getResource("TelaCadastroCliente.fxml"));
         Parent telaClienteParent = loader.load();
         Scene telaClienteScene = new Scene(telaClienteParent);
         Stage janela = (Stage) ((Node) event.getSource()).getScene().getWindow();
         janela.setScene(telaClienteScene);
-        janela.setHeight(telaClienteParent.computeAreaInScreen());
-        janela.setWidth(telaClienteParent.computeAreaInScreen());
         janela.show();
     }
     
+    @FXML
     public void irParaFuncionario(ActionEvent event) throws Exception {
     	FXMLLoader loader = new FXMLLoader(getClass().getResource("TelaCadastroFuncionario.fxml"));
         Parent telaFuncionarioParent = loader.load();
         Scene telaFuncionarioScene = new Scene(telaFuncionarioParent);
         Stage janela = (Stage) ((Node) event.getSource()).getScene().getWindow();
         janela.setScene(telaFuncionarioScene);
-        janela.setHeight(telaFuncionarioParent.computeAreaInScreen());
-        janela.setWidth(telaFuncionarioParent.computeAreaInScreen());
         janela.show();
     }
 
