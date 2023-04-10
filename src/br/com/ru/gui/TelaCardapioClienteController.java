@@ -1,28 +1,44 @@
 package br.com.ru.gui;
 
-import br.com.ru.negocio.Sistema;
-import javafx.fxml.FXML;
-import javafx.scene.control.ListView;
+import java.io.IOException;
+import java.net.URL;
+import java.util.List;
+import java.util.ResourceBundle;
+import java.util.stream.Stream;
 
-public class TelaCardapioClienteController {
-	
+import br.com.ru.exceptions.ElementoJaExisteException;
+import br.com.ru.negocio.Sistema;
+import br.com.ru.negocio.models.ItemConsumivel;
+import br.com.ru.negocio.models.ItemConsumivel.TipoCardapio;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.ListView;
+import javafx.stage.Stage;
+
+public class TelaCardapioClienteController implements Initializable{
+	@FXML
 	private Sistema meuSistema = Sistema.getInstancia();
 
     @FXML
-    private ListView<?> listSobremesa;
+    private ListView<ItemConsumivel> listSobremesa;
 
     @FXML
-    private ListView<?> listSuco;
+    private ListView<ItemConsumivel> listSuco;
 
     @FXML
-    private ListView<?> listTrivial;
+    private ListView<ItemConsumivel> listTrivial;
 
     @FXML
-    private ListView<?> listVegano;
+    private ListView<ItemConsumivel> listVegano;
     
     @FXML    
     public void listarItensTrivial() {
-        meuSistema.cardapioTrivial();
+    	
     }
     
     @FXML    
@@ -39,5 +55,63 @@ public class TelaCardapioClienteController {
     public void listarItensSuco() {
         meuSistema.cardapioSuco();
     }
+    
+    @FXML
+  	public void irInicio(ActionEvent event) throws IOException
+  	{
+  		FXMLLoader loader = new FXMLLoader(getClass().getResource("TelaPrincipalCliente.fxml"));
+      Parent telaParent = loader.load();
+      Scene telaPrincipalParent = new Scene(telaParent);
+      Stage janela = (Stage) ((Node) event.getSource()).getScene().getWindow();
+      janela.setScene(telaPrincipalParent);
+      janela.show();
+  	}
+  	
+  	@FXML
+  	public void irFichas(ActionEvent event) throws IOException
+  	{
+  		FXMLLoader loader = new FXMLLoader(getClass().getResource("TelaFichasCliente.fxml"));
+      Parent telaParent = loader.load();
+      Scene telaFichasParent = new Scene(telaParent);
+      Stage janela = (Stage) ((Node) event.getSource()).getScene().getWindow();
+      janela.setScene(telaFichasParent);
+      janela.show();
+  	}
+
+		@Override
+		public void initialize(URL arg0, ResourceBundle arg1) {
+			try {
+				meuSistema.adicionarItemConsumivel("Nome", true, true, TipoCardapio.TRIVIAL, true);
+				meuSistema.adicionarItemConsumivel("Nome2", true, true, TipoCardapio.VEGANO, true);
+				meuSistema.adicionarItemConsumivel("Nome3", true, true, TipoCardapio.SOBREMESA, true);
+				meuSistema.adicionarItemConsumivel("Nome4", true, true, TipoCardapio.SUCO, true);
+			} catch (ElementoJaExisteException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			List<ItemConsumivel> trivial = meuSistema.cardapioTrivial();
+			for(ItemConsumivel i : trivial)
+			{
+				listTrivial.getItems().add(i);
+			}
+			
+			List<ItemConsumivel> sobremesa = meuSistema.cardapioSobremesa();
+			for(ItemConsumivel i : sobremesa)
+			{
+				listSobremesa.getItems().add(i);
+			}
+			
+			List<ItemConsumivel> vegano = meuSistema.cardapioVegano();
+			for(ItemConsumivel i : vegano)
+			{
+				listVegano.getItems().add(i);
+			}
+			
+			List<ItemConsumivel> suco = meuSistema.cardapioSuco();
+			for(ItemConsumivel i : suco)
+			{
+				listSuco.getItems().add(i);
+			}
+		}
 }
 

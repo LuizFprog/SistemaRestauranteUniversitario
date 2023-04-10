@@ -169,6 +169,11 @@ public Usuario recuperarUsuarioEspecifico(String cpf) throws ElementoNaoExisteEx
 		return controladorItemConsumivel.cardapioTrivial();
 	}
 	
+	public String listaCardapioTrivial()
+	{
+		return controladorItemConsumivel.listaCardapioTrivial();
+	}
+	
 	public List<ItemConsumivel> cardapioVegano()
 	{
 		return controladorItemConsumivel.cardapioVegano();
