@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
@@ -11,91 +16,126 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.VBox?>
 
-<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.ru.gui.TelaItemFuncionarioController">
-  <tabs>
-    <Tab style="-fx-background-radius: 0;" text="Adicionar item">
-         <content>
-            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0">
-               <children>
-                  <Label text="Nome do item" />
-                  <TextField fx:id="textNome" maxWidth="200.0" />
-                  <CheckBox fx:id="checkGluten" mnemonicParsing="false" onAction="#glutenMarcado" text="Gluten">
-                     <VBox.margin>
-                        <Insets top="20.0" />
-                     </VBox.margin>
-                  </CheckBox>
-                  <CheckBox fx:id="checkLactose" mnemonicParsing="false" onAction="#lactoseMarcado" text="Lactose" />
-                  <Label text="Tipo do item">
-                     <VBox.margin>
-                        <Insets top="20.0" />
-                     </VBox.margin>
-                  </Label>
-                  <ChoiceBox fx:id="choiceTipo" prefWidth="150.0" />
-                  <Button fx:id="adicionar" mnemonicParsing="false" onAction="#criarItem" text="Adicionar">
-                     <VBox.margin>
-                        <Insets top="20.0" />
-                     </VBox.margin>
-                  </Button>
-               </children>
-            </VBox>
-         </content>
-    </Tab>
-      <Tab style="-fx-background-radius: 0;" text="Atualizar item">
-         <content>
-            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0">
-               <children>
-                  <Label layoutX="272.0" layoutY="64.0" text="Nome atual" />
-                  <TextField layoutX="210.0" layoutY="91.0" maxWidth="200.0" />
-                  <Label text="Novo nome" />
-                  <TextField maxWidth="200.0" />
-                  <CheckBox mnemonicParsing="false" text="Lactose">
-                     <VBox.margin>
-                        <Insets top="20.0" />
-                     </VBox.margin>
-                  </CheckBox>
-                  <CheckBox mnemonicParsing="false" text="Gluten" />
-                  <Label text="Tipo do item">
-                     <VBox.margin>
-                        <Insets top="20.0" />
-                     </VBox.margin>
-                  </Label>
-                  <ChoiceBox prefWidth="150.0" />
-                  <Button mnemonicParsing="false" text="Atualizar">
-                     <VBox.margin>
-                        <Insets top="20.0" />
-                     </VBox.margin>
-                  </Button>
-               </children>
-            </VBox>
-         </content>
-      </Tab>
-      <Tab style="-fx-background-radius: 0;" text="Lista de Itens">
-         <content>
-            <VBox prefHeight="200.0" prefWidth="100.0">
-               <children>
-                  <ListView fx:id="listItens" />
-               </children>
-            </VBox>
-         </content>
-      </Tab>
-    <Tab style="-fx-background-radius: 0;" text="Remover item">
-         <content>
-            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
-               <children>
-                  <Label text="Nome atual:">
-                     <VBox.margin>
-                        <Insets bottom="10.0" />
-                     </VBox.margin>
-                  </Label>
-                  <TextField maxWidth="200.0" />
-                  <Button mnemonicParsing="false" text="Remover">
-                     <VBox.margin>
-                        <Insets top="10.0" />
-                     </VBox.margin>
-                  </Button>
-               </children>
-            </VBox>
-         </content>
-    </Tab>
-  </tabs>
-</TabPane>
+<BorderPane prefHeight="200.0" prefWidth="200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.ru.gui.TelaItemFuncionarioController">
+   <center>
+      <TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
+        <tabs>
+          <Tab style="-fx-background-radius: 0;" text="Adicionar item">
+               <content>
+                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0">
+                     <children>
+                        <Label text="Nome do item" />
+                        <TextField fx:id="textNome" maxWidth="200.0" />
+                        <CheckBox fx:id="checkGluten" mnemonicParsing="false" onAction="#glutenMarcado" text="Gluten">
+                           <VBox.margin>
+                              <Insets top="20.0" />
+                           </VBox.margin>
+                        </CheckBox>
+                        <CheckBox fx:id="checkLactose" mnemonicParsing="false" onAction="#lactoseMarcado" text="Lactose" />
+                        <Label text="Tipo do item">
+                           <VBox.margin>
+                              <Insets top="20.0" />
+                           </VBox.margin>
+                        </Label>
+                        <ChoiceBox fx:id="choiceTipo" prefWidth="150.0" />
+                        <Button fx:id="adicionar" mnemonicParsing="false" onAction="#criarItem" text="Adicionar">
+                           <VBox.margin>
+                              <Insets top="20.0" />
+                           </VBox.margin>
+                        </Button>
+                     </children>
+                  </VBox>
+               </content>
+          </Tab>
+            <Tab style="-fx-background-radius: 0;" text="Atualizar item">
+               <content>
+                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0">
+                     <children>
+                        <Label layoutX="272.0" layoutY="64.0" text="Nome atual" />
+                        <TextField layoutX="210.0" layoutY="91.0" maxWidth="200.0" />
+                        <Label text="Novo nome" />
+                        <TextField maxWidth="200.0" />
+                        <CheckBox mnemonicParsing="false" text="Lactose">
+                           <VBox.margin>
+                              <Insets top="20.0" />
+                           </VBox.margin>
+                        </CheckBox>
+                        <CheckBox mnemonicParsing="false" text="Gluten" />
+                        <Label text="Tipo do item">
+                           <VBox.margin>
+                              <Insets top="20.0" />
+                           </VBox.margin>
+                        </Label>
+                        <ChoiceBox prefWidth="150.0" />
+                        <Button mnemonicParsing="false" text="Atualizar">
+                           <VBox.margin>
+                              <Insets top="20.0" />
+                           </VBox.margin>
+                        </Button>
+                     </children>
+                  </VBox>
+               </content>
+            </Tab>
+            <Tab style="-fx-background-radius: 0;" text="Lista de Itens">
+               <content>
+                  <VBox prefHeight="200.0" prefWidth="100.0">
+                     <children>
+                        <ListView fx:id="listItens" />
+                     </children>
+                  </VBox>
+               </content>
+            </Tab>
+          <Tab style="-fx-background-radius: 0;" text="Remover item">
+               <content>
+                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                     <children>
+                        <Label text="Nome atual:">
+                           <VBox.margin>
+                              <Insets bottom="10.0" />
+                           </VBox.margin>
+                        </Label>
+                        <TextField maxWidth="200.0" />
+                        <Button mnemonicParsing="false" text="Remover">
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                        </Button>
+                     </children>
+                  </VBox>
+               </content>
+          </Tab>
+        </tabs>
+      </TabPane>
+   </center>
+   <left>
+      <VBox prefHeight="400.0" prefWidth="162.0">
+         <children>
+            <Button fx:id="buttonInicio" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#entrarInicio" prefHeight="300.0" prefWidth="100.0" style="-fx-background-color: #e76000; -fx-background-radius: 0;" text="Inicio" textFill="WHITE">
+               <font>
+                  <Font name="Arial Bold" size="14.0" />
+               </font>
+            </Button>
+            <Button fx:id="buttonCardapio" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#entrarTelaCardapio" prefHeight="300.0" prefWidth="100.0" style="-fx-background-color: #e76000; -fx-background-radius: 0;" text="Cardapio" textFill="WHITE">
+               <font>
+                  <Font name="Arial Bold" size="14.0" />
+               </font>
+            </Button>
+            <Button fx:id="buttonItens" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="300.0" prefWidth="100.0" style="-fx-background-color: #e76000; -fx-background-radius: 0;" text="Itens" textFill="WHITE">
+               <font>
+                  <Font name="Arial Bold" size="14.0" />
+               </font>
+            </Button>
+            <Button fx:id="buttonDados" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#entrarTelaDados" prefHeight="300.0" prefWidth="100.0" style="-fx-background-color: #e76000; -fx-background-radius: 0;" text="Dados" textFill="WHITE">
+               <font>
+                  <Font name="Arial Bold" size="14.0" />
+               </font>
+            </Button>
+            <Button fx:id="buttonSair" layoutX="10.0" layoutY="310.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#sairLogin" prefHeight="300.0" prefWidth="100.0" style="-fx-background-color: #e76000; -fx-background-radius: 0;" text="Sair" textFill="WHITE">
+               <font>
+                  <Font name="Arial Bold" size="14.0" />
+               </font>
+            </Button>
+         </children>
+      </VBox>
+   </left>
+</BorderPane>

@@ -28,6 +28,18 @@ import javafx.stage.Stage;
 public class TelaItemFuncionarioController implements Initializable{
 	@FXML
 	private Sistema meuSistema = Sistema.getInstancia();
+	
+	@FXML
+	private Button buttonCardapio;
+	
+	@FXML
+	private Button buttonInicio;
+	
+	@FXML
+	private Button buttonDados;
+	
+	@FXML
+	private Button buttonSair;
 
     @FXML
     private ListView<ItemConsumivel> listItens;
@@ -128,6 +140,48 @@ public class TelaItemFuncionarioController implements Initializable{
   		meuSistema.adicionarItemConsumivel(nome, gluten, lact, tipo, lact);
   		listarItens();
   	}
+  	
+  	@FXML
+    public void entrarTelaDados(ActionEvent event) throws Exception {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("TelaDadosFuncionario.fxml"));
+        Parent telaParent = loader.load();
+        Scene telaDadosParent = new Scene(telaParent);
+        Stage janela = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        janela.setScene(telaDadosParent);
+        janela.show();
+    }
+	
+	@FXML
+	public void sairLogin(ActionEvent event) throws IOException
+	{
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("TelaLoginPrincipal.fxml"));
+    Parent telaParent = loader.load();
+    Scene telaLoginParent = new Scene(telaParent);
+    Stage janela = (Stage) ((Node) event.getSource()).getScene().getWindow();
+    janela.setScene(telaLoginParent);
+    janela.show();
+	}
+	
+	@FXML
+	public void entrarInicio(ActionEvent event) throws IOException
+	{
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("TelaPrincipalFuncionarios.fxml"));
+    Parent telaParent = loader.load();
+    Scene telaLoginParent = new Scene(telaParent);
+    Stage janela = (Stage) ((Node) event.getSource()).getScene().getWindow();
+    janela.setScene(telaLoginParent);
+    janela.show();
+	}
+	
+	@FXML
+  public void entrarTelaCardapio(ActionEvent event) throws Exception {
+      FXMLLoader loader = new FXMLLoader(getClass().getResource("TelaCardapioFuncionario.fxml"));
+      Parent telaParent = loader.load();
+      Scene telaDadosParent = new Scene(telaParent);
+      Stage janela = (Stage) ((Node) event.getSource()).getScene().getWindow();
+      janela.setScene(telaDadosParent);
+      janela.show();
+  }
 
 		@Override
 		public void initialize(URL arg0, ResourceBundle arg1) {
