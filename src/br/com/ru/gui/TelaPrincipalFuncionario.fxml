@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.ru.gui.TelaPrincipalFuncionarioController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.ru.gui.TelaPrincipalFuncionarioController">
    <left>
       <VBox prefHeight="400.0" prefWidth="162.0" BorderPane.alignment="CENTER">
          <children>
@@ -28,7 +28,7 @@
                   <Font name="Arial Bold" size="14.0" />
                </font>
             </Button>
-            <Button fx:id="buttonDados" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="300.0" prefWidth="100.0" style="-fx-background-color: #e76000; -fx-background-radius: 0;" text="Dados" textFill="WHITE">
+            <Button fx:id="buttonDados" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#entrarTelaDados" prefHeight="300.0" prefWidth="100.0" style="-fx-background-color: #e76000; -fx-background-radius: 0;" text="Dados" textFill="WHITE">
                <font>
                   <Font name="Arial Bold" size="14.0" />
                </font>

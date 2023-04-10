@@ -6,10 +6,16 @@ import java.util.ResourceBundle;
 import br.com.ru.negocio.Sistema;
 import br.com.ru.negocio.models.Cliente;
 import br.com.ru.negocio.models.Funcionario;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 public class TelaPrincipalFuncionarioController  implements Initializable{
 
@@ -67,6 +73,16 @@ public class TelaPrincipalFuncionarioController  implements Initializable{
 	public void setFuncionario(Funcionario funcionario) {
 		TelaPrincipalFuncionarioController.funcionario = funcionario;
 	}
+	
+	@FXML
+    public void entrarTelaDados(ActionEvent event) throws Exception {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("TelaDadosFuncionario.fxml"));
+        Parent telaParent = loader.load();
+        Scene telaDadosParent = new Scene(telaParent);
+        Stage janela = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        janela.setScene(telaDadosParent);
+        janela.show();
+    }
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
