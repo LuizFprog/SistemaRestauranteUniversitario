@@ -1,5 +1,6 @@
 package br.com.ru.gui;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -85,6 +86,16 @@ public class TelaPrincipalFuncionarioController  implements Initializable{
     }
 	
 	@FXML
+  public void entrarTelaCardapio(ActionEvent event) throws Exception {
+      FXMLLoader loader = new FXMLLoader(getClass().getResource("TelaCardapioFuncionario.fxml"));
+      Parent telaParent = loader.load();
+      Scene telaDadosParent = new Scene(telaParent);
+      Stage janela = (Stage) ((Node) event.getSource()).getScene().getWindow();
+      janela.setScene(telaDadosParent);
+      janela.show();
+  }
+	
+	@FXML
     public void entrarTelaItens(ActionEvent event) throws Exception {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("TelaItemFuncionario.fxml"));
         Parent telaParent = loader.load();
@@ -93,6 +104,17 @@ public class TelaPrincipalFuncionarioController  implements Initializable{
         janela.setScene(telaItensParent);
         janela.show();
     }
+	
+	@FXML
+	public void sairLogin(ActionEvent event) throws IOException
+	{
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("TelaLoginPrincipal.fxml"));
+    Parent telaParent = loader.load();
+    Scene telaLoginParent = new Scene(telaParent);
+    Stage janela = (Stage) ((Node) event.getSource()).getScene().getWindow();
+    janela.setScene(telaLoginParent);
+    janela.show();
+	}
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {

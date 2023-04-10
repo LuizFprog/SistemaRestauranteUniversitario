@@ -39,7 +39,7 @@ public class TelaLoginController {
 	
 	@FXML
     public void entrarTelaFuncionario(ActionEvent event) throws Exception {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("TelaPrincipalFuncionario.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("TelaPrincipalFuncionarios.fxml"));
         Parent telaFuncParent = loader.load();
         Scene telaFuncionarioParent = new Scene(telaFuncParent);
         Stage janela = (Stage) ((Node) event.getSource()).getScene().getWindow();

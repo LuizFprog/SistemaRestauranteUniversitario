@@ -1,6 +1,7 @@
 package br.com.ru.gui;
 
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -10,10 +11,15 @@ import br.com.ru.negocio.Sistema;
 import br.com.ru.negocio.models.ItemConsumivel;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ListView;
+import javafx.stage.Stage;
 
 public class TelaCardapioFuncionarioController implements Initializable{
 	@FXML
@@ -44,6 +50,48 @@ public class TelaCardapioFuncionarioController implements Initializable{
 	ItemConsumivel item = listaItem.getSelectionModel().getSelectedItem();
   meuSistema.removerDoCardapio(item);;
   }
+  
+  @FXML
+  public void entrarTelaItens(ActionEvent event) throws Exception {
+      FXMLLoader loader = new FXMLLoader(getClass().getResource("TelaItemFuncionario.fxml"));
+      Parent telaParent = loader.load();
+      Scene telaItensParent = new Scene(telaParent);
+      Stage janela = (Stage) ((Node) event.getSource()).getScene().getWindow();
+      janela.setScene(telaItensParent);
+      janela.show();
+  }
+
+@FXML
+public void sairLogin(ActionEvent event) throws IOException
+{
+	FXMLLoader loader = new FXMLLoader(getClass().getResource("TelaLoginPrincipal.fxml"));
+  Parent telaParent = loader.load();
+  Scene telaLoginParent = new Scene(telaParent);
+  Stage janela = (Stage) ((Node) event.getSource()).getScene().getWindow();
+  janela.setScene(telaLoginParent);
+  janela.show();
+}
+
+@FXML
+public void entrarTelaDados(ActionEvent event) throws Exception {
+    FXMLLoader loader = new FXMLLoader(getClass().getResource("TelaDadosFuncionario.fxml"));
+    Parent telaParent = loader.load();
+    Scene telaDadosParent = new Scene(telaParent);
+    Stage janela = (Stage) ((Node) event.getSource()).getScene().getWindow();
+    janela.setScene(telaDadosParent);
+    janela.show();
+}
+
+@FXML
+public void entrarInicio(ActionEvent event) throws IOException
+{
+	FXMLLoader loader = new FXMLLoader(getClass().getResource("TelaPrincipalFuncionarios.fxml"));
+  Parent telaParent = loader.load();
+  Scene telaLoginParent = new Scene(telaParent);
+  Stage janela = (Stage) ((Node) event.getSource()).getScene().getWindow();
+  janela.setScene(telaLoginParent);
+  janela.show();
+}
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
