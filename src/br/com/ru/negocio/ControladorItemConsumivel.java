@@ -69,6 +69,11 @@ public class ControladorItemConsumivel {
 		return tipoCardapio(TipoCardapio.TRIVIAL);
 	}
 	
+	public String listaCardapioTrivial()
+	{
+		return cardapioTrivial().toString();
+	}
+	
 	public List<ItemConsumivel> cardapioVegano()
 	{
 		return tipoCardapio(TipoCardapio.VEGANO);
