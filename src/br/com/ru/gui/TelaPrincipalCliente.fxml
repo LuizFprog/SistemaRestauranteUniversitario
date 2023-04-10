@@ -1,27 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.text.*?>
-<?import javafx.scene.control.*?>
-<?import java.lang.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.ru.gui.TelaPrincipalClienteController">
    <left>
       <VBox prefHeight="400.0" prefWidth="162.0" BorderPane.alignment="CENTER">
          <children>
-            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="300.0" prefWidth="100.0" style="-fx-background-color: #e76000; -fx-background-radius: 0;" text="Inicio" textFill="WHITE">
+            <Button fx:id="buttonInicio" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="300.0" prefWidth="100.0" style="-fx-background-color: #e76000; -fx-background-radius: 0;" text="Inicio" textFill="WHITE">
                <font>
                   <Font name="Arial Bold" size="14.0" />
                </font>
             </Button>
-            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="300.0" prefWidth="100.0" style="-fx-background-color: #e76000; -fx-background-radius: 0;" text="Cardapio" textFill="WHITE">
+            <Button fx:id="buttonCardapio" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="300.0" prefWidth="100.0" style="-fx-background-color: #e76000; -fx-background-radius: 0;" text="Cardapio" textFill="WHITE">
                <font>
                   <Font name="Arial Bold" size="14.0" />
                </font>
             </Button>
-            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="300.0" prefWidth="100.0" style="-fx-background-color: #e76000; -fx-background-radius: 0;" text="Fichas" textFill="WHITE">
+            <Button fx:id="buttonFicha" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="300.0" prefWidth="100.0" style="-fx-background-color: #e76000; -fx-background-radius: 0;" text="Fichas" textFill="WHITE">
                <font>
                   <Font name="Arial Bold" size="14.0" />
                </font>
@@ -70,7 +72,7 @@
                               <Insets left="30.0" />
                            </VBox.margin>
                         </Label>
-                        <TextField editable="false" maxWidth="400.0" promptText="NOME DO CLIENTE" HBox.hgrow="ALWAYS">
+                        <TextField fx:id="textNomeCliente" editable="false" maxWidth="400.0" promptText="NOME DO CLIENTE" HBox.hgrow="ALWAYS">
                            <HBox.margin>
                               <Insets right="20.0" />
                            </HBox.margin>
@@ -89,7 +91,7 @@
                               <Insets left="30.0" />
                            </VBox.margin>
                         </Label>
-                        <TextField editable="false" maxWidth="150.0" promptText="CPF DO CLIENTE" HBox.hgrow="NEVER" VBox.vgrow="NEVER">
+                        <TextField fx:id="textCpfCliente" editable="false" maxWidth="150.0" promptText="CPF DO CLIENTE" HBox.hgrow="NEVER" VBox.vgrow="NEVER">
                            <HBox.margin>
                               <Insets />
                            </HBox.margin>
@@ -108,7 +110,7 @@
                               <Insets left="30.0" />
                            </VBox.margin>
                         </Label>
-                        <TextField editable="false" maxWidth="200.0" promptText="LOGIN DO CLIENTE" HBox.hgrow="NEVER" VBox.vgrow="NEVER">
+                        <TextField fx:id="textLoginCliente" editable="false" maxWidth="200.0" promptText="LOGIN DO CLIENTE" HBox.hgrow="NEVER" VBox.vgrow="NEVER">
                            <HBox.margin>
                               <Insets />
                            </HBox.margin>
@@ -127,7 +129,7 @@
                               <Insets left="30.0" />
                            </VBox.margin>
                         </Label>
-                        <TextField editable="false" maxWidth="200.0" promptText="SENHA DO CLIENTE" HBox.hgrow="NEVER" VBox.vgrow="ALWAYS">
+                        <TextField fx:id="textSenhaCliente" editable="false" maxWidth="200.0" promptText="SENHA DO CLIENTE" HBox.hgrow="NEVER" VBox.vgrow="ALWAYS">
                            <HBox.margin>
                               <Insets />
                            </HBox.margin>
@@ -164,7 +166,7 @@
                               <Insets left="30.0" />
                            </VBox.margin>
                         </Label>
-                        <TextField editable="false" maxWidth="80.0" HBox.hgrow="ALWAYS">
+                        <TextField fx:id="textSaldoAtual" editable="false" maxWidth="80.0" HBox.hgrow="ALWAYS">
                            <HBox.margin>
                               <Insets right="20.0" />
                            </HBox.margin>
@@ -186,7 +188,7 @@
                               <Insets left="30.0" right="10.0" />
                            </VBox.margin>
                         </Label>
-                        <TextField editable="false" maxWidth="80.0" HBox.hgrow="NEVER" VBox.vgrow="NEVER">
+                        <TextField fx:id="textValorDepositar" editable="false" maxWidth="80.0" HBox.hgrow="NEVER" VBox.vgrow="NEVER">
                            <HBox.margin>
                               <Insets />
                            </HBox.margin>
@@ -197,7 +199,7 @@
                               <Font name="Arial Bold" size="16.0" />
                            </font>
                         </TextField>
-                        <Button mnemonicParsing="false" text="Depositar">
+                        <Button fx:id="buttonDepositar" mnemonicParsing="false" text="Depositar">
                            <VBox.margin>
                               <Insets bottom="87.0" left="30.0" />
                            </VBox.margin>
