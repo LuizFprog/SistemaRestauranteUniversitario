@@ -1,6 +1,6 @@
 package br.com.ru.gui;
 
-import java.awt.TextField;
+import javafx.scene.control.TextField;
 
 import br.com.ru.negocio.Sistema;
 import br.com.ru.negocio.models.Cliente;
