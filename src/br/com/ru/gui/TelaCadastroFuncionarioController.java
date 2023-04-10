@@ -10,6 +10,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import br.com.ru.exceptions.ElementoJaExisteException;
+import br.com.ru.exceptions.ElementoNaoExisteException;
 import br.com.ru.negocio.Sistema;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -44,32 +45,7 @@ public class TelaCadastroFuncionarioController {
     @FXML
     private TextField textFieldId;
     
-    @FXML
-    public void cadastrar(ActionEvent event) throws IOException, ElementoJaExisteException {
-    	
-    	FXMLLoader loader = new FXMLLoader(getClass().getResource("TelaCadastroFuncionario.fxml"));
-        Parent root = loader.load();
-        
-        TextField primeiroNomeTextField = (TextField) root.lookup("textFieldPrimeiroNome");
-        String primeiroNome = primeiroNomeTextField.getText();
-        
-        TextField ultimoNomeTextField = (TextField) root.lookup("textFieldUltimoNome");
-        String ultimoNome = ultimoNomeTextField.getText();
-        
-        TextField cpfTextField = (TextField) root.lookup("textFieldCpf");
-        String cpf = cpfTextField.getText();
-        
-        TextField loginTextField = (TextField) root.lookup("textFieldLogin");
-        String login = loginTextField.getText();
-        
-        TextField senhaTextField = (TextField) root.lookup("textFieldSenha");
-        String senha = senhaTextField.getText();
-        
-        TextField idTextField = (TextField) root.lookup("textFieldId");
-        String id = idTextField.getText();
-        
-    	meuSistema.adicionarFuncionario(primeiroNome, ultimoNome, cpf, login, senha, id);
-    }
+    
     
    @FXML
    public void voltarLogin(ActionEvent event) throws Exception {
@@ -80,5 +56,25 @@ public class TelaCadastroFuncionarioController {
         janela.setScene(telaLoginScene);
         janela.show();
     }
+   
+   @FXML
+   public void cadastrar(ActionEvent event) throws Exception {
+   	
+
+       String primeiroNome = textFieldPrimeiroNome.getText();   
+       String ultimoNome = textFieldUltimoNome.getText();
+       String cpf = textFieldCpf.getText();
+       String login = textFieldLogin.getText();
+       String senha = textFieldSenha.getText();
+       String id = textFieldId.getText();
+       
+	   	meuSistema.adicionarFuncionario(primeiroNome, ultimoNome, cpf, login, senha, id);
+	   	System.out.println(meuSistema.recuperarUsuarioEspecifico(cpf).toString());
+   	
+   		if(meuSistema.recuperarUsuarioEspecifico(cpf)!=null) {
+   			voltarLogin(event);
+   		}
+   	
+   }
     
 }

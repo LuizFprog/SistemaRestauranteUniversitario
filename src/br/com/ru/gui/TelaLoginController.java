@@ -1,7 +1,7 @@
 package br.com.ru.gui;
 
-import java.awt.TextField;
 
+import javafx.scene.control.TextField;
 import br.com.ru.negocio.Sistema;
 import br.com.ru.negocio.models.Cliente;
 import br.com.ru.negocio.models.Funcionario;
@@ -64,9 +64,11 @@ public class TelaLoginController {
 	public void acaoEntrar(ActionEvent event) throws Exception {
 		
 		String login = textLogin.getText(); //assumindo cpf
+	
 		if(login != null) {
 			
 			Usuario usuario = meuSistema.recuperarUsuarioEspecifico(login);  //
+	
 			
 			if(usuario != null) {
 				
