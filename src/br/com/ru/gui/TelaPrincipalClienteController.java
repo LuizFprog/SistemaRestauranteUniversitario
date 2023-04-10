@@ -89,8 +89,6 @@ public class TelaPrincipalClienteController implements Initializable{
 		textSenhaCliente.setText(cliente.getSenha());
 		textSaldoAtual.setText(String.valueOf(cliente.getSaldo()));
 		
-		
-		
 	}
 	
 	@FXML
