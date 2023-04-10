@@ -77,6 +77,17 @@ public class TelaCardapioClienteController implements Initializable{
       janela.setScene(telaFichasParent);
       janela.show();
   	}
+  	
+  	@FXML
+  	public void sairLogin(ActionEvent event) throws IOException
+  	{
+  		FXMLLoader loader = new FXMLLoader(getClass().getResource("TelaLoginPrincipal.fxml"));
+      Parent telaParent = loader.load();
+      Scene telaLoginParent = new Scene(telaParent);
+      Stage janela = (Stage) ((Node) event.getSource()).getScene().getWindow();
+      janela.setScene(telaLoginParent);
+      janela.show();
+  	}
 
 		@Override
 		public void initialize(URL arg0, ResourceBundle arg1) {

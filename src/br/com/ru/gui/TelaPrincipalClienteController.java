@@ -32,6 +32,9 @@ public class TelaPrincipalClienteController implements Initializable{
     private Button buttonFicha;
     
     @FXML
+    private Button buttonSair;
+    
+    @FXML
     private  static TelaPrincipalClienteController instancia;
 
     @FXML
@@ -124,6 +127,17 @@ public class TelaPrincipalClienteController implements Initializable{
     Scene telaFichasParent = new Scene(telaParent);
     Stage janela = (Stage) ((Node) event.getSource()).getScene().getWindow();
     janela.setScene(telaFichasParent);
+    janela.show();
+	}
+	
+	@FXML
+	public void sairLogin(ActionEvent event) throws IOException
+	{
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("TelaLoginPrincipal.fxml"));
+    Parent telaParent = loader.load();
+    Scene telaLoginParent = new Scene(telaParent);
+    Stage janela = (Stage) ((Node) event.getSource()).getScene().getWindow();
+    janela.setScene(telaLoginParent);
     janela.show();
 	}
 	

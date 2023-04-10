@@ -78,6 +78,11 @@
                   <Font name="Arial Bold" size="14.0" />
                </font>
             </Button>
+            <Button fx:id="buttonSair" layoutX="10.0" layoutY="362.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#sairLogin" prefHeight="300.0" prefWidth="100.0" style="-fx-background-color: #e76000; -fx-background-radius: 0;" text="Sair" textFill="WHITE">
+               <font>
+                  <Font name="Arial Bold" size="14.0" />
+               </font>
+            </Button>
          </children>
       </VBox>
    </left>
