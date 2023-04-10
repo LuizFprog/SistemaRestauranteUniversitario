@@ -1,7 +1,5 @@
 package br.com.ru.gui;
 
-import java.io.IOException;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -9,7 +7,6 @@ import javafx.scene.control.TextField;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
-import br.com.ru.exceptions.ElementoJaExisteException;
 import br.com.ru.negocio.Sistema;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -42,27 +39,16 @@ public class TelaCadastroClienteController {
     private TextField textFieldUltimoNome;
     
     @FXML
-    public void cadastrar(ActionEvent event) throws IOException, ElementoJaExisteException {
+    public void cadastrar(ActionEvent event) throws Exception
+    {
+    	String primeiroNome = textFieldPrimeiroNome.getText();
+    	String ultimoNome = textFieldUltimoNome.getText();
+    	String cpf = textFieldCpf.getText();
+    	String login = textFieldLogin.getText();
+    	String senha = textFieldSenha.getText();
     	
-    	FXMLLoader loader = new FXMLLoader(getClass().getResource("TelaCadastroCliente.fxml"));
-        Parent root = loader.load();
-        
-        TextField primeiroNomeTextField = (TextField) root.lookup("textFieldPrimeiroNome");
-        String primeiroNome = primeiroNomeTextField.getText();
-        
-        TextField ultimoNomeTextField = (TextField) root.lookup("textFieldUltimoNome");
-        String ultimoNome = ultimoNomeTextField.getText();
-        
-        TextField cpfTextField = (TextField) root.lookup("textFieldCpf");
-        String cpf = cpfTextField.getText();
-        
-        TextField loginTextField = (TextField) root.lookup("textFieldLogin");
-        String login = loginTextField.getText();
-        
-        TextField senhaTextField = (TextField) root.lookup("textFieldSenha");
-        String senha = senhaTextField.getText();
-        
     	meuSistema.adicionarCliente(primeiroNome, ultimoNome, cpf, login, senha);
+    	voltarLogin(event);
     }
     
    @FXML
