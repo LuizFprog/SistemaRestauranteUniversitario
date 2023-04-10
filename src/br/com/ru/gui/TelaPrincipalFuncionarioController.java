@@ -83,6 +83,16 @@ public class TelaPrincipalFuncionarioController  implements Initializable{
         janela.setScene(telaDadosParent);
         janela.show();
     }
+	
+	@FXML
+    public void entrarTelaItens(ActionEvent event) throws Exception {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("TelaItemFuncionario.fxml"));
+        Parent telaParent = loader.load();
+        Scene telaItensParent = new Scene(telaParent);
+        Stage janela = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        janela.setScene(telaItensParent);
+        janela.show();
+    }
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
