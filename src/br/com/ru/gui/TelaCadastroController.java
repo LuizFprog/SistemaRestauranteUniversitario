@@ -37,8 +37,6 @@ public class TelaCadastroController {
         Scene telaClienteScene = new Scene(telaClienteParent);
         Stage janela = (Stage) ((Node) event.getSource()).getScene().getWindow();
         janela.setScene(telaClienteScene);
-        //janela.setHeight(telaClienteParent.computeAreaInScreen());
-        //janela.setWidth(telaClienteParent.computeAreaInScreen());
         janela.show();
     }
     
@@ -49,8 +47,6 @@ public class TelaCadastroController {
         Scene telaFuncionarioScene = new Scene(telaFuncionarioParent);
         Stage janela = (Stage) ((Node) event.getSource()).getScene().getWindow();
         janela.setScene(telaFuncionarioScene);
-//        janela.setHeight(telaFuncionarioParent.computeAreaInScreen());
-//        janela.setWidth(telaFuncionarioParent.computeAreaInScreen());
         janela.show();
     }
 

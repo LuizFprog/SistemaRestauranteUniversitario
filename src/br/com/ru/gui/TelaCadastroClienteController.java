@@ -16,6 +16,8 @@ import javafx.stage.Stage;
 
 public class TelaCadastroClienteController {
 	
+	
+	@FXML
 	private Sistema meuSistema = Sistema.getInstancia();
 	
 	@FXML
@@ -63,8 +65,9 @@ public class TelaCadastroClienteController {
     	meuSistema.adicionarCliente(primeiroNome, ultimoNome, cpf, login, senha);
     }
     
+   @FXML
    public void voltarLogin(ActionEvent event) throws Exception {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("TelaLogin.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("TelaLoginPrincipal.fxml"));
         Parent telaLoginParent = loader.load();
         Scene telaLoginScene = new Scene(telaLoginParent);
         Stage janela = (Stage) ((Node) event.getSource()).getScene().getWindow();
