@@ -32,6 +32,9 @@ public class TelaLoginController {
 	private Sistema meuSistema = Sistema.getInstancia();
 	
 	@FXML
+	private TelaPrincipalClienteController meuClienteAtivo = TelaPrincipalClienteController.getInstancia();
+	
+	@FXML
     public void entrarTelaFuncionario(ActionEvent event) throws Exception {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("TelaPrincipalFuncionario.fxml"));
         Parent telaFuncParent = loader.load();
@@ -78,8 +81,9 @@ public class TelaLoginController {
 					entrarTelaFuncionario(event);
 					
 				} else if(usuario instanceof Cliente) {
-					
+					meuClienteAtivo.setCliente((Cliente) usuario);
 					entrarTelaCliente(event);
+					
 				}
 			}
 		}
