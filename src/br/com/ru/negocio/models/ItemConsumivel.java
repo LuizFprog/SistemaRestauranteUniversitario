@@ -64,7 +64,6 @@ public class ItemConsumivel {
 
 	@Override
 	public String toString() {
-		return "ItemConsumivel [nome=" + nome + ", tipoItemConsumivel=" + tipoItemConsumivel + ", gluten=" + gluten + ", lactose=" + lactose
-				+ ", visivel=" + visivel + "]";
+		return nome;
 	}	
 }

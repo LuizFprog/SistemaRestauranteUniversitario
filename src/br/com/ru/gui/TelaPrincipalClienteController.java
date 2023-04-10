@@ -1,5 +1,6 @@
 package br.com.ru.gui;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -9,9 +10,15 @@ import br.com.ru.negocio.models.Funcionario;
 import br.com.ru.negocio.models.Usuario;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
 public class TelaPrincipalClienteController implements Initializable{
 
@@ -55,6 +62,9 @@ public class TelaPrincipalClienteController implements Initializable{
     private static Cliente cliente;
     
     @FXML
+    private VBox vBox;
+    
+    @FXML
     public static TelaPrincipalClienteController getInstancia()
 	{
 		if(instancia == null)
@@ -63,6 +73,9 @@ public class TelaPrincipalClienteController implements Initializable{
 		}
 		return instancia;
 	}
+    
+    @FXML
+    private TelaFichasClienteController clienteAtual = TelaFichasClienteController.getInstancia();
 
     @FXML
 	public Cliente getCliente() {
@@ -90,7 +103,29 @@ public class TelaPrincipalClienteController implements Initializable{
 		textSaldoAtual.setText(String.valueOf(cliente.getSaldo()));
 		
 		
-		
+	}
+	
+	@FXML
+	public void irCardapio(ActionEvent event) throws IOException
+	{
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("TelaCardapioCliente.fxml"));
+    Parent telaParent = loader.load();
+    Scene telaCardapioParent = new Scene(telaParent);
+    Stage janela = (Stage) ((Node) event.getSource()).getScene().getWindow();
+    janela.setScene(telaCardapioParent);
+    janela.show();
+	}
+	
+	@FXML
+	public void irFichas(ActionEvent event) throws IOException
+	{
+		clienteAtual.setCliente(cliente);
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("TelaFichasCliente.fxml"));
+    Parent telaParent = loader.load();
+    Scene telaFichasParent = new Scene(telaParent);
+    Stage janela = (Stage) ((Node) event.getSource()).getScene().getWindow();
+    janela.setScene(telaFichasParent);
+    janela.show();
 	}
 	
 	@FXML
