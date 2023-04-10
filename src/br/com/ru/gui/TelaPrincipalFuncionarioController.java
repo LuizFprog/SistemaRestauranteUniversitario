@@ -5,7 +5,6 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import br.com.ru.negocio.Sistema;
-import br.com.ru.negocio.models.Cliente;
 import br.com.ru.negocio.models.Funcionario;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
