@@ -1,7 +1,8 @@
 package br.com.ru.gui;
 
-import javafx.scene.control.TextField;
 
+
+import javafx.scene.control.TextField;
 import br.com.ru.negocio.Sistema;
 import br.com.ru.negocio.models.Cliente;
 import br.com.ru.negocio.models.Funcionario;
@@ -29,6 +30,9 @@ public class TelaLoginController {
 
 	@FXML
 	private Sistema meuSistema = Sistema.getInstancia();
+	
+	@FXML
+	private TelaPrincipalClienteController meuClienteAtivo = TelaPrincipalClienteController.getInstancia();
 	
 	@FXML
     public void entrarTelaFuncionario(ActionEvent event) throws Exception {
@@ -64,9 +68,11 @@ public class TelaLoginController {
 	public void acaoEntrar(ActionEvent event) throws Exception {
 		
 		String login = textLogin.getText(); //assumindo cpf
+	
 		if(login != null) {
 			
 			Usuario usuario = meuSistema.recuperarUsuarioEspecifico(login);  //
+	
 			
 			if(usuario != null) {
 				
@@ -75,8 +81,9 @@ public class TelaLoginController {
 					entrarTelaFuncionario(event);
 					
 				} else if(usuario instanceof Cliente) {
-					
+					meuClienteAtivo.setCliente((Cliente) usuario);
 					entrarTelaCliente(event);
+					
 				}
 			}
 		}

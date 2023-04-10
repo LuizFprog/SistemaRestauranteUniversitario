@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.ru.gui.TelaPrincipalClienteController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.ru.gui.TelaPrincipalClienteController">
    <left>
       <VBox prefHeight="400.0" prefWidth="162.0" BorderPane.alignment="CENTER">
          <children>
@@ -188,7 +188,7 @@
                               <Insets left="30.0" right="10.0" />
                            </VBox.margin>
                         </Label>
-                        <TextField fx:id="textValorDepositar" editable="false" maxWidth="80.0" HBox.hgrow="NEVER" VBox.vgrow="NEVER">
+                        <TextField fx:id="textValorDepositar" maxWidth="80.0" HBox.hgrow="NEVER" VBox.vgrow="NEVER">
                            <HBox.margin>
                               <Insets />
                            </HBox.margin>
@@ -199,7 +199,7 @@
                               <Font name="Arial Bold" size="16.0" />
                            </font>
                         </TextField>
-                        <Button fx:id="buttonDepositar" mnemonicParsing="false" text="Depositar">
+                        <Button fx:id="buttonDepositar" mnemonicParsing="false" onAction="#acaoDepositar" text="Depositar">
                            <VBox.margin>
                               <Insets bottom="87.0" left="30.0" />
                            </VBox.margin>
