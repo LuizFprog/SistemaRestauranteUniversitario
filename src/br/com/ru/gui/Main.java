@@ -14,12 +14,8 @@ public class Main extends Application{
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-<<<<<<< HEAD
         Parent root = FXMLLoader.load(getClass().getResource("TelaLoginPrincipal.fxml"));
-=======
-        Parent root = FXMLLoader.load(getClass().getResource("TelaQueFunciona.fxml"));
->>>>>>> master
-        Scene scene = new Scene(root, 800, 480);
+        Scene scene = new Scene(root);
         primaryStage.setScene(scene);
         primaryStage.show();
     }

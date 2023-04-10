@@ -26,7 +26,6 @@ public class TelaLoginController {
 
 	@FXML
     private TextField textLogin;
-	
 
 	@FXML
 	private Sistema meuSistema = Sistema.getInstancia();
@@ -65,7 +64,6 @@ public class TelaLoginController {
 	public void acaoEntrar(ActionEvent event) throws Exception {
 		
 		String login = textLogin.getText(); //assumindo cpf
-
 		if(login != null) {
 			
 			Usuario usuario = meuSistema.recuperarUsuarioEspecifico(login);  //
