@@ -6,6 +6,7 @@ import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 import br.com.ru.exceptions.ElementoJaExisteException;
+import br.com.ru.exceptions.ElementoNaoExisteException;
 import br.com.ru.negocio.Sistema;
 import br.com.ru.negocio.models.ItemConsumivel;
 import br.com.ru.negocio.models.ItemConsumivel.TipoCardapio;
@@ -38,6 +39,9 @@ public class TelaItemFuncionarioController implements Initializable{
 	
 	@FXML
 	private Button buttonSair;
+	
+	@FXML
+    private Button buttonRemoveItem;
 
     @FXML
     private ListView<ItemConsumivel> listItens;
@@ -50,6 +54,9 @@ public class TelaItemFuncionarioController implements Initializable{
     
     @FXML
     private TextField textNome;
+    
+    @FXML
+    private TextField textFieldNomeItem;
 
     @FXML
     private CheckBox checkGluten;
@@ -88,24 +95,10 @@ public class TelaItemFuncionarioController implements Initializable{
   	@FXML
   	public void listarItens() {
   		
-		List<ItemConsumivel> trivial = meuSistema.cardapio();
-		
-		int b = trivial.size();
-		
-		if(!(b<=0)) {
-			ItemConsumivel trivial2 = meuSistema.cardapio().get(b-1);
-			listItens.getItems().add(trivial2);
-		} else {
-			List<ItemConsumivel> trivial3 = meuSistema.cardapio();
-			for(ItemConsumivel i: trivial3) {
-				listItens.getItems().add(i);
-			}
-				
-			
-		}
-		
-		
-			
+		List<ItemConsumivel> trivial3 = meuSistema.verTodosItemConsumiveis();
+		for(ItemConsumivel i: trivial3) {
+			listItens.getItems().add(i);
+		}	
 	
   	}
   	
@@ -125,9 +118,10 @@ public class TelaItemFuncionarioController implements Initializable{
   		}
   		
   	}
+  	 	
   	
   	@FXML
-  	public void criarItem() throws ElementoJaExisteException {
+  	public void criarItem() throws ElementoJaExisteException, ElementoNaoExisteException {
   		
   		String nome = textNome.getText();
   		boolean gluten = a;
@@ -136,7 +130,14 @@ public class TelaItemFuncionarioController implements Initializable{
   		TipoCardapio tipo = choiceTipo.getValue();
   		
   		meuSistema.adicionarItemConsumivel(nome, gluten, lact, tipo, lact);
-  		listarItens();
+  		listItens.getItems().add(meuSistema.recuperarItemConsumivel(nome));
+  	}
+  	
+  	@FXML
+  	public void removeItem(ActionEvent event) throws ElementoNaoExisteException {
+  		meuSistema.removerItemConsumivel(textFieldNomeItem.getText());
+  		listItens.getItems().remove(meuSistema.recuperarItemConsumivel(textFieldNomeItem.getText()));
+  		
   	}
   	
   	@FXML
@@ -172,22 +173,22 @@ public class TelaItemFuncionarioController implements Initializable{
 	}
 	
 	@FXML
-  public void entrarTelaCardapio(ActionEvent event) throws Exception {
+	public void entrarTelaCardapio(ActionEvent event) throws Exception {
       FXMLLoader loader = new FXMLLoader(getClass().getResource("TelaCardapioFuncionario.fxml"));
       Parent telaParent = loader.load();
       Scene telaDadosParent = new Scene(telaParent);
       Stage janela = (Stage) ((Node) event.getSource()).getScene().getWindow();
       janela.setScene(telaDadosParent);
       janela.show();
-  }
+	}
 
 		@Override
 		public void initialize(URL arg0, ResourceBundle arg1) {
-//			listarItens();
+			listarItens();
 			
-//			choiceTipo.getItems().add(TipoCardapio.SOBREMESA);
-//			choiceTipo.getItems().add(TipoCardapio.TRIVIAL);
-//			choiceTipo.getItems().add(TipoCardapio.VEGANO);
-//			choiceTipo.getItems().add(TipoCardapio.SUCO);
+			choiceTipo.getItems().add(TipoCardapio.SOBREMESA);
+			choiceTipo.getItems().add(TipoCardapio.TRIVIAL);
+			choiceTipo.getItems().add(TipoCardapio.VEGANO);
+			choiceTipo.getItems().add(TipoCardapio.SUCO);
 		}
 }
