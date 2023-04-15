@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.ru.gui.TelaPrincipalClienteController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="800.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.ru.gui.TelaPrincipalClienteController">
    <left>
       <VBox prefHeight="400.0" prefWidth="162.0" BorderPane.alignment="CENTER">
          <children>
@@ -46,7 +46,7 @@
          <children>
             <HBox alignment="CENTER">
                <children>
-                  <Label contentDisplay="CENTER" text="Inicio">
+                  <Label contentDisplay="CENTER" text="Inicio" textFill="#f8831d">
                      <font>
                         <Font name="Arial Bold" size="32.0" />
                      </font>
@@ -63,7 +63,7 @@
                <children>
                   <VBox alignment="CENTER_LEFT" maxWidth="600.0" spacing="10.0" style="-fx-border-color: #000000;" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
                      <children>
-                        <Label text="Perfil">
+                        <Label text="Perfil" textFill="#f8831d">
                            <font>
                               <Font name="Arial Bold" size="18.0" />
                            </font>
@@ -76,13 +76,13 @@
                               <Insets />
                            </HBox.margin>
                            <font>
-                              <Font name="Arial" size="14.0" />
+                              <Font name="Arial Bold" size="14.0" />
                            </font>
                            <VBox.margin>
                               <Insets left="30.0" />
                            </VBox.margin>
                         </Label>
-                        <TextField fx:id="textNomeCliente" editable="false" maxWidth="400.0" promptText="NOME DO CLIENTE" HBox.hgrow="ALWAYS">
+                        <TextField fx:id="textNomeCliente" editable="false" maxWidth="400.0" promptText="NOME DO CLIENTE" style="-fx-background-color: #ffffff;" HBox.hgrow="ALWAYS">
                            <HBox.margin>
                               <Insets right="20.0" />
                            </HBox.margin>
@@ -92,7 +92,7 @@
                         </TextField>
                         <Label text="CPF:">
                            <font>
-                              <Font name="Arial" size="14.0" />
+                              <Font name="Arial Bold" size="14.0" />
                            </font>
                            <HBox.margin>
                               <Insets />
@@ -101,7 +101,7 @@
                               <Insets left="30.0" />
                            </VBox.margin>
                         </Label>
-                        <TextField fx:id="textCpfCliente" editable="false" maxWidth="150.0" promptText="CPF DO CLIENTE" HBox.hgrow="NEVER" VBox.vgrow="NEVER">
+                        <TextField fx:id="textCpfCliente" editable="false" maxWidth="150.0" promptText="CPF DO CLIENTE" style="-fx-background-color: #ffffff;" HBox.hgrow="NEVER" VBox.vgrow="NEVER">
                            <HBox.margin>
                               <Insets />
                            </HBox.margin>
@@ -111,7 +111,7 @@
                         </TextField>
                         <Label text="Login:">
                            <font>
-                              <Font name="Arial" size="14.0" />
+                              <Font name="Arial Bold" size="14.0" />
                            </font>
                            <HBox.margin>
                               <Insets />
@@ -120,7 +120,7 @@
                               <Insets left="30.0" />
                            </VBox.margin>
                         </Label>
-                        <TextField fx:id="textLoginCliente" editable="false" maxWidth="200.0" promptText="LOGIN DO CLIENTE" HBox.hgrow="NEVER" VBox.vgrow="NEVER">
+                        <TextField fx:id="textLoginCliente" editable="false" maxWidth="200.0" promptText="LOGIN DO CLIENTE" style="-fx-background-color: #ffffff;" HBox.hgrow="NEVER" VBox.vgrow="NEVER">
                            <HBox.margin>
                               <Insets />
                            </HBox.margin>
@@ -130,7 +130,7 @@
                         </TextField>
                         <Label text="Senha:">
                            <font>
-                              <Font name="Arial" size="14.0" />
+                              <Font name="Arial Bold" size="14.0" />
                            </font>
                            <HBox.margin>
                               <Insets />
@@ -139,7 +139,7 @@
                               <Insets left="30.0" />
                            </VBox.margin>
                         </Label>
-                        <TextField fx:id="textSenhaCliente" editable="false" maxWidth="200.0" promptText="SENHA DO CLIENTE" HBox.hgrow="NEVER" VBox.vgrow="ALWAYS">
+                        <TextField fx:id="textSenhaCliente" editable="false" maxWidth="200.0" promptText="SENHA DO CLIENTE" style="-fx-background-color: #ffffff;" HBox.hgrow="NEVER" VBox.vgrow="ALWAYS">
                            <HBox.margin>
                               <Insets />
                            </HBox.margin>
@@ -155,9 +155,9 @@
                         <Insets left="10.0" />
                      </HBox.margin>
                   </VBox>
-                  <VBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="10.0" maxWidth="600.0" spacing="10.0" style="-fx-border-color: #000000;" HBox.hgrow="ALWAYS">
+                  <VBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="10.0" maxWidth="600.0" spacing="10.0" style="-fx-border-color: #000000; -fx-background-color: #ffffff;" HBox.hgrow="ALWAYS">
                      <children>
-                        <Label text="Saldo">
+                        <Label text="Saldo" textFill="#f8831d">
                            <font>
                               <Font name="Arial Bold" size="18.0" />
                            </font>
@@ -167,7 +167,7 @@
                         </Label>
                         <Label text="Saldo Atual:">
                            <font>
-                              <Font name="Arial" size="14.0" />
+                              <Font name="Arial Bold" size="14.0" />
                            </font>
                            <HBox.margin>
                               <Insets />
@@ -176,7 +176,7 @@
                               <Insets left="30.0" />
                            </VBox.margin>
                         </Label>
-                        <TextField fx:id="textSaldoAtual" editable="false" maxWidth="80.0" HBox.hgrow="ALWAYS">
+                        <TextField fx:id="textSaldoAtual" editable="false" maxWidth="80.0" style="-fx-background-color: #ffffff; -fx-text-fill: #f8831d;" HBox.hgrow="ALWAYS">
                            <HBox.margin>
                               <Insets right="20.0" />
                            </HBox.margin>
@@ -189,7 +189,7 @@
                         </TextField>
                         <Label text="Digite valor a depositar">
                            <font>
-                              <Font name="Arial" size="14.0" />
+                              <Font name="Arial Bold" size="14.0" />
                            </font>
                            <HBox.margin>
                               <Insets />
@@ -198,7 +198,7 @@
                               <Insets left="30.0" right="10.0" />
                            </VBox.margin>
                         </Label>
-                        <TextField fx:id="textValorDepositar" maxWidth="80.0" HBox.hgrow="NEVER" VBox.vgrow="NEVER">
+                        <TextField fx:id="textValorDepositar" maxWidth="80.0" style="-fx-border-style: hidden hidden solid hidden; -fx-background-color: #ffffff; -fx-text-fill: #f8831d;" HBox.hgrow="NEVER" VBox.vgrow="NEVER">
                            <HBox.margin>
                               <Insets />
                            </HBox.margin>
@@ -209,9 +209,9 @@
                               <Font name="Arial Bold" size="16.0" />
                            </font>
                         </TextField>
-                        <Button fx:id="buttonDepositar" mnemonicParsing="false" onAction="#acaoDepositar" text="Depositar">
+                        <Button fx:id="buttonDepositar" mnemonicParsing="false" onAction="#acaoDepositar" prefHeight="30.0" prefWidth="100.0" style="-fx-background-color: #e76000; -fx-background-radius: 0;" text="Depositar" textFill="WHITE">
                            <VBox.margin>
-                              <Insets bottom="87.0" left="30.0" />
+                              <Insets bottom="47.0" left="30.0" top="20.0" />
                            </VBox.margin>
                         </Button>
                      </children>
