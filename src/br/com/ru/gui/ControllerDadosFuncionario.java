@@ -18,7 +18,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.ListView;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -27,7 +27,7 @@ public class ControllerDadosFuncionario implements Initializable{
 	private Sistema meuSistema = Sistema.getInstancia();
 
     @FXML
-    private ListView<Ficha> listFichas;
+    private TableView<Ficha> listFichas;
     
     @FXML
     private Button buttonRemoveUser;

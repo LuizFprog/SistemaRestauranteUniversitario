@@ -13,58 +13,98 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="480.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.ru.gui.TelaItemFuncionarioController">
+<BorderPane prefHeight="480.0" prefWidth="800.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.ru.gui.TelaItemFuncionarioController">
    <center>
-      <TabPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
+      <TabPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" tabClosingPolicy="UNAVAILABLE" tabMinHeight="30.0" tabMinWidth="100.0" BorderPane.alignment="CENTER">
         <tabs>
-          <Tab style="-fx-background-radius: 0;" text="Adicionar item">
+          <Tab style="-fx-background-radius: 0; -fx-background-color: #e76000; -fx-border-style: hidden solid hidden hidden; -fx-backgroung-insets: 0; -fx-text-base-color: #ffffff;" text="Adicionar item">
                <content>
                   <VBox alignment="CENTER" spacing="10.0">
                      <children>
-                        <Label text="Nome do item" />
-                        <TextField fx:id="textNome" maxWidth="200.0" />
+                        <Label text="Adicionar Item" textFill="#f8831d">
+                           <font>
+                              <Font name="Arial Bold" size="16.0" />
+                           </font>
+                        </Label>
+                        <Label text="Nome do item:">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font></Label>
+                        <TextField fx:id="textNome" maxWidth="200.0" style="-fx-background-radius: 0; -fx-background-color: #ffffff; -fx-border-style: hidden hidden solid hidden;" />
                         <CheckBox fx:id="checkGluten" mnemonicParsing="false" text="Gluten">
                            <VBox.margin>
                               <Insets top="20.0" />
                            </VBox.margin>
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
                         </CheckBox>
-                        <CheckBox fx:id="checkLactose" mnemonicParsing="false" text="Lactose" />
-                        <Label text="Tipo do item">
+                        <CheckBox fx:id="checkLactose" mnemonicParsing="false" text="Lactose">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font></CheckBox>
+                        <Label text="Tipo do item:">
                            <VBox.margin>
                               <Insets top="20.0" />
                            </VBox.margin>
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
                         </Label>
-                        <ChoiceBox fx:id="choiceTipo" prefWidth="150.0" />
-                        <Button fx:id="adicionar" mnemonicParsing="false" onAction="#criarItem" text="Adicionar">
+                        <ChoiceBox fx:id="choiceTipo" prefWidth="150.0" style="-fx-background-color: #ffffff; -fx-border-color: #e76000; -fx-background-radius: 0;" />
+                        <Button fx:id="adicionar" mnemonicParsing="false" onAction="#criarItem" prefHeight="30.0" prefWidth="100.0" style="-fx-border-radius: 0; -fx-background-color: #e76000;" text="Adicionar" textFill="WHITE">
                            <VBox.margin>
                               <Insets top="20.0" />
                            </VBox.margin>
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
                         </Button>
                      </children>
                   </VBox>
                </content>
           </Tab>
-            <Tab style="-fx-background-radius: 0;" text="Atualizar item">
+            <Tab style="-fx-background-radius: 0; -fx-background-color: #e76000; -fx-border-style: hidden solid hidden hidden; -fx-backgroung-insets: 0; -fx-text-base-color: #ffffff;" text="Atualizar item">
                <content>
                   <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0">
                      <children>
-                        <Label layoutX="272.0" layoutY="64.0" text="Nome atual" />
-                        <TextField fx:id="textFieldNomeAtual" layoutX="210.0" layoutY="91.0" maxWidth="200.0" />
-                        <Label text="Novo nome" />
-                        <TextField fx:id="textFieldNovoNome" maxWidth="200.0" />
-                        <CheckBox fx:id="checkNovoLactose" mnemonicParsing="false" text="Lactose">
-                           <VBox.margin>
-                              <Insets top="20.0" />
-                           </VBox.margin>
-                        </CheckBox>
-                        <CheckBox fx:id="checkNovoGluten" mnemonicParsing="false" text="Gluten" />
-                        <Label text="Tipo do item">
-                           <VBox.margin>
-                              <Insets top="20.0" />
-                           </VBox.margin>
+                        <Label text="Atualizar Item" textFill="#f8831d">
+                           <font>
+                              <Font name="Arial Bold" size="16.0" />
+                           </font>
                         </Label>
-                        <ChoiceBox fx:id="choiceNovoItemTipo" prefWidth="150.0" />
-                        <Button fx:id="buttonAtualizar" mnemonicParsing="false" onAction="#atualizarItem" text="Atualizar">
+                        <Label layoutX="272.0" layoutY="64.0" text="Nome atual:">
+                           <font>
+                              <Font name="Arial Bold" size="12.0" />
+                           </font></Label>
+                        <TextField layoutX="210.0" layoutY="91.0" maxWidth="200.0" style="-fx-background-color: #ffffff; -fx-border-style: hidden hidden solid hidden; -fx-background-radius: 0;" />
+                        <Label text="Novo nome:">
+                           <font>
+                              <Font name="Arial Bold" size="12.0" />
+                           </font></Label>
+                        <TextField maxWidth="200.0" style="-fx-background-color: #ffffff; -fx-border-style: hidden hidden solid hidden; -fx-background-radius: 0;" />
+                        <CheckBox mnemonicParsing="false" text="Lactose">
+                           <VBox.margin>
+                              <Insets top="20.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font name="Arial Bold" size="12.0" />
+                           </font>
+                        </CheckBox>
+                        <CheckBox mnemonicParsing="false" text="Gluten">
+                           <font>
+                              <Font name="Arial Bold" size="12.0" />
+                           </font></CheckBox>
+                        <Label text="Tipo do item:">
+                           <VBox.margin>
+                              <Insets top="20.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font name="Arial Bold" size="12.0" />
+                           </font>
+                        </Label>
+                        <ChoiceBox prefWidth="150.0" style="-fx-background-color: #ffffff; -fx-border-color: #e76000; -fx-background-radius: 0;" />
+                        <Button mnemonicParsing="false" fx:id="buttonAtualizar" onAction="#atualizarItem" text="Atualizar">
                            <VBox.margin>
                               <Insets top="20.0" />
                            </VBox.margin>
@@ -73,29 +113,48 @@
                   </VBox>
                </content>
             </Tab>
-            <Tab style="-fx-background-radius: 0;" text="Lista de Itens">
+            <Tab style="-fx-background-radius: 0; -fx-background-color: #e76000; -fx-border-style: hidden solid hidden hidden; -fx-backgroung-insets: 0; -fx-text-base-color: #ffffff;" text="Lista de Itens">
                <content>
-                  <VBox prefHeight="200.0" prefWidth="100.0">
+                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                      <children>
-                        <ListView fx:id="listItens" />
+                        <Label text="Repositorio de Itens" textFill="#f8831d">
+                           <font>
+                              <Font name="Arial Bold" size="16.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets bottom="10.0" top="30.0" />
+                           </VBox.margin>
+                        </Label>
+                        <ListView fx:id="listItens" maxHeight="480.0" maxWidth="800.0" VBox.vgrow="ALWAYS" />
                      </children>
                   </VBox>
                </content>
             </Tab>
-          <Tab style="-fx-background-radius: 0;" text="Remover item">
+          <Tab style="-fx-background-radius: 0; -fx-background-color: #e76000; -fx-border-style: hidden solid hidden hidden; -fx-backgroung-insets: 0; -fx-text-base-color: #ffffff;" text="Remover item">
                <content>
                   <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                      <children>
+                        <Label text="Remover Item" textFill="#f8831d">
+                           <font>
+                              <Font name="Arial Bold" size="16.0" />
+                           </font>
+                        </Label>
                         <Label text="Nome atual:">
                            <VBox.margin>
-                              <Insets bottom="10.0" />
+                              <Insets bottom="10.0" top="30.0" />
                            </VBox.margin>
+                           <font>
+                              <Font name="Arial Bold" size="12.0" />
+                           </font>
                         </Label>
-                        <TextField fx:id="textFieldNomeItem" maxWidth="200.0" />
-                        <Button fx:id="buttonRemoveItem" mnemonicParsing="false" onAction="#removeItem" text="Remover">
+                        <TextField maxWidth="200.0" style="-fx-background-color: #ffffff; -fx-border-style: hidden hidden solid hidden; -fx-background-radius: 0;" />
+                        <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="100.0" style="-fx-background-color: #e76000; -fx-background-radius: 0;" text="Remover" textFill="WHITE">
                            <VBox.margin>
                               <Insets top="10.0" />
                            </VBox.margin>
+                           <font>
+                              <Font name="Arial Bold" size="12.0" />
+                           </font>
                         </Button>
                      </children>
                   </VBox>
