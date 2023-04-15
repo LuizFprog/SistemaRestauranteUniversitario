@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="480.0" prefWidth="800.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.ru.gui.TelaItemFuncionarioController">
+<BorderPane prefHeight="480.0" prefWidth="800.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.ru.gui.TelaItemFuncionarioController">
    <center>
       <TabPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" tabClosingPolicy="UNAVAILABLE" tabMinHeight="30.0" tabMinWidth="100.0" BorderPane.alignment="CENTER">
         <tabs>
@@ -52,7 +52,7 @@
                            </font>
                         </Label>
                         <ChoiceBox fx:id="choiceTipo" prefWidth="150.0" style="-fx-background-color: #ffffff; -fx-border-color: #e76000; -fx-background-radius: 0;" />
-                        <Button fx:id="adicionar" mnemonicParsing="false" onAction="#criarItem" prefHeight="30.0" prefWidth="100.0" style="-fx-border-radius: 0; -fx-background-color: #e76000;" text="Adicionar" textFill="WHITE">
+                        <Button fx:id="adicionar" mnemonicParsing="false" onAction="#criarItem" prefHeight="30.0" prefWidth="100.0" stylesheets="@test.css" text="Adicionar" textFill="WHITE">
                            <VBox.margin>
                               <Insets top="20.0" />
                            </VBox.margin>
@@ -104,10 +104,13 @@
                            </font>
                         </Label>
                         <ChoiceBox prefWidth="150.0" style="-fx-background-color: #ffffff; -fx-border-color: #e76000; -fx-background-radius: 0;" />
-                        <Button mnemonicParsing="false" text="Atualizar">
+                        <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="100.0" stylesheets="@test.css" text="Atualizar" textFill="WHITE">
                            <VBox.margin>
                               <Insets top="20.0" />
                            </VBox.margin>
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
                         </Button>
                      </children>
                   </VBox>
@@ -148,7 +151,7 @@
                            </font>
                         </Label>
                         <TextField maxWidth="200.0" style="-fx-background-color: #ffffff; -fx-border-style: hidden hidden solid hidden; -fx-background-radius: 0;" />
-                        <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="100.0" style="-fx-background-color: #e76000; -fx-background-radius: 0;" text="Remover" textFill="WHITE">
+                        <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="100.0" stylesheets="@test.css" text="Remover" textFill="WHITE">
                            <VBox.margin>
                               <Insets top="10.0" />
                            </VBox.margin>
@@ -166,27 +169,27 @@
    <left>
       <VBox prefHeight="400.0" prefWidth="162.0">
          <children>
-            <Button fx:id="buttonInicio" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#entrarInicio" prefHeight="300.0" prefWidth="100.0" style="-fx-background-color: #e76000; -fx-background-radius: 0;" text="Inicio" textFill="WHITE">
+            <Button fx:id="buttonInicio" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#entrarInicio" prefHeight="300.0" prefWidth="100.0" styleClass="buttonTela" stylesheets="@test.css" text="Inicio" textFill="WHITE">
                <font>
                   <Font name="Arial Bold" size="14.0" />
                </font>
             </Button>
-            <Button fx:id="buttonCardapio" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#entrarTelaCardapio" prefHeight="300.0" prefWidth="100.0" style="-fx-background-color: #e76000; -fx-background-radius: 0;" text="Cardapio" textFill="WHITE">
+            <Button fx:id="buttonCardapio" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#entrarTelaCardapio" prefHeight="300.0" prefWidth="100.0" styleClass="buttonTela" stylesheets="@test.css" text="Cardapio" textFill="WHITE">
                <font>
                   <Font name="Arial Bold" size="14.0" />
                </font>
             </Button>
-            <Button fx:id="buttonItens" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="300.0" prefWidth="100.0" style="-fx-background-color: #e76000; -fx-background-radius: 0;" text="Itens" textFill="WHITE">
+            <Button fx:id="buttonItens" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="300.0" prefWidth="100.0" styleClass="buttonTela" stylesheets="@test.css" text="Itens" textFill="WHITE">
                <font>
                   <Font name="Arial Bold" size="14.0" />
                </font>
             </Button>
-            <Button fx:id="buttonDados" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#entrarTelaDados" prefHeight="300.0" prefWidth="100.0" style="-fx-background-color: #e76000; -fx-background-radius: 0;" text="Dados" textFill="WHITE">
+            <Button fx:id="buttonDados" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#entrarTelaDados" prefHeight="300.0" prefWidth="100.0" styleClass="buttonTela" stylesheets="@test.css" text="Dados" textFill="WHITE">
                <font>
                   <Font name="Arial Bold" size="14.0" />
                </font>
             </Button>
-            <Button fx:id="buttonSair" layoutX="10.0" layoutY="310.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#sairLogin" prefHeight="300.0" prefWidth="100.0" style="-fx-background-color: #e76000; -fx-background-radius: 0;" text="Sair" textFill="WHITE">
+            <Button fx:id="buttonSair" layoutX="10.0" layoutY="310.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#sairLogin" prefHeight="300.0" prefWidth="100.0" styleClass="buttonTela" stylesheets="@test.css" text="Sair" textFill="WHITE">
                <font>
                   <Font name="Arial Bold" size="14.0" />
                </font>

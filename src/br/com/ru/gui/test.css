@@ -1,0 +1,38 @@
+ .button {
+ 	-fx-background-color:  #e76000;
+ 	-fx-background-radius: 0;
+ }
+ 
+ .button:hover{
+ 	-fx-background-color: #F28C28;
+ 	
+ }
+ 
+ .button:pressed{
+ 	-fx-background-color: #cf6611;
+ 	
+ }
+ 
+ .buttonTela{
+ 	-fx-background-color:  #e76000;
+ 	-fx-background-radius: 0;
+ }
+ 
+ .buttonTela:hover{
+ 	-fx-background-color: #F28C28;
+ 	-fx-font-size: 16px;
+ 	-fx-font-weight: bold;
+ }
+ 
+ .buttonTela:pressed{
+ 	-fx-background-color: #cf6611;
+ 	
+ }
+ 
+ .background {
+ 	-fx-background-color:  #333344;
+ 	-fx-background-image: url(../imagens/fundoLogin.jpg);
+ 	-fx-background-repeat:  no-repeat;
+ 	-fx-background-position:  center center;
+ 	-fx-background-size:  cover;
+ }
