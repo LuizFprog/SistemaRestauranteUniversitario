@@ -5,8 +5,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
-import br.com.ru.exceptions.ElementoJaExisteException;
-import br.com.ru.exceptions.ElementoNaoExisteException;
+
 import br.com.ru.negocio.Sistema;
 import br.com.ru.negocio.models.ItemConsumivel;
 import br.com.ru.negocio.models.ItemConsumivel.TipoCardapio;
@@ -115,7 +114,7 @@ public class TelaItemFuncionarioController implements Initializable{
   	}
   	
   	@FXML
-  	public void criarItem() throws ElementoJaExisteException, ElementoNaoExisteException {
+  	public void criarItem(ActionEvent event) throws Exception {
   		  		
   		String nome = textNome.getText();
   		boolean gluten;
@@ -136,10 +135,22 @@ public class TelaItemFuncionarioController implements Initializable{
   		
   		meuSistema.adicionarItemConsumivel(nome, gluten, lact, tipo, lact);
   		listItens.getItems().add(meuSistema.recuperarItemConsumivel(nome));
+  		
+  		reloadItens(event);
   	}
   	
   	@FXML
-  	public void atualizarItem() throws ElementoJaExisteException, ElementoNaoExisteException {
+	public void reloadItens(ActionEvent event) throws Exception {
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("TelaItemFuncionario.fxml"));
+		Parent telaParent = loader.load();
+		Scene telaItensParent = new Scene(telaParent);
+		Stage janela = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		janela.setScene(telaItensParent);
+		janela.show();
+	}
+  	
+  	@FXML
+  	public void atualizarItem(ActionEvent event) throws Exception {
   		  		
   		String nomeAtual = textFieldNomeAtual.getText();
   		String novoNome = textFieldNovoNome.getText();  		
@@ -161,12 +172,16 @@ public class TelaItemFuncionarioController implements Initializable{
   		
   		meuSistema.atualizarItemConsumivel(nomeAtual, novoNome, gluten, lact, tipo, lact);
   		listItens.getItems().add(meuSistema.recuperarItemConsumivel(novoNome));
+  		
+  		reloadItens(event);
   	}
   	
   	@FXML
-  	public void removeItem(ActionEvent event) throws ElementoNaoExisteException {
-  		meuSistema.removerItemConsumivel(textFieldNomeItem.getText());
+  	public void removeItem(ActionEvent event) throws Exception {
   		listItens.getItems().remove(meuSistema.recuperarItemConsumivel(textFieldNomeItem.getText()));
+  		meuSistema.removerItemConsumivel(textFieldNomeItem.getText());  		
+  		
+  		reloadItens(event);
   	}
   	
   	@FXML

@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="480.0" prefWidth="800.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.ru.gui.TelaItemFuncionarioController">
+<BorderPane prefHeight="480.0" prefWidth="800.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.ru.gui.TelaItemFuncionarioController">
    <center>
       <TabPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" tabClosingPolicy="UNAVAILABLE" tabMinHeight="30.0" tabMinWidth="100.0" BorderPane.alignment="CENTER">
         <tabs>
@@ -77,13 +77,13 @@
                            <font>
                               <Font name="Arial Bold" size="12.0" />
                            </font></Label>
-                        <TextField layoutX="210.0" layoutY="91.0" maxWidth="200.0" style="-fx-background-color: #ffffff; -fx-border-style: hidden hidden solid hidden; -fx-background-radius: 0;" />
+                        <TextField fx:id="textFieldNomeAtual" layoutX="210.0" layoutY="91.0" maxWidth="200.0" style="-fx-background-color: #ffffff; -fx-border-style: hidden hidden solid hidden; -fx-background-radius: 0;" />
                         <Label text="Novo nome:">
                            <font>
                               <Font name="Arial Bold" size="12.0" />
                            </font></Label>
-                        <TextField maxWidth="200.0" style="-fx-background-color: #ffffff; -fx-border-style: hidden hidden solid hidden; -fx-background-radius: 0;" />
-                        <CheckBox mnemonicParsing="false" text="Lactose">
+                        <TextField fx:id="textFieldNovoNome" maxWidth="200.0" style="-fx-background-color: #ffffff; -fx-border-style: hidden hidden solid hidden; -fx-background-radius: 0;" />
+                        <CheckBox fx:id="checkNovoLactose" mnemonicParsing="false" text="Lactose">
                            <VBox.margin>
                               <Insets top="20.0" />
                            </VBox.margin>
@@ -91,7 +91,7 @@
                               <Font name="Arial Bold" size="12.0" />
                            </font>
                         </CheckBox>
-                        <CheckBox mnemonicParsing="false" text="Gluten">
+                        <CheckBox fx:id="checkNovoGluten" mnemonicParsing="false" text="Gluten">
                            <font>
                               <Font name="Arial Bold" size="12.0" />
                            </font></CheckBox>
@@ -103,8 +103,8 @@
                               <Font name="Arial Bold" size="12.0" />
                            </font>
                         </Label>
-                        <ChoiceBox prefWidth="150.0" style="-fx-background-color: #ffffff; -fx-border-color: #e76000; -fx-background-radius: 0;" />
-                        <Button mnemonicParsing="false" fx:id="buttonAtualizar" onAction="#atualizarItem" text="Atualizar">
+                        <ChoiceBox fx:id="choiceNovoItemTipo" prefWidth="150.0" style="-fx-background-color: #ffffff; -fx-border-color: #e76000; -fx-background-radius: 0;" />
+                        <Button fx:id="buttonAtualizar" mnemonicParsing="false" onAction="#atualizarItem" text="Atualizar">
                            <VBox.margin>
                               <Insets top="20.0" />
                            </VBox.margin>
@@ -147,8 +147,8 @@
                               <Font name="Arial Bold" size="12.0" />
                            </font>
                         </Label>
-                        <TextField maxWidth="200.0" style="-fx-background-color: #ffffff; -fx-border-style: hidden hidden solid hidden; -fx-background-radius: 0;" />
-                        <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="100.0" style="-fx-background-color: #e76000; -fx-background-radius: 0;" text="Remover" textFill="WHITE">
+                        <TextField fx:id="textFieldNomeItem" maxWidth="200.0" style="-fx-background-color: #ffffff; -fx-border-style: hidden hidden solid hidden; -fx-background-radius: 0;" />
+                        <Button fx:id="buttonRemoveItem" mnemonicParsing="false" onAction="#removeItem" prefHeight="30.0" prefWidth="100.0" style="-fx-background-color: #e76000; -fx-background-radius: 0;" text="Remover" textFill="WHITE">
                            <VBox.margin>
                               <Insets top="10.0" />
                            </VBox.margin>
