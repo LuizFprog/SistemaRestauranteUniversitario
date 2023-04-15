@@ -6,7 +6,6 @@ import java.util.List;
 
 import br.com.ru.exceptions.ElementoJaExisteException;
 import br.com.ru.exceptions.ElementoNaoExisteException;
-import br.com.ru.negocio.models.ItemConsumivel;
 import br.com.ru.negocio.models.Refeicao;
 
 public class RepositorioRefeicao  implements IRepositorioGenerico<Refeicao>{

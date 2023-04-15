@@ -1,7 +1,5 @@
 package br.com.ru.gui;
 
-import java.io.IOException;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -9,8 +7,6 @@ import javafx.scene.control.TextField;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
-import br.com.ru.exceptions.ElementoJaExisteException;
-import br.com.ru.exceptions.ElementoNaoExisteException;
 import br.com.ru.negocio.Sistema;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
