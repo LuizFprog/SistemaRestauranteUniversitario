@@ -49,6 +49,7 @@ public class TelaCardapioFuncionarioController implements Initializable{
 	public void removerItem(ActionEvent event) throws ElementoNaoExisteException
 	{
 		ItemConsumivel item = listaItem.getSelectionModel().getSelectedItem();
+		meuSistema.removerDoCardapio(item);
 		listaItem.getItems().remove(item);
 	}
   
