@@ -64,8 +64,7 @@ public class TelaCadastroFuncionarioController {
        String senha = textFieldSenha.getText();
        String id = textFieldId.getText();
        
-	   	meuSistema.adicionarFuncionario(primeiroNome, ultimoNome, cpf, login, senha, id);
-	   	System.out.println(meuSistema.recuperarUsuarioEspecifico(cpf).toString());
+	   	meuSistema.adicionarFuncionario(primeiroNome, ultimoNome, cpf, login, senha, id);	   	
    	
    		if(meuSistema.recuperarUsuarioEspecifico(cpf)!=null) {
    			voltarLogin(event);
