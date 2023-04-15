@@ -121,9 +121,14 @@ public class Sistema {
 		return controladorUsuario.recuperarFuncionario(cpf);
 	}
 	
-public Usuario recuperarUsuarioEspecifico(String cpf) throws ElementoNaoExisteException {
+	public Usuario recuperarUsuarioEspecifico(String cpf) throws ElementoNaoExisteException {
 		
 		return controladorUsuario.recuperarUsuario(cpf);
+	}
+	
+	public Usuario recuperarUsuarioEspecificoAtravesLoginSenha(String login,String senha) throws ElementoNaoExisteException {
+		
+		return controladorUsuario.recuperarLoginSenha(login, senha);
 	}
 	
 	// Atualiza um funcionario que possua o cpf passado como parametro com as informações, também passadas como parametro

@@ -113,6 +113,19 @@ public class ControladorUsuario {
 		// Caso não encontre, lança exceção
 		throw new ElementoNaoExisteException("Não existe um cliente com esse CPF!");
 	}
+	
+	// Método para recuperar um cliente por login e senha
+		public Usuario recuperarLoginSenha(String login, String senha) throws ElementoNaoExisteException {
+			// Busca o cliente pelo CPF
+			List<Usuario> clientes = repositorioUsuario.ler();
+			for (Usuario c : clientes) {
+				if (c.getLogin().equals(login) && c.getSenha().equals(senha)) {
+					return c;
+				}
+			}
+			// Caso não encontre, lança exceção
+			throw new ElementoNaoExisteException("Não existe um cliente com esse CPF!");
+		}
 
 	
 	// Método para atualizar um cliente
