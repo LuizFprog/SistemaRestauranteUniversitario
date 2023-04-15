@@ -18,12 +18,16 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
 public class TelaFichasClienteController implements Initializable{
 	
 	@FXML
 	Sistema meuSistema = Sistema.getInstancia();
+	
+		@FXML
+		private Label valorTotal;
 
     @FXML
     private Button buttonInicio;
@@ -101,6 +105,13 @@ public class TelaFichasClienteController implements Initializable{
     	Integer valor = choiceFichas.getValue();
     	meuSistema.adicionarFicha(3, 3 * valor, meuSistema.recuperarClienteEspecifico(cliente.getCpf()));
     }
+    
+    @FXML
+    public void choiceBox(ActionEvent event)
+    {
+    	Double valor = choiceFichas.getValue() * 3.0;
+    	valorTotal.setText("" + valor);
+    }
 
 		@Override
 		public void initialize(URL arg0, ResourceBundle arg1) {
@@ -108,6 +119,7 @@ public class TelaFichasClienteController implements Initializable{
 			{
 				choiceFichas.getItems().add(i);
 			}
+			choiceFichas.setOnAction(this::choiceBox);
 		}
 
 }
