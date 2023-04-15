@@ -77,18 +77,6 @@ public class ControllerDadosFuncionario implements Initializable{
 		@Override
 		public void initialize(URL arg0, ResourceBundle arg1) {
 			
-			Cliente c = new Cliente("a","a","a","a","a",2.0);
-			c.depositar(100);
-			try {
-				meuSistema.adicionarFicha(3.0, 11, c);
-				
-			} catch (ElementoJaExisteException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (SaldoInsuficienteException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
 			List<Ficha> trivial = meuSistema.listarFicha();
 			for(Ficha i : trivial)
 			{

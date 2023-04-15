@@ -95,11 +95,11 @@ public void entrarInicio(ActionEvent event) throws IOException
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		List<ItemConsumivel> itens = meuSistema.cardapio();
-		for(ItemConsumivel i : itens)
-		{
-			listaItem.getItems().add(i);
-		}
+//		List<ItemConsumivel> itens = meuSistema.cardapio();
+//		for(ItemConsumivel i : itens)
+//		{
+//			listaItem.getItems().add(i);
+//		}
 		List<ItemConsumivel> itensTotais = meuSistema.verTodosItemConsumiveis();
 		for(ItemConsumivel i : itensTotais)
 		{
