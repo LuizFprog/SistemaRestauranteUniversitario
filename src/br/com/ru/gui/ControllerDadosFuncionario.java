@@ -4,11 +4,12 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
-import br.com.ru.exceptions.ElementoJaExisteException;
-import br.com.ru.exceptions.SaldoInsuficienteException;
+import br.com.ru.exceptions.ElementoNaoExisteException;
 import br.com.ru.negocio.Sistema;
 import br.com.ru.negocio.models.Cliente;
 import br.com.ru.negocio.models.Ficha;
+import br.com.ru.negocio.models.Funcionario;
+import br.com.ru.negocio.models.Usuario;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -16,7 +17,9 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 public class ControllerDadosFuncionario implements Initializable{
@@ -25,8 +28,12 @@ public class ControllerDadosFuncionario implements Initializable{
 
     @FXML
     private ListView<Ficha> listFichas;
-
     
+    @FXML
+    private Button buttonRemoveUser;
+    
+    @FXML
+    private TextField textFieldCpfUser;    
     
     @FXML
   	public void sairLogin(ActionEvent event) throws IOException
@@ -69,6 +76,17 @@ public class ControllerDadosFuncionario implements Initializable{
         janela.setScene(telaItensParent);
         janela.show();
     }
+  	
+  	@FXML
+  	public void removerUsuario(ActionEvent event) throws ElementoNaoExisteException {
+  		Usuario usuario = meuSistema.recuperarUsuarioEspecifico(textFieldCpfUser.getText());
+  		if (usuario instanceof Cliente) {
+  			meuSistema.removerCliente(textFieldCpfUser.getText());
+  		} else if (usuario instanceof Funcionario) {
+  			meuSistema.excluirFuncionario(textFieldCpfUser.getText());
+  		}
+  		
+  	}
 
 		@Override
 		public void initialize(URL arg0, ResourceBundle arg1) {
