@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.text.*?>
-<?import javafx.scene.control.*?>
-<?import java.lang.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="480.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.ru.gui.TelaCardapioFuncionarioController">
+<BorderPane prefHeight="480.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.ru.gui.TelaCardapioFuncionarioController">
    <center>
       <VBox alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" spacing="10.0" style="-fx-background-color: #ffffff;" BorderPane.alignment="CENTER">
          <children>
@@ -20,7 +23,7 @@
                <children>
                   <VBox alignment="CENTER">
                      <children>
-                        <Button fx:id="adicionarItem" mnemonicParsing="false" onAction="#adicionarItem" prefWidth="100.0" style="-fx-background-color: #e76000;" text="Adicionar item" textFill="WHITE">
+                        <Button fx:id="adicionarItem" mnemonicParsing="false" onAction="#adicionarItem" prefWidth="100.0" stylesheets="@test.css" text="Adicionar item" textFill="WHITE">
                            <VBox.margin>
                               <Insets bottom="10.0" />
                            </VBox.margin>
@@ -39,7 +42,7 @@
                         <ChoiceBox fx:id="nomeItem" prefWidth="150.0" style="-fx-background-color: #ffffff; -fx-border-color: #e76000;" />
                      </children>
                   </VBox>
-                  <Button fx:id="removerItem" mnemonicParsing="false" onAction="#removerItem" prefWidth="100.0" style="-fx-background-color: #e76000;" text="Remover Item" textFill="WHITE">
+                  <Button fx:id="removerItem" mnemonicParsing="false" onAction="#removerItem" prefWidth="100.0" stylesheets="@test.css" text="Remover Item" textFill="WHITE">
                      <font>
                         <Font name="Arial Bold" size="12.0" />
                      </font></Button>
@@ -55,27 +58,27 @@
    <left>
       <VBox prefHeight="400.0" prefWidth="162.0">
          <children>
-            <Button fx:id="buttonInicio" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#entrarInicio" prefHeight="300.0" prefWidth="100.0" style="-fx-background-color: #e76000; -fx-background-radius: 0;" text="Inicio" textFill="WHITE">
+            <Button fx:id="buttonInicio" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#entrarInicio" prefHeight="300.0" prefWidth="100.0" styleClass="buttonTela" stylesheets="@test.css" text="Inicio" textFill="WHITE">
                <font>
                   <Font name="Arial Bold" size="14.0" />
                </font>
             </Button>
-            <Button fx:id="buttonCardapio" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="300.0" prefWidth="100.0" style="-fx-background-color: #e76000; -fx-background-radius: 0;" text="Cardapio" textFill="WHITE">
+            <Button fx:id="buttonCardapio" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="300.0" prefWidth="100.0" styleClass="buttonTela" stylesheets="@test.css" text="Cardapio" textFill="WHITE">
                <font>
                   <Font name="Arial Bold" size="14.0" />
                </font>
             </Button>
-            <Button fx:id="buttonItens" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#entrarTelaItens" prefHeight="300.0" prefWidth="100.0" style="-fx-background-color: #e76000; -fx-background-radius: 0;" text="Itens" textFill="WHITE">
+            <Button fx:id="buttonItens" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#entrarTelaItens" prefHeight="300.0" prefWidth="100.0" styleClass="buttonTela" stylesheets="@test.css" text="Itens" textFill="WHITE">
                <font>
                   <Font name="Arial Bold" size="14.0" />
                </font>
             </Button>
-            <Button fx:id="buttonDados" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#entrarTelaDados" prefHeight="300.0" prefWidth="100.0" style="-fx-background-color: #e76000; -fx-background-radius: 0;" text="Dados" textFill="WHITE">
+            <Button fx:id="buttonDados" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#entrarTelaDados" prefHeight="300.0" prefWidth="100.0" styleClass="buttonTela" stylesheets="@test.css" text="Dados" textFill="WHITE">
                <font>
                   <Font name="Arial Bold" size="14.0" />
                </font>
             </Button>
-            <Button fx:id="buttonSair" layoutX="10.0" layoutY="310.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#sairLogin" prefHeight="300.0" prefWidth="100.0" style="-fx-background-color: #e76000; -fx-background-radius: 0;" text="Sair" textFill="WHITE">
+            <Button fx:id="buttonSair" layoutX="10.0" layoutY="310.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#sairLogin" prefHeight="300.0" prefWidth="100.0" styleClass="buttonTela" stylesheets="@test.css" text="Sair" textFill="WHITE">
                <font>
                   <Font name="Arial Bold" size="14.0" />
                </font>

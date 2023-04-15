@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="800.0" style="-fx-background-color: #333344; -fx-background-image: url(&quot;https://th.bing.com/th/id/OIP.8sRzy4KV0OlfPAnYBGRPZAHaE7?pid=ImgDet&amp;rs=1&quot;); -fx-background-repeat: no-repeat; -fx-background-position: center center; -fx-background-size: cover;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.ru.gui.TelaLoginController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="800.0" styleClass="background" stylesheets="@test.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.ru.gui.TelaLoginController">
    <center>
       <VBox alignment="CENTER" layoutX="24.0" layoutY="14.0" maxHeight="350.0" maxWidth="500.0" spacing="10.0" style="-fx-background-color: #ffffff; -fx-background-radius: 0;">
          <children>
@@ -52,12 +52,12 @@
             </TextField>
             <HBox prefHeight="100.0" prefWidth="200.0" spacing="40.0" style="-fx-alignment: center;">
                <children>
-                  <Button fx:id="botaoEntrar" mnemonicParsing="false" onAction="#acaoEntrar" prefHeight="30.0" prefWidth="100.0" style="-fx-background-color: #e76000; -fx-background-radius: 0;" text="Entrar" textFill="WHITE">
+                  <Button fx:id="botaoEntrar" mnemonicParsing="false" onAction="#acaoEntrar" prefHeight="30.0" prefWidth="100.0" stylesheets="@test.css" text="Entrar" textFill="WHITE">
                      <font>
                         <Font name="Arial Bold" size="12.0" />
                     </font>
                   </Button> 
-                  <Button fx:id="botaoCadastrar" mnemonicParsing="false" onAction="#entrarTelaCadastro" prefHeight="30.0" prefWidth="100.0" style="-fx-background-color: #e76000; -fx-background-radius: 0;" text="Cadastrar" textFill="WHITE">
+                  <Button fx:id="botaoCadastrar" mnemonicParsing="false" onAction="#entrarTelaCadastro" prefHeight="30.0" prefWidth="100.0" stylesheets="@test.css" text="Cadastrar" textFill="WHITE">
                      <font>
                         <Font name="Arial Bold" size="12.0" />
                      </font>

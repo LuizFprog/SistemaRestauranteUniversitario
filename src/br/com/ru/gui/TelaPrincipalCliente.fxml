@@ -1,10 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
@@ -14,26 +9,26 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="800.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.ru.gui.TelaPrincipalClienteController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="800.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.ru.gui.TelaPrincipalClienteController">
    <left>
       <VBox prefHeight="400.0" prefWidth="162.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="buttonInicio" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="300.0" prefWidth="100.0" style="-fx-background-color: #e76000; -fx-background-radius: 0;" text="Inicio" textFill="WHITE">
+            <Button fx:id="buttonInicio" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="300.0" prefWidth="100.0" styleClass="buttonTela" stylesheets="@test.css" text="Inicio" textFill="WHITE">
                <font>
                   <Font name="Arial Bold" size="14.0" />
                </font>
             </Button>
-            <Button fx:id="buttonCardapio" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#irCardapio" prefHeight="300.0" prefWidth="100.0" style="-fx-background-color: #e76000; -fx-background-radius: 0;" text="Cardapio" textFill="WHITE">
+            <Button fx:id="buttonCardapio" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#irCardapio" prefHeight="300.0" prefWidth="100.0" styleClass="buttonTela" stylesheets="@test.css" text="Cardapio" textFill="WHITE">
                <font>
                   <Font name="Arial Bold" size="14.0" />
                </font>
             </Button>
-            <Button fx:id="buttonFicha" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#irFichas" prefHeight="300.0" prefWidth="100.0" style="-fx-background-color: #e76000; -fx-background-radius: 0;" text="Fichas" textFill="WHITE">
+            <Button fx:id="buttonFicha" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#irFichas" prefHeight="300.0" prefWidth="100.0" styleClass="buttonTela" stylesheets="@test.css" text="Fichas" textFill="WHITE">
                <font>
                   <Font name="Arial Bold" size="14.0" />
                </font>
             </Button>
-            <Button fx:id="buttonSair" layoutX="10.0" layoutY="276.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#sairLogin" prefHeight="300.0" prefWidth="100.0" style="-fx-background-color: #e76000; -fx-background-radius: 0;" text="Sair" textFill="WHITE">
+            <Button fx:id="buttonSair" layoutX="10.0" layoutY="276.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#sairLogin" prefHeight="300.0" prefWidth="100.0" styleClass="buttonTela" stylesheets="@test.css" text="Sair" textFill="WHITE">
                <font>
                   <Font name="Arial Bold" size="14.0" />
                </font>
@@ -46,7 +41,7 @@
          <children>
             <HBox alignment="CENTER">
                <children>
-                  <Label contentDisplay="CENTER" text="Inicio" textFill="#f8831d">
+                  <Label contentDisplay="CENTER" text="Início" textFill="#f8831d">
                      <font>
                         <Font name="Arial Bold" size="32.0" />
                      </font>
@@ -209,7 +204,7 @@
                               <Font name="Arial Bold" size="16.0" />
                            </font>
                         </TextField>
-                        <Button fx:id="buttonDepositar" mnemonicParsing="false" onAction="#acaoDepositar" prefHeight="30.0" prefWidth="100.0" style="-fx-background-color: #e76000; -fx-background-radius: 0;" text="Depositar" textFill="WHITE">
+                        <Button fx:id="buttonDepositar" mnemonicParsing="false" onAction="#acaoDepositar" prefHeight="30.0" prefWidth="100.0" stylesheets="@test.css" text="Depositar" textFill="WHITE">
                            <VBox.margin>
                               <Insets bottom="47.0" left="30.0" top="20.0" />
                            </VBox.margin>
