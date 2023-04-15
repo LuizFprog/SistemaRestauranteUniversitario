@@ -29,6 +29,9 @@ public class TelaItemFuncionarioController implements Initializable{
 	private Sistema meuSistema = Sistema.getInstancia();
 	
 	@FXML
+    private Button buttonAtualizar;
+	
+	@FXML
 	private Button buttonCardapio;
 	
 	@FXML
@@ -50,10 +53,19 @@ public class TelaItemFuncionarioController implements Initializable{
     private ChoiceBox<TipoCardapio> choiceTipo;
     
     @FXML
+    private ChoiceBox<TipoCardapio> choiceNovoItemTipo;
+    
+    @FXML
     private Button adicionar;
     
     @FXML
     private TextField textNome;
+    
+    @FXML
+    private TextField textFieldNomeAtual;
+    
+    @FXML
+    private TextField textFieldNovoNome;
     
     @FXML
     private TextField textFieldNomeItem;
@@ -65,10 +77,10 @@ public class TelaItemFuncionarioController implements Initializable{
     private CheckBox checkLactose;
     
     @FXML
-    private boolean a;
-    
+    private CheckBox checkNovoGluten;
+
     @FXML
-    private boolean b;
+    private CheckBox checkNovoLactose;
     
     @FXML
   	public void irInicio(ActionEvent event) throws IOException
@@ -103,41 +115,58 @@ public class TelaItemFuncionarioController implements Initializable{
   	}
   	
   	@FXML
-  	public void glutenMarcado(ActionEvent event) {
-  		
-  		if(checkGluten.isSelected()) {
- 			 b = true;
- 		}
-  	}
-  	
-  	@FXML
-  	public void lactoseMarcado(ActionEvent event) {
-  		
-  		if(checkLactose.isSelected()) {
-  			 a = true;
+  	public void criarItem() throws ElementoJaExisteException, ElementoNaoExisteException {
+  		  		
+  		String nome = textNome.getText();
+  		boolean gluten;
+  		boolean lact;
+  		if (checkGluten.isSelected()) {
+  			gluten = true;
+  		} else {
+  			gluten = false;
   		}
   		
-  	}
-  	 	
-  	
-  	@FXML
-  	public void criarItem() throws ElementoJaExisteException, ElementoNaoExisteException {
+  		if (checkLactose.isSelected()) {
+  			lact = true;
+  		} else {
+  			lact = false;
+  		}
   		
-  		String nome = textNome.getText();
-  		boolean gluten = a;
-  		boolean lact = b;
-  		
-  		TipoCardapio tipo = choiceTipo.getValue();
+  		TipoCardapio tipo = choiceTipo.getValue();  		
   		
   		meuSistema.adicionarItemConsumivel(nome, gluten, lact, tipo, lact);
   		listItens.getItems().add(meuSistema.recuperarItemConsumivel(nome));
   	}
   	
   	@FXML
+  	public void atualizarItem() throws ElementoJaExisteException, ElementoNaoExisteException {
+  		  		
+  		String nomeAtual = textFieldNomeAtual.getText();
+  		String novoNome = textFieldNovoNome.getText();  		
+  		boolean gluten;
+  		boolean lact;
+  		if (checkNovoGluten.isSelected()) {
+  			gluten = true;
+  		} else {
+  			gluten = false;
+  		}
+  		
+  		if (checkNovoLactose.isSelected()) {
+  			lact = true;
+  		} else {
+  			lact = false;
+  		}  		
+  		
+  		TipoCardapio tipo = choiceNovoItemTipo.getValue();
+  		
+  		meuSistema.atualizarItemConsumivel(nomeAtual, novoNome, gluten, lact, tipo, lact);
+  		listItens.getItems().add(meuSistema.recuperarItemConsumivel(novoNome));
+  	}
+  	
+  	@FXML
   	public void removeItem(ActionEvent event) throws ElementoNaoExisteException {
   		meuSistema.removerItemConsumivel(textFieldNomeItem.getText());
   		listItens.getItems().remove(meuSistema.recuperarItemConsumivel(textFieldNomeItem.getText()));
-  		
   	}
   	
   	@FXML
@@ -190,5 +219,10 @@ public class TelaItemFuncionarioController implements Initializable{
 			choiceTipo.getItems().add(TipoCardapio.TRIVIAL);
 			choiceTipo.getItems().add(TipoCardapio.VEGANO);
 			choiceTipo.getItems().add(TipoCardapio.SUCO);
+			
+			choiceNovoItemTipo.getItems().add(TipoCardapio.SOBREMESA);
+			choiceNovoItemTipo.getItems().add(TipoCardapio.TRIVIAL);
+			choiceNovoItemTipo.getItems().add(TipoCardapio.VEGANO);
+			choiceNovoItemTipo.getItems().add(TipoCardapio.SUCO);
 		}
 }
