@@ -2,6 +2,7 @@ package br.com.ru.gui;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import br.com.ru.exceptions.ElementoJaExisteException;
@@ -9,6 +10,7 @@ import br.com.ru.exceptions.ElementoNaoExisteException;
 import br.com.ru.exceptions.SaldoInsuficienteException;
 import br.com.ru.negocio.Sistema;
 import br.com.ru.negocio.models.Cliente;
+import br.com.ru.negocio.models.ItemConsumivel;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -26,8 +28,11 @@ public class TelaFichasClienteController implements Initializable{
 	@FXML
 	Sistema meuSistema = Sistema.getInstancia();
 	
-		@FXML
-		private Label valorTotal;
+	@FXML
+	private Label valorTotal;
+
+	 @FXML
+	 private ChoiceBox<ItemConsumivel> choiceboxCardapio;
 
     @FXML
     private Button buttonInicio;
@@ -35,6 +40,15 @@ public class TelaFichasClienteController implements Initializable{
     @FXML
     private Button buttonFicha;
 
+    @FXML
+    private Button buttonAdicionarRefe;
+
+    @FXML
+    private Button buttonRemoverRefe;
+
+    @FXML
+    private Button buttonFinalRefe;
+    
     @FXML
     private Button buttonCardapio;
     
@@ -100,6 +114,13 @@ public class TelaFichasClienteController implements Initializable{
   	}
     
     @FXML
+    public void adicionarRefeicao(ActionEvent event) {
+    	
+    	ItemConsumivel adicionadoItem = choiceboxCardapio.getValue();
+    
+    }
+    
+    @FXML
     public void acaoComprarFichas(ActionEvent event) throws ElementoJaExisteException, SaldoInsuficienteException, ElementoNaoExisteException
     {
     	Integer valor = choiceFichas.getValue();
@@ -120,6 +141,18 @@ public class TelaFichasClienteController implements Initializable{
 				choiceFichas.getItems().add(i);
 			}
 			choiceFichas.setOnAction(this::choiceBox);
+			
+			List<ItemConsumivel> itensTotais = meuSistema.verTodosItemConsumiveis();
+			for(ItemConsumivel i : itensTotais)
+			{
+				if(i.isVisivel() != false)
+				{
+					choiceboxCardapio.getItems().add(i);
+				}
+			}
+			
 		}
+		
+		
 
 }
