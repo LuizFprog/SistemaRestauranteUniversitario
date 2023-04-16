@@ -1,7 +1,7 @@
 package br.com.ru.negocio;
 
 import java.security.SecureRandom;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -84,7 +84,7 @@ public class ControladorFicha {
 							sent++;
 							f.setCliente(cliente);
 							f.setStatusFicha(StatusFicha.EFETIVADA);
-							f.setDataEfetivacao(LocalDateTime.now());
+							f.setDataEfetivacao(LocalDate.now());
 					}
 				}
 				if(sent != Math.floor(dinheiroCliente / preco))
@@ -112,7 +112,7 @@ public class ControladorFicha {
 	{
 		if(ficha != null && ficha.getCliente() != null && ficha.getStatusFicha() == StatusFicha.EFETIVADA)
 		{
-			ficha.setDataConsumo(LocalDateTime.now());
+			ficha.setDataConsumo(LocalDate.now());
 			ficha.setStatusFicha(StatusFicha.CONSUMIDA);
 			ficha.setRefeicao((Refeicao) refeicao);
 		}

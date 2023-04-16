@@ -1,6 +1,6 @@
 package br.com.ru.negocio.models;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 public class Ficha {
 	public enum StatusFicha
@@ -12,8 +12,8 @@ public class Ficha {
 	private static double preco =  3.0;
 	private Cliente cliente;
 	private String codigo;
-	private LocalDateTime dataEfetivacao = null;
-	private LocalDateTime dataConsumo = null;
+	private LocalDate dataEfetivacao = null;
+	private LocalDate dataConsumo = null;
 	private Refeicao refeicao = null;
 	
 	public Ficha(String cod) {
@@ -46,19 +46,19 @@ public class Ficha {
 		this.codigo = codigo;
 	}
 
-	public LocalDateTime getDataEfetivacao() {
+	public LocalDate getDataEfetivacao() {
 		return dataEfetivacao;
 	}
 
-	public void setDataEfetivacao(LocalDateTime dataEfetivacao) {
+	public void setDataEfetivacao(LocalDate dataEfetivacao) {
 		this.dataEfetivacao = dataEfetivacao;
 	}
 
-	public LocalDateTime getDataConsumo() {
+	public LocalDate getDataConsumo() {
 		return dataConsumo;
 	}
 
-	public void setDataConsumo(LocalDateTime dataConsumo) {
+	public void setDataConsumo(LocalDate dataConsumo) {
 		this.dataConsumo = dataConsumo;
 	}
 

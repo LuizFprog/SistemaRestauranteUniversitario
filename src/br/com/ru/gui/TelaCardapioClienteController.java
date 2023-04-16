@@ -89,15 +89,6 @@ public class TelaCardapioClienteController implements Initializable{
 
 		@Override
 		public void initialize(URL arg0, ResourceBundle arg1) {
-			try {
-				meuSistema.adicionarItemConsumivel("Nome", true, true, TipoCardapio.TRIVIAL, true);
-				meuSistema.adicionarItemConsumivel("Nome2", true, true, TipoCardapio.VEGANO, true);
-				meuSistema.adicionarItemConsumivel("Nome3", true, true, TipoCardapio.SOBREMESA, true);
-				meuSistema.adicionarItemConsumivel("Nome4", true, true, TipoCardapio.SUCO, true);
-			} catch (ElementoJaExisteException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
 			List<ItemConsumivel> trivial = meuSistema.cardapioTrivial();
 			for(ItemConsumivel i : trivial)
 			{
