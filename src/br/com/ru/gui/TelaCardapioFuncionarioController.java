@@ -5,8 +5,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
-
-import br.com.ru.exceptions.ElementoNaoExisteException;
 import br.com.ru.negocio.Sistema;
 import br.com.ru.negocio.models.ItemConsumivel;
 import javafx.event.ActionEvent;

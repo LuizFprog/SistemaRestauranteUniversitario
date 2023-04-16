@@ -15,7 +15,6 @@ import br.com.ru.exceptions.SaldoInsuficienteException;
 import br.com.ru.negocio.models.Cliente;
 import br.com.ru.negocio.models.Ficha;
 import br.com.ru.negocio.models.Ficha.StatusFicha;
-import br.com.ru.negocio.models.ItemConsumivel;
 import br.com.ru.negocio.models.Refeicao;
 
 public class ControladorFicha {
@@ -107,7 +106,7 @@ public class ControladorFicha {
 	}
 	
 	// Metodo para remover ficha
-	public void gastarFicha (Ficha ficha, List<ItemConsumivel> refeicao)
+	public void gastarFicha (Ficha ficha, Refeicao refeicao)
 			throws ElementoNaoExisteException
 	{
 		if(ficha != null && ficha.getCliente() != null && ficha.getStatusFicha() == StatusFicha.EFETIVADA)
@@ -176,11 +175,11 @@ public class ControladorFicha {
 		// Busca a ficha pelo codigo
 		List<Ficha> listaFicha = repositorioFicha.ler();
 		for (Ficha f : listaFicha) {
-			if (f.getCliente().equals(cliente) && f.getStatusFicha() == StatusFicha.EFETIVADA) {
+			if (f.getCliente().equals(cliente) && (f.getStatusFicha() == StatusFicha.EFETIVADA || f.getStatusFicha() == StatusFicha.CONSUMIDA)) {
 				return f;
 			}
 		}
-		return null;
+		throw new ElementoNaoExisteException(cliente);
 	}
 	
 	public List<Ficha> listarFichaPorDia(int dia)

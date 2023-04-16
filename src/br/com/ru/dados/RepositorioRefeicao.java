@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import br.com.ru.exceptions.ElementoJaExisteException;
 import br.com.ru.exceptions.ElementoNaoExisteException;
 import br.com.ru.negocio.models.Refeicao;
 
@@ -47,16 +46,11 @@ public class RepositorioRefeicao  implements IRepositorioGenerico<Refeicao>{
 	}
 
 	@Override
-	public void inserir(Refeicao atual) throws ElementoJaExisteException {
+	public void inserir(Refeicao atual) {
+	
+		refeicoes.add(atual);
+	
 		
-		if(!this.refeicoes.contains(atual))
-		{
-			refeicoes.add(atual);
-		}
-		else
-		{
-			throw new ElementoJaExisteException(atual);
-		}
 	}
 	
 	@Override
