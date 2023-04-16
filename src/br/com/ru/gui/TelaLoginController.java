@@ -3,12 +3,14 @@ package br.com.ru.gui;
 
 
 import javafx.scene.control.TextField;
+import br.com.ru.exceptions.ElementoNaoExisteException;
 import br.com.ru.negocio.Sistema;
 import br.com.ru.negocio.models.Cliente;
 import br.com.ru.negocio.models.Funcionario;
 import br.com.ru.negocio.models.Usuario;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -39,6 +41,29 @@ public class TelaLoginController {
 	
 	@FXML
 	private TelaPrincipalFuncionarioController meuFuncionarioAtivo = TelaPrincipalFuncionarioController.getInstancia();
+	
+	@FXML
+	private void mostrarAlerta() {
+        // Cria o alerta
+        Alert alerta = new Alert(Alert.AlertType.INFORMATION);
+        alerta.setTitle("ERROR");
+        alerta.setHeaderText("ERROR LOGIN");
+        alerta.setContentText("Usuario não cadastrado");
+
+        // Mostra o alerta e espera pelo fechamento
+        alerta.showAndWait();
+        
+    }
+	
+	@FXML
+   public void reload(ActionEvent event) throws Exception {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("TelaLoginPrincipal.fxml"));
+        Parent telaLoginParent = loader.load();
+        Scene telaLoginScene = new Scene(telaLoginParent);
+        Stage janela = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        janela.setScene(telaLoginScene);
+        janela.show();
+    }	
 	
 	@FXML
     public void entrarTelaFuncionario(ActionEvent event) throws Exception {
@@ -78,7 +103,13 @@ public class TelaLoginController {
 	
 		if(login != null && senha != null) {
 			
-			Usuario usuario = meuSistema.recuperarUsuarioEspecificoAtravesLoginSenha(login, senha);  //
+			Usuario usuario = null;;
+			try {
+				usuario = meuSistema.recuperarUsuarioEspecificoAtravesLoginSenha(login, senha);
+			} catch (ElementoNaoExisteException e) {
+				mostrarAlerta();
+				reload(event);
+			}  
 	
 			
 			if(usuario != null) {
