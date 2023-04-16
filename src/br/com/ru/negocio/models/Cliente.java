@@ -31,6 +31,6 @@ public class Cliente extends Usuario{
 	
 	@Override
 	public String toString() {
-		return super.toString() + "Cliente [saldo = " + saldo + "] ";
+		return super.toString();
 	}
 }
