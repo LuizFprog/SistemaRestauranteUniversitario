@@ -88,13 +88,6 @@ public class TelaPrincipalClienteController implements Initializable{
 		TelaPrincipalClienteController.cliente = cliente;
 	}	
     
-	@FXML
-	public void acaoEntrar(ActionEvent event) throws Exception {
-		
-		System.out.println(cliente.toString());
-		System.out.println("A");
-	}
-
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		textCpfCliente.setText(cliente.getCpf());
@@ -115,6 +108,17 @@ public class TelaPrincipalClienteController implements Initializable{
     janela.setScene(telaCardapioParent);
     janela.show();
 	}
+	
+	@FXML
+  	public void reloadInicio(ActionEvent event) throws IOException
+  	{
+  		FXMLLoader loader = new FXMLLoader(getClass().getResource("TelaPrincipalCliente.fxml"));
+      Parent telaParent = loader.load();
+      Scene telaPrincipalParent = new Scene(telaParent);
+      Stage janela = (Stage) ((Node) event.getSource()).getScene().getWindow();
+      janela.setScene(telaPrincipalParent);
+      janela.show();
+  	}
 	
 	@FXML
 	public void irFichas(ActionEvent event) throws IOException
@@ -148,6 +152,8 @@ public class TelaPrincipalClienteController implements Initializable{
 		String novoSaldo = String.valueOf(cliente.getSaldo());
 		
 		textSaldoAtual.setText(novoSaldo);
+		
+		reloadInicio(event);
 	}
     
 }

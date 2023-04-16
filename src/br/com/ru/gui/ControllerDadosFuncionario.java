@@ -12,6 +12,7 @@ import br.com.ru.negocio.models.Ficha;
 import br.com.ru.negocio.models.Ficha.StatusFicha;
 import br.com.ru.negocio.models.Funcionario;
 import br.com.ru.negocio.models.Usuario;
+import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -22,12 +23,14 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import javafx.collections.transformation.FilteredList;
+
 
 public class ControllerDadosFuncionario implements Initializable{	
 	
@@ -59,6 +62,12 @@ public class ControllerDadosFuncionario implements Initializable{
 	ObservableList<Ficha> dados = FXCollections.observableArrayList();
     
     @FXML
+    private DatePicker dataMax;
+
+    @FXML
+    private DatePicker dataMin;
+    
+    @FXML
     private Button buttonRemoveUser;
     
     @FXML
@@ -72,15 +81,6 @@ public class ControllerDadosFuncionario implements Initializable{
     
     @FXML
     private TextField textFieldCpfUser;
-    
-    @FXML
-    private ChoiceBox<Integer> choiceAno;
-
-    @FXML
-    private ChoiceBox<Integer> choiceDia;
-
-    @FXML
-    private ChoiceBox<Integer> choiceMes;
     
     @FXML
   	public void sairLogin(ActionEvent event) throws IOException
@@ -97,16 +97,35 @@ public class ControllerDadosFuncionario implements Initializable{
   	public void entrarInicio(ActionEvent event) throws IOException
   	{
   		FXMLLoader loader = new FXMLLoader(getClass().getResource("TelaPrincipalFuncionarios.fxml"));
-      Parent telaParent = loader.load();
-      Scene telaLoginParent = new Scene(telaParent);
-      Stage janela = (Stage) ((Node) event.getSource()).getScene().getWindow();
-      janela.setScene(telaLoginParent);
-      janela.show();
+  		Parent telaParent = loader.load();
+  		Scene telaLoginParent = new Scene(telaParent);
+  		Stage janela = (Stage) ((Node) event.getSource()).getScene().getWindow();
+  		janela.setScene(telaLoginParent);
+  		janela.show();
   	}
   	
   	@FXML
   	public void listarFichaPorDia(ActionEvent event) {
-  		
+
+  		FilteredList<Ficha> filteredItems = new FilteredList<>(dados);
+
+  		// bind predicate based on datepicker choices
+  		filteredItems.predicateProperty().bind(Bindings.createObjectBinding(() -> {
+  			        LocalDate minDate = dataMin.getValue();
+  			        LocalDate maxDate = dataMax.getValue();
+
+  			        // get final values != null
+  			        final LocalDate finalMin = minDate == null ? LocalDate.MIN : minDate;
+  			        final LocalDate finalMax = maxDate == null ? LocalDate.MAX : maxDate;
+
+  			        // values for openDate need to be in the interval [finalMin, finalMax]
+  				      return ti -> ti.getDataEfetivacao() != null && !finalMin.isAfter(ti.getDataEfetivacao()) && !finalMax.isBefore(ti.getDataEfetivacao());
+
+  				    },
+  				    dataMin.valueProperty(),
+  				    dataMax.valueProperty()));
+
+  				listFichas.setItems(filteredItems);
   	}
   	
   	@FXML
@@ -142,18 +161,6 @@ public class ControllerDadosFuncionario implements Initializable{
 
 		@Override
 		public void initialize(URL arg0, ResourceBundle arg1) {
-			
-			for(int i = 1; i <= 31; i++) {
-				choiceDia.getItems().add(i);
-			}
-			
-			for(int i = 1; i <= 12; i++) {
-				choiceMes.getItems().add(i);
-			}
-			
-			for(int i = 2014; i <= 2030; i++) {
-				choiceAno.getItems().add(i);
-			}
 									
 			List<Ficha> fichas = meuSistema.listarFicha();
 			for (Ficha i : fichas) {
