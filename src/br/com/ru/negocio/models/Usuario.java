@@ -91,8 +91,7 @@ public Usuario(String primeiroNome, String ultimoNome, String login, String senh
 
 	@Override
 	public String toString() {
-		return  String.format("%n") + "Usuario [primeiroNome = " + primeiroNome + ", ultimoNome = " + ultimoNome + ", cpf = " + cpf + ", login = "
-				+ login + ", senha = " + senha + "] ";
+		return  String.format("%n") + primeiroNome + " " + ultimoNome;
 	}
 	
 }
