@@ -38,19 +38,21 @@ public class TelaCardapioFuncionarioController implements Initializable{
 	private ChoiceBox<ItemConsumivel> nomeItem;
   
 	@FXML
-	public void adicionarItem(ActionEvent event) throws ElementoNaoExisteException
+	public void adicionarItem(ActionEvent event) throws Exception
 	{
 		ItemConsumivel item = nomeItem.getValue();
 		meuSistema.colocarNoCardapio(item);
 		listaItem.getItems().add(item);  
+		reloadCardapio(event);
 	}
   
 	@FXML
-	public void removerItem(ActionEvent event) throws ElementoNaoExisteException
+	public void removerItem(ActionEvent event) throws Exception
 	{
 		ItemConsumivel item = listaItem.getSelectionModel().getSelectedItem();
 		meuSistema.removerDoCardapio(item);
 		listaItem.getItems().remove(item);
+		reloadCardapio(event);
 	}
   
 	@FXML
@@ -101,6 +103,16 @@ public class TelaCardapioFuncionarioController implements Initializable{
   		Scene telaLoginParent = new Scene(telaParent);
   		Stage janela = (Stage) ((Node) event.getSource()).getScene().getWindow();
   		janela.setScene(telaLoginParent);
+  		janela.show();
+  	}
+  	
+  	@FXML
+  	public void reloadCardapio(ActionEvent event) throws Exception {
+  		FXMLLoader loader = new FXMLLoader(getClass().getResource("TelaCardapioFuncionario.fxml"));
+  		Parent telaParent = loader.load();
+  		Scene telaItensParent = new Scene(telaParent);
+  		Stage janela = (Stage) ((Node) event.getSource()).getScene().getWindow();
+  		janela.setScene(telaItensParent);
   		janela.show();
   	}
 

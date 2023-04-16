@@ -85,14 +85,14 @@
                                           <Font name="Arial Bold" size="12.0" />
                                        </font>
                                     </Label>
-                                    <ChoiceBox prefWidth="150.0" style="-fx-background-color: #ffffff; -fx-background-radius: 0; -fx-border-color: #e76000;" />
-                                    <Button mnemonicParsing="false" stylesheets="@test.css" text="Adicionar na refeição" textFill="WHITE">
+                                    <ChoiceBox fx:id="choiceboxCardapio" prefWidth="150.0" style="-fx-background-color: #ffffff; -fx-background-radius: 0; -fx-border-color: #e76000;" />
+                                    <Button fx:id="buttonAdicionarRefe" mnemonicParsing="false" stylesheets="@test.css" text="Adicionar na refeição" textFill="WHITE">
                                        <font>
                                           <Font name="Arial Bold" size="12.0" />
                                        </font></Button>
                                  </children>
                               </VBox>
-                              <Button mnemonicParsing="false" stylesheets="@test.css" text="Remover da refeição" textFill="WHITE">
+                              <Button fx:id="buttonRemoverRefe" mnemonicParsing="false" stylesheets="@test.css" text="Remover da refeição" textFill="WHITE">
                                  <HBox.margin>
                                     <Insets />
                                  </HBox.margin>
@@ -103,7 +103,7 @@
                            </children>
                         </HBox>
                         <ListView maxHeight="600.0" maxWidth="800.0" />
-                        <Button mnemonicParsing="false" stylesheets="@test.css" text="Finalizar compra" textFill="WHITE">
+                        <Button fx:id="buttonFinalRefe" mnemonicParsing="false" stylesheets="@test.css" text="Finalizar compra" textFill="WHITE">
                            <font>
                               <Font name="Arial Bold" size="12.0" />
                            </font></Button>
