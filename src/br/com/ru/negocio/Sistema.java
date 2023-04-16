@@ -44,9 +44,14 @@ public class Sistema {
 	// Você deve passar os parametros e esse metodo chamara um metodo para adicionar um cliente inicializado com tais 
 	// parametros ao repositorio
 	public void adicionarCliente(String primeiroNome, String ultimoNome,
-			String cpf, String login, String senha) throws ElementoJaExisteException
+			String cpf, String login, String senha) throws ElementoJaExisteException, NullPointerException
 	{
-		controladorUsuario.criarCliente(primeiroNome, ultimoNome, cpf, login, senha);
+		if (cpf != null && login != null && senha != null && primeiroNome != null && ultimoNome != null) {
+			controladorUsuario.criarCliente(primeiroNome, ultimoNome, cpf, login, senha);
+			System.out.println("ENTREI TROXA" + cpf);
+		} else {
+			throw new NullPointerException();
+		}
 	}
 	// Procura Cliente atraves de cpf passado como parametro e retorna uma string para listar esse cliente
 	public String procurarClienteEspecifico(String cpf) throws ElementoNaoExisteException
@@ -64,7 +69,9 @@ public class Sistema {
 	public void atualizarCliente(String cpfAtual ,String primeiroNome, 
 			String ultimoNome, String login, String senha) throws ElementoNaoExisteException
 	{
-		controladorUsuario.atualizarCliente(cpfAtual, primeiroNome, ultimoNome, login, senha);
+		if (cpfAtual != null && login != null && senha != null && primeiroNome != null && ultimoNome != null) {
+			controladorUsuario.atualizarCliente(cpfAtual, primeiroNome, ultimoNome, login, senha);
+		}		
 	}
 	
 	// Procura o cliente atraves do cpf e o remove do repositorio
@@ -115,7 +122,10 @@ public class Sistema {
 	public void adicionarFuncionario(String primeiroNome, String ultimoNome,
 			String cpf, String login, String senha, String id) throws ElementoJaExisteException
 	{
-		controladorUsuario.adicionarFuncionario(primeiroNome, ultimoNome, cpf, login, senha, id);
+		if (cpf != null && login != null && senha != null && primeiroNome != null && ultimoNome != null && id != null) {
+			controladorUsuario.adicionarFuncionario(primeiroNome, ultimoNome, cpf, login, senha, id);
+		}
+		
 	}
 	
 	// Retorna um usuario que possua o cpf passado como parametro
@@ -138,7 +148,9 @@ public class Sistema {
 	public void atualizarFuncionario(String cpfAtual, String primeiroNome, String ultimoNome, String login, String senha, String id) 
 			throws ElementoNaoExisteException
 	{
-		controladorUsuario.atualizarFuncionario(cpfAtual, primeiroNome, ultimoNome, login, senha, id);
+		if (cpfAtual != null && login != null && senha != null && primeiroNome != null && ultimoNome != null && id != null) {
+			controladorUsuario.atualizarFuncionario(cpfAtual, primeiroNome, ultimoNome, login, senha, id);
+		}		
 	}
 	
 	
