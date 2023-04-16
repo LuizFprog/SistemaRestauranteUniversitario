@@ -10,6 +10,7 @@ import br.com.ru.negocio.models.Ficha;
 import br.com.ru.negocio.models.Funcionario;
 import br.com.ru.negocio.models.ItemConsumivel;
 import br.com.ru.negocio.models.ItemConsumivel.TipoCardapio;
+import br.com.ru.negocio.models.Refeicao;
 import br.com.ru.negocio.models.Usuario;
 
 public class Sistema {
@@ -17,6 +18,7 @@ public class Sistema {
 	private ControladorUsuario controladorUsuario;
 	private ControladorItemConsumivel controladorItemConsumivel;
 	private ControladorFicha controladorFicha;
+	private ControladorRefeicao controladorRefeicao;
 	private static Sistema instancia;
 	
 	private Sistema()
@@ -24,6 +26,7 @@ public class Sistema {
 		this.controladorUsuario = ControladorUsuario.getInstancia();
 		this.controladorItemConsumivel = ControladorItemConsumivel.getInstancia();
 		this.controladorFicha = ControladorFicha.getInstancia();
+		this.controladorRefeicao = ControladorRefeicao.getInstancia();
 	}
 	
 	// Garantir unica instancia da classe
@@ -194,25 +197,43 @@ public class Sistema {
 		return controladorItemConsumivel.cardapioSobremesa();
 	}
 	
-////	// Adiciona itemConsumivel a refeição
-////	public void adicionarItemConsumivelRefeicao(String nomeItemConsumivel) throws ElementoJaExisteException, ElementoNaoExisteException
-////	{
-////		controladorItemConsumivel.adicionarItemConsumivelNaRefeicao(nomeItemConsumivel);
-////	}
-//	
-////	// Remover itemConsumivel da refeição
-////	public void removerItemConsumivelRefeicao(String nomeItemConsumivel) throws ElementoNaoExisteException
-////	{
-////		controladorItemConsumivel.removerItemConsumivelDaRefeicao(nomeItemConsumivel);
-////	}
-//	
-////	// Listar itemConsumivels da refeição
-////	public List<ItemConsumivel> listarRefeicao()
-////	{
-////		return controladorItemConsumivel.listarRefeicao();
-////	}
-////	
-////	// Retorna a refeição para o valor padrão
+	// Adiciona itemConsumivel a refeição
+	public void adicionarItemConsumivelRefeicao(ItemConsumivel nomeItemConsumivel, Refeicao refeicao) throws ElementoJaExisteException, ElementoNaoExisteException
+	{
+		controladorRefeicao.adicionarPratoRefeicao(nomeItemConsumivel, refeicao);
+	}
+	
+	//recuperar fefeicao por ficha
+	public Refeicao recuperarRefeicaoPorFicha(Ficha ficha) {
+		return controladorRefeicao.recuperarPorFicha(ficha);
+	}
+	
+	public Refeicao cadastrarRefeicaoFicha(Ficha ficha) {
+		
+		return controladorRefeicao.cadastrarFichaRefeicao(ficha);
+	}
+	
+	public void removerItemdaRefeicao(ItemConsumivel item, Refeicao refe) throws ElementoNaoExisteException {
+		controladorRefeicao.removerPratoRefeicao(item, refe);
+	}
+	
+	// Remover itemConsumivel da refeição
+	public void gerarRefeicoes() throws ElementoNaoExisteException, ElementoJaExisteException
+	{
+		controladorRefeicao.gerarRefeicao();
+	}
+	
+	// Listar itemConsumivels da refeição
+	public Refeicao CadastrarRefeicao(Ficha ficha)
+	{
+		return controladorRefeicao.cadastrarFichaRefeicao(ficha);
+	}
+	
+	public List<Refeicao> listarRefe() {
+		return controladorRefeicao.listarRefeicoes();
+	}
+	
+	// Retorna a refeição para o valor padrão
 ////	public void resetarRefeicao()
 ////	{
 ////		controladorItemConsumivel.resetarRefeicao();
@@ -300,7 +321,7 @@ public class Sistema {
 //	}
 	
 	// Gasta ficha para liberar o acesso ao RU
-	public void gastarFicha(Ficha ficha, List<ItemConsumivel> refeicao) throws ElementoNaoExisteException
+	public void gastarFicha(Ficha ficha, Refeicao refeicao) throws ElementoNaoExisteException
 	{
 		controladorFicha.gastarFicha(ficha, refeicao);
 	}

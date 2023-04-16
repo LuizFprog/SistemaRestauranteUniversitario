@@ -85,7 +85,7 @@ public class Refeicao{
 
 	@Override
 	public String toString() {
-		return "Refeicao [ItensConsumiveis=" + itensConsumiveis + ", fichas=" + fichas + "]";
+		return "Refeicao Cadastarda [ItensConsumiveis=" + itensConsumiveis + ", fichas=" + fichas + "]";
 	}
 	
 }

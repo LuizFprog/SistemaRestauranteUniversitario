@@ -36,7 +36,7 @@ public class ControladorRefeicao {
 	    
 	    for(int i = 0; i < 100; i++)
 	    {
-	        Refeicao novoRefeicao = new Refeicao();
+	        Refeicao novoRefeicao = new Refeicao(null,null);
 	        repositorioRefeicao.inserir(novoRefeicao);
 	    }
 	}
@@ -53,7 +53,7 @@ public class ControladorRefeicao {
 	        }
 	    }
 	    
-	    // fica sem retorno caso falhe
+	    
 	    return null;
 	}
 	
@@ -66,6 +66,20 @@ public class ControladorRefeicao {
 	    
 	}
 	
+	public Refeicao recuperarPorFicha(Ficha ficha) {
+		
+		List<Refeicao>  atual = repositorioRefeicao.ler();
+		
+		for(Refeicao i: atual) {
+			if(i.getFichas() == ficha) {
+				
+				return i;
+			}
+		}
+		System.out.println("TESTE");
+		return null;
+	}
+	
 	public void removerPratoRefeicao(ItemConsumivel prato, Refeicao refeicao) throws ElementoNaoExisteException
 	{
 	    refeicao.remover(prato);
@@ -75,6 +89,9 @@ public class ControladorRefeicao {
     {
         return refeicao.getItensConsumiveis();
     }
+	public List<Refeicao> listarRefeicoes(){
+		return repositorioRefeicao.ler();
+	}
 
 	public void inserir(Refeicao refe) throws ElementoJaExisteException {
 		

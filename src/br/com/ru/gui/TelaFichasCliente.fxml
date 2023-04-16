@@ -86,13 +86,13 @@
                                        </font>
                                     </Label>
                                     <ChoiceBox fx:id="choiceboxCardapio" prefWidth="150.0" style="-fx-background-color: #ffffff; -fx-background-radius: 0; -fx-border-color: #e76000;" />
-                                    <Button fx:id="buttonAdicionarRefe" mnemonicParsing="false" stylesheets="@test.css" text="Adicionar na refeição" textFill="WHITE">
+                                    <Button fx:id="buttonAdicionarRefe" mnemonicParsing="false" onAction="#adicionarNaRefeicao" stylesheets="@test.css" text="Adicionar na refeição" textFill="WHITE">
                                        <font>
                                           <Font name="Arial Bold" size="12.0" />
                                        </font></Button>
                                  </children>
                               </VBox>
-                              <Button fx:id="buttonRemoverRefe" mnemonicParsing="false" stylesheets="@test.css" text="Remover da refeição" textFill="WHITE">
+                              <Button fx:id="buttonRemoverRefe" mnemonicParsing="false" onAction="#removerNaRefeicao" stylesheets="@test.css" text="Remover da refeição" textFill="WHITE">
                                  <HBox.margin>
                                     <Insets />
                                  </HBox.margin>
@@ -102,8 +102,8 @@
                               </Button>
                            </children>
                         </HBox>
-                        <ListView maxHeight="600.0" maxWidth="800.0" />
-                        <Button fx:id="buttonFinalRefe" mnemonicParsing="false" stylesheets="@test.css" text="Finalizar compra" textFill="WHITE">
+                        <ListView fx:id="listaItensRefe" maxHeight="600.0" maxWidth="800.0" />
+                        <Button fx:id="buttonFinalRefe" mnemonicParsing="false" onAction="#fianlizarRefeicao" stylesheets="@test.css" text="Finalizar compra" textFill="WHITE">
                            <font>
                               <Font name="Arial Bold" size="12.0" />
                            </font></Button>
@@ -126,7 +126,7 @@
                               <Insets top="30.0" />
                            </VBox.margin>
                         </Label>
-                        <ListView maxHeight="600.0" maxWidth="800.0" />
+                        <ListView fx:id="listaFichas" maxHeight="600.0" maxWidth="800.0" />
                      </children>
                      <padding>
                         <Insets bottom="30.0" />

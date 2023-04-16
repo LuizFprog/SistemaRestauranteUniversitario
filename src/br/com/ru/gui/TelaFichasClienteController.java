@@ -11,6 +11,7 @@ import br.com.ru.exceptions.SaldoInsuficienteException;
 import br.com.ru.negocio.Sistema;
 import br.com.ru.negocio.models.Cliente;
 import br.com.ru.negocio.models.ItemConsumivel;
+import br.com.ru.negocio.models.Refeicao;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -21,6 +22,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.stage.Stage;
 
 public class TelaFichasClienteController implements Initializable{
@@ -30,6 +32,9 @@ public class TelaFichasClienteController implements Initializable{
 	
 	@FXML
 	private Label valorTotal;
+	
+	@FXML
+    private ListView<Refeicao> listaFichas;
 
 	 @FXML
 	 private ChoiceBox<ItemConsumivel> choiceboxCardapio;
@@ -51,6 +56,10 @@ public class TelaFichasClienteController implements Initializable{
     
     @FXML
     private Button buttonCardapio;
+    
+
+    @FXML
+    private ListView<ItemConsumivel> listaItensRefe;
     
     @FXML
     private ChoiceBox<Integer> choiceFichas;
@@ -114,18 +123,63 @@ public class TelaFichasClienteController implements Initializable{
   	}
     
     @FXML
-    public void adicionarRefeicao(ActionEvent event) {
+    public void adicionarNaRefeicao(ActionEvent event) throws ElementoJaExisteException, ElementoNaoExisteException {
     	
     	ItemConsumivel adicionadoItem = choiceboxCardapio.getValue();
-    
+    	
+    	meuSistema.adicionarItemConsumivelRefeicao(adicionadoItem, meuSistema.recuperarRefeicaoPorFicha(meuSistema.recuperarFichaDoCliente(cliente)));
+    	//meuSistema.recuperarRefeicaoPorFicha(meuSistema.recuperarFichaDoCliente(cliente));
+    	listaItensRefe.getItems().add(adicionadoItem);
+    	
+    	
     }
+    
+    @FXML
+    public void removerNaRefeicao(ActionEvent event) throws ElementoJaExisteException, ElementoNaoExisteException {
+    	
+    	
+    	ItemConsumivel removidoItem = choiceboxCardapio.getValue();
+    	meuSistema.removerItemdaRefeicao(removidoItem, meuSistema.recuperarRefeicaoPorFicha(meuSistema.recuperarFichaDoCliente(cliente)));
+    	listaItensRefe.getItems().remove(removidoItem);
+    	
+    }
+    
+    @FXML 
+    public void fianlizarRefeicao(ActionEvent event) throws ElementoNaoExisteException, ElementoJaExisteException {
+    	meuSistema.cadastrarRefeicaoFicha(meuSistema.recuperarFichaDoCliente(cliente));
+    	Refeicao refe = meuSistema.recuperarRefeicaoPorFicha(meuSistema.recuperarFichaDoCliente(cliente));
+    	
+    	System.out.println(meuSistema.recuperarRefeicaoPorFicha(meuSistema.recuperarFichaDoCliente(cliente)));
+    	meuSistema.gastarFicha(meuSistema.recuperarFichaDoCliente(cliente), refe);
+    	System.out.println("TESTE");
+    	System.out.println(meuSistema.recuperarRefeicaoPorFicha(meuSistema.recuperarFichaDoCliente(cliente)));
+  
+    	
+    }
+    
+    
     
     @FXML
     public void acaoComprarFichas(ActionEvent event) throws ElementoJaExisteException, SaldoInsuficienteException, ElementoNaoExisteException
     {
+    	//meuSistema.gerarRefeicoes();
     	Integer valor = choiceFichas.getValue();
     	meuSistema.adicionarFicha(3, 3 * valor, meuSistema.recuperarClienteEspecifico(cliente.getCpf()));
+    	meuSistema.CadastrarRefeicao(meuSistema.recuperarFichaDoCliente(cliente));
+    	
+    	
     }
+    
+    @FXML
+	public void listarRefeicoes(ActionEvent event) {
+    	
+    	List<Refeicao> a = meuSistema.listarRefe();
+    	
+    	for(Refeicao i: a) {
+    		listaFichas.getItems().add(i);
+    	}
+    }
+    
     
     @FXML
     public void choiceBox(ActionEvent event)
@@ -134,25 +188,32 @@ public class TelaFichasClienteController implements Initializable{
     	valorTotal.setText("" + valor);
     }
 
-		@Override
-		public void initialize(URL arg0, ResourceBundle arg1) {
-			for(int i = 1; i <= 10; i++)
-			{
-				choiceFichas.getItems().add(i);
-			}
-			choiceFichas.setOnAction(this::choiceBox);
-			
-			List<ItemConsumivel> itensTotais = meuSistema.verTodosItemConsumiveis();
-			for(ItemConsumivel i : itensTotais)
-			{
-				if(i.isVisivel() != false)
-				{
-					choiceboxCardapio.getItems().add(i);
-				}
-			}
-			
+	@Override
+	public void initialize(URL arg0, ResourceBundle arg1) {
+		try {
+			meuSistema.gerarRefeicoes();
+		} catch (ElementoNaoExisteException | ElementoJaExisteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 		
+		for(int i = 1; i <= 10; i++)
+		{
+			choiceFichas.getItems().add(i);
+		}
+		choiceFichas.setOnAction(this::choiceBox);
+		
+		List<ItemConsumivel> itensTotais = meuSistema.verTodosItemConsumiveis();
+		for(ItemConsumivel i : itensTotais)
+		{
+			if(i.isVisivel() != false)
+			{
+				choiceboxCardapio.getItems().add(i);
+			}
+		}
+		
+	}
+	
 		
 
 }
