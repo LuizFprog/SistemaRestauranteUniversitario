@@ -133,7 +133,7 @@ public class TelaItemFuncionarioController implements Initializable{
   		
   		TipoCardapio tipo = choiceTipo.getValue();  		
   		
-  		meuSistema.adicionarItemConsumivel(nome, gluten, lact, tipo, lact);
+  		meuSistema.adicionarItemConsumivel(nome, gluten, lact, tipo, false);
   		listItens.getItems().add(meuSistema.recuperarItemConsumivel(nome));
   		
   		reloadItens(event);
@@ -170,7 +170,7 @@ public class TelaItemFuncionarioController implements Initializable{
   		
   		TipoCardapio tipo = choiceNovoItemTipo.getValue();
   		
-  		meuSistema.atualizarItemConsumivel(nomeAtual, novoNome, gluten, lact, tipo, lact);
+  		meuSistema.atualizarItemConsumivel(nomeAtual, novoNome, gluten, lact, tipo, false);
   		listItens.getItems().add(meuSistema.recuperarItemConsumivel(novoNome));
   		
   		reloadItens(event);
