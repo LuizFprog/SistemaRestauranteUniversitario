@@ -48,7 +48,6 @@ public class Sistema {
 	{
 		if (cpf != null && login != null && senha != null && primeiroNome != null && ultimoNome != null) {
 			controladorUsuario.criarCliente(primeiroNome, ultimoNome, cpf, login, senha);
-			System.out.println("ENTREI TROXA" + cpf);
 		} else {
 			throw new NullPointerException();
 		}
@@ -120,10 +119,12 @@ public class Sistema {
 	
 	// Inicializa um funcionario com os parametros passados
 	public void adicionarFuncionario(String primeiroNome, String ultimoNome,
-			String cpf, String login, String senha, String id) throws ElementoJaExisteException
+			String cpf, String login, String senha, String id) throws ElementoJaExisteException, NullPointerException
 	{
 		if (cpf != null && login != null && senha != null && primeiroNome != null && ultimoNome != null && id != null) {
 			controladorUsuario.adicionarFuncionario(primeiroNome, ultimoNome, cpf, login, senha, id);
+		} else {
+			throw new NullPointerException();
 		}
 		
 	}
