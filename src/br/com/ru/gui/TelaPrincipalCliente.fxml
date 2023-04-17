@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
@@ -9,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="800.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.ru.gui.TelaPrincipalClienteController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="800.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.ru.gui.TelaPrincipalClienteController">
    <left>
       <VBox prefHeight="400.0" prefWidth="162.0" BorderPane.alignment="CENTER">
          <children>
@@ -63,7 +68,7 @@
                               <Font name="Arial Bold" size="18.0" />
                            </font>
                            <VBox.margin>
-                              <Insets bottom="40.0" left="30.0" />
+                              <Insets bottom="20.0" left="30.0" />
                            </VBox.margin>
                         </Label>
                         <Label text="Nome Completo:">
@@ -150,9 +155,9 @@
                         <Insets left="10.0" />
                      </HBox.margin>
                   </VBox>
-                  <VBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="10.0" maxWidth="600.0" spacing="10.0" style="-fx-border-color: #000000; -fx-background-color: #ffffff;" HBox.hgrow="ALWAYS">
+                  <VBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="10.0" maxWidth="600.0" style="-fx-border-color: #000000; -fx-background-color: #ffffff;" HBox.hgrow="ALWAYS">
                      <children>
-                        <Label text="Saldo" textFill="#f8831d">
+                        <Label text="Configurações" textFill="#f8831d">
                            <font>
                               <Font name="Arial Bold" size="18.0" />
                            </font>
@@ -206,7 +211,33 @@
                         </TextField>
                         <Button fx:id="buttonDepositar" mnemonicParsing="false" onAction="#acaoDepositar" prefHeight="30.0" prefWidth="100.0" stylesheets="@test.css" text="Depositar" textFill="WHITE">
                            <VBox.margin>
-                              <Insets bottom="47.0" left="30.0" top="20.0" />
+                              <Insets bottom="37.0" left="30.0" top="20.0" />
+                           </VBox.margin>
+                        </Button>
+                        <Label layoutX="41.0" layoutY="108.0" text="Remover Conta:">
+                           <font>
+                              <Font name="Arial Bold" size="14.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets bottom="20.0" left="30.0" />
+                           </VBox.margin>
+                        </Label>
+                        <Label text="Digite o CPF:">
+                           <font>
+                              <Font name="Arial Bold" size="14.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets left="30.0" />
+                           </VBox.margin>
+                        </Label>
+                        <TextField maxWidth="100.0" style="-fx-border-style: hidden hidden solid hidden; -fx-background-color: #ffffff;">
+                           <VBox.margin>
+                              <Insets left="30.0" />
+                           </VBox.margin>
+                        </TextField>
+                        <Button fx:id="buttonDepositar1" mnemonicParsing="false" onAction="#acaoDepositar" prefHeight="30.0" prefWidth="100.0" stylesheets="@test.css" text="Remover Conta" textFill="WHITE">
+                           <VBox.margin>
+                              <Insets left="30.0" top="20.0" />
                            </VBox.margin>
                         </Button>
                      </children>
