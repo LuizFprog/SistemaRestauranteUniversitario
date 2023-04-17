@@ -136,11 +136,17 @@ public class TelaPrincipalClienteController implements Initializable{
 	
 	
 	@FXML
-	public void irFichas(ActionEvent event) throws IOException
+	public void irFichas(ActionEvent event)
 	{
 		clienteAtual.setCliente(cliente);
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("TelaFichasCliente.fxml"));
-    Parent telaParent = loader.load();
+    Parent telaParent = null;
+	try {
+		telaParent = loader.load();
+	} catch ( Exception e) {
+		// TODO Auto-generated catch block
+		//e.printStackTrace();
+	}
     Scene telaFichasParent = new Scene(telaParent);
     Stage janela = (Stage) ((Node) event.getSource()).getScene().getWindow();
     janela.setScene(telaFichasParent);
