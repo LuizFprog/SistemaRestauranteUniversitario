@@ -194,7 +194,7 @@ public class TelaFichasClienteController implements Initializable{
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		compraFinalizada.setText("");
+		
 		for(int i = 1; i <= 10; i++)
 		{
 			choiceFichas.getItems().add(i);
