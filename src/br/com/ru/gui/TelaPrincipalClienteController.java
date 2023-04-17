@@ -7,6 +7,7 @@ import java.util.ResourceBundle;
 import br.com.ru.exceptions.ElementoNaoExisteException;
 import br.com.ru.negocio.Sistema;
 import br.com.ru.negocio.models.Cliente;
+import br.com.ru.negocio.models.Usuario;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -35,6 +36,9 @@ public class TelaPrincipalClienteController implements Initializable{
     private Button buttonSair;
     
     @FXML
+    private Button buttonRemoverConta;
+    
+    @FXML
     private  static TelaPrincipalClienteController instancia;
 
     @FXML
@@ -60,6 +64,9 @@ public class TelaPrincipalClienteController implements Initializable{
 
     @FXML
     private TextField textValorDepositar;
+    
+    @FXML
+    private TextField textFieldCpfToRemove;
     
     @FXML
     private static Cliente cliente;
@@ -117,11 +124,11 @@ public class TelaPrincipalClienteController implements Initializable{
 	public void irCardapio(ActionEvent event) throws IOException
 	{
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("TelaCardapioCliente.fxml"));
-    Parent telaParent = loader.load();
-    Scene telaCardapioParent = new Scene(telaParent);
-    Stage janela = (Stage) ((Node) event.getSource()).getScene().getWindow();
-    janela.setScene(telaCardapioParent);
-    janela.show();
+		Parent telaParent = loader.load();
+		Scene telaCardapioParent = new Scene(telaParent);
+		Stage janela = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		janela.setScene(telaCardapioParent);
+		janela.show();
 	}
 	
 	@FXML
@@ -152,17 +159,16 @@ public class TelaPrincipalClienteController implements Initializable{
 	public void sairLogin(ActionEvent event) throws IOException
 	{
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("TelaLoginPrincipal.fxml"));
-    Parent telaParent = loader.load();
-    Scene telaLoginParent = new Scene(telaParent);
-    Stage janela = (Stage) ((Node) event.getSource()).getScene().getWindow();
-    janela.setScene(telaLoginParent);
-    janela.show();
+		Parent telaParent = loader.load();
+		Scene telaLoginParent = new Scene(telaParent);
+		Stage janela = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		janela.setScene(telaLoginParent);
+		janela.show();
 	}
 	
 	@FXML
 	public void acaoDepositar(ActionEvent event) throws Exception {
 		
-	
 		try {
 			Double valor = Double.valueOf(textValorDepositar.getText()).doubleValue();
 			meuSistema.depositar(valor, cliente.getCpf());
@@ -173,10 +179,25 @@ public class TelaPrincipalClienteController implements Initializable{
 			
 		} catch (NumberFormatException | ElementoNaoExisteException e) {
 			mostrarAlerta();
-			reload(event);
-			
-		}
+			reload(event);			
+		}	
+	}
 	
+	@FXML
+	public void acaoRemoverConta(ActionEvent event) throws Exception {
+		
+		@SuppressWarnings("unused")
+		Usuario usuario;
+		try {
+			if (!textFieldCpfToRemove.getText().isEmpty()) {
+				usuario = meuSistema.recuperarUsuarioEspecifico(textFieldCpfToRemove.getText());	
+				meuSistema.removerCliente(textFieldCpfToRemove.getText());
+		  		sairLogin(event);
+			}			
+		} catch (ElementoNaoExisteException e) {
+			mostrarAlerta();			
+		}  
+		
 	}
     
 }

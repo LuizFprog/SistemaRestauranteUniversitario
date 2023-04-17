@@ -25,6 +25,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -58,6 +59,9 @@ public class ControllerDadosFuncionario implements Initializable{
     
     @FXML
     private TableColumn<Ficha, LocalDate> dataConsumo;
+    
+    @FXML
+    private ListView<Cliente> listClientes;
     
     @FXML
 	ObservableList<Ficha> dados = FXCollections.observableArrayList();
@@ -195,6 +199,11 @@ public class ControllerDadosFuncionario implements Initializable{
 			List<Ficha> fichas = meuSistema.listarFicha();
 			for (Ficha i : fichas) {
 				dados.add(i);
+			}
+			
+			List<Cliente> clientes = meuSistema.listarTodosClientes();
+			for (Cliente i : clientes) {
+				listClientes.getItems().add(i);
 			}
 			
 			codigo.setCellValueFactory(new PropertyValueFactory<Ficha, String>("codigo"));
