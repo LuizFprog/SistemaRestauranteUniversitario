@@ -105,6 +105,7 @@
                           <columns>
                             <TableColumn fx:id="codigo" prefWidth="75.0" text="Codigo" />
                             <TableColumn fx:id="cliente" prefWidth="75.0" text="Cliente" />
+                              <TableColumn fx:id="preco" prefWidth="75.0" text="Preço" />
                               <TableColumn fx:id="statusFicha" prefWidth="75.0" text="Status" />
                               <TableColumn fx:id="dataEfetivacao" prefWidth="75.0" text="Data de Efetivação" />
                               <TableColumn fx:id="dataConsumo" prefWidth="75.0" text="Data de Consumo" />

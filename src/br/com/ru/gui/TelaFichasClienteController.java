@@ -69,6 +69,9 @@ public class TelaFichasClienteController implements Initializable{
     
     @FXML
     private TableColumn<Ficha, Cliente> nomeCliente;
+    
+    @FXML
+    private TableColumn<Ficha, Double> preco;
 
     @FXML
     private TableColumn<Ficha, StatusFicha> statusFicha;
@@ -211,9 +214,13 @@ public class TelaFichasClienteController implements Initializable{
     }
     
     @FXML
-    public void choiceBox(ActionEvent event)
+    public void choiceBox(ActionEvent event) throws ElementoJaExisteException
     {
-    	Double valor = choiceFichas.getValue() * 3.0;
+    	if(meuSistema.retornarFicha() == null)
+    	{
+    		meuSistema.gerarFicha();
+    	}
+    	Double valor = choiceFichas.getValue() * meuSistema.retornarFicha().getPreco();
     	valorTotal.setText("" + valor);
     }
 
@@ -224,7 +231,14 @@ public class TelaFichasClienteController implements Initializable{
 		{
 			choiceFichas.getItems().add(i);
 		}
-		choiceFichas.setOnAction(this::choiceBox);
+		choiceFichas.setOnAction(arg01 -> {
+			try {
+				choiceBox(arg01);
+			} catch (ElementoJaExisteException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		});
 		
 		Stream<Ficha> fichas;
 		fichas = meuSistema.listarFicha().stream().filter(ficha -> ficha.getCliente() == cliente);
@@ -239,6 +253,11 @@ public class TelaFichasClienteController implements Initializable{
     
     nomeCliente.setCellValueFactory(new PropertyValueFactory<Ficha, Cliente>("cliente"));
     //listFichas.getColumns().add(nomeCliente);
+    
+    preco.setCellValueFactory(new PropertyValueFactory<Ficha, Double>("preco"));
+		if (!listFichas.getColumns().contains(preco)) {
+			listFichas.getColumns().add(preco);
+		}	
     
     statusFicha.setCellValueFactory(new PropertyValueFactory<Ficha, StatusFicha>("statusFicha"));
     //listFichas.getColumns().add(statusFicha);

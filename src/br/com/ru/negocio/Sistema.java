@@ -270,7 +270,22 @@ public class Sistema {
 	}
 	
 	public void gerarFicha() throws ElementoJaExisteException {
-		controladorFicha.cadastrarFicha(0);
+		if(controladorFicha.retornarFicha() != null && controladorFicha.retornarFichaNaoEfetivada() != null)
+		{
+			controladorFicha.cadastrarFicha(controladorFicha.retornarFichaNaoEfetivada().getPreco());
+		}
+		else if(controladorFicha.retornarFicha() != null && controladorFicha.retornarFichaEfetivada() != null)
+		{
+			controladorFicha.cadastrarFicha(controladorFicha.retornarFichaEfetivada().getPreco());
+		}
+		else if(controladorFicha.retornarFicha() != null && controladorFicha.retornarFichaConsumida() != null)
+		{
+			controladorFicha.cadastrarFicha(controladorFicha.retornarFichaEfetivada().getPreco());
+		}
+		else
+		{
+			controladorFicha.cadastrarFicha(0);
+		}
 	}
 	
 	//Listar por dia
