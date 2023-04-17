@@ -147,7 +147,8 @@ public class TelaFichasClienteController implements Initializable{
     @FXML
     public void gastarFicha(ActionEvent event) throws ElementoNaoExisteException
     {
-    	meuSistema.gastarFicha(meuSistema.recuperarFichaDoCliente(cliente));
+    	Ficha itemRemovido = listFichas.getSelectionModel().getSelectedItem();
+    	meuSistema.gastarFicha(itemRemovido);
     	compraFinalizada.setText("Compra Finalizada");
     }
     
