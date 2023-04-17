@@ -9,24 +9,25 @@ public class Ficha {
 	}
 	
 	private StatusFicha statusFicha;
-	private static double preco =  3.0;
+	private double preco =  3.0;
 	private Cliente cliente;
 	private String codigo;
 	private LocalDate dataEfetivacao = null;
 	private LocalDate dataConsumo = null;
 	
-	public Ficha(String cod) {
+	public Ficha(String cod, double preco) {
 		
 		this.codigo = cod;
 		this.statusFicha = StatusFicha.NAO_OPERANTE;
+		this.preco = preco;
 	}
 	
-	public static double getPreco() {
+	public double getPreco() {
 		return preco;
 	}
 	
-	public static void setPreco(double preco) {
-		Ficha.preco = preco;
+	public void setPreco(double preco) {
+		this.preco = preco;
 	}
 	
 	public Cliente getCliente() {

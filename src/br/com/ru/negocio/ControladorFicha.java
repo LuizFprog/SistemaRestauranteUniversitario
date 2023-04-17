@@ -37,7 +37,7 @@ public class ControladorFicha {
 	}	
 	
 	// Metodo para cadastrar fichas
-	private void cadastrarFicha () throws ElementoJaExisteException 
+	public void cadastrarFicha (double preco) throws ElementoJaExisteException 
 	{
 		List<Ficha> listaFicha = repositorioFicha.ler();
 		SecureRandom randomico = new SecureRandom();
@@ -58,7 +58,7 @@ public class ControladorFicha {
 				}
 			}while(!liberado);
 			codigo += codigoPossivel;
-			Ficha novoFicha = new Ficha(codigo);
+			Ficha novoFicha = new Ficha(codigo, preco);
 			repositorioFicha.inserir(novoFicha);
 		}
 	}
@@ -68,6 +68,7 @@ public class ControladorFicha {
 	public void comprarFicha (double preco, double dinheiroCliente, Cliente cliente) 
 			throws ElementoJaExisteException, SaldoInsuficienteException
 	{
+		System.out.println(preco + " " + dinheiroCliente);
 		int sent = 0;
 		List<Ficha> listaFicha = repositorioFicha.ler();
 		if(preco != 0.0 && cliente != null && dinheiroCliente <= cliente.getSaldo())
@@ -87,7 +88,7 @@ public class ControladorFicha {
 				}
 				if(sent != Math.floor(dinheiroCliente / preco))
 				{
-					cadastrarFicha();
+					cadastrarFicha(preco);
 				}
 			}while(sent != Math.floor(dinheiroCliente / preco));
 			cliente.debitar(precoTotalParaPagar);
@@ -127,12 +128,29 @@ public class ControladorFicha {
 //		throw new ElementoNaoExisteException("Não existe um cliente com esse CPF!");
 //	}
 	
+	public Ficha retornarFichaNaoEfetivada() {
+		List<Ficha> atual = repositorioFicha.ler();
+		
+		for (Ficha i : atual) {
+			if (i.getStatusFicha() == StatusFicha.NAO_OPERANTE) {
+				return i;
+			}
+		}
+		return null;
+	}
+	
 	// Metodo para atualizar ficha
 	public void atualizarPrecoFicha (double preco)
 	{
-		if(preco > 0.0)
+		List<Ficha> atual = repositorioFicha.ler();
+		if(preco >= 0.0)
 		{
-			Ficha.setPreco(preco);
+			for (Ficha i : atual) {
+				if (i.getStatusFicha() == StatusFicha.NAO_OPERANTE) {
+					i.setPreco(preco);
+					System.out.println(i.getPreco());
+				}
+			}			
 		}
 	}
 	

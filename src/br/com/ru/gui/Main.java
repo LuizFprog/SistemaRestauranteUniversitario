@@ -17,10 +17,11 @@ public class Main extends Application{
         Parent root = FXMLLoader.load(getClass().getResource("TelaLoginPrincipal.fxml"));
         Scene scene = new Scene(root);
         primaryStage.setScene(scene);
+        primaryStage.setTitle("RU");        
         primaryStage.show();
     }
 
-    public static void main(String[] args) throws ElementoJaExisteException, ElementoNaoExisteException, SaldoInsuficienteException {
+    public static void main(String[] args) throws ElementoJaExisteException, ElementoNaoExisteException, SaldoInsuficienteException {    	
         launch(args);
     }
 }
