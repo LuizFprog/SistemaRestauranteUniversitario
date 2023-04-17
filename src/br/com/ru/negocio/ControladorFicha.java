@@ -145,7 +145,7 @@ public class ControladorFicha {
 			for (Ficha i : atual) {
 				if (i.getStatusFicha() == StatusFicha.NAO_OPERANTE) {
 					i.setPreco(preco);
-					System.out.println(i.getPreco());
+					
 				}
 			}
 		}
