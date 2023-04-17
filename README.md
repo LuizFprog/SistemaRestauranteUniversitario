@@ -19,7 +19,7 @@
 3. Quais serviços cada usuário pode executar
 
       - Os clientes podem comprar fichas , visualizar o cardápio e depositar dinheiro no saldo da sua conta.<br />
-      - Os funcionarios podem adicionar e remover pratos do cardápio, além de organizar os pratos baseados em seus atributos, podem visualizar as informações dos clientes, além de poder ver compras recentes realizadas.<br />
+      - Os funcionarios podem adicionar e remover Itens Consumíveis do cardápio, além de organizar os pratos baseados em seus atributos, podem visualizar as informações dos clientes, além de poder ver compras recentes realizadas.<br />
   
 ## Requisitos do Projeto
 
