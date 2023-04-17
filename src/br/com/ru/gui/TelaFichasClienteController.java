@@ -163,7 +163,6 @@ public class TelaFichasClienteController implements Initializable {
 
 	@FXML
 	public void acaoComprarFichas(ActionEvent event) throws Exception {
-		System.out.println(cliente.getSaldo() + "AQUI TROXA");
 		Integer valor = 0;
 
 		if (numeroFichas.getSelectionModel().getSelectedItem() != null) {
