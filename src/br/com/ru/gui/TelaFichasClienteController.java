@@ -2,16 +2,20 @@ package br.com.ru.gui;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.stream.Stream;
 
 import br.com.ru.exceptions.ElementoJaExisteException;
 import br.com.ru.exceptions.ElementoNaoExisteException;
 import br.com.ru.exceptions.SaldoInsuficienteException;
 import br.com.ru.negocio.Sistema;
 import br.com.ru.negocio.models.Cliente;
-import br.com.ru.negocio.models.ItemConsumivel;
-import br.com.ru.negocio.models.Refeicao;
+import br.com.ru.negocio.models.Ficha;
+import br.com.ru.negocio.models.Ficha.StatusFicha;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -22,7 +26,9 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 public class TelaFichasClienteController implements Initializable{
@@ -32,12 +38,6 @@ public class TelaFichasClienteController implements Initializable{
 	
 	@FXML
 	private Label valorTotal;
-	
-	@FXML
-    private ListView<Refeicao> listaFichas;
-
-	 @FXML
-	 private ChoiceBox<ItemConsumivel> choiceboxCardapio;
 
     @FXML
     private Button buttonInicio;
@@ -46,23 +46,37 @@ public class TelaFichasClienteController implements Initializable{
     private Button buttonFicha;
 
     @FXML
-    private Button buttonAdicionarRefe;
-
-    @FXML
-    private Button buttonRemoverRefe;
-
-    @FXML
     private Button buttonFinalRefe;
+    
+    @FXML
+    private Label compraFinalizada;
     
     @FXML
     private Button buttonCardapio;
     
-
-    @FXML
-    private ListView<ItemConsumivel> listaItensRefe;
-    
     @FXML
     private ChoiceBox<Integer> choiceFichas;
+    
+  	@FXML
+  	private PropertyValueFactory<Ficha, ?> PropertyValueFactory;
+    
+    @FXML
+    private TableView<Ficha> listFichas;
+    
+    @FXML
+    private TableColumn<Ficha, String> codigo;
+    
+    @FXML
+    private TableColumn<Ficha, Cliente> nomeCliente;
+
+    @FXML
+    private TableColumn<Ficha, StatusFicha> statusFicha;
+    
+    @FXML
+    private TableColumn<Ficha, LocalDate> dataEfetivacao;
+    
+    @FXML
+  	ObservableList<Ficha> dados = FXCollections.observableArrayList();
     
     @FXML
     private static TelaFichasClienteController instancia;
@@ -123,63 +137,19 @@ public class TelaFichasClienteController implements Initializable{
   	}
     
     @FXML
-    public void adicionarNaRefeicao(ActionEvent event) throws ElementoJaExisteException, ElementoNaoExisteException {
-    	
-    	ItemConsumivel adicionadoItem = choiceboxCardapio.getValue();
-    	
-    	meuSistema.adicionarItemConsumivelRefeicao(adicionadoItem, meuSistema.recuperarRefeicaoPorFicha(meuSistema.recuperarFichaDoCliente(cliente)));
-    	//meuSistema.recuperarRefeicaoPorFicha(meuSistema.recuperarFichaDoCliente(cliente));
-    	listaItensRefe.getItems().add(adicionadoItem);
-    	
-    	
-    }
-    
-    @FXML
-    public void removerNaRefeicao(ActionEvent event) throws ElementoJaExisteException, ElementoNaoExisteException {
-    	
-    	
-    	ItemConsumivel removidoItem = choiceboxCardapio.getValue();
-    	meuSistema.removerItemdaRefeicao(removidoItem, meuSistema.recuperarRefeicaoPorFicha(meuSistema.recuperarFichaDoCliente(cliente)));
-    	listaItensRefe.getItems().remove(removidoItem);
-    	
-    }
-    
-    @FXML 
-    public void fianlizarRefeicao(ActionEvent event) throws ElementoNaoExisteException, ElementoJaExisteException {
-    	meuSistema.cadastrarRefeicaoFicha(meuSistema.recuperarFichaDoCliente(cliente));
-    	Refeicao refe = meuSistema.recuperarRefeicaoPorFicha(meuSistema.recuperarFichaDoCliente(cliente));
-    	
-    	System.out.println(meuSistema.recuperarRefeicaoPorFicha(meuSistema.recuperarFichaDoCliente(cliente)));
-    	meuSistema.gastarFicha(meuSistema.recuperarFichaDoCliente(cliente), refe);
-    	System.out.println("TESTE");
-    	System.out.println(meuSistema.recuperarRefeicaoPorFicha(meuSistema.recuperarFichaDoCliente(cliente)));
-  
-    	
-    }
-    
-    
-    
-    @FXML
     public void acaoComprarFichas(ActionEvent event) throws ElementoJaExisteException, SaldoInsuficienteException, ElementoNaoExisteException
     {
     	//meuSistema.gerarRefeicoes();
     	Integer valor = choiceFichas.getValue();
     	meuSistema.adicionarFicha(3, 3 * valor, meuSistema.recuperarClienteEspecifico(cliente.getCpf()));
-    	meuSistema.CadastrarRefeicao(meuSistema.recuperarFichaDoCliente(cliente));
-    	
-    	
     }
     
     @FXML
-	public void listarRefeicoes(ActionEvent event) {
-    	
-    	List<Refeicao> a = meuSistema.listarRefe();
-    	
-    	for(Refeicao i: a) {
-    		listaFichas.getItems().add(i);
-    	}
+    public void gastarFicha(ActionEvent event) throws ElementoNaoExisteException
+    {
+    	meuSistema.gastarFicha(meuSistema.recuperarFichaDoCliente(cliente));
+    	compraFinalizada.setText("Compra Finalizada");
     }
-    
     
     @FXML
     public void choiceBox(ActionEvent event)
@@ -190,27 +160,36 @@ public class TelaFichasClienteController implements Initializable{
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		try {
-			meuSistema.gerarRefeicoes();
-		} catch (ElementoNaoExisteException | ElementoJaExisteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
+		compraFinalizada.setText("");
 		for(int i = 1; i <= 10; i++)
 		{
 			choiceFichas.getItems().add(i);
 		}
 		choiceFichas.setOnAction(this::choiceBox);
 		
-		List<ItemConsumivel> itensTotais = meuSistema.verTodosItemConsumiveis();
-		for(ItemConsumivel i : itensTotais)
-		{
-			if(i.isVisivel() != false)
-			{
-				choiceboxCardapio.getItems().add(i);
-			}
+		Stream<Ficha> fichas;
+		fichas = meuSistema.listarFicha().stream().filter(ficha -> ficha.getCliente() == cliente);
+		List<Ficha> fichasClientes = fichas.toList();
+		
+		for (Ficha i : fichasClientes) {
+			dados.add(i);
 		}
+		
+		codigo.setCellValueFactory(new PropertyValueFactory<Ficha, String>("codigo"));
+    listFichas.getColumns().add(codigo);
+    
+    nomeCliente.setCellValueFactory(new PropertyValueFactory<Ficha, Cliente>("cliente"));
+    listFichas.getColumns().add(nomeCliente);
+    
+    statusFicha.setCellValueFactory(new PropertyValueFactory<Ficha, StatusFicha>("statusFicha"));
+    listFichas.getColumns().add(statusFicha);
+    
+    dataEfetivacao.setCellValueFactory(new PropertyValueFactory<Ficha, LocalDate>("dataEfetivacao"));
+    listFichas.getColumns().add(dataEfetivacao);
+	
+    listFichas.setItems(dados);
+		
+		
 		
 	}
 	
