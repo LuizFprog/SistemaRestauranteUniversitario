@@ -1,7 +1,5 @@
 package br.com.ru.negocio.models;
 
-import java.util.Objects;
-
 public class Cliente extends Usuario{
 	
 	private double saldo;

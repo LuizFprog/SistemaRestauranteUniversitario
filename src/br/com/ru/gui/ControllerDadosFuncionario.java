@@ -22,6 +22,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableColumn;
@@ -44,7 +45,7 @@ public class ControllerDadosFuncionario implements Initializable{
     private TableView<Ficha> listFichas;
     
     @FXML
-    private TableColumn<Ficha, String> codigo;    
+    private TableColumn<Ficha, String> codigo;
     
     @FXML
     private TableColumn<Ficha, Cliente> cliente;
@@ -83,6 +84,28 @@ public class ControllerDadosFuncionario implements Initializable{
     private TextField textFieldCpfUser;
     
     @FXML
+    private void mostrarAlerta() {
+        // Cria o alerta
+        Alert alerta = new Alert(Alert.AlertType.INFORMATION);
+        alerta.setTitle("ERROR");
+        alerta.setHeaderText("ERRO AO CADASTRAR");
+        alerta.setContentText("Usuário não encontrado.");
+
+        // Mostra o alerta e espera pelo fechamento
+        alerta.showAndWait();
+    }
+    
+    @FXML
+    public void reloadDados(ActionEvent event) throws Exception {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("TelaDadosFuncionario.fxml"));
+        Parent telaParent = loader.load();
+        Scene telaDadosParent = new Scene(telaParent);
+        Stage janela = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        janela.setScene(telaDadosParent);
+        janela.show();
+    }
+    
+    @FXML
   	public void sairLogin(ActionEvent event) throws IOException
   	{
     	FXMLLoader loader = new FXMLLoader(getClass().getResource("TelaLoginPrincipal.fxml"));
@@ -105,7 +128,7 @@ public class ControllerDadosFuncionario implements Initializable{
   	}
   	
   	@FXML
-  	public void listarFichaPorDia(ActionEvent event) {
+  	public void listarFichaPorPeriodo(ActionEvent event) {
 
   		FilteredList<Ficha> filteredItems = new FilteredList<>(dados);
 
@@ -149,13 +172,20 @@ public class ControllerDadosFuncionario implements Initializable{
     }
   	
   	@FXML
-  	public void removerUsuario(ActionEvent event) throws ElementoNaoExisteException {
-  		Usuario usuario = meuSistema.recuperarUsuarioEspecifico(textFieldCpfUser.getText());
-  		if (usuario instanceof Cliente) {
-  			meuSistema.removerCliente(textFieldCpfUser.getText());
-  		} else if (usuario instanceof Funcionario) {
-  			meuSistema.excluirFuncionario(textFieldCpfUser.getText());
-  		}
+  	public void removerUsuario(ActionEvent event) throws Exception  {
+  		Usuario usuario;
+		try {
+			if (!textFieldCpfUser.getText().isEmpty()) {
+				usuario = meuSistema.recuperarUsuarioEspecifico(textFieldCpfUser.getText());	
+				if (usuario instanceof Cliente) {
+		  			meuSistema.removerCliente(textFieldCpfUser.getText());
+		  		} else if (usuario instanceof Funcionario) {
+		  			meuSistema.excluirFuncionario(textFieldCpfUser.getText());
+		  		}
+			}			
+		} catch (ElementoNaoExisteException e) {
+			mostrarAlerta();			
+		}  		
   		
   	}
 
@@ -168,19 +198,29 @@ public class ControllerDadosFuncionario implements Initializable{
 			}
 			
 			codigo.setCellValueFactory(new PropertyValueFactory<Ficha, String>("codigo"));
-		    listFichas.getColumns().add(codigo);
+			if (!listFichas.getColumns().contains(codigo)) {
+				listFichas.getColumns().add(codigo);
+			}		    
 		    
 		    cliente.setCellValueFactory(new PropertyValueFactory<Ficha, Cliente>("cliente"));
-		    listFichas.getColumns().add(cliente);
-		    
+		    if (!listFichas.getColumns().contains(cliente)) {
+				listFichas.getColumns().add(cliente);
+			}
+		    		    
 		    statusFicha.setCellValueFactory(new PropertyValueFactory<Ficha, StatusFicha>("statusFicha"));
-		    listFichas.getColumns().add(statusFicha);
+		    if (!listFichas.getColumns().contains(statusFicha)) {
+				listFichas.getColumns().add(statusFicha);
+		    }
 		    
 		    dataEfetivacao.setCellValueFactory(new PropertyValueFactory<Ficha, LocalDate>("dataEfetivacao"));
-		    listFichas.getColumns().add(dataEfetivacao);
+		    if (!listFichas.getColumns().contains(dataEfetivacao)) {
+				listFichas.getColumns().add(dataEfetivacao);
+		    }
 		    
 		    dataConsumo.setCellValueFactory(new PropertyValueFactory<Ficha, LocalDate>("dataConsumo"));
-		    listFichas.getColumns().add(dataConsumo);
+		    if (!listFichas.getColumns().contains(dataConsumo)) {
+				listFichas.getColumns().add(dataConsumo);
+		    }
 			
 		    listFichas.setItems(dados);
 		}
