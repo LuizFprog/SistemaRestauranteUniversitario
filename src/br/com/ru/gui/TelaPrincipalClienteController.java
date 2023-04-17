@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import br.com.ru.exceptions.ElementoNaoExisteException;
 import br.com.ru.negocio.Sistema;
 import br.com.ru.negocio.models.Cliente;
 import javafx.event.ActionEvent;
@@ -13,6 +14,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
@@ -99,6 +101,19 @@ public class TelaPrincipalClienteController implements Initializable{
 	}
 	
 	@FXML
+	private void mostrarAlerta() {
+        // Cria o alerta
+        Alert alerta = new Alert(Alert.AlertType.INFORMATION);
+        alerta.setTitle("ERROR");
+        alerta.setHeaderText("ERROR DEPOSITO");
+        alerta.setContentText("erro ao depositar");
+
+        // Mostra o alerta e espera pelo fechamento
+        alerta.showAndWait();
+        
+    }
+	
+	@FXML
 	public void irCardapio(ActionEvent event) throws IOException
 	{
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("TelaCardapioCliente.fxml"));
@@ -110,15 +125,15 @@ public class TelaPrincipalClienteController implements Initializable{
 	}
 	
 	@FXML
-  	public void reloadInicio(ActionEvent event) throws IOException
-  	{
-  		FXMLLoader loader = new FXMLLoader(getClass().getResource("TelaPrincipalCliente.fxml"));
-      Parent telaParent = loader.load();
-      Scene telaPrincipalParent = new Scene(telaParent);
-      Stage janela = (Stage) ((Node) event.getSource()).getScene().getWindow();
-      janela.setScene(telaPrincipalParent);
-      janela.show();
-  	}
+    public void reload(ActionEvent event) throws Exception {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("TelaPrincipalCliente.fxml"));
+        Parent telaParent = loader.load();
+        Scene telaClientParent = new Scene(telaParent);
+        Stage janela = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        janela.setScene(telaClientParent);
+        janela.show();
+    }
+	
 	
 	@FXML
 	public void irFichas(ActionEvent event) throws IOException
@@ -146,14 +161,21 @@ public class TelaPrincipalClienteController implements Initializable{
 	@FXML
 	public void acaoDepositar(ActionEvent event) throws Exception {
 		
-		Double valor = Double.valueOf(textValorDepositar.getText()).doubleValue();
-		meuSistema.depositar(valor, cliente.getCpf());
-		
-		String novoSaldo = String.valueOf(cliente.getSaldo());
-		
-		textSaldoAtual.setText(novoSaldo);
-		
-		reloadInicio(event);
+	
+		try {
+			Double valor = Double.valueOf(textValorDepositar.getText()).doubleValue();
+			meuSistema.depositar(valor, cliente.getCpf());
+			String novoSaldo = String.valueOf(cliente.getSaldo());
+			
+			textSaldoAtual.setText(novoSaldo);
+			reload(event);
+			
+		} catch (NumberFormatException | ElementoNaoExisteException e) {
+			mostrarAlerta();
+			reload(event);
+			
+		}
+	
 	}
     
 }
