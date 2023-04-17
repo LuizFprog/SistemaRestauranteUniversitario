@@ -65,6 +65,18 @@ public class TelaCadastroFuncionarioController {
         alerta.showAndWait();
     }
     
+    @FXML
+    private void mostrarAlertaJaExiste() {
+        // Cria o alerta
+        Alert alerta = new Alert(Alert.AlertType.INFORMATION);
+        alerta.setTitle("ERROR");
+        alerta.setHeaderText("ERRO AO CADASTRAR");
+        alerta.setContentText("Usuario já existe.");
+
+        // Mostra o alerta e espera pelo fechamento
+        alerta.showAndWait();
+    }
+    
    @FXML
    public void voltarLogin(ActionEvent event) throws Exception {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("TelaLoginPrincipal.fxml"));
@@ -92,18 +104,15 @@ public class TelaCadastroFuncionarioController {
    		login = textFieldLogin.getText();
    		senha = textFieldSenha.getText();
    		id = textFieldId.getText();
-   	}
+       } 
        
 	   	try {
 			meuSistema.adicionarFuncionario(primeiroNome, ultimoNome, cpf, login, senha, id);
 			voltarLogin(event);
 		} catch (ElementoJaExisteException e) {
-			mostrarAlerta();
+			mostrarAlertaJaExiste();
 			reloadFuncionario(event);
-		} catch (NullPointerException e) {
-			mostrarAlerta();
-			reloadFuncionario(event);
-		}
+		} 
    	
    }
     

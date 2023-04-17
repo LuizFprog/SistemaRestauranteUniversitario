@@ -101,9 +101,9 @@ public class TelaLoginController {
 		String login = textLogin.getText(); //assumindo cpf
 		String senha = textSenha.getText();
 	
-		if(login != null && senha != null) {
+		if(!login.isEmpty() && !senha.isEmpty()) {
 			
-			Usuario usuario = null;;
+			Usuario usuario = null;
 			try {
 				usuario = meuSistema.recuperarUsuarioEspecificoAtravesLoginSenha(login, senha);
 			} catch (ElementoNaoExisteException e) {

@@ -41,13 +41,11 @@ public class Sistema {
 	// Você deve passar os parametros e esse metodo chamara um metodo para adicionar um cliente inicializado com tais 
 	// parametros ao repositorio
 	public void adicionarCliente(String primeiroNome, String ultimoNome,
-			String cpf, String login, String senha) throws ElementoJaExisteException, NullPointerException
+			String cpf, String login, String senha) throws ElementoJaExisteException
 	{
 		if (cpf != null && login != null && senha != null && primeiroNome != null && ultimoNome != null) {
 			controladorUsuario.criarCliente(primeiroNome, ultimoNome, cpf, login, senha);
-		} else {
-			throw new NullPointerException();
-		}
+		} 
 	}
 	// Procura Cliente atraves de cpf passado como parametro e retorna uma string para listar esse cliente
 	public String procurarClienteEspecifico(String cpf) throws ElementoNaoExisteException
@@ -116,12 +114,10 @@ public class Sistema {
 	
 	// Inicializa um funcionario com os parametros passados
 	public void adicionarFuncionario(String primeiroNome, String ultimoNome,
-			String cpf, String login, String senha, String id) throws ElementoJaExisteException, NullPointerException
+			String cpf, String login, String senha, String id) throws ElementoJaExisteException
 	{
 		if (cpf != null && login != null && senha != null && primeiroNome != null && ultimoNome != null && id != null) {
 			controladorUsuario.adicionarFuncionario(primeiroNome, ultimoNome, cpf, login, senha, id);
-		} else {
-			throw new NullPointerException();
 		}
 		
 	}
@@ -234,7 +230,7 @@ public class Sistema {
 	}
 	
 	// Adiciona um itemConsumivel passado como parametro ao cardapio
-	public void colocarNoCardapio(ItemConsumivel itemConsumivel) throws ElementoNaoExisteException
+	public void colocarNoCardapio(ItemConsumivel itemConsumivel) throws ElementoNaoExisteException, NullPointerException
 	{
 		controladorItemConsumivel.itemConsumivelVisivel(itemConsumivel);
 	}

@@ -64,6 +64,18 @@ public class TelaCadastroClienteController {
     }
     
     @FXML
+    private void mostrarAlertaElementoExiste() {
+        // Cria o alerta
+        Alert alerta = new Alert(Alert.AlertType.INFORMATION);
+        alerta.setTitle("ERROR");
+        alerta.setHeaderText("ERRO AO CADASTRAR");
+        alerta.setContentText("Elemento já existe.");
+
+        // Mostra o alerta e espera pelo fechamento
+        alerta.showAndWait();
+    }
+    
+    @FXML
     public void cadastrar(ActionEvent event) throws Exception
     {
     	String primeiroNome = null;
@@ -84,12 +96,9 @@ public class TelaCadastroClienteController {
 			meuSistema.adicionarCliente(primeiroNome, ultimoNome, cpf, login, senha);
 			voltarLogin(event);
 		} catch (ElementoJaExisteException e) {
-			mostrarAlerta();
+			mostrarAlertaElementoExiste();
 			reloadCliente(event);
-		} catch (NullPointerException e) {
-			mostrarAlerta();
-			reloadCliente(event);
-		}
+		} 
     	
     }
     

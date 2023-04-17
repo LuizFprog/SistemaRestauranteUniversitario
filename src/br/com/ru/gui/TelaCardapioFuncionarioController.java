@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
+
+import br.com.ru.exceptions.ElementoNaoExisteException;
 import br.com.ru.negocio.Sistema;
 import br.com.ru.negocio.models.ItemConsumivel;
 import javafx.event.ActionEvent;
@@ -14,6 +16,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ListView;
@@ -36,21 +39,39 @@ public class TelaCardapioFuncionarioController implements Initializable{
 	private ChoiceBox<ItemConsumivel> nomeItem;
   
 	@FXML
-	public void adicionarItem(ActionEvent event) throws Exception
+	public void adicionarItem(ActionEvent event) throws Exception 
 	{
 		ItemConsumivel item = nomeItem.getValue();
-		meuSistema.colocarNoCardapio(item);
-		listaItem.getItems().add(item);  
-		reloadCardapio(event);
+		try {
+			if (item != null) {
+				meuSistema.colocarNoCardapio(item);
+				listaItem.getItems().add(item);
+				reloadCardapio(event);
+			} 
+			
+		} catch (ElementoNaoExisteException e) {
+			mostrarAlerta();
+			reloadCardapio(event);
+		} 
+		
 	}
   
 	@FXML
-	public void removerItem(ActionEvent event) throws Exception
+	public void removerItem(ActionEvent event) throws Exception 
 	{
 		ItemConsumivel item = listaItem.getSelectionModel().getSelectedItem();
-		meuSistema.removerDoCardapio(item);
-		listaItem.getItems().remove(item);
-		reloadCardapio(event);
+		try {
+			if (item != null) {
+				meuSistema.removerDoCardapio(item);
+				listaItem.getItems().remove(item);
+				reloadCardapio(event);
+			}			
+		} catch (ElementoNaoExisteException e) {
+			mostrarAlertaRem();
+			reloadCardapio(event);
+		}
+		
+		
 	}
   
 	@FXML
@@ -81,6 +102,30 @@ public class TelaCardapioFuncionarioController implements Initializable{
 			listaItem.getItems().add(i);
 		}	
 	}
+  	
+  	@FXML
+    private void mostrarAlerta() {
+        // Cria o alerta
+        Alert alerta = new Alert(Alert.AlertType.INFORMATION);
+        alerta.setTitle("ERROR");
+        alerta.setHeaderText("ERRO AO ADICIONAR");
+        alerta.setContentText("Campo vazio.");
+
+        // Mostra o alerta e espera pelo fechamento
+        alerta.showAndWait();
+    }
+  	
+  	@FXML
+    private void mostrarAlertaRem() {
+        // Cria o alerta
+        Alert alerta = new Alert(Alert.AlertType.INFORMATION);
+        alerta.setTitle("ERROR");
+        alerta.setHeaderText("ERRO AO REMOVER");
+        alerta.setContentText("Campo vazio.");
+
+        // Mostra o alerta e espera pelo fechamento
+        alerta.showAndWait();
+    }
 
   	@FXML
   	public void entrarTelaDados(ActionEvent event) throws Exception 
