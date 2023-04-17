@@ -17,115 +17,108 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-public class TelaPrincipalFuncionarioController  implements Initializable{
-
-    @FXML
-    private Button buttonCardapio;
-    
-    @FXML
-	private Sistema meuSistema = Sistema.getInstancia();
-    
-    @FXML
-    private  static TelaPrincipalFuncionarioController instancia;
-
-    @FXML
-    private Button buttonDados;
-
-    @FXML
-    private Button buttonInicio;
-
-    @FXML
-    private Button buttonItens;
-
-    @FXML
-    private TextField textCpfFunc;
-
-    @FXML
-    private TextField textIdFunc;
-
-    @FXML
-    private TextField textLoginFunc;
-
-    @FXML
-    private TextField textNomeFunc;
-
-    @FXML
-    private TextField textSenhaFunc;
-    
-    @FXML
-    private static Funcionario funcionario;
+public class TelaPrincipalFuncionarioController implements Initializable {
 
 	@FXML
-    public static TelaPrincipalFuncionarioController getInstancia()
-	{
-		if(instancia == null)
-		{
+	private Button botaoCardapio;
+
+	@FXML
+	private Sistema meuSistema = Sistema.getInstancia();
+
+	@FXML
+	private static TelaPrincipalFuncionarioController instancia;
+
+	@FXML
+	private Button botaoDados;
+
+	@FXML
+	private Button botaoInicio;
+
+	@FXML
+	private Button botaoItens;
+
+	@FXML
+	private TextField campoTextoCpfFunc;
+
+	@FXML
+	private TextField campoTextoIdFunc;
+
+	@FXML
+	private TextField campoTextoLoginFunc;
+
+	@FXML
+	private TextField campoTextoNomeFunc;
+
+	@FXML
+	private TextField campoTextoSenhaFunc;
+
+	@FXML
+	private static Funcionario funcionario;
+
+	@FXML
+	public static TelaPrincipalFuncionarioController getInstancia() {
+		if (instancia == null) {
 			instancia = new TelaPrincipalFuncionarioController();
 		}
 		return instancia;
 	}
-	
+
 	public static Funcionario getFuncionario() {
 		return funcionario;
 	}
 
-
 	public void setFuncionario(Funcionario funcionario) {
 		TelaPrincipalFuncionarioController.funcionario = funcionario;
 	}
-	
+
 	@FXML
-    public void entrarTelaDados(ActionEvent event) throws Exception {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("TelaDadosFuncionario.fxml"));
-        Parent telaParent = loader.load();
-        Scene telaDadosParent = new Scene(telaParent);
-        Stage janela = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        janela.setScene(telaDadosParent);
-        janela.show();
-    }
-	
+	public void entrarTelaDados(ActionEvent event) throws Exception {
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("TelaDadosFuncionario.fxml"));
+		Parent telaParent = loader.load();
+		Scene telaDadosParent = new Scene(telaParent);
+		Stage janela = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		janela.setScene(telaDadosParent);
+		janela.show();
+	}
+
 	@FXML
-  public void entrarTelaCardapio(ActionEvent event) throws Exception {
-      FXMLLoader loader = new FXMLLoader(getClass().getResource("TelaCardapioFuncionario.fxml"));
-      Parent telaParent = loader.load();
-      Scene telaDadosParent = new Scene(telaParent);
-      Stage janela = (Stage) ((Node) event.getSource()).getScene().getWindow();
-      janela.setScene(telaDadosParent);
-      janela.show();
-  }
-	
+	public void entrarTelaCardapio(ActionEvent event) throws Exception {
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("TelaCardapioFuncionario.fxml"));
+		Parent telaParent = loader.load();
+		Scene telaDadosParent = new Scene(telaParent);
+		Stage janela = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		janela.setScene(telaDadosParent);
+		janela.show();
+	}
+
 	@FXML
-    public void entrarTelaItens(ActionEvent event) throws Exception {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("TelaItemFuncionario.fxml"));
-        Parent telaParent = loader.load();
-        Scene telaItensParent = new Scene(telaParent);
-        Stage janela = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        janela.setScene(telaItensParent);
-        janela.show();
-    }
-	
+	public void entrarTelaItens(ActionEvent event) throws Exception {
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("TelaItemFuncionario.fxml"));
+		Parent telaParent = loader.load();
+		Scene telaItensParent = new Scene(telaParent);
+		Stage janela = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		janela.setScene(telaItensParent);
+		janela.show();
+	}
+
 	@FXML
-	public void sairLogin(ActionEvent event) throws IOException
-	{
+	public void sairLogin(ActionEvent event) throws IOException {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("TelaLoginPrincipal.fxml"));
-    Parent telaParent = loader.load();
-    Scene telaLoginParent = new Scene(telaParent);
-    Stage janela = (Stage) ((Node) event.getSource()).getScene().getWindow();
-    janela.setScene(telaLoginParent);
-    janela.show();
+		Parent telaParent = loader.load();
+		Scene telaLoginParent = new Scene(telaParent);
+		Stage janela = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		janela.setScene(telaLoginParent);
+		janela.show();
 	}
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		textCpfFunc.setText(funcionario.getCpf());
-		textLoginFunc.setText(funcionario.getLogin());
-		textNomeFunc.setText(funcionario.getPrimeiroNome() + " " + funcionario.getUltimoNome());
-		textSenhaFunc.setText(funcionario.getSenha());
-		textIdFunc.setText(funcionario.getId());
-		
+		campoTextoCpfFunc.setText(funcionario.getCpf());
+		campoTextoLoginFunc.setText(funcionario.getLogin());
+		campoTextoNomeFunc.setText(funcionario.getPrimeiroNome() + " " + funcionario.getUltimoNome());
+		campoTextoSenhaFunc.setText(funcionario.getSenha());
+		campoTextoIdFunc.setText(funcionario.getId());
+
 	}
 
-	
-	
-	
 }

@@ -21,121 +21,111 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-public class TelaPrincipalClienteController implements Initializable{
+public class TelaPrincipalClienteController implements Initializable {
 
-    @FXML
-    private Button buttonCardapio;
+	@FXML
+	private Button botaoCardapio;
 
-    @FXML
-    private Button buttonDepositar;
+	@FXML
+	private Button botaoDepositar;
 
-    @FXML
-    private Button buttonFicha;
-    
-    @FXML
-    private Button buttonSair;
-    
-    @FXML
-    private Button buttonRemoverConta;
-    
-    @FXML
-    private  static TelaPrincipalClienteController instancia;
+	@FXML
+	private Button botaoFicha;
 
-    @FXML
-    private Button buttonInicio;
+	@FXML
+	private Button botaoSair;
 
-    @FXML
+	@FXML
+	private Button botaoRemoverConta;
+
+	@FXML
+	private static TelaPrincipalClienteController instancia;
+
+	@FXML
+	private Button botaoInicio;
+
+	@FXML
 	private Sistema meuSistema = Sistema.getInstancia();
-    
-    @FXML
-    private TextField textCpfCliente;
 
-    @FXML
-    private TextField textLoginCliente;
+	@FXML
+	private TextField campoTextoCpfCliente;
 
-    @FXML
-    private TextField textNomeCliente;
+	@FXML
+	private TextField campoTextoLoginCliente;
 
-    @FXML
-    private TextField textSaldoAtual;
+	@FXML
+	private TextField campoTextoNomeCliente;
 
-    @FXML
-    private TextField textSenhaCliente;
+	@FXML
+	private TextField campoTextoSaldoAtual;
 
-    @FXML
-    private TextField textValorDepositar;
-    
-    @FXML
-    private TextField textFieldCpfToRemove;
-    
-    @FXML
-    private static Cliente cliente;
-    
-    @FXML
-    private VBox vBox;
-    
-    @FXML
-    public static TelaPrincipalClienteController getInstancia()
-	{
-		if(instancia == null)
-		{
+	@FXML
+	private TextField campoTextoSenhaCliente;
+
+	@FXML
+	private TextField campoTextoValorDepositar;
+
+	@FXML
+	private TextField campoTextoCpfParaRemover;
+
+	@FXML
+	private static Cliente cliente;
+
+	@FXML
+	private VBox vBox;
+
+	@FXML
+	public static TelaPrincipalClienteController getInstancia() {
+		if (instancia == null) {
 			instancia = new TelaPrincipalClienteController();
 		}
 		return instancia;
 	}
-    
-    @FXML
-    private TelaFichasClienteController clienteAtual = TelaFichasClienteController.getInstancia();
 
-    @FXML
+	@FXML
+	private TelaFichasClienteController clienteAtual = TelaFichasClienteController.getInstancia();
+
+	@FXML
 	public Cliente getCliente() {
 		return cliente;
 	}
 
-    
 	public void setCliente(Cliente cliente) {
 		TelaPrincipalClienteController.cliente = cliente;
-	}	
-    
+	}
+
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		textCpfCliente.setText(cliente.getCpf());
-		textLoginCliente.setText(cliente.getLogin());
-		textNomeCliente.setText(cliente.getPrimeiroNome() + " " + cliente.getUltimoNome());
-		textSenhaCliente.setText(cliente.getSenha());
-		textSaldoAtual.setText(String.valueOf(cliente.getSaldo()));
-		
+		campoTextoCpfCliente.setText(cliente.getCpf());
+		campoTextoLoginCliente.setText(cliente.getLogin());
+		campoTextoNomeCliente.setText(cliente.getPrimeiroNome() + " " + cliente.getUltimoNome());
+		campoTextoSenhaCliente.setText(cliente.getSenha());
+		campoTextoSaldoAtual.setText(String.valueOf(cliente.getSaldo()));
+
 	}
-	
+
 	@FXML
 	private void mostrarAlerta() {
-        // Cria o alerta
-        Alert alerta = new Alert(Alert.AlertType.INFORMATION);
-        alerta.setTitle("ERROR");
-        alerta.setHeaderText("ERROR DEPOSITO");
-        alerta.setContentText("erro ao depositar");
+		Alert alerta = new Alert(Alert.AlertType.INFORMATION);
+		alerta.setTitle("ERROR");
+		alerta.setHeaderText("ERROR DEPOSITO");
+		alerta.setContentText("erro ao depositar");
+		alerta.showAndWait();
 
-        // Mostra o alerta e espera pelo fechamento
-        alerta.showAndWait();
-        
-    }
-	
+	}
+
 	@FXML
 	private void mostrarAlertaRemocao() {
-        // Cria o alerta
-        Alert alerta = new Alert(Alert.AlertType.INFORMATION);
-        alerta.setTitle("ERROR");
-        alerta.setHeaderText("ERROR NO GERENCIAMENTO DE CONTA");
-        alerta.setContentText("erro ao deletar conta");
+		Alert alerta = new Alert(Alert.AlertType.INFORMATION);
+		alerta.setTitle("ERROR");
+		alerta.setHeaderText("ERROR NO GERENCIAMENTO DE CONTA");
+		alerta.setContentText("erro ao deletar conta");
+		alerta.showAndWait();
 
-        // Mostra o alerta e espera pelo fechamento
-        alerta.showAndWait();
-        
-    }
-	
+	}
+
 	@FXML
-	public void irCardapio(ActionEvent event) throws IOException
-	{
+	public void irCardapio(ActionEvent event) throws IOException {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("TelaCardapioCliente.fxml"));
 		Parent telaParent = loader.load();
 		Scene telaCardapioParent = new Scene(telaParent);
@@ -143,21 +133,19 @@ public class TelaPrincipalClienteController implements Initializable{
 		janela.setScene(telaCardapioParent);
 		janela.show();
 	}
-	
+
 	@FXML
-    public void reload(ActionEvent event) throws Exception {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("TelaPrincipalCliente.fxml"));
-        Parent telaParent = loader.load();
-        Scene telaClientParent = new Scene(telaParent);
-        Stage janela = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        janela.setScene(telaClientParent);
-        janela.show();
-    }
-	
-	
+	public void recarregarTelaPrincipal(ActionEvent event) throws Exception {
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("TelaPrincipalCliente.fxml"));
+		Parent telaParent = loader.load();
+		Scene telaClientParent = new Scene(telaParent);
+		Stage janela = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		janela.setScene(telaClientParent);
+		janela.show();
+	}
+
 	@FXML
-	public void irFichas(ActionEvent event) throws Exception
-	{
+	public void irFichas(ActionEvent event) throws Exception {
 		clienteAtual.setCliente(cliente);
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("TelaFichasCliente.fxml"));
 		Parent telaParent;
@@ -167,10 +155,9 @@ public class TelaPrincipalClienteController implements Initializable{
 		janela.setScene(telaFichasParent);
 		janela.show();
 	}
-	
+
 	@FXML
-	public void sairLogin(ActionEvent event) throws IOException
-	{
+	public void sairLogin(ActionEvent event) throws IOException {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("TelaLoginPrincipal.fxml"));
 		Parent telaParent = loader.load();
 		Scene telaLoginParent = new Scene(telaParent);
@@ -178,39 +165,39 @@ public class TelaPrincipalClienteController implements Initializable{
 		janela.setScene(telaLoginParent);
 		janela.show();
 	}
-	
+
 	@FXML
 	public void acaoDepositar(ActionEvent event) throws Exception {
-		
+
 		try {
-			Double valor = Double.valueOf(textValorDepositar.getText()).doubleValue();
+			Double valor = Double.valueOf(campoTextoValorDepositar.getText()).doubleValue();
 			meuSistema.depositar(valor, cliente.getCpf());
 			String novoSaldo = String.valueOf(cliente.getSaldo());
-			
-			textSaldoAtual.setText(novoSaldo);
-			reload(event);
-			
+
+			campoTextoSaldoAtual.setText(novoSaldo);
+			recarregarTelaPrincipal(event);
+
 		} catch (NumberFormatException | ElementoNaoExisteException e) {
 			mostrarAlerta();
-			reload(event);			
-		}	
+			recarregarTelaPrincipal(event);
+		}
 	}
-	
+
 	@FXML
 	public void acaoRemoverConta(ActionEvent event) throws Exception {
-		
+
 		@SuppressWarnings("unused")
 		Usuario usuario;
 		try {
-			if (!textFieldCpfToRemove.getText().isEmpty()) {
-				usuario = meuSistema.recuperarUsuarioEspecifico(textFieldCpfToRemove.getText());	
-				meuSistema.removerCliente(textFieldCpfToRemove.getText());
-		  		sairLogin(event);
-			}			
+			if (!campoTextoCpfParaRemover.getText().isEmpty()) {
+				usuario = meuSistema.recuperarUsuarioEspecifico(campoTextoCpfParaRemover.getText());
+				meuSistema.removerCliente(campoTextoCpfParaRemover.getText());
+				sairLogin(event);
+			}
 		} catch (ElementoNaoExisteException e) {
-			mostrarAlertaRemocao();			
-		}  
-		
+			mostrarAlertaRemocao();
+		}
+
 	}
-    
+
 }
