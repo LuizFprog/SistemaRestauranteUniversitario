@@ -32,203 +32,186 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
-public class TelaFichasClienteController implements Initializable{
-	
+public class TelaFichasClienteController implements Initializable {
+
 	@FXML
 	Sistema meuSistema = Sistema.getInstancia();
-	
+
 	@FXML
 	private Label valorTotal;
 
-    @FXML
-    private Button buttonInicio;
+	@FXML
+	private Button buttonInicio;
 
-    @FXML
-    private Button buttonFicha;
+	@FXML
+	private Button buttonFicha;
 
-    @FXML
-    private Button buttonFinalRefe;
-    
-    @FXML
-    private Label compraFinalizada;
-    
-    @FXML
-    private Button buttonCardapio;
-    
-    @FXML
-    private ChoiceBox<Integer> choiceFichas;
-    
-  	@FXML
-  	private PropertyValueFactory<Ficha, ?> PropertyValueFactory;
-    
-    @FXML
-    private TableView<Ficha> listFichas;
-    
-    @FXML
-    private TableColumn<Ficha, String> codigo;
-    
-    @FXML
-    private TableColumn<Ficha, Cliente> nomeCliente;
-    
-    @FXML
-    private TableColumn<Ficha, Double> preco;
+	@FXML
+	private Button buttonFinalRefe;
 
-    @FXML
-    private TableColumn<Ficha, StatusFicha> statusFicha;
-    
-    @FXML
-    private TableColumn<Ficha, LocalDate> dataEfetivacao;
-    
-    @FXML
-  	ObservableList<Ficha> dados = FXCollections.observableArrayList();
-    
-    @FXML
-    private static TelaFichasClienteController instancia;
-    
-    @FXML
-    public static TelaFichasClienteController getInstancia()
-    {
-    	if(instancia == null)
-    	{
-    		instancia = new TelaFichasClienteController();
-    	}
-    	return instancia;
-    }
-    
-    @FXML
-    private static Cliente cliente;
-    
-    public Cliente getCliente()
-    {
-    	return cliente;
-    }
-    
-    public void setCliente(Cliente cliente)
-    {
-    	TelaFichasClienteController.cliente = cliente;
-    }
-    
-    @FXML
-	private void mostrarAlerta() {
-        // Cria o alerta
-        Alert alerta = new Alert(Alert.AlertType.INFORMATION);
-        alerta.setTitle("ERROR");
-        alerta.setHeaderText("ERROR COMPRA");
-        alerta.setContentText("erro ao comprar ficha");
+	@FXML
+	private Label compraFinalizada;
 
-        // Mostra o alerta e espera pelo fechamento
-        alerta.showAndWait();
-        
-    }
-    @FXML
-	private void mostrarAlertaGastar() {
-        // Cria o alerta
-        Alert alerta = new Alert(Alert.AlertType.INFORMATION);
-        alerta.setTitle("ERROR");
-        alerta.setHeaderText("ERROR GASTAR");
-        alerta.setContentText("erro ao gastar ficha");
+	@FXML
+	private Button buttonCardapio;
 
-        // Mostra o alerta e espera pelo fechamento
-        alerta.showAndWait();
-        
-    }
+	@FXML
+	private ChoiceBox<Integer> choiceFichas;
 
-    @FXML
-    void irCardapio(ActionEvent event) throws IOException {
-    	FXMLLoader loader = new FXMLLoader(getClass().getResource("TelaCardapioCliente.fxml"));
-      Parent telaParent = loader.load();
-      Scene telaCardapioParent = new Scene(telaParent);
-      Stage janela = (Stage) ((Node) event.getSource()).getScene().getWindow();
-      janela.setScene(telaCardapioParent);
-      janela.show();
-    }
-    
-    @FXML
-  	public void irInicio(ActionEvent event) throws IOException
-  	{
-  		FXMLLoader loader = new FXMLLoader(getClass().getResource("TelaPrincipalCliente.fxml"));
-      Parent telaParent = loader.load();
-      Scene telaPrincipalParent = new Scene(telaParent);
-      Stage janela = (Stage) ((Node) event.getSource()).getScene().getWindow();
-      janela.setScene(telaPrincipalParent);
-      janela.show();
-  	}
-    
-    @FXML
-  	public void sairLogin(ActionEvent event) throws IOException
-  	{
-  		FXMLLoader loader = new FXMLLoader(getClass().getResource("TelaLoginPrincipal.fxml"));
-      Parent telaParent = loader.load();
-      Scene telaLoginParent = new Scene(telaParent);
-      Stage janela = (Stage) ((Node) event.getSource()).getScene().getWindow();
-      janela.setScene(telaLoginParent);
-      janela.show();
-  	}
-    
-    @FXML
-	public void reload(ActionEvent event) throws IOException
-	{
-		
-	FXMLLoader loader = new FXMLLoader(getClass().getResource("TelaFichasCliente.fxml"));
-    Parent telaParent = loader.load();
-    Scene telaFichasParent = new Scene(telaParent);
-    Stage janela = (Stage) ((Node) event.getSource()).getScene().getWindow();
-    janela.setScene(telaFichasParent);
-    janela.show();
+	@FXML
+	private PropertyValueFactory<Ficha, ?> PropertyValueFactory;
+
+	@FXML
+	private TableView<Ficha> listFichas;
+
+	@FXML
+	private TableColumn<Ficha, String> codigo;
+
+	@FXML
+	private TableColumn<Ficha, Cliente> nomeCliente;
+
+	@FXML
+	private TableColumn<Ficha, Double> preco;
+
+	@FXML
+	private TableColumn<Ficha, StatusFicha> statusFicha;
+
+	@FXML
+	private TableColumn<Ficha, LocalDate> dataEfetivacao;
+
+	@FXML
+	ObservableList<Ficha> dados = FXCollections.observableArrayList();
+
+	@FXML
+	private static TelaFichasClienteController instancia;
+
+	@FXML
+	public static TelaFichasClienteController getInstancia() {
+		if (instancia == null) {
+			instancia = new TelaFichasClienteController();
+		}
+		return instancia;
 	}
-    
-    @FXML
-    public void acaoComprarFichas(ActionEvent event) throws Exception 
-    {
-    	System.out.println(cliente.getSaldo() + "AQUI TROXA");
-    	Integer valor = 0;
-    	
-    	
-    	if(choiceFichas.getSelectionModel().getSelectedItem() != null)	{
-    		 valor = choiceFichas.getValue();
-    	}
-    	
-    	try {
-			meuSistema.adicionarFicha(meuSistema.retornarFicha().getPreco(), meuSistema.retornarFicha().getPreco() * valor, meuSistema.recuperarClienteEspecifico(cliente.getCpf()));
+
+	@FXML
+	private static Cliente cliente;
+
+	public Cliente getCliente() {
+		return cliente;
+	}
+
+	public void setCliente(Cliente cliente) {
+		TelaFichasClienteController.cliente = cliente;
+	}
+
+	@FXML
+	private void mostrarAlerta() {
+		Alert alerta = new Alert(Alert.AlertType.INFORMATION);
+		alerta.setTitle("ERROR");
+		alerta.setHeaderText("ERROR COMPRA");
+		alerta.setContentText("erro ao comprar ficha");
+		alerta.showAndWait();
+
+	}
+
+	@FXML
+	private void mostrarAlertaGastar() {
+		// Cria o alerta
+		Alert alerta = new Alert(Alert.AlertType.INFORMATION);
+		alerta.setTitle("ERROR");
+		alerta.setHeaderText("ERROR GASTAR");
+		alerta.setContentText("erro ao gastar ficha");
+		alerta.showAndWait();
+
+	}
+
+	@FXML
+	void irCardapio(ActionEvent event) throws IOException {
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("TelaCardapioCliente.fxml"));
+		Parent telaParent = loader.load();
+		Scene telaCardapioParent = new Scene(telaParent);
+		Stage janela = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		janela.setScene(telaCardapioParent);
+		janela.show();
+	}
+
+	@FXML
+	public void irInicio(ActionEvent event) throws IOException {
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("TelaPrincipalCliente.fxml"));
+		Parent telaParent = loader.load();
+		Scene telaPrincipalParent = new Scene(telaParent);
+		Stage janela = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		janela.setScene(telaPrincipalParent);
+		janela.show();
+	}
+
+	@FXML
+	public void sairLogin(ActionEvent event) throws IOException {
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("TelaLoginPrincipal.fxml"));
+		Parent telaParent = loader.load();
+		Scene telaLoginParent = new Scene(telaParent);
+		Stage janela = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		janela.setScene(telaLoginParent);
+		janela.show();
+	}
+
+	@FXML
+	public void reload(ActionEvent event) throws IOException {
+
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("TelaFichasCliente.fxml"));
+		Parent telaParent = loader.load();
+		Scene telaFichasParent = new Scene(telaParent);
+		Stage janela = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		janela.setScene(telaFichasParent);
+		janela.show();
+	}
+
+	@FXML
+	public void acaoComprarFichas(ActionEvent event) throws Exception {
+		System.out.println(cliente.getSaldo() + "AQUI TROXA");
+		Integer valor = 0;
+
+		if (choiceFichas.getSelectionModel().getSelectedItem() != null) {
+			valor = choiceFichas.getValue();
+		}
+
+		try {
+			meuSistema.adicionarFicha(meuSistema.retornarFicha().getPreco(), meuSistema.retornarFicha().getPreco() * valor,
+					meuSistema.recuperarClienteEspecifico(cliente.getCpf()));
 			reload(event);
 		} catch (ElementoNaoExisteException | SaldoInsuficienteException | ElementoJaExisteException e) {
 			System.out.println(cliente.getSaldo() + "AQUI DENOVO");
 			mostrarAlerta();
 			reload(event);
-			e.printStackTrace();
 		}
-    }
-    
-    @FXML
-    public void gastarFicha(ActionEvent event) throws Exception 
-    {
-    	Ficha itemRemovido = listFichas.getSelectionModel().getSelectedItem();
-    	try {
+	}
+
+	@FXML
+	public void gastarFicha(ActionEvent event) throws Exception {
+		Ficha itemRemovido = listFichas.getSelectionModel().getSelectedItem();
+		try {
 			meuSistema.gastarFicha(itemRemovido);
 			reload(event);
 		} catch (ElementoNaoExisteException e) {
 			mostrarAlertaGastar();
-			
+
 		}
-    
-    }
-    
-    @FXML
-    public void choiceBox(ActionEvent event) throws ElementoJaExisteException
-    {
-    	if(meuSistema.retornarFicha() == null)
-    	{
-    		meuSistema.gerarFicha();
-    	}
-    	Double valor = choiceFichas.getValue() * meuSistema.retornarFicha().getPreco();
-    	valorTotal.setText("" + valor);
-    }
+
+	}
+
+	@FXML
+	public void choiceBox(ActionEvent event) throws ElementoJaExisteException {
+		if (meuSistema.retornarFicha() == null) {
+			meuSistema.gerarFicha();
+		}
+		Double valor = choiceFichas.getValue() * meuSistema.retornarFicha().getPreco();
+		valorTotal.setText("" + valor);
+	}
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		
-		for(int i = 1; i <= 10; i++)
-		{
+
+		for (int i = 1; i <= 10; i++) {
 			choiceFichas.getItems().add(i);
 		}
 		choiceFichas.setOnAction(arg01 -> {
@@ -239,38 +222,27 @@ public class TelaFichasClienteController implements Initializable{
 				e.printStackTrace();
 			}
 		});
-		
+
 		Stream<Ficha> fichas;
 		fichas = meuSistema.listarFicha().stream().filter(ficha -> ficha.getCliente() == cliente);
 		List<Ficha> fichasClientes = fichas.toList();
-		
+
 		for (Ficha i : fichasClientes) {
 			dados.add(i);
 		}
-		
+
 		codigo.setCellValueFactory(new PropertyValueFactory<Ficha, String>("codigo"));
-    //listFichas.getColumns().add(codigo);
-    
-    nomeCliente.setCellValueFactory(new PropertyValueFactory<Ficha, Cliente>("cliente"));
-    //listFichas.getColumns().add(nomeCliente);
-    
-    preco.setCellValueFactory(new PropertyValueFactory<Ficha, Double>("preco"));
-		if (!listFichas.getColumns().contains(preco)) {
-			listFichas.getColumns().add(preco);
-		}	
-    
-    statusFicha.setCellValueFactory(new PropertyValueFactory<Ficha, StatusFicha>("statusFicha"));
-    //listFichas.getColumns().add(statusFicha);
-    
-    dataEfetivacao.setCellValueFactory(new PropertyValueFactory<Ficha, LocalDate>("dataEfetivacao"));
-    //listFichas.getColumns().add(dataEfetivacao);
-	
-    listFichas.setItems(dados);
-		
-		
-		
+
+		nomeCliente.setCellValueFactory(new PropertyValueFactory<Ficha, Cliente>("cliente"));
+
+		preco.setCellValueFactory(new PropertyValueFactory<Ficha, Double>("preco"));
+
+		statusFicha.setCellValueFactory(new PropertyValueFactory<Ficha, StatusFicha>("statusFicha"));
+
+		dataEfetivacao.setCellValueFactory(new PropertyValueFactory<Ficha, LocalDate>("dataEfetivacao"));
+
+		listFichas.setItems(dados);
+
 	}
-	
-		
 
 }
