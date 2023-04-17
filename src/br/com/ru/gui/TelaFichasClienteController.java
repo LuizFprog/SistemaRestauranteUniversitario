@@ -41,28 +41,25 @@ public class TelaFichasClienteController implements Initializable {
 	private Label valorTotal;
 
 	@FXML
-	private Button buttonInicio;
+	private Button botaoInicio;
 
 	@FXML
-	private Button buttonFicha;
+	private Button botaoFicha;
 
 	@FXML
-	private Button buttonFinalRefe;
+	private Button botaoGastarFIcha;
 
 	@FXML
-	private Label compraFinalizada;
+	private Button botaoCardapio;
 
 	@FXML
-	private Button buttonCardapio;
+	private ChoiceBox<Integer> numeroFichas;
 
 	@FXML
-	private ChoiceBox<Integer> choiceFichas;
+	private PropertyValueFactory<Ficha, ?> propriedadeValorFabrica;
 
 	@FXML
-	private PropertyValueFactory<Ficha, ?> PropertyValueFactory;
-
-	@FXML
-	private TableView<Ficha> listFichas;
+	private TableView<Ficha> listaFichas;
 
 	@FXML
 	private TableColumn<Ficha, String> codigo;
@@ -116,13 +113,11 @@ public class TelaFichasClienteController implements Initializable {
 
 	@FXML
 	private void mostrarAlertaGastar() {
-		// Cria o alerta
 		Alert alerta = new Alert(Alert.AlertType.INFORMATION);
 		alerta.setTitle("ERROR");
 		alerta.setHeaderText("ERROR GASTAR");
 		alerta.setContentText("erro ao gastar ficha");
 		alerta.showAndWait();
-
 	}
 
 	@FXML
@@ -156,7 +151,7 @@ public class TelaFichasClienteController implements Initializable {
 	}
 
 	@FXML
-	public void reload(ActionEvent event) throws IOException {
+	public void atualizarTelaFichas(ActionEvent event) throws IOException {
 
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("TelaFichasCliente.fxml"));
 		Parent telaParent = loader.load();
@@ -171,27 +166,27 @@ public class TelaFichasClienteController implements Initializable {
 		System.out.println(cliente.getSaldo() + "AQUI TROXA");
 		Integer valor = 0;
 
-		if (choiceFichas.getSelectionModel().getSelectedItem() != null) {
-			valor = choiceFichas.getValue();
+		if (numeroFichas.getSelectionModel().getSelectedItem() != null) {
+			valor = numeroFichas.getValue();
 		}
 
 		try {
 			meuSistema.adicionarFicha(meuSistema.retornarFicha().getPreco(), meuSistema.retornarFicha().getPreco() * valor,
 					meuSistema.recuperarClienteEspecifico(cliente.getCpf()));
-			reload(event);
+			atualizarTelaFichas(event);
 		} catch (ElementoNaoExisteException | SaldoInsuficienteException | ElementoJaExisteException e) {
 			System.out.println(cliente.getSaldo() + "AQUI DENOVO");
 			mostrarAlerta();
-			reload(event);
+			atualizarTelaFichas(event);
 		}
 	}
 
 	@FXML
 	public void gastarFicha(ActionEvent event) throws Exception {
-		Ficha itemRemovido = listFichas.getSelectionModel().getSelectedItem();
+		Ficha itemRemovido = listaFichas.getSelectionModel().getSelectedItem();
 		try {
 			meuSistema.gastarFicha(itemRemovido);
-			reload(event);
+			atualizarTelaFichas(event);
 		} catch (ElementoNaoExisteException e) {
 			mostrarAlertaGastar();
 
@@ -200,11 +195,11 @@ public class TelaFichasClienteController implements Initializable {
 	}
 
 	@FXML
-	public void choiceBox(ActionEvent event) throws ElementoJaExisteException {
+	public void totalPagar(ActionEvent event) throws ElementoJaExisteException {
 		if (meuSistema.retornarFicha() == null) {
 			meuSistema.gerarFicha();
 		}
-		Double valor = choiceFichas.getValue() * meuSistema.retornarFicha().getPreco();
+		Double valor = numeroFichas.getValue() * meuSistema.retornarFicha().getPreco();
 		valorTotal.setText("" + valor);
 	}
 
@@ -212,13 +207,12 @@ public class TelaFichasClienteController implements Initializable {
 	public void initialize(URL arg0, ResourceBundle arg1) {
 
 		for (int i = 1; i <= 10; i++) {
-			choiceFichas.getItems().add(i);
+			numeroFichas.getItems().add(i);
 		}
-		choiceFichas.setOnAction(arg01 -> {
+		numeroFichas.setOnAction(arg01 -> {
 			try {
-				choiceBox(arg01);
+				totalPagar(arg01);
 			} catch (ElementoJaExisteException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		});
@@ -241,7 +235,7 @@ public class TelaFichasClienteController implements Initializable {
 
 		dataEfetivacao.setCellValueFactory(new PropertyValueFactory<Ficha, LocalDate>("dataEfetivacao"));
 
-		listFichas.setItems(dados);
+		listaFichas.setItems(dados);
 
 	}
 
