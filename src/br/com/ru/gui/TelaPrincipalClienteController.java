@@ -121,6 +121,19 @@ public class TelaPrincipalClienteController implements Initializable{
     }
 	
 	@FXML
+	private void mostrarAlertaRemocao() {
+        // Cria o alerta
+        Alert alerta = new Alert(Alert.AlertType.INFORMATION);
+        alerta.setTitle("ERROR");
+        alerta.setHeaderText("ERROR NO GERENCIAMENTO DE CONTA");
+        alerta.setContentText("erro ao deletar conta");
+
+        // Mostra o alerta e espera pelo fechamento
+        alerta.showAndWait();
+        
+    }
+	
+	@FXML
 	public void irCardapio(ActionEvent event) throws IOException
 	{
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("TelaCardapioCliente.fxml"));
@@ -195,7 +208,7 @@ public class TelaPrincipalClienteController implements Initializable{
 		  		sairLogin(event);
 			}			
 		} catch (ElementoNaoExisteException e) {
-			mostrarAlerta();			
+			mostrarAlertaRemocao();			
 		}  
 		
 	}
