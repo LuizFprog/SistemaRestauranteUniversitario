@@ -54,6 +54,9 @@ public class ControllerDadosFuncionario implements Initializable{
     private TableColumn<Ficha, Cliente> cliente;
     
     @FXML
+    private TableColumn<Ficha, Double> preco;
+    
+    @FXML
     private TableColumn<Ficha, StatusFicha> statusFicha;
     
     @FXML
@@ -220,7 +223,10 @@ public class ControllerDadosFuncionario implements Initializable{
 		public void initialize(URL arg0, ResourceBundle arg1) {
 			
 			try {
-				meuSistema.gerarFicha();
+				if(meuSistema.retornarFicha() == null)
+				{
+					meuSistema.gerarFicha();
+				}
 			} catch (ElementoJaExisteException e) {
 				// TODO Auto-generated catch block
 //				e.printStackTrace();
@@ -245,6 +251,11 @@ public class ControllerDadosFuncionario implements Initializable{
 		    if (!listFichas.getColumns().contains(cliente)) {
 				listFichas.getColumns().add(cliente);
 			}
+		    
+		    preco.setCellValueFactory(new PropertyValueFactory<Ficha, Double>("preco"));
+				if (!listFichas.getColumns().contains(preco)) {
+					listFichas.getColumns().add(preco);
+				}	
 		    		    
 		    statusFicha.setCellValueFactory(new PropertyValueFactory<Ficha, StatusFicha>("statusFicha"));
 		    if (!listFichas.getColumns().contains(statusFicha)) {

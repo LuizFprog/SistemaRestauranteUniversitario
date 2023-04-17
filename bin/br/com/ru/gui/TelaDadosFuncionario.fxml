@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.DatePicker?>
@@ -15,7 +20,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="480.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.ru.gui.ControllerDadosFuncionario">
+<BorderPane prefHeight="480.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.ru.gui.ControllerDadosFuncionario">
    <center>
       <TabPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" tabClosingPolicy="UNAVAILABLE" tabMinHeight="30.0" tabMinWidth="100.0" BorderPane.alignment="CENTER">
         <tabs>
@@ -100,6 +105,7 @@
                           <columns>
                             <TableColumn fx:id="codigo" prefWidth="75.0" text="Codigo" />
                             <TableColumn fx:id="cliente" prefWidth="75.0" text="Cliente" />
+                              <TableColumn fx:id="preco" prefWidth="75.0" text="Preço" />
                               <TableColumn fx:id="statusFicha" prefWidth="75.0" text="Status" />
                               <TableColumn fx:id="dataEfetivacao" prefWidth="75.0" text="Data de Efetivação" />
                               <TableColumn fx:id="dataConsumo" prefWidth="75.0" text="Data de Consumo" />
@@ -117,11 +123,17 @@
             </Tab>
             <Tab style="-fx-background-radius: 0; -fx-background-color: #e76000; -fx-border-style: hidden solid hidden hidden; -fx-background-insets: 0; -fx-text-base-color: #ffffff;" text="Lista de Clientes">
                <content>
-                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="30.0">
                      <children>
-                        <Label text="Label" />
-                        <ListView fx:id="listClientes" prefHeight="326.0" prefWidth="638.0" />
+                        <Label text="Lista de Clientes" textFill="#f8831d">
+                           <font>
+                              <Font name="Arial Bold" size="16.0" />
+                           </font></Label>
+                        <ListView fx:id="listClientes" maxHeight="480.0" maxWidth="800.0" VBox.vgrow="ALWAYS" />
                      </children>
+                     <padding>
+                        <Insets top="30.0" />
+                     </padding>
                   </VBox>
                </content>
             </Tab>

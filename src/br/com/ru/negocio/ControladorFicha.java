@@ -139,6 +139,39 @@ public class ControladorFicha {
 		return null;
 	}
 	
+	public Ficha retornarFichaEfetivada() {
+		List<Ficha> atual = repositorioFicha.ler();
+		
+		for (Ficha i : atual) {
+			if (i.getStatusFicha() == StatusFicha.EFETIVADA) {
+				return i;
+			}
+		}
+		return null;
+	}
+	
+	public Ficha retornarFichaConsumida() {
+		List<Ficha> atual = repositorioFicha.ler();
+		
+		for (Ficha i : atual) {
+			if (i.getStatusFicha() == StatusFicha.CONSUMIDA) {
+				return i;
+			}
+		}
+		return null;
+	}
+	
+	public Ficha retornarFicha() {
+		List<Ficha> atual = repositorioFicha.ler();
+		
+		for (Ficha i : atual) {
+			if (i != null) {
+				return i;
+			}
+		}
+		return null;
+	}
+	
 	// Metodo para atualizar ficha
 	public void atualizarPrecoFicha (double preco)
 	{
