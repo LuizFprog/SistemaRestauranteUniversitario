@@ -117,6 +117,18 @@ public class TelaFichasClienteController implements Initializable{
         alerta.showAndWait();
         
     }
+    @FXML
+	private void mostrarAlertaGastar() {
+        // Cria o alerta
+        Alert alerta = new Alert(Alert.AlertType.INFORMATION);
+        alerta.setTitle("ERROR");
+        alerta.setHeaderText("ERROR GASTAR");
+        alerta.setContentText("erro ao gastar ficha");
+
+        // Mostra o alerta e espera pelo fechamento
+        alerta.showAndWait();
+        
+    }
 
     @FXML
     void irCardapio(ActionEvent event) throws IOException {
@@ -165,8 +177,14 @@ public class TelaFichasClienteController implements Initializable{
     @FXML
     public void acaoComprarFichas(ActionEvent event) throws Exception 
     {
-    	//meuSistema.gerarRefeicoes();
-    	Integer valor = choiceFichas.getValue();
+    	
+    	Integer valor = 0;
+    	
+    	
+    	if(choiceFichas.getSelectionModel().getSelectedItem() != null)	{
+    		 valor = choiceFichas.getValue();
+    	}
+    	
     	try {
 			meuSistema.adicionarFicha(3, 3 * valor, meuSistema.recuperarClienteEspecifico(cliente.getCpf()));
 			reload(event);
@@ -178,11 +196,17 @@ public class TelaFichasClienteController implements Initializable{
     }
     
     @FXML
-    public void gastarFicha(ActionEvent event) throws ElementoNaoExisteException
+    public void gastarFicha(ActionEvent event) throws Exception 
     {
     	Ficha itemRemovido = listFichas.getSelectionModel().getSelectedItem();
-    	meuSistema.gastarFicha(itemRemovido);
-    	compraFinalizada.setText("Compra Finalizada");
+    	try {
+			meuSistema.gastarFicha(itemRemovido);
+			reload(event);
+		} catch (ElementoNaoExisteException e) {
+			mostrarAlertaGastar();
+			
+		}
+    
     }
     
     @FXML
