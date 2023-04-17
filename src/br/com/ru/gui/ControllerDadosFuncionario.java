@@ -5,6 +5,8 @@ import java.net.URL;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.ResourceBundle;
+
+import br.com.ru.exceptions.ElementoJaExisteException;
 import br.com.ru.exceptions.ElementoNaoExisteException;
 import br.com.ru.negocio.Sistema;
 import br.com.ru.negocio.models.Cliente;
@@ -76,6 +78,9 @@ public class ControllerDadosFuncionario implements Initializable{
     private Button buttonRemoveUser;
     
     @FXML
+    private Button buttonFichaAtualizar;
+    
+    @FXML
     private Button buttonFichaAno;
 
     @FXML
@@ -86,6 +91,9 @@ public class ControllerDadosFuncionario implements Initializable{
     
     @FXML
     private TextField textFieldCpfUser;
+    
+    @FXML
+    private TextField novoPrecoFicha;
     
     @FXML
     private void mostrarAlerta() {
@@ -129,6 +137,21 @@ public class ControllerDadosFuncionario implements Initializable{
   		Stage janela = (Stage) ((Node) event.getSource()).getScene().getWindow();
   		janela.setScene(telaLoginParent);
   		janela.show();
+  	}
+  	
+  	@FXML
+  	public void trocarPreco(ActionEvent event) throws Exception {
+  		try {
+			Double valor = Double.valueOf(novoPrecoFicha.getText()).doubleValue();
+			System.out.println(valor);
+			meuSistema.atualizarPrecoFicha(valor);
+						
+			reloadDados(event);
+			
+		} catch (NumberFormatException | ElementoNaoExisteException e) {
+			mostrarAlerta();
+			reloadDados(event);			
+		}
   	}
   	
   	@FXML
@@ -195,6 +218,13 @@ public class ControllerDadosFuncionario implements Initializable{
 
 		@Override
 		public void initialize(URL arg0, ResourceBundle arg1) {
+			
+			try {
+				meuSistema.gerarFicha();
+			} catch (ElementoJaExisteException e) {
+				// TODO Auto-generated catch block
+//				e.printStackTrace();
+			}
 									
 			List<Ficha> fichas = meuSistema.listarFicha();
 			for (Ficha i : fichas) {
