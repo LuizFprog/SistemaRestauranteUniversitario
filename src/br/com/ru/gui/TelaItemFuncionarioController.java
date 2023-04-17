@@ -6,6 +6,8 @@ import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import br.com.ru.exceptions.ElementoJaExisteException;
+import br.com.ru.exceptions.ElementoNaoExisteException;
 import br.com.ru.negocio.Sistema;
 import br.com.ru.negocio.models.ItemConsumivel;
 import br.com.ru.negocio.models.ItemConsumivel.TipoCardapio;
@@ -16,6 +18,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
@@ -132,12 +135,47 @@ public class TelaItemFuncionarioController implements Initializable{
   		}
   		
   		TipoCardapio tipo = choiceTipo.getValue();  		
+  		try
+  		{
+  			if(!nome.isEmpty() && tipo != null)
+    		{
+    			meuSistema.adicionarItemConsumivel(nome, gluten, lact, tipo, false);
+      		listItens.getItems().add(meuSistema.recuperarItemConsumivel(nome));
+      		reloadItens(event);
+    		}
+  		}
+  		catch (ElementoJaExisteException e)
+  		{
+  			mostrarAlertaJaExiste();
+  			reloadItens(event);
+  		}
   		
-  		meuSistema.adicionarItemConsumivel(nome, gluten, lact, tipo, false);
-  		listItens.getItems().add(meuSistema.recuperarItemConsumivel(nome));
-  		
-  		reloadItens(event);
   	}
+  	
+  	
+  	@FXML
+    private void mostrarAlertaNaoExiste() {
+        // Cria o alerta
+        Alert alerta = new Alert(Alert.AlertType.INFORMATION);
+        alerta.setTitle("ERROR");
+        alerta.setHeaderText("ERRO AO PROCURAR");
+        alerta.setContentText("O objeto mencionado não existe.");
+
+        // Mostra o alerta e espera pelo fechamento
+        alerta.showAndWait();
+    }
+  	
+  	@FXML
+    private void mostrarAlertaJaExiste() {
+        // Cria o alerta
+        Alert alerta = new Alert(Alert.AlertType.INFORMATION);
+        alerta.setTitle("ERROR");
+        alerta.setHeaderText("ERRO AO ADICIONAR");
+        alerta.setContentText("O objeto mencionado já existe.");
+
+        // Mostra o alerta e espera pelo fechamento
+        alerta.showAndWait();
+    }
   	
   	@FXML
 	public void reloadItens(ActionEvent event) throws Exception {
@@ -170,18 +208,42 @@ public class TelaItemFuncionarioController implements Initializable{
   		
   		TipoCardapio tipo = choiceNovoItemTipo.getValue();
   		
-  		meuSistema.atualizarItemConsumivel(nomeAtual, novoNome, gluten, lact, tipo, false);
-  		listItens.getItems().add(meuSistema.recuperarItemConsumivel(novoNome));
+  		try
+  		{
+  			if(!nomeAtual.isEmpty() && !novoNome.isEmpty() && tipo != null)
+    		{
+    			meuSistema.atualizarItemConsumivel(nomeAtual, novoNome, gluten, lact, tipo, false);
+      		listItens.getItems().add(meuSistema.recuperarItemConsumivel(novoNome));
+      		reloadItens(event);
+    		}
+  		}
+  		catch (ElementoNaoExisteException e)
+  		{
+  			mostrarAlertaNaoExiste();
+  		}
+  		catch (ElementoJaExisteException e)
+  		{
+  			mostrarAlertaJaExiste();
+  		}
   		
-  		reloadItens(event);
   	}
   	
   	@FXML
   	public void removeItem(ActionEvent event) throws Exception {
-  		listItens.getItems().remove(meuSistema.recuperarItemConsumivel(textFieldNomeItem.getText()));
-  		meuSistema.removerItemConsumivel(textFieldNomeItem.getText());  		
+  		try
+  		{
+  			if(!textFieldNomeItem.getText().isEmpty())
+    		{
+    			listItens.getItems().remove(meuSistema.recuperarItemConsumivel(textFieldNomeItem.getText()));
+      		meuSistema.removerItemConsumivel(textFieldNomeItem.getText());  		
+      		reloadItens(event);
+    		}
+  		}
+  		catch (ElementoNaoExisteException e)
+  		{
+  			mostrarAlertaNaoExiste();
+  		}
   		
-  		reloadItens(event);
   	}
   	
   	@FXML
