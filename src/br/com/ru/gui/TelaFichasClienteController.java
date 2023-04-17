@@ -23,6 +23,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
@@ -103,6 +104,19 @@ public class TelaFichasClienteController implements Initializable{
     {
     	TelaFichasClienteController.cliente = cliente;
     }
+    
+    @FXML
+	private void mostrarAlerta() {
+        // Cria o alerta
+        Alert alerta = new Alert(Alert.AlertType.INFORMATION);
+        alerta.setTitle("ERROR");
+        alerta.setHeaderText("ERROR COMPRA");
+        alerta.setContentText("erro ao comprar ficha");
+
+        // Mostra o alerta e espera pelo fechamento
+        alerta.showAndWait();
+        
+    }
 
     @FXML
     void irCardapio(ActionEvent event) throws IOException {
@@ -137,11 +151,30 @@ public class TelaFichasClienteController implements Initializable{
   	}
     
     @FXML
-    public void acaoComprarFichas(ActionEvent event) throws ElementoJaExisteException, SaldoInsuficienteException, ElementoNaoExisteException
+	public void reload(ActionEvent event) throws IOException
+	{
+		
+	FXMLLoader loader = new FXMLLoader(getClass().getResource("TelaFichasCliente.fxml"));
+    Parent telaParent = loader.load();
+    Scene telaFichasParent = new Scene(telaParent);
+    Stage janela = (Stage) ((Node) event.getSource()).getScene().getWindow();
+    janela.setScene(telaFichasParent);
+    janela.show();
+	}
+    
+    @FXML
+    public void acaoComprarFichas(ActionEvent event) throws Exception 
     {
     	//meuSistema.gerarRefeicoes();
     	Integer valor = choiceFichas.getValue();
-    	meuSistema.adicionarFicha(3, 3 * valor, meuSistema.recuperarClienteEspecifico(cliente.getCpf()));
+    	try {
+			meuSistema.adicionarFicha(3, 3 * valor, meuSistema.recuperarClienteEspecifico(cliente.getCpf()));
+			reload(event);
+		} catch (ElementoNaoExisteException | SaldoInsuficienteException | ElementoJaExisteException e) {
+			mostrarAlerta();
+			reload(event);
+			//e.printStackTrace();
+		}
     }
     
     @FXML
@@ -176,16 +209,16 @@ public class TelaFichasClienteController implements Initializable{
 		}
 		
 		codigo.setCellValueFactory(new PropertyValueFactory<Ficha, String>("codigo"));
-    listFichas.getColumns().add(codigo);
+    //listFichas.getColumns().add(codigo);
     
     nomeCliente.setCellValueFactory(new PropertyValueFactory<Ficha, Cliente>("cliente"));
-    listFichas.getColumns().add(nomeCliente);
+    //listFichas.getColumns().add(nomeCliente);
     
     statusFicha.setCellValueFactory(new PropertyValueFactory<Ficha, StatusFicha>("statusFicha"));
-    listFichas.getColumns().add(statusFicha);
+    //listFichas.getColumns().add(statusFicha);
     
     dataEfetivacao.setCellValueFactory(new PropertyValueFactory<Ficha, LocalDate>("dataEfetivacao"));
-    listFichas.getColumns().add(dataEfetivacao);
+    //listFichas.getColumns().add(dataEfetivacao);
 	
     listFichas.setItems(dados);
 		
