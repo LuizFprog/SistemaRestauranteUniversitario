@@ -175,7 +175,7 @@ public class TelaFichasClienteController implements Initializable {
 					meuSistema.recuperarClienteEspecifico(cliente.getCpf()));
 			atualizarTelaFichas(event);
 		} catch (ElementoNaoExisteException | SaldoInsuficienteException | ElementoJaExisteException e) {
-			System.out.println(cliente.getSaldo() + "AQUI DENOVO");
+			
 			mostrarAlerta();
 			atualizarTelaFichas(event);
 		}

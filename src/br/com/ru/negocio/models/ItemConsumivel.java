@@ -1,20 +1,19 @@
 package br.com.ru.negocio.models;
 
 public class ItemConsumivel {
-	
-	public enum TipoCardapio
-	{
+
+	public enum TipoCardapio {
 		TRIVIAL, VEGANO, SUCO, SOBREMESA;
 	}
-	
+
 	private String nome;
 	private TipoCardapio tipoItemConsumivel;
 	private boolean gluten;
 	private boolean lactose;
-	private boolean visivel;	
-	
-	public ItemConsumivel(String nome, boolean gluten, boolean lactose, 
-			TipoCardapio tipoItemConsumivel, boolean visivel) {
+	private boolean visivel;
+
+	public ItemConsumivel(String nome, boolean gluten, boolean lactose, TipoCardapio tipoItemConsumivel,
+			boolean visivel) {
 		this.nome = nome;
 		this.tipoItemConsumivel = tipoItemConsumivel;
 		this.gluten = gluten;
@@ -25,11 +24,11 @@ public class ItemConsumivel {
 	public String getNome() {
 		return nome;
 	}
-	
+
 	public void setNome(String nome) {
 		this.nome = nome;
-	}		
-	
+	}
+
 	public TipoCardapio getTipoItemConsumivel() {
 		return tipoItemConsumivel;
 	}
@@ -41,19 +40,19 @@ public class ItemConsumivel {
 	public boolean isGluten() {
 		return gluten;
 	}
-	
+
 	public void setGluten(boolean gluten) {
 		this.gluten = gluten;
 	}
-	
+
 	public boolean isLactose() {
 		return lactose;
 	}
-	
+
 	public void setLactose(boolean lactose) {
 		this.lactose = lactose;
 	}
-	
+
 	public boolean isVisivel() {
 		return visivel;
 	}
@@ -65,5 +64,5 @@ public class ItemConsumivel {
 	@Override
 	public String toString() {
 		return nome;
-	}	
+	}
 }
