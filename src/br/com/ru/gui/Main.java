@@ -19,7 +19,7 @@ public class Main extends Application{
         Scene scene = new Scene(root);
         primaryStage.setScene(scene);
         primaryStage.setTitle("RU");    
-        primaryStage.getIcons().add(new Image("br/com/ru/imagens/restaurantIcon2.png"));
+        primaryStage.getIcons().add(new Image("br/com/ru/imagens/restaurantIcon3.png"));
         primaryStage.show();
     }
 

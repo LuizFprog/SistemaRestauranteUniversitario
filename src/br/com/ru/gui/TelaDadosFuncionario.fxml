@@ -81,10 +81,6 @@
                                     <DatePicker fx:id="dataMax" />
                                  </children>
                               </VBox>
-                           </children>
-                        </HBox>
-                        <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0" spacing="110.0">
-                           <children>
                               <Button fx:id="buttonFichaDia" mnemonicParsing="false" onAction="#listarFichaPorPeriodo" stylesheets="@test.css" text="Fichas no Periodo" textFill="WHITE">
                                  <HBox.margin>
                                     <Insets bottom="10.0" top="20.0" />
@@ -93,12 +89,21 @@
                                     <Font name="Arial Bold" size="12.0" />
                                  </font>
                               </Button>
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0" spacing="30.0">
+                           <children>
+                              <Label text="Digite o novo preço:">
+                                 <font>
+                                    <Font name="Arial Bold" size="12.0" />
+                                 </font>
+                              </Label>
+                              <TextField fx:id="novoPrecoFicha" />
                               <Button fx:id="buttonFichaAtualizar" layoutX="269.0" layoutY="30.0" mnemonicParsing="false" onAction="#trocarPreco" stylesheets="@test.css" text="Alterar Preço" textFill="WHITE">
                                  <font>
                                     <Font name="Arial Bold" size="12.0" />
                                  </font>
                               </Button>
-                              <TextField fx:id="novoPrecoFicha" />
                            </children>
                         </HBox>
                         <TableView fx:id="listFichas" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
