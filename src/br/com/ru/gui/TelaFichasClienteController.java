@@ -177,7 +177,7 @@ public class TelaFichasClienteController implements Initializable{
     @FXML
     public void acaoComprarFichas(ActionEvent event) throws Exception 
     {
-    	
+    	System.out.println(cliente.getSaldo() + "AQUI TROXA");
     	Integer valor = 0;
     	
     	
@@ -186,12 +186,13 @@ public class TelaFichasClienteController implements Initializable{
     	}
     	
     	try {
-			meuSistema.adicionarFicha(3, 3 * valor, meuSistema.recuperarClienteEspecifico(cliente.getCpf()));
+			meuSistema.adicionarFicha(meuSistema.retornarFicha().getPreco(), meuSistema.retornarFicha().getPreco() * valor, meuSistema.recuperarClienteEspecifico(cliente.getCpf()));
 			reload(event);
 		} catch (ElementoNaoExisteException | SaldoInsuficienteException | ElementoJaExisteException e) {
+			System.out.println(cliente.getSaldo() + "AQUI DENOVO");
 			mostrarAlerta();
 			reload(event);
-			//e.printStackTrace();
+			e.printStackTrace();
 		}
     }
     

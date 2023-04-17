@@ -264,6 +264,15 @@ public class Sistema {
 		return controladorFicha.listarFichas();
 	}
 	
+	public Ficha retornarFicha()
+	{
+		return controladorFicha.retornarFichaNaoEfetivada();
+	}
+	
+	public void gerarFicha() throws ElementoJaExisteException {
+		controladorFicha.cadastrarFicha(0);
+	}
+	
 	//Listar por dia
 	public List<Ficha> fichaPorDia(int dia){
 		return controladorFicha.listarFichaPorDia(dia);
