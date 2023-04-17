@@ -7,6 +7,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 
@@ -17,7 +18,8 @@ public class Main extends Application{
         Parent root = FXMLLoader.load(getClass().getResource("TelaLoginPrincipal.fxml"));
         Scene scene = new Scene(root);
         primaryStage.setScene(scene);
-        primaryStage.setTitle("RU");        
+        primaryStage.setTitle("RU");    
+        primaryStage.getIcons().add(new Image("br/com/ru/imagens/restaurantIcon2.png"));
         primaryStage.show();
     }
 
